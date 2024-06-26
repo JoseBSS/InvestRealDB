@@ -209,6 +209,18 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
+    ion-item:nth-child(14) .sc-ion-select-popover-md {
+
+      border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
+
+    background: url('assets/investrealperurecursos/iconos-selector-bancos/dinners.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding: 0px 0px 17px  26px;
+  }
+
+
+
     ion-item:nth-child(1) .sc-ion-select-popover-ios {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
@@ -336,6 +348,18 @@ ion-item {
       background-repeat: no-repeat;
       padding: 0px 0px 17px  26px;
     }
+
+    ion-item:nth-child(14) .sc-ion-select-popover-ios {
+
+      border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
+
+    background: url('assets/investrealperurecursos/iconos-selector-bancos/dinners.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding: 0px 0px 17px  26px;
+      
+  }
+
   }
 
   ion-button {

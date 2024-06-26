@@ -4,11 +4,13 @@ import * as CryptoJS from 'crypto-js';
 import {Router} from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import {ElementRef, ViewChild} from '@angular/core';
-import { IonModal, LoadingController } from '@ionic/angular';
+import { IonModal, IonRefresher, IonRefresherContent, LoadingController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { AgregarcuentaotarjetaPage } from '../modals/agregarcuentaotarjeta/agregarcuentaotarjeta.page';
 import { DecimalPipe } from '@angular/common';
+import { ChangeDetectorRef } from "@angular/core";
 
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-operacion',
@@ -18,9 +20,8 @@ import { DecimalPipe } from '@angular/common';
 export class OperacionPage implements OnInit {
 
   sort = 'assets/investrealperurecursos/customsvg/change.svg';
-
-
-
+  // @ViewChild('contenedor1') contenedor1: IonRefresher;
+  // @ViewChild('contenedor2') contenedor2: IonRefresherContent;
 
 
   @ViewChild('modalpaso2') modalpaso2: IonModal;
@@ -72,6 +73,7 @@ export class OperacionPage implements OnInit {
   id_credito_usado: any;
 
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private decimalPipe: DecimalPipe,
     private modalController: ModalController,
     private ElementRef : ElementRef,
@@ -79,14 +81,19 @@ export class OperacionPage implements OnInit {
         public varios: VariosService,
     private router: Router,
     public loadingController: LoadingController,
+    public Zone: NgZone
 
-  ) { }
+  ) 
+  
+  
+  
+  { }
+
 
   ngOnInit() {
   }
 
   ionViewWillEnter(){
-
     this.TraerCompraYVentaInvestrealPeru();
     
     this.varios.ConsultarUsuarioMayorANumero1().subscribe(async( res: any ) =>{
@@ -96,6 +103,12 @@ export class OperacionPage implements OnInit {
     });
     
 
+  }
+
+  handleRefresh(event) {
+    console.log(event);
+    event.target.complete();
+    this.traercuentasytarjetasdeusuario();
   }
 
   TraerCompraYVentaInvestrealPeru(){
@@ -121,9 +134,18 @@ export class OperacionPage implements OnInit {
 
     });
   }
+getExams() {
+  this.Zone.run(() => {
+    this.cuentas_de_usuario = this.cuentas_de_usuario;
+    this.tarjetas_de_usuario = this.tarjetas_de_usuario;
 
-  traercuentasytarjetasdeusuario(){
+});
+}
 
+async  traercuentasytarjetasdeusuario(){
+  this.varios.mostrar_selector_de_cuentas_o_actualizando_vista=false;
+  this.cuentas_de_usuario=null;
+  this.tarjetas_de_usuario=null;
     var datainvestrealperutraercuentasytarjetasdeusuario = {
       nombre_solicitud: 'investrealperutraercuentasytarjetasdeusuario',
       id_user: this.profileInfo.id,
@@ -134,7 +156,13 @@ export class OperacionPage implements OnInit {
       this.varios.MostrarYOcultarAlertaMono('dismiss');
       this.cuentas_de_usuario=res[0];
       this.tarjetas_de_usuario=res[1];
-  
+      // this.contenedor1.complete();
+      this.changeDetectorRef.detectChanges();
+      var d = document.getElementById('asd');
+
+      
+      this.varios.mostrar_selector_de_cuentas_o_actualizando_vista=true;
+      this.changeDetectorRef.detectChanges();
        });
   }
 
@@ -615,9 +643,11 @@ async sendPhotos(thumbUrl) {
   if(dataquerecibe=='cuenta')
   {
     this.nuevacuenta();
+    
   }
   else if (dataquerecibe=='tarjeta'){
     this.nuevatarjeta();
+
   }
  }
 
@@ -631,6 +661,7 @@ async sendPhotos(thumbUrl) {
     }
     });
   modal.onDidDismiss().then((data) => {
+    this.traercuentasytarjetasdeusuario();
     console.log('data.data.respuesta_de_modal',data.data.respuesta_de_modal);
     if(data.data.respuesta_de_modal){
       this.data_de_deposito=data.data.respuesta_de_modal;
@@ -652,6 +683,7 @@ async sendPhotos(thumbUrl) {
     }
     });
   modal.onDidDismiss().then((data) => {
+    this.traercuentasytarjetasdeusuario();
       console.log('data.data.respuesta_de_modal',data.data.respuesta_de_modal);
       if(data.data.respuesta_de_modal){
         this.data_de_deposito=data.data.respuesta_de_modal;

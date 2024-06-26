@@ -1,4 +1,10 @@
 <ion-content>
+  
+  <ion-refresher id="asd"  (ionRefresh)="handleRefresh($event)">
+  
+    <ion-refresher-content style="position: sticky !important;;" #contenedor1>
+      </ion-refresher-content>
+      </ion-refresher>
   <div style="padding: 40px 40px 0 40px" class="ion-hide-sm-up">
     <p class="main__title ion-text-center" style="margin: 0">
       Iniciar Operación
@@ -330,7 +336,10 @@
 
   <!-- inicia step2  -->
 
-  <section *ngIf="this.step=='2'">
+  <section *ngIf="this.step=='2'" >
+  <section *ngIf="this.varios.mostrar_selector_de_cuentas_o_actualizando_vista">
+
+
     <div class="wrapper">
       <ul class="steps">
         <li (click)="step1()">
@@ -493,7 +502,9 @@
                 <p>¿Desde qué banco nos enviarás el dinero?</p>
               </h5></ion-text
             >
-            <ion-select
+
+            
+            <ion-select id="asd2" 
               [(ngModel)]="banco_que_envia"
               interface="popover"
               [interfaceOptions]="{ cssClass: 'clasebancosselector', side:'top',  alignment:'center' }"
@@ -648,7 +659,7 @@
                 style="margin-left: 0px !important"
               >
                 <section *ngIf="quierecomprardolares">
-                  <ion-select
+                  <ion-select 
                     (ionChange)="IONCHANGEdatos_de_deposito($event)"
                     *ngIf="cuentas_de_usuario.length>0||tarjetas_de_usuario.length>0"
                     interface="popover"
@@ -661,17 +672,17 @@
                       border: 1px solid var(--ion-color-primary);
                     "
                   >
-                    <ng-container *ngFor="let cadacuenta of cuentas_de_usuario">
+                    <ng-container *ngFor="let cadacuenta of cuentas_de_usuario;let i=index">
                       <ion-select-option
                         *ngIf="cadacuenta.moneda_cuenta=='Dolares'"
                         [value]="cadacuenta"
-                        >Cuenta:&nbsp;{{cadacuenta.numero_cuenta}}
-                        {{cadacuenta.banco_cuenta}}|De:{{cadacuenta.titular_cuenta}}</ion-select-option
+                        >Cuenta:&nbsp;{{cuentas_de_usuario[i].numero_cuenta}}
+                        {{cuentas_de_usuario[i].banco_cuenta}}|De:{{cuentas_de_usuario[i].titular_cuenta}}</ion-select-option
                       >
                     </ng-container>
 
                     <ion-select-option
-                      *ngFor="let cadatarjeta of tarjetas_de_usuario"
+                      *ngFor="let cadatarjeta of tarjetas_de_usuario;let i=index"
                       [value]="cadatarjeta"
                       >Tarjeta:&nbsp;{{cadatarjeta.numero_tarjeta}}
                       {{cadatarjeta.banco_tarjeta}}|De:{{cadatarjeta.titular_tarjeta}}</ion-select-option
@@ -734,7 +745,7 @@
                 <ion-text class="fuenteraleway" style="text-align: center">
                   <h4>
                     <strong
-                      >Tarjeta del {{data_de_deposito.banco_cuenta}}</strong
+                      >Cuenta del {{data_de_deposito.banco_cuenta}}</strong
                     >
                   </h4>
                   <h6>De: {{data_de_deposito.titular_cuenta}}</h6>
@@ -862,6 +873,10 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
+ 
+
+  </section>
   </section>
 
   <section *ngIf="this.step=='3'">
@@ -1147,6 +1162,6 @@
       </ion-row>
     </ion-grid>
   </section>
-
   <!-- termina step 2 -->
+
 </ion-content>

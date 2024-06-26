@@ -27,6 +27,7 @@ export class VariosService {
   temporal_dolares_a_recibir: any;
   temporal_dolares_a_enviar: any;
   pais_seleccionado_con_bandera: { name: string; code: string; iso: string; flag: string; mask: string; };
+  mostrar_selector_de_cuentas_o_actualizando_vista: boolean;
 
   constructor(
     private modalController: ModalController,

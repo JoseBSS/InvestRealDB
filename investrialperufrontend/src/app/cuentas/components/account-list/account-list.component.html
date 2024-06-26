@@ -1,0 +1,214 @@
+<ion-accordion-group
+  class="ion-hide-sm-up"
+  [multiple]="true"
+  [value]="['first', 'third']"
+>
+  <ion-accordion *ngFor="let cadacuenta of accounts" value="first">
+    <ion-item slot="header" color="light">
+      <div style="padding: 0 40px">
+        <div *ngIf="cadacuenta.apodo_cuenta" class="text__label">
+          {{ cadacuenta.apodo_cuenta }} - {{ cadacuenta.titular_cuenta }}
+        </div>
+        <div *ngIf="!cadacuenta.apodo_cuenta" class="text__label">
+          {{ cadacuenta.titular_cuenta }}
+        </div>
+      </div>
+    </ion-item>
+
+    <div class="ion-padding" slot="content">
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Banco</p>
+          <p class="text-right text__value">
+            {{ cadacuenta.banco_cuenta }}
+          </p>
+        </div>
+      </div>
+
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Cuenta Ahorro</p>
+          <p class="text-right text__value">
+            {{ cadacuenta.numero_cuenta }}
+          </p>
+        </div>
+      </div>
+
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Moneda</p>
+          <p class="text-right text__value">
+            {{ cadacuenta.moneda_cuenta }}
+          </p>
+        </div>
+      </div>
+
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Editar</p>
+          <div (click)="emitSesionEditar(cadacuenta, 'cuenta')" size="0.4">
+            <ion-icon
+              style="color: var(--ion-color-primary)"
+              name="create"
+            ></ion-icon>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Eliminar</p>
+          <div (click)="emitSesionEliminar(cadacuenta, 'cuenta')" size="0.4">
+            <ion-icon
+              style="color: var(--ion-color-secondary)"
+              name="trash-bin"
+            ></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-accordion>
+
+  <!-- Tarjetas de usuario -->
+
+  <ion-accordion *ngFor="let cadatarjeta of cards" value="first">
+    <ion-item slot="header" color="light">
+      <div style="padding: 0 40px">
+        <div *ngIf="cadatarjeta.apodo_tarjeta" class="text__label">
+          {{ cadatarjeta.apodo_tarjeta }} - {{ cadatarjeta.titular_tarjeta }}
+        </div>
+        <div *ngIf="!cadatarjeta.apodo_tarjeta" class="text__label">
+          {{ cadatarjeta.titular_tarjeta }}
+        </div>
+      </div>
+    </ion-item>
+
+    <div class="ion-padding" slot="content">
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Banco</p>
+          <p class="text-right text__value">
+            {{ cadatarjeta.banco_tarjeta }}
+          </p>
+        </div>
+      </div>
+
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Cuenta Ahorro</p>
+          <p class="text-right text__value">
+            {{ cadatarjeta.numero_tarjeta }}
+          </p>
+        </div>
+      </div>
+
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Moneda</p>
+          <p class="text-right text__value">
+            {{ cadatarjeta.moneda_tarjeta ?? '-' }}
+          </p>
+        </div>
+      </div>
+
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Editar</p>
+          <div (click)="emitSesionEditar(cadatarjeta, 'tarjeta')" size="0.4">
+            <ion-icon
+              style="color: var(--ion-color-primary)"
+              name="create"
+            ></ion-icon>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Eliminar</p>
+          <div (click)="emitSesionEliminar(cadatarjeta, 'tarjeta')" size="0.4">
+            <ion-icon
+              style="color: var(--ion-color-secondary)"
+              name="trash-bin"
+            ></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-accordion>
+
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-accordion-group>

@@ -1,0 +1,249 @@
+
+ion-content.background-contenidodo {
+    background-size: cover;
+        --background: url(../../../assets/investrealperurecursos/fondo_Iniciar.png) 0 0/100% 100% no-repeat;
+  }
+
+
+
+.dentrodecontenedorizquierda{
+    
+p{
+    color:white;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Garantiza que el contenido se extienda por toda la altura de la ventana del navegador */
+
+}
+
+
+// @font-face {
+//     font-family: 'LaFuente'; /* Nombre personalizado para tu fuente */
+//     src: url('../fuente/FontsFree-Net-SFProText-Bold.ttf') format('truetype'); /* Ruta de la fuente descargada */
+// }
+
+// @font-face {
+//     font-family: 'NexaFuente'; /* Nombre personalizado para tu fuente */
+//     src: url('../fuente/Nexa\ Regular.otf') format('truetype'); /* Ruta de la fuente descargada */
+// }
+
+
+.bot {
+    position: fixed; /* Hace que el logo sea flotante */
+    bottom: 20px; /* Distancia desde la parte inferior */
+    right: 20px; /* Distancia desde el lado derecho */
+    width: 100px; /* Ancho del logo */
+    height: auto; /* Altura ajustada automáticamente */
+    z-index: 999; /* Asegura que el logo esté en la parte superior */
+}
+
+.fullpage{
+    display: flex;
+    flex-direction: row;
+
+}
+.izq{
+    height: 100vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    // background-image: url(assets/investrealperurecursos/images/backIniciarS.png);
+    // --background: url(../assets/imgs/carp.jpg) 0 0/100% 100% no-repeat;
+    // --background: url("/assets/icon/background.jpg") 0 0/100% 100% no-repeat
+    --background-image: url("/assets/investrealperurecursos/images/backIniciarS.png");
+
+    background-size: cover; /* Ajusta la imagen para cubrir todo el elemento body */
+    background-position: center; /*Centra la imagen  */
+    align-items: center;
+    justify-content: center;
+}
+.logo{
+padding-bottom: 100px;
+
+}
+.pasos{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+}
+.paso{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+.paso h2{
+    color: white;
+    font-family: 'LaFuente';
+}
+.paso p{
+    font-family: 'NexaFuente'; 
+}
+
+
+
+
+.der{
+    height: 100vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    font-family: 'LaFuente';
+    
+}
+.datos-registro{
+    font-family: 'LaFuente';
+}
+
+
+input[type="email" ] {
+    /* Establece el fondo y el borde */
+    background-color: #f1f2f2;
+    border: 1px solid #ccc;
+    /* Añade esquinas redondeadas */
+    border-radius: 5px;
+    /* Ajusta el relleno */
+    padding: 10px;
+    /* Ancho */
+    width: 480px;
+    /* Incluye el padding y el borde en el ancho total */
+    box-sizing: border-box;
+    /* Centra el texto verticalmente */
+    line-height: 1.5;
+    /* Establece la alineación del texto */
+    text-align: center;
+    padding-top: 16px;
+    font-family: 'LaFuente';
+    font-size: 17px;
+
+}
+
+input[type="text" ] {
+    /* Establece el fondo y el borde */
+    background-color: #f1f2f2;
+    border: 1px solid #ccc;
+    /* Añade esquinas redondeadas */
+    border-radius: 5px;
+    /* Ajusta el relleno */
+    padding: 10px;
+    /* Ancho */
+    width: 480px;
+    /* Incluye el padding y el borde en el ancho total */
+    box-sizing: border-box;
+    /* Centra el texto verticalmente */
+    line-height: 1.5;
+    /* Establece la alineación del texto */
+    text-align: center;
+    padding-top: 16px;
+    font-family: 'LaFuente';
+    font-size: 17px;
+}
+
+input[type="password"] {
+    /* Establece el fondo y el borde */
+    background-color: #f1f2f2;
+    border: 1px solid #ccc;
+    /* Añade esquinas redondeadas */
+    border-radius: 5px;
+    /* Ajusta el relleno */
+    padding: 10px;
+    /* Ancho */
+    width: 480px;
+    /* Incluye el padding y el borde en el ancho total */
+    box-sizing: border-box;
+    /* Centra el texto verticalmente */
+    line-height: 1.5;
+    /* Establece la alineación del texto */
+    text-align: center;
+    font-family: 'LaFuente';
+    padding-top: 16px;
+    font-size: 17px;
+}
+
+
+
+.boton-registrarse {
+    padding-bottom: 20px;
+    padding-top: 17px;
+}
+
+.boton-registrarse button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background: linear-gradient(70deg, rgb(17, 129, 255), rgb(26, 155, 255));
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 480px;
+}
+
+/*SECCION FOOTER!!!*/
+
+footer {
+    background-color: #020129;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    /* Agrega un espacio interior para mejor apariencia */
+    gap: 20px;
+    font-family: 'LaFuente';
+}
+
+footer h2 {
+    color: white;
+    text-align: center;
+    font-family: 'LaFuente';
+}
+
+footer .legales,
+footer .sobreN,
+footer .linkI {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+footer .logo {
+    display: flex;
+    align-items: flex-start;
+}
+
+.email,
+.wsp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.wsp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 50px;
+}
+
+
+/*FIN SECCION FOOTER!!!*/
+
+}

@@ -1,0 +1,114 @@
+.stack {
+    background: linear-gradient(
+        0deg,
+        #0b2240 43.99%,
+        rgba(11, 34, 64, 0.87) 100%
+    );
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    &__img {
+        width: 422px;
+        height: 68px;
+    }
+
+    &__back {
+        position: absolute;
+        right: 0;
+        top: 215px;
+    }
+
+    &__button {
+        position: absolute;
+        right: 0;
+        top: 48px;
+        left: 40px;
+        cursor: pointer;
+    }
+
+    &__img-title-container {
+        max-width: 405px;
+        height: 152px;
+    }
+
+    &__img-title {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 31px;
+        line-height: 38px;
+        text-align: center;
+        color: #ffffff;
+        & b {
+            font-size: 31px;
+            font-weight: 700;
+        }
+    }
+
+    &__feature-item {
+        display: flex;
+        align-items: center;
+    }
+
+    &__feature-list {
+        max-width: 435px;
+        max-height: 190px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    &__feature {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        color: #ffffff;
+        margin-left: 22px;
+        & b {
+            font-size: 16px;
+            font-weight: 700;
+        }
+    }
+}
+
+@media (max-width: 960px) {
+    .stack {
+        padding: 60px 10px 70px 10px;
+        order: 1;
+        height: 600px;
+        justify-content: flex-start;
+        background: #0b2240;
+        &__img {
+            width: 242px;
+            height: 38px;
+        }
+        &__img-title {
+            padding: 0 41px;
+            margin-top: 53px;
+            font-size: 16px;
+            line-height: 20px;
+            & b {
+                font-size: 16px;
+                line-height: 20px;
+            }
+        }
+        &__feature-item {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        &__feature {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 15px;
+            color: #ffffff;
+            & b {
+                font-size: 12px;
+                font-weight: 700;
+            }
+        }
+    }
+}

@@ -1,0 +1,209 @@
+<ion-accordion-group
+  class="ion-hide-sm-up"
+  [multiple]="true"
+  [value]="['first', 'third']"
+>
+  <ion-accordion *ngFor="let cadaoperacion of operations" value="first">
+    <ion-item slot="header" color="light">
+      <ion-label class="text__label" style="padding: 0 40px"
+        >Operación Nr° {{ cadaoperacion.id }}</ion-label
+      >
+    </ion-item>
+    <div class="ion-padding" slot="content">
+      <div
+        *ngIf="cadaoperacion.quierecomprardolares == 'si'"
+        style="padding: 0 40px; height: 30px"
+      >
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail">Envías</p>
+          <div style="display: flex">
+            <ion-icon
+              color="secondary"
+              style="size: x-small"
+              name="person"
+            ></ion-icon>
+            <div>
+              <a class="text__value" style="font-size: x-medium">S/</a>
+              {{ cadaoperacion.solesaenviar }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="cadaoperacion.quierecomprardolares == 'si'"
+        style="padding: 0 40px; height: 30px"
+      >
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Recibes</p>
+          <div style="display: flex">
+            <img
+              style="width: 15px; height: 15px"
+              src="assets/investrealperurecursos/icon/favicon.png"
+            />
+            <div>
+              <a class="text__value" style="font-size: x-medium">$</a>
+              {{ cadaoperacion.recibe | number : '1.2-2' }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div (click)="openModalDetails(cadaoperacion)">
+        <div
+          *ngIf="cadaoperacion.quierecomprardolares == 'no'"
+          style="padding: 0 40px; height: 30px"
+        >
+          <div
+            style="
+              display: flex;
+              gap: 15px;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <p class="text__detail">Envías</p>
+            <div style="display: flex">
+              <ion-icon
+                color="secondary"
+                style="size: x-small"
+                name="person"
+              ></ion-icon>
+              <div>
+                <a class="text__value" style="font-size: x-medium">$</a>
+                {{ cadaoperacion.dolaresaenviar }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          *ngIf="cadaoperacion.quierecomprardolares == 'no'"
+          style="padding: 0 40px; height: 30px"
+        >
+          <div
+            style="
+              display: flex;
+              gap: 15px;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <p class="text__detail" style="padding: 0">Recibes</p>
+            <div style="display: flex">
+              <img
+                style="width: 15px; height: 15px"
+                src="assets/investrealperurecursos/icon/favicon.png"
+              />
+              <div>
+                <a class="text__value" style="font-size: x-medium">$</a>
+                {{ cadaoperacion.recibe | number : '1.2-2' }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail" style="padding: 0">Fecha</p>
+          <p class="text-right text__value">
+            {{
+              cadaoperacion.fecha_creacion
+                | date
+                  : 'dd/MM/yy,
+          hh:mm'
+                  : 'GMT-5'
+            }}
+          </p>
+        </div>
+      </div>
+
+      <div style="padding: 0 40px; height: 30px">
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail">Estado</p>
+          <div>
+            <div (click)="openModalDetails(cadaoperacion)" size="2.9">
+              <ion-text
+                *ngIf="cadaoperacion.estado == 3"
+                style="font-size: x-medium"
+              >
+                <span class="v2-badge v2-badge-validando">
+                  <a style="vertical-align: inherit; color: orange">
+                    Validando
+                  </a>
+                </span>
+              </ion-text>
+              <ion-text
+                *ngIf="cadaoperacion.estado == 4"
+                style="font-size: x-medium"
+              >
+                <span class="v2-badge v2-badge-atendida">
+                  <a style="vertical-align: inherit; color: green">
+                    Atendida
+                  </a>
+                </span>
+              </ion-text>
+              <ion-text
+                *ngIf="cadaoperacion.estado == 25"
+                style="font-size: x-medium"
+              >
+                <span class="v2-badge v2-badge-cancelada">
+                  <a style="vertical-align: inherit; color: white">
+                    Cancelada
+                  </a>
+                </span>
+              </ion-text>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 0 40px">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <p class="text__detail">Ver detalle</p>
+          <ion-icon
+            (click)="openModalDetails(cadaoperacion)"
+            size="medium"
+            color="secondary"
+            style="cursor: pointer; color: secondary"
+            name="eye"
+          ></ion-icon>
+        </div>
+      </div>
+    </div>
+  </ion-accordion>
+</ion-accordion-group>

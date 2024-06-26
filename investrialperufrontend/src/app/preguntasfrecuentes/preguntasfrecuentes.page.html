@@ -1,0 +1,97 @@
+<ion-content>
+  <br>
+  <ion-segment (ionChange)="segmentChanged($event)" [value]="ValorSegmento">
+    <ion-segment-button value="1" style="margin-right: 7px;">
+      <div style="padding: -15px!important;">
+
+
+        <svg style="width:50%!important;height:50%!important;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+          fill-rule="evenodd" clip-rule="evenodd">
+          <path stroke="var(--ion-color-primary)"
+            d="M21.19 7h2.81v15h-21v-5h-2.81v-15h21v5zm1.81 1h-19v13h19v-13zm-9.5 1c3.036 0 5.5 2.464 5.5 5.5s-2.464 5.5-5.5 5.5-5.5-2.464-5.5-5.5 2.464-5.5 5.5-5.5zm0 1c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm.5 8h-1v-.804c-.767-.16-1.478-.689-1.478-1.704h1.022c0 .591.326.886.978.886.817 0 1.327-.915-.167-1.439-.768-.27-1.68-.676-1.68-1.693 0-.796.573-1.297 1.325-1.448v-.798h1v.806c.704.161 1.313.673 1.313 1.598h-1.018c0-.788-.727-.776-.815-.776-.55 0-.787.291-.787.622 0 .247.134.497.957.768 1.056.344 1.663.845 1.663 1.746 0 .651-.376 1.288-1.313 1.448v.788zm6.19-11v-4h-19v13h1.81v-9h17.19z">
+          </path>
+        </svg>
+        <ion-text>
+          <p style="margin-top: 0px!important; font-size: small;">Sobre el Proceso de cambio</p>
+
+        </ion-text>
+      </div>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <div style="padding: -15px!important;">
+
+        <!-- icono de la galeria ionic por Pwapp -->
+        <svg  style="width:50%!important;height:50%!important;   fill: var(--ion-color-primary);
+        " xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+          <path 
+            d="M368 192h-16v-80a96 96 0 10-192 0v80h-16a64.07 64.07 0 00-64 64v176a64.07 64.07 0 0064 64h224a64.07 64.07 0 0064-64V256a64.07 64.07 0 00-64-64zm-48 0H192v-80a64 64 0 11128 0z" />
+        </svg>
+        <!-- icono de la galeria ionic por Pwapp -->
+        <ion-text>
+          <p style="margin-top: 0px!important; font-size: small;">Sobre el Proceso de cambio</p>
+
+        </ion-text>
+      </div>
+    </ion-segment-button>
+    <ion-segment-button value="3" style="margin-left: 7px;">
+      <div style="padding: -15px!important;">
+
+
+        <svg style="width:50%!important;height:50%!important;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+          fill-rule="evenodd" clip-rule="evenodd">
+          <path stroke="var(--ion-color-primary)"
+            d="M9.484 15.696l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm0-5l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm0-5l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm10.516 11.304h-8v1h8v-1zm0-5h-8v1h8v-1zm0-5h-8v1h8v-1zm4-5h-24v20h24v-20zm-1 19h-22v-18h22v18z">
+          </path>
+        </svg>
+        <ion-text>
+          <p style="margin-top: 0px!important; font-size: small;">Sobre el Proceso de cambio</p>
+
+        </ion-text>
+      </div>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-item-divider></ion-item-divider>
+
+  <section *ngIf="ValorSegmento==='1'">
+
+
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>¿Cuál es el procedimiento del cambio?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list [inset]="true">
+          <ion-item>
+            <ion-label><strong>Paso 1</strong>Crear cuenta: Registrate en InvestReal</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Paso 2 </strong>Cotiza: Ingresa el monto que v as a enviar y calcula cuánto vas a recibir.</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Paso 3 </strong>Transfiere: El equivalente mediante la web o app de tu banco.</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Paso 4 </strong>Recibe: El monto de la cuenta bancaria que indiques.</ion-label>
+          </ion-item>
+        </ion-list>
+        
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>¿Con qué bancos trabajan?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Para brindarte un servicio eficiente y seguro, colaboramos con diversos bancos. Para cambios de dólares inmediatos online, trabajamos con <strong>Interbank y BCP</strong>. Si prefieres realizar cambios de dólares online con un proceso que puede tomar hasta 24 horas, también operamos con Scotiabank, BBVA, Banco Pichincha, entre otros. Esto nos permite ofrecerte múltiples opciones y flexibilidad para manejar tus transacciones financieras según tus necesidades.</div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header" color="light">
+        <ion-label>¿Dónde encuentro el número de operación?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Third Content</div>
+    </ion-accordion>
+  </ion-accordion-group>
+</section>
+
+</ion-content>

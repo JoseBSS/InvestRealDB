@@ -1,0 +1,305 @@
+<ion-app (click)="SeClickeoEnLaApp()">
+
+  <a href="https://wa.me/51915157485" style="position: absolute; right:20px; bottom: 10px; z-index: 5; cursor:pointer">
+    <img src="assets/investrealperurecursos/whatsapp_float.png" style="width:48px;">
+  </a>
+
+  <ion-split-pane when="md" contentId="main">
+    <ion-menu (click)="clickparacerrarmenusuperior()" [side]="innerWidth > 600 ? 'start' : 'end'" contentId="main">
+      <ion-header class="ion-hide-sm-down">
+        <ion-toolbar color="primary">
+          <img style="width: 160px; height: 100%; margin-left: 40px"
+            src="assets/investrealperurecursos/logo-cabecera-app.png" />
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-header class="ion-hide-sm-up" style="position: inherit">
+        <ion-toolbar style="padding: 12px">
+          <img style="width: 100%; height: 100%" src="assets/investrealperurecursos/logo-cabecera-app.png" />
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <div class="ion-padding-end ion-hide-md-up">
+          <p class="drawer__title ion-text-end">Bienvenido</p>
+          <p class="drawer__subtitle ion-text-end">
+            {{
+            profileInfo?.name ??
+            '' + ' ' + profileInfo?.lastname ??
+            '' + profileInfo?.lastname2 ??
+            ''
+            }}
+          </p>
+        </div>
+
+        <ion-menu-toggle class="ion-align-items-center ion-hide-sm-down" autoHide="false">
+          <ion-grid class="ion-align-items-center">
+            <ion-row class="ion-align-items-center">
+              <ion-col class="ion-align-items-center">
+                <ion-item class="ion-align-items-center" routerLink="/indash/operacion" routerLinkActive="selected"
+                  style="cursor: pointer" routerDirection="root" detail="false">
+                  <!-- <ion-icon slot="start" name="add-outline"></ion-icon> -->
+
+                  <ion-label class="ion-align-items-center" style="margin-bottom: 32px" color="primary">
+                    <strong style="
+                        font-size: large;
+                        border-radius: 25px;
+                        color: var(--ion-color-secondary);
+                        border: 1px solid var(--ion-color-primary);
+                      ">&nbsp; &#43; &nbsp;</strong>
+                    Nueva Operación
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-menu-toggle>
+
+        <ion-list lines="none">
+          <!-- <ion-list-header> Mi Cuenta </ion-list-header> -->
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/indash/operacion" routerLinkActive="selected" routerDirection="root" detail="false">
+              <!-- <ion-icon
+                color="primary"
+                slot="start"
+                name="swap-horizontal"
+              ></ion-icon> -->
+              <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10.9302 20H7.2093C2.15814 20 0 17.8419 0 12.7907V7.2093C0 2.15814 2.15814 0 7.2093 0H10.9302C15.9814 0 18.1395 2.15814 18.1395 7.2093V12.7907C18.1395 17.8419 15.9814 20 10.9302 20ZM7.2093 1.39535C2.92093 1.39535 1.39535 2.92093 1.39535 7.2093V12.7907C1.39535 17.0791 2.92093 18.6047 7.2093 18.6047H10.9302C15.2186 18.6047 16.7442 17.0791 16.7442 12.7907V7.2093C16.7442 2.92093 15.2186 1.39535 10.9302 1.39535H7.2093Z"
+                  fill="#2dd36f" />
+                <path
+                  d="M11.8619 8.91122H6.28052C5.12703 8.91122 4.1875 7.97167 4.1875 6.81818V5.88794C4.1875 4.73446 5.12703 3.79492 6.28052 3.79492H11.8619C13.0154 3.79492 13.9549 4.73446 13.9549 5.88794V6.81818C13.9549 7.97167 13.0154 8.91122 11.8619 8.91122ZM6.28052 5.19027C5.89913 5.19027 5.58285 5.50655 5.58285 5.88794V6.81818C5.58285 7.19957 5.89913 7.51585 6.28052 7.51585H11.8619C12.2433 7.51585 12.5596 7.19957 12.5596 6.81818V5.88794C12.5596 5.50655 12.2433 5.19027 11.8619 5.19027H6.28052Z"
+                  fill="#2dd36f" />
+                <path
+                  d="M5.48929 12.7172C5.36836 12.7172 5.24743 12.6893 5.1358 12.6428C5.02417 12.5963 4.92185 12.5312 4.83813 12.4475C4.66138 12.2707 4.56836 12.0382 4.56836 11.787C4.56836 11.6661 4.58696 11.5451 4.63348 11.4335C4.67999 11.3126 4.7451 11.2196 4.83813 11.1265C4.87534 11.0893 4.92185 11.0428 4.97766 11.0149C5.02417 10.9777 5.07999 10.9498 5.1358 10.9312C5.19162 10.9033 5.25673 10.8847 5.31254 10.8754C5.61022 10.8103 5.9358 10.9126 6.14975 11.1265C6.23347 11.2103 6.30789 11.3126 6.35441 11.4335C6.40092 11.5451 6.42882 11.6661 6.42882 11.787C6.42882 12.0382 6.3265 12.2707 6.14975 12.4475C5.97301 12.6242 5.74045 12.7172 5.48929 12.7172Z"
+                  fill="#2dd36f" />
+                <path
+                  d="M9.21929 12.7164C8.96813 12.7164 8.73557 12.6234 8.55883 12.4467C8.38209 12.2699 8.28906 12.0374 8.28906 11.7862C8.28906 11.6653 8.30767 11.5443 8.35418 11.4327C8.40069 11.3118 8.46581 11.2187 8.55883 11.1257C8.59604 11.0885 8.64255 11.042 8.69836 11.0141C8.74488 10.9769 8.80069 10.949 8.8565 10.9304C8.91232 10.9025 8.97743 10.8839 9.03325 10.8746C9.20999 10.8374 9.39604 10.856 9.57278 10.9304C9.68441 10.9769 9.78674 11.042 9.87046 11.1257C9.95418 11.2187 10.0286 11.3118 10.0751 11.4327C10.1216 11.5443 10.1495 11.6653 10.1495 11.7862C10.1495 12.0374 10.0472 12.2699 9.87046 12.4467C9.69371 12.6234 9.46116 12.7164 9.21929 12.7164Z"
+                  fill="#2dd36f" />
+                <path
+                  d="M12.9307 12.7165C12.8098 12.7165 12.6888 12.6886 12.5772 12.6421C12.4656 12.5956 12.3633 12.5305 12.2795 12.4467C12.1865 12.3537 12.1214 12.2514 12.0749 12.1398C12.0284 12.0281 12.0098 11.9072 12.0098 11.7863C12.0098 11.6654 12.0284 11.5444 12.0749 11.4328C12.1214 11.3119 12.1865 11.2188 12.2795 11.1258C12.6237 10.7816 13.247 10.7816 13.5912 11.1258C13.7679 11.3026 13.8702 11.5444 13.8702 11.7863C13.8702 12.0374 13.7679 12.27 13.5912 12.4467C13.4237 12.6142 13.1912 12.7165 12.9307 12.7165Z"
+                  fill="#2dd36f" />
+                <path
+                  d="M5.49813 16.4364C5.24697 16.4364 5.01441 16.3433 4.83766 16.1666C4.66092 15.9898 4.55859 15.7573 4.55859 15.5061C4.55859 15.2643 4.66092 15.0224 4.83766 14.8457C4.87487 14.8085 4.93069 14.7619 4.9772 14.734C5.02371 14.6968 5.07952 14.6689 5.13534 14.6503C5.19115 14.6224 5.25627 14.6038 5.31208 14.5945C5.61906 14.5387 5.93534 14.6317 6.14929 14.8457C6.1958 14.8922 6.23301 14.9387 6.27022 14.9852C6.29813 15.041 6.32603 15.0968 6.35394 15.1526C6.37255 15.2085 6.39115 15.2643 6.40976 15.3201C6.41906 15.3852 6.42836 15.441 6.42836 15.5061C6.42836 15.7573 6.32603 15.9898 6.14929 16.1666C5.97255 16.3433 5.73999 16.4364 5.49813 16.4364Z"
+                  fill="#2dd36f" />
+                <path
+                  d="M9.21883 16.4364C8.96767 16.4364 8.73511 16.3433 8.55837 16.1666C8.38162 15.9898 8.2793 15.7573 8.2793 15.5061C8.2793 15.2643 8.38162 15.0224 8.55837 14.8457C8.77232 14.6317 9.0979 14.5387 9.39558 14.5945C9.45139 14.6038 9.51651 14.6224 9.57232 14.6503C9.62813 14.6689 9.68395 14.6968 9.73046 14.734C9.77697 14.7619 9.82348 14.8085 9.86999 14.8457C10.0467 15.0224 10.1398 15.2643 10.1398 15.5061C10.1398 15.7573 10.0467 15.9898 9.86999 16.1666C9.69325 16.3433 9.46069 16.4364 9.21883 16.4364Z"
+                  fill="#2dd36f" />
+                <path
+                  d="M12.9307 16.4373C12.6888 16.4373 12.4563 16.3443 12.2795 16.1676C12.1028 15.9908 12.0098 15.7583 12.0098 15.5071C12.0098 15.2652 12.1028 15.0234 12.2795 14.8466C12.3633 14.7629 12.4656 14.6978 12.5772 14.6513C12.9214 14.5117 13.34 14.5862 13.5912 14.8466C13.7679 15.0234 13.8609 15.2652 13.8609 15.5071C13.8609 15.7583 13.7679 15.9908 13.5912 16.1676C13.5074 16.2513 13.4051 16.3164 13.2935 16.3629C13.1819 16.4094 13.0609 16.4373 12.9307 16.4373Z"
+                  fill="#2dd36f" />
+              </svg>
+
+              <ion-label style="margin-left: 35px">
+                Iniciar Operación
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/indash/misoperaciones" routerLinkActive="selected" routerDirection="root"
+              detail="false">
+              <ion-icon color="primary" slot="start" name="swap-horizontal"></ion-icon>
+              <ion-label> Mis Operaciones </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/indash/cuentas" routerLinkActive="selected" routerDirection="root" detail="false">
+              <ion-icon color="primary" slot="start" name="card"></ion-icon>
+              <ion-label> Mis Cuentas </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/indash/misbeneficios" routerLinkActive="selected" routerDirection="root"
+              detail="false">
+              <ion-icon color="primary" slot="start" name="information-circle"></ion-icon>
+              <ion-label> Como Cambiar </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/indash/ayudaycontacto" routerLinkActive="selected" routerDirection="root"
+              detail="false">
+              <ion-icon color="primary" slot="start" name="help-circle"></ion-icon>
+              <ion-label> Ayuda </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/indash/preguntasfrecuentes" routerLinkActive="selected" routerDirection="root"
+              detail="false">
+              <ion-icon color="primary" slot="start" name="logo-wechat"></ion-icon>
+              <ion-label> Preguntas Frecuentes </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/indash/perfil" routerLinkActive="selected" routerDirection="root" detail="false">
+              <ion-icon color="primary" slot="start" name="person"></ion-icon>
+              <ion-label> Perfil </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <!--
+        <ion-slides
+          [options]="slideOptsOne"
+          lockSwipes="false"
+          #eslaiderdelmenu
+          paginationType="bullets"
+          pager="true"
+          scrollbar="true"
+          autoplay="3500"
+          speed="3000"
+        >
+          <ion-slide *ngFor="let menu_promocion of menu_promociones">
+            <ion-card>
+              <div
+                style="
+                  position: absolute;
+                  top: 45%;
+                  left: 16px;
+                  font-size: 25px;
+                  z-index: 2;
+                "
+                (click)="slidePrev()"
+              >
+                <ion-icon name="arrow-back"></ion-icon>
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  top: 45%;
+                  right: 16px;
+                  font-size: 25px;
+                  z-index: 2;
+                "
+                (click)="slideNext()"
+              >
+                <ion-icon name="arrow-forward"></ion-icon>
+              </div>
+              <ion-card-content>
+                <ion-img
+                  [src]="menu_promocion.promocion1_new_url_image"
+                ></ion-img>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+
+        </ion-slides> -->
+      </ion-content>
+    </ion-menu>
+
+    <div class="ion-page" id="main">
+      <ion-header *ngIf="show_header">
+        <!-- <ion-toolbar> -->
+        <ion-toolbar>
+          <div [style]="
+              innerWidth > 600
+                ? 'display: flex; justify-content: start'
+                : 'display: flex; justify-content: space-between'
+            ">
+            <div style="background-color: var(--ion-color-primary);">
+              <img class="ocultar768paraarriba" src="assets/investrealperurecursos/logo-cabecera-app-pero-recortado.png"
+                style="padding-right:10px; padding-left:10px; width:120px; max-height: min-content; padding-top:20px;padding-bottom:30px;  background-color: var(--ion-color-primary);" />
+            </div>
+
+            <!-- <ion-icon
+              class="ocultar768paraarriba"
+              color="primary"
+              style="size: large"
+              size="large"
+              name="notifications"
+              slot="end"
+            ></ion-icon> -->
+            <!-- <ion-icon
+              (click)="clickparaabrirmenusuperior()"
+              class="ocultar768paraarriba"
+              color="primary"
+              style="size: large"
+              size="large"
+              name="person-circle"
+              slot="end"
+            ></ion-icon> -->
+            <div style="display: flex; gap: 12px; align-items: center" class="ion-hide-sm-up">
+              <span *ngIf="profileInfo" style="
+                  color: #333;
+                  text-align: right;
+                  font-size: 12px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: normal;
+                ">
+                {{
+                profileInfo.name +
+                ' ' +
+                profileInfo.lastname +
+                ' ' +
+                profileInfo.lastname2
+                }}
+              </span>
+              <ion-icon (click)="clickparaabrirmenusuperior()" class="ocultar768paraarriba" color="primary"
+                name="chevron-down-outline" style="size: large"></ion-icon>
+            </div>
+            <!-- <ion-icon
+              class="ocultar768paraarriba"
+              style="size: large"
+              size="large"
+              name="none"
+              slot="end"
+            ></ion-icon> -->
+            <ion-text style="position: absolute; right:2px; bottom: 3px; cursor: pointer;" (click)="clickparaabrirmenusuperior()" class="ocultar767paraabajo v2-badge v2-badge-perfilcorreocabecera"  color="primary"
+               *ngIf="profileInfo && profileInfo.email">
+              <p color="primary">
+                {{ profileInfo.email }} &nbsp;<strong class="flechitamenusuperior">&nbsp; <ion-icon
+                    style="font-size: large;margin-bottom: -4px;" name="caret-down-circle-sharp"
+                    color="secondary"></ion-icon> &nbsp;</strong>
+              </p>
+            </ion-text>
+          </div>
+
+          <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+        </ion-toolbar>
+        <!-- </ion-toolbar> -->
+      </ion-header>
+
+      <ion-content (click)="clickparacerrarmenusuperior()" class="ion-padding">
+        <ion-card *ngIf="menuderechosuperior == true" style="position: absolute; right: 0%; top: 0%; z-index: 9999">
+          <ion-card-header>
+            <ion-card-title>Mi Cuenta</ion-card-title>
+            <ion-card-subtitle>Menu de Usuario</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item (click)="iraperfil()">
+                <ion-label style="cursor: pointer">Mi perfil</ion-label>
+              </ion-item>
+              <ion-item (click)="iramiscuentas()">
+                <ion-label style="cursor: pointer">Mis Cuentas</ion-label>
+              </ion-item>
+              <ion-item (click)="cerrarsesionmenusuperior()" style="cursor: pointer">
+                <ion-label>Salir</ion-label>
+              </ion-item>
+            </ion-list>
+            <br />
+            <ion-icon style="
+                font-size: xx-large;
+                position: absolute;
+                right: 0%;
+                bottom: -1%;
+              " name="close-circle"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-router-outlet (activate)="onActivateRoute($event)">
+        </ion-router-outlet>
+      </ion-content>
+    </div>
+  </ion-split-pane>
+</ion-app>

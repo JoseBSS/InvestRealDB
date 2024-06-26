@@ -1,0 +1,79 @@
+.v2-badge {
+    padding: 3px 8px;
+    font-weight: 600;
+    font-size: 10px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+
+  .v2-badge-compro {
+    color: black;
+    background-color: #e8d3a5;
+  }
+
+  .v2-badge-enviar {
+    color: black;
+    background-color: var(--ion-color-primary);
+  }
+  
+  .v2-badge-deposito {
+    color: black;
+    background-color: var(--ion-color-light);
+  }
+
+  .v2-badge-investrealperucambio {
+    color: white;
+    background-color: var(--ion-color-tertiary);
+  }
+
+  .v2-badge-numero {
+    color: black;
+    background-color: var(--ion-color-success);
+  }
+
+
+
+  .fondomagenta{
+    background-color: #FF00FF;
+  } 
+  
+  .fondomarron{
+    background-color: #880015 ;
+
+  }
+
+  .content-img{
+    display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 30px 0px 15px;
+      position: relative;
+      img{
+        height: 110px;
+        width: 130px;
+      }
+      ion-icon{
+        position: absolute;
+        bottom: 0px;
+        margin-left: 65px;
+        background-color: var(--ion-color-secondary);
+        color: #fff;
+        padding: 5px;
+        border-radius: 50em;
+        height: 16px;
+        width: 16px;
+      }
+      label{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .input{
+        visibility: hidden;
+        position: absolute;
+    }
+  
+    
+  }

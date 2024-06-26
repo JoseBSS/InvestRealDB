@@ -1,0 +1,125 @@
+
+  // ion-content.signup-style {
+    //   background-size: cover;
+    //       --background: url(../../assets/investrealperurecursos/login-fondo.jpg) 0 0/100% 100% no-repeat;
+    // }
+    * {
+        font-size: 2.2vh;
+      }
+
+      :root {
+        font-size: 2.2vh;
+
+      }
+
+
+
+
+      ion-item {
+        --border-color: white; // default underline color
+        --highlight-color-invalid: red; // invalid underline color
+        --highlight-color-valid: var(--ion-color-primary); // valid underline color
+    }
+
+    // estilos de modal
+ion-modal {
+    --height: 55%;
+    --border-radius: 16px;
+
+    &::part(handle) {
+
+  }
+}
+
+
+    // #somelement {
+    //     position: absolute;
+    //     left: 50%;
+    //     -webkit-transform: translateX(-50%);
+    //     transform: translateX(-50%)
+    //     }
+
+
+        ion-item {
+      --border-color: var(--ion-color-secondary, #fbb000);
+    }
+
+
+    // empieza el tooltip
+    .tooltip-toggle::before {
+      position: absolute;
+      z-index:9999;
+      bottom: 5vh;
+      left: 10vw;
+      background-color: var(--ion-color-secondary);
+      border-radius: 5px;
+      color: #fff;
+      content: attr(data-tooltip);
+      padding: 1rem;
+      text-transform: none;
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+      width: 160px;
+
+    .tooltip-toggle::after {
+      position: absolute;
+      z-index:9999;
+      top: -12px;
+      left: 9px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid var(--ion-color-secondary);
+      content: " ";
+      font-size: 0;
+      line-height: 0;
+      margin-left: -5px;
+      width: 0;
+    }
+    }
+
+    .tooltip-toggle:hover::before,
+.tooltip-toggle:hover::after {
+  opacity: 1;
+  -webkit-transition: all 0.75s ease;
+  transition: all 0.75s ease;
+}
+
+.tooltip-toggle::before,
+.tooltip-toggle::after {
+  color: #efefef;
+  font-family: monospace;
+  font-size: 10px;
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+}
+
+ion-label{
+  color:#393939!important;
+}
+
+
+ion-input {
+  --padding-start: 10px;
+  --border-color:#ccc;
+  border: 1px solid #ccc;
+  --background: #f1f2f2;
+  --color: var(--ion-color-dark)!important;
+  --placeholder-color: rgb(116, 116, 116) !important;
+  --placeholder-opacity: 0.8;
+  --padding-bottom: 10px;
+  --padding-end: 10px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+}
+
+ion-select{
+  --padding-start: 10px;
+  width: 100% !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+ion-select label {
+  min-width: 100% !important;
+}

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelChanges()">Cancelar</ion-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <!-- <ion-button (click)="confirmChanges()">Continuar</ion-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" class="ion-padding">
+  <ion-list id="modal-list" [inset]="true">
+
+    <ion-row *ngFor="let item of filteredItems; trackBy: trackItems">
+      <ion-col size="3">
+
+      </ion-col>
+      <ion-col size="9" >
+        <ion-text (click)="SetValueeexd(item)" >{{item.name}}</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-item >
+      <!-- <ion-checkbox [value]="item.code" [checked]="isChecked(item.code)" (ionChange)="checkboxChange($event)"
+        >{{ item.name }}</ion-checkbox> -->
+
+        
+        
+    </ion-item>
+  </ion-list>
+</ion-content>

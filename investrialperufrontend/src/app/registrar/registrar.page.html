@@ -1,0 +1,1442 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <img
+      style="width: 160px; height: 100%; margin-left: 20px"
+      src="assets/investrealperurecursos/logo-cabecera-app.png"
+    />
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar color="secondary" style="padding: 0 25px">
+
+    <div style="display: flex; justify-content: center; align-items: center; position: relative;">
+      <div style="left: 0; top:2px; position: absolute;">
+        <img style="max-width: 120px!important;" src="assets/investrealperurecursos/images/logo_investreal.png" />
+      </div>
+
+    </div>
+    <div class="ion-text-right">
+
+      <ion-button  style="font-size:small;" size="small" href="https://www.investrealperu.com/">
+        Regresar a la web
+      </ion-button>
+    </div>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="padding:0;">
+
+  <section *ngIf="this.step=='1'">
+    <!-- <ion-buttons>
+      <ion-button (click)="iralogin()">
+        <ion-icon
+          color="secondary"
+          style="font-size: 30px"
+          name="arrow-back-outline"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+
+    <ion-grid  no-padding class="ion-no-padding">
+      <ion-row no-padding class="ion-no-padding">
+        <ion-col no-padding class="ion-no-padding"
+          class="ocultar767paraabajo"
+          size-md="6"
+          size-lg="7"
+          size-xs="12"
+        >
+
+        <div style="height: 93vh;">
+          <app-banneregistro></app-banneregistro>
+        </div>
+
+        </ion-col>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" size>
+          <ion-text>
+            <p class="auth__title" style="color: var(--ion-color-secondary)">
+              Registrate
+            </p>
+            <span class="auth__noaccount">
+              <p style="margin-bottom: 0">¿Ya tienes cuenta?</p>
+              <a class="auth__registerhere" (click)="iralogin()"
+                >Iniciar sesión</a
+              >
+            </span>
+          </ion-text>
+
+          <div
+            style="
+              padding-left: 5%;
+              padding-right: 5%;
+              padding-right: 5%;
+              padding-bottom: 5%;
+            "
+            color="none"
+          >
+            <form
+              validate
+              [formGroup]="registrousuario"
+              (ngSubmit)="funcion_registrar_usuario()"
+            >
+              <!-- <ion-text>
+                <h2
+                  class="fuenteraleway;"
+                  style="font-size: xx-large; color: var(--ion-color-secondary)"
+                >
+                  Regístrate
+                </h2>
+                <p>
+                  ¿Ya tienes cuenta?
+                  <a (click)="iralogin()">Iniciar sesión →</a>
+                </p>
+              </ion-text> -->
+
+              <br />
+
+              <div
+                class="ion-margin-bottom"
+                style="display: flex; flex-direction: column"
+              >
+                <ion-label style="margin-bottom: 8px" color="secondary"
+                  >Correo electrónico:</ion-label
+                >
+                <ion-input
+                  formControlName="email"
+                  type="email"
+                  style="
+                    border-radius: 6px;
+                   
+                    border: 1px solid var(--ion-color-primary);
+                  "
+                  placeholder="Coloque su email"
+                ></ion-input>
+              </div>
+
+              <ion-label color="secondary"> Contraseña </ion-label>
+              <div
+                class="ion-margin-bottom"
+                style="
+                  margin-top: 8px;
+                  border-radius: 6px;
+                  color: var(--ion-color-secondary);
+                  border: 1px solid var(--ion-color-primary);
+                "
+              >
+                <ion-input
+                  type="password"
+                  formControlName="password"
+                  #input
+                  placeholder="*************"
+                  style="display: flex; justify-content: end"
+                >
+                  <div
+                    style="order: 2; cursor: pointer; padding: 3px 10px"
+                    (click)="showPassword(input, input2)"
+                  >
+                    <ion-icon
+                      for="checkbox"
+                      name="eye-outline"
+                      *ngIf="!passwordCheckbox"
+                      color="success"
+                    ></ion-icon>
+                    <ion-icon
+                      for="checkbox"
+                      name="eye-off-outline"
+                      *ngIf="passwordCheckbox"
+                      color="primary"
+                    ></ion-icon>
+                  </div>
+                </ion-input>
+              </div>
+
+              <ion-label color="secondary"> Confirmar Contraseña </ion-label>
+              <div
+                style="
+                  margin-top: 8px;
+                  border-radius: 6px;
+                  color: var(--ion-color-secondary);
+                  border: 1px solid var(--ion-color-primary);
+                "
+              >
+                <ion-input
+                  type="password"
+                  formControlName="password_repetir"
+                  #input2
+                  placeholder="*************"
+                  style="display: flex; justify-content: end"
+                >
+                  <div
+                    style="order: 2; cursor: pointer; padding: 3px 10px"
+                    (click)="showPassword(input, input2)"
+                  >
+                    <ion-icon
+                      for="checkbox"
+                      name="eye-outline"
+                      *ngIf="!passwordCheckbox"
+                      color="success"
+                    ></ion-icon>
+                    <ion-icon
+                      for="checkbox"
+                      name="eye-off-outline"
+                      *ngIf="passwordCheckbox"
+                      color="primary"
+                    ></ion-icon>
+                  </div>
+                </ion-input>
+              </div>
+
+              <!-- <ion-row>
+                <ion-col size="5.5">
+                  <ion-input
+                    type="password"
+                    formControlName="password"
+                    #input
+                    style="
+                      border-radius: 6px;
+                      color: var(--ion-color-secondary);
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    placeholder="Contraseña"
+                  ></ion-input>
+                </ion-col>
+
+                <ion-col size="1">
+                  <br />
+                  <ion-checkbox
+                    [ngModelOptions]="{standalone: true}"
+                    style="--background: var(--ion-color-secondary)"
+                    class="marginTop"
+                    id="checkbox"
+                    [(ngModel)]="passwordCheckbox"
+                    (click)="showPassword(input, input2)"
+                  ></ion-checkbox>
+                </ion-col>
+              </ion-row>
+               -->
+              <div
+                class="ion-text-center"
+                *ngIf="registrousuario.value.password!=registrousuario.value.password_repetir"
+              >
+                <ion-text>
+                  <p>Las contraseñas no coinciden</p>
+                </ion-text>
+              </div>
+
+              <br />
+
+              <div class="ion-align-items-center">
+                <div>
+                  <div
+                    lines="none"
+                    style="
+                      padding: 0;
+                      margin: 0;
+                      display: flex;
+                      justify-content: start;
+                    "
+                  >
+                    <ion-checkbox
+                      [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="acepto_terminos"
+                      style="padding: 0; margin: 0"
+                      slot="start"
+                    ></ion-checkbox>
+                    <ion-label
+                      style="
+                        font-size: 16px;
+                        font-weight: 400;
+                        margin-left: 4px;
+                      "
+                    >
+                      Acepto los
+                      <a
+                        style="font-size: 16px; font-weight: 400"
+                        href="https://investrealperu.com/terminos-y-condiciones"
+                        target="_blank"
+                      >
+                        Términos y condiciones
+                      </a>
+                    </ion-label>
+                  </div>
+
+                  <br />
+
+                  <ion-button color="secondary"
+                    *ngIf="registrousuario.valid"
+                    type="submit"
+                    expand="block"
+                    class="button__submit"
+                  >
+                    Registrarme
+                  </ion-button>
+
+                  <ion-button color="secondary"
+                    *ngIf="!registrousuario.valid"
+                    class="button__submit"
+                    (click)="abrirmodal_errores()"
+                    expand="block"
+                  >
+                    Registrarme
+                  </ion-button>
+                </div>
+              </div>
+
+              <ion-modal #modalerrores
+                trigger="open-modal"
+                [initialBreakpoint]="1"
+                [breakpoints]="[0, 1]"
+                handleBehavior="cycle"
+              >
+                <ng-template>
+                  <ion-content class="ion-padding">
+                    <div class="ion-margin-top">
+                      <ion-text>
+                        <br />
+                        <p
+                          style="
+                            font-size: x-large;
+                            color: black;
+                            margin-top: 0px;
+                          "
+                        >
+                          Importante!
+                        </p>
+                      </ion-text>
+                    </div>
+                    <p>Considere lo siguiente:</p>
+                    <ul>
+                      <li
+                        *ngIf="!registrousuario.value.password||registrousuario.value.password==''"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Contraseña: </strong
+                        >ingrese una contraseña.
+                      </li>
+                      <li
+                        *ngIf="!registrousuario.value.password_repetir||registrousuario.value.password_repetir==''"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Repetir Contraseña: </strong
+                        >Repita la contraseña.
+                      </li>
+                      <li
+                        *ngIf="registrousuario.value.password!=registrousuario.value.password_repetir"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Contraseñas: </strong
+                        >Las Contraseñas deben coincidir, al repetir la
+                        contraseña deben ser iguales.
+                      </li>
+                      <li
+                        *ngIf="registrousuario.controls['email'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Correo: </strong
+                        >Debe ingresar un correo valido
+                      </li>
+                      <li
+                        *ngIf="registrousuario.controls['password'].status=='INVALID'||registrousuario.controls['password'].status=='PENDING'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Contraseña: </strong
+                        >Ingrese una mayúscula y una minúscula, un carácter
+                        espacial y un número, y mayor a 7 digitos
+                      </li>
+                    </ul>
+                    <ion-button
+                      (click)="cerrarmodal_errores()"
+                      class="boton-cancelar-modal"
+                      size="large"
+                      expand="block"
+                      fill="clear"
+                      style="color: white"
+                      >Continuar</ion-button
+                    >
+                  </ion-content>
+                </ng-template>
+              </ion-modal>
+            </form>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+  <section *ngIf="this.step=='2'">
+    <!-- <ion-buttons>
+      <ion-button (click)="iralogin()">
+        <ion-icon
+          color="secondary"
+          style="font-size: 30px"
+          name="arrow-back-outline"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+
+    <ion-grid no-padding class="ion-no-padding">
+      <ion-row no-padding class="ion-no-padding" style="">
+        <ion-col no-padding class="ion-no-padding"
+          class="ocultar767paraabajo"
+          size-md="6"
+          size-lg="7"
+          size-xs="12"
+        >
+
+          <div style="height: 100%;">
+            <app-banneregistro></app-banneregistro>
+          </div>
+          
+        </ion-col>
+        <ion-col lign-self-center size-md="6" size-lg="5" size-xs="12" size>
+          <ion-row class="row" class="ion-no-padding" no-padding> </ion-row>
+
+          <ion-text>
+            <p class="auth__title" style="color: var(--ion-color-secondary)">
+              Registrate
+            </p>
+            <span class="auth__noaccount"> </span>
+          </ion-text>
+
+          <div
+            style="padding-left: 5%; padding-right: 5%; padding-bottom: 5%"
+            color="none"
+          >
+            <form
+              validate
+              [formGroup]="updateusuario1"
+              (ngSubmit)="update_pausado_por_step3()"
+            >
+              <!-- <ion-text>
+                <h2
+                  class="fuenteraleway;"
+                  style="
+                    margin-bottom: -10px;
+                    font-size: xx-large;
+                    color: var(--ion-color-secondary);
+                  "
+                >
+                  Regístrate
+                </h2>
+              </ion-text> -->
+              <ion-row class="ion-no-padding" no-padding>
+                <ion-col size="5" class="ion-no-padding" no-padding>
+                  <h5
+                    class="fuenteraleway;"
+                    style="color: var(--ion-color-secondary)"
+                  >
+                    1.Crea tu cuenta
+                  </h5>
+                  <ion-progress-bar value=".50"></ion-progress-bar>
+                </ion-col>
+                <ion-col size="0.5"></ion-col>
+                <ion-col size="5" class="ion-no-padding" no-padding>
+                  <h5
+                    class="fuenteraleway;"
+                    style="color: var(--ion-color-secondary)"
+                  >
+                    2. Datos de perfil
+                  </h5>
+                  <ion-progress-bar value=".0" buffer=".5"></ion-progress-bar>
+                </ion-col>
+                <ion-col size="1.5" class="ion-no-padding" no-padding>
+                </ion-col>
+              </ion-row>
+              <div>
+                <div
+                  class="ion-margin-top ion-margin-bottom"
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary"
+                    >Tipo de Documento:</ion-label
+                  >
+                  <ion-select
+                    formControlName="tipo_documento"
+                    interface="popover"
+                    style="
+                      border-radius: 6px;
+                      color: var(--ion-color-secondary);
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    placeholder="Tipo de documento"
+                  >
+                    <ion-select-option value="1">DNI</ion-select-option>
+                    <ion-select-option value="2"
+                      >Carnet de Extranjería</ion-select-option
+                    >
+                    <ion-select-option value="3">Pasaporte</ion-select-option>
+                    <ion-select-option value="4"
+                      >P.T.P.</ion-select-option
+                    >
+                    <ion-select-option value="5">RUC</ion-select-option>
+                  </ion-select>
+                </div>
+
+                <div
+                  class="ion-margin-bottom"
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary"
+                    >Número de Documento:</ion-label
+                  >
+                  <ion-input
+                    (ionChange)="consultardnioruc($event)"
+                    formControlName="numero_documento"
+                    type="tel"
+                    style="
+                      border-radius: 6px;
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    placeholder="Número de Doc."
+                  ></ion-input>
+                </div>
+                <div
+                  class="ion-margin-bottom"
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary"
+                    >Nombre(s):</ion-label
+                  >
+                  <ion-input
+                    formControlName="name"
+                    type="name"
+                    style="
+                      border-radius: 6px;
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    placeholder="Nombre(s)"
+                  ></ion-input>
+                </div>
+                <div
+                  class="ion-margin-bottom"
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary"
+                    >Apellido Paterno:</ion-label
+                  >
+                  <ion-input
+                    formControlName="lastname"
+                    type="name"
+                    style="
+                      border-radius: 6px;
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    placeholder="Apellido Paterno"
+                  ></ion-input>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="ion-margin-bottom"
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary"
+                    >Apellido Materno (Opcional):</ion-label
+                  >
+                  <ion-input
+                    formControlName="lastname2"
+                    type="name"
+                    style="
+                      border-radius: 6px;
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    placeholder="Apellido Materno (Opcional)"
+                  ></ion-input>
+                </div>
+                <div
+                  class="ion-no-padding ion-margin-bottom"
+                  no-padding
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary"
+                    >Celular:</ion-label
+                  >
+                  <ion-item 
+                    inline
+                    class="ion-no-padding"
+                    no-padding
+                    lines="none"
+                    style=" background-color: #f1f2f2!important; --background: #f1f2f2!important;
+                      border-radius: 6px;
+                      color: var(--ion-color-secondary);
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                  >
+
+
+                      <div slot="start" id="paises">{{this.varios.pais_seleccionado_con_bandera.code}}</div>
+                      <ion-input style="                      border: 0px solid var(--ion-color-primary);
+" (ionChange)="CHANGEcelularrr2()" [ngModelOptions]="{standalone: true}" [(ngModel)]="numerosinpais"></ion-input>
+
+                  <ion-modal trigger="paises" #modalfiltropaises >
+                    <ng-template>
+
+                      <ion-header>
+                        <ion-toolbar>
+                          <ion-buttons slot="start">
+                          </ion-buttons>
+                          <ion-title>Seleccione Pais</ion-title>
+                          <ion-buttons slot="end">
+                          </ion-buttons>
+                        </ion-toolbar>
+                        <ion-toolbar>
+                          <ion-searchbar (ionInput)="searchbarInput($event)"></ion-searchbar>
+                        </ion-toolbar>
+                      </ion-header>
+
+
+                      <ion-content color="light" class="ion-padding">
+                        <ion-list id="modal-list" [inset]="true">
+                          <ion-item *ngFor="let item of results" (click)="SetValueeexd(item)">
+                            <ion-checkbox [value]="item.value"
+                              ><img src={{item.flag}} width="25px" height="12.5px"> {{ item.name }} {{ item.code }}</ion-checkbox
+                            >
+                          </ion-item>
+                        </ion-list>
+                      </ion-content>
+
+                    </ng-template>
+                  </ion-modal>
+
+                    <!-- <ion-intl-tel-input
+                      required
+                      id="countrycode"
+                      name="countrycode"
+                      formControlName="celular"
+                      (codeChange)="codechangeeee($event)"
+                      (ionChange)="showCountryName($event)"
+                      [defaultCountryiso]="'pe'"
+                      [inputPlaceholder]="inputPlaceholder"
+                      [modalTitle]="modalTitle"
+                      [modalSearchPlaceholder]="modalSearchPlaceholder"
+                      [modalCloseText]="modalCloseText"
+                      [modalCloseButtonSlot]="'end'"
+                      [modalCanSearch]="modalCanSearch"
+                      [modalShouldFocusSearchbar]="modalShouldFocusSearchbar"
+                      [modalSearchFailText]="modalSearchFailText"
+                    >
+                    </ion-intl-tel-input> -->
+                  </ion-item>
+                </div>
+              </div>
+              <!-- <div>
+                <div
+                  class="ion-margin-bottom"
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary"
+                    >Código de Invitación (Opcional):</ion-label
+                  >
+                  <ion-input
+                    formControlName="referidor"
+                    type="name"
+                    style="
+                      border-radius: 6px;
+                      color: var(--ion-color-secondary);
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    placeholder="Codigo invitación (opcional)"
+                  ></ion-input>
+                </div>
+              </div> -->
+              <ion-label color="secondary" class="ion-margin-bottom">
+                Elige el perfil con el que deseas registrarte.
+              </ion-label>
+
+              <br />
+              <br />
+
+              <ion-radio-group
+                class="ion-margin-top ion-margin-bottom"
+                [ngModelOptions]="{standalone: true}"
+                [ngModel]="es_empresa"
+                (ionChange)="ChangeEmpresa()"
+              >
+                <ion-row style="display: flex; justify-content: space-between">
+                  <ion-col
+                    (click)="selectorempresa0()"
+                    size="5"
+                    style="padding-top: 3px; padding-bottom: 3px; text-align: center;
+                      border-radius: 6px;
+                      color: var(--ion-color-secondary);
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                  >
+                    <ion-radio #persona checked value="0"></ion-radio> Persona
+                  </ion-col>
+                  <ion-col
+                    (click)="selectorempresa1()"
+                    size="5"
+                    style="padding-top: 3px; padding-bottom: 3px; text-align: center;
+                      border-radius: 6px;
+                      color: var(--ion-color-secondary);
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                  >
+                    <ion-radio #empresa value="1"></ion-radio> Empresa
+                  </ion-col>
+                </ion-row>
+              </ion-radio-group>
+              <br />
+
+              <ion-row class="ion-align-items-center">
+                <ion-col size="12">
+                  <ion-button
+                    *ngIf="updateusuario1.valid"
+                    type="submit"
+                    style="color: white"
+                    expand="block"
+                    >Continuar</ion-button
+                  >
+                  <ion-button
+                    *ngIf="!updateusuario1.valid"
+                    (click)="abrirmodal_errores_2()"
+                    expand="block"
+                    style="color: white"
+                    >Continuar</ion-button
+                  >
+                </ion-col>
+              </ion-row>
+              <ion-modal #modalerrores
+                trigger="open-modal-2"
+                [initialBreakpoint]="1"
+                [breakpoints]="[0, 1]"
+                handleBehavior="cycle"
+              >
+                <ng-template>
+                  <ion-content class="ion-padding">
+                    <div class="ion-margin-top">
+                      <ion-text>
+                        <br />
+                        <p
+                          style="
+                            font-size: x-large;
+                            color: black;
+                            margin-top: 0px;
+                          "
+                        >
+                          Importante!
+                        </p>
+                      </ion-text>
+                    </div>
+                    <p>Considere lo siguiente:</p>
+                    <ul>
+                      <li
+                        *ngIf="updateusuario1.controls['numero_documento'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Documento: </strong
+                        >Requerido, entre (7-10 caracteres) y solo numeros.
+                      </li>
+                      <li
+                        *ngIf="updateusuario1.controls['name'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Nombre: </strong
+                        >Requerido y nombre valido.
+                      </li>
+                      <li
+                        *ngIf="updateusuario1.controls['lastname'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Apellido Paterno: </strong
+                        >Requerido y apellido valido.
+                      </li>
+                      <li
+                        *ngIf="updateusuario1.controls['lastname2'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Apellido Materno: </strong
+                        >(Es opcional) Pero si desea colocarlo que sea un
+                        apellido valido.
+                      </li>
+                      <li
+                        *ngIf="updateusuario1.controls['celular'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Télefono: </strong
+                        >Ingrese un celular valido
+                      </li>
+                    </ul>
+                    <ion-button
+                      (click)="cerrarmodal_errores()"
+                      class="boton-cancelar-modal"
+                      size="large"
+                      expand="block"
+                      fill="clear"
+                      style="color: white"
+                      >Continuar</ion-button
+                    >
+                  </ion-content>
+                </ng-template>
+              </ion-modal>
+            </form>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+  <section *ngIf="this.step=='3'">
+    <!-- <ion-buttons>
+      <ion-button (click)="iralogin()">
+        <ion-icon
+          color="secondary"
+          style="font-size: 30px"
+          name="arrow-back-outline"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-grid style="padding-top: 0" no-padding class="ion-no-padding">
+      <ion-row no-padding class="ion-no-padding">
+        <ion-col no-padding class="ion-no-padding"
+          class="ocultar767paraabajo"
+          size-md="6"
+          size-lg="7"
+          size-xs="12"
+        >
+
+          <div style="height: 100%;">
+            <app-banneregistro></app-banneregistro>
+          </div>
+          
+        </ion-col>
+        <ion-col lign-self-center size-md="6" size-lg="5" size-xs="12" size>
+          <ion-row class="row" class="ion-no-padding" no-padding> </ion-row>
+          <div
+            style="padding-left: 5%; padding-right: 5%; padding-bottom: 5%"
+            color="none"
+          >
+            <form
+              validate
+              [formGroup]="updateusuario2"
+              (ngSubmit)="enviarregistrocompletadoFULListo()"
+            >
+              <div>
+                <p
+                  class="auth__title"
+                  style="color: var(--ion-color-secondary); margin-top: 0"
+                >
+                  Registrate
+                </p>
+              </div>
+              <ion-row class="ion-no-padding" no-padding>
+                <ion-col size="5" class="ion-no-padding" no-padding>
+                  <h5
+                    class="fuenteraleway;"
+                    style="color: var(--ion-color-secondary)"
+                  >
+                    1. Crea tu cuenta
+                  </h5>
+                  <ion-progress-bar value=".99"></ion-progress-bar>
+                </ion-col>
+                <ion-col size="0.5"></ion-col>
+                <ion-col size="5" class="ion-no-padding" no-padding>
+                  <h5
+                    class="fuenteraleway;"
+                    style="color: var(--ion-color-secondary)"
+                  >
+                    2. Datos de perfil
+                  </h5>
+                  <ion-progress-bar value=".55" buffer=".5"></ion-progress-bar>
+                </ion-col>
+                <ion-col size="1.5" class="ion-no-padding" no-padding>
+                </ion-col>
+              </ion-row>
+              <br />
+              <div class="ion-magin-top">
+                <div
+                  class="ion-margin-bottom"
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary"
+                    >F. Nac</ion-label
+                  >
+                  <ion-item
+                    lines="none"
+                    class="ion-no-padding ion-no-margin"
+                    no-padding
+                  >
+                    <ion-input
+                      formControlName="fecha_nacimiento"
+                      type="date"
+                      [value]="Fecha_Actual"
+                      style="
+                        margin: 0;
+                        border-radius: 6px;
+                        border: 1px solid var(--ion-color-primary);
+                      "
+                      placeholder="Fecha de Nac."
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </div>
+              <a *ngIf="es_empresa=='1'" style="color:#393939" >Información de la empresa</a>
+              <div>
+                <div *ngIf="es_empresa=='1'">
+                  <ion-input
+                    (ionChange)="consultarempresa($event)"
+                    type="number"
+                    placeholder="RUC"
+                    style="
+                      width: 100%;
+                      border-radius: 6px;
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                  ></ion-input>
+                </div>
+
+                <div *ngIf="es_empresa=='1'">
+                  <ion-input
+                    [(ngModel)]="razon_social"
+                    type="name"
+                    [ngModelOptions]="{standalone: true}"
+                    placeholder="Razón social"
+                    style="
+                      width: 100%;
+                      border-radius: 6px;
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                  ></ion-input>
+                </div>
+
+                <div
+                  *ngIf="es_empresa=='0'"
+                  class="ion-margin-bottom"
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary"
+                    >Género</ion-label
+                  >
+                  <ion-select
+                    formControlName="genero"
+                    interface="popover"
+                    style="
+                      border-radius: 6px;
+                      color: var(--ion-color-secondary);
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    [interfaceOptions]="{size: 'auto' , side:'bottom',  alignment:'start'}"
+                    style="
+                      width: 100%;
+                      border-radius: 6px;
+                      color: var(--ion-color-secondary);
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    placeholder="Seleccione su Genero"
+                  >
+                    <ion-select-option value="Femenino"
+                      >Femenino</ion-select-option
+                    >
+                    <ion-select-option value="Masculino"
+                      >Masculino</ion-select-option
+                    >
+                    <ion-select-option value="Prefiero no indicar"
+                      >Prefiero no indicar</ion-select-option
+                    >
+                  </ion-select>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="ion-margin-bottom"
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary"
+                    >Dirección</ion-label
+                  >
+                  <ion-input
+                    formControlName="direccion1"
+                    type="address-line1"
+                    style="
+                      border-radius: 6px;
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    placeholder="Dirección"
+                  ></ion-input>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="ion-margin-bottom"
+                  style="display: flex; flex-direction: column"
+                >
+                  <ion-label style="margin-bottom: 8px" color="secondary">
+                    Región
+                  </ion-label>
+                  <ion-select
+                    (ionChange)="IONCHANGEregion($event)"
+                    formControlName="region"
+                    [interfaceOptions]="{ cssClass: 'claseselectoranchocompletoysaltodelinea' , side:'top',  alignment:'center' }"
+                    interface="popover"
+                    style="
+                      width: 100%;
+                      border-radius: 6px;
+                      color: var(--ion-color-secondary);
+                      border: 1px solid var(--ion-color-primary);
+                    "
+                    placeholder="Region"
+                  >
+                    <ion-select-option
+                      *ngFor="let cadaregion of departamentos;let i =index;"
+                      value="{{cadaregion.id_ubigeo}}"
+                      >{{cadaregion.nombre_ubigeo}}</ion-select-option
+                    >
+                  </ion-select>
+                </div>
+              </div>
+              <ion-row>
+                <ion-col size="12">
+                  <div
+                    *ngIf="provinciasfiltradas&&this.updateusuario2.value.region&&this.updateusuario2.value.region!=''"
+                  >
+                    <ion-select
+                      [value]="updateusuario2.value.provincia"
+                      (ionChange)="IONCHANGEprovincia($event)"
+                      formControlName="provincia"
+                      [interfaceOptions]="{ cssClass: 'claseselectoranchocompletoysaltodelinea' , side:'top',  alignment:'center' }"
+                      interface="popover"
+                      style="
+                        width: 100%;
+                        border-radius: 6px;
+                        color: var(--ion-color-secondary);
+                        border: 1px solid var(--ion-color-primary);
+                      "
+                      placeholder="Provincia"
+                    >
+                      <ion-select-option
+                        *ngFor="let cadaprovincia of provinciasfiltradas"
+                        value="{{cadaprovincia.id_ubigeo}}"
+                        >{{cadaprovincia.nombre_ubigeo}}</ion-select-option
+                      >
+                    </ion-select>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <div
+                    *ngIf="distritosfiltradas&&this.updateusuario2.value.region&&this.updateusuario2.value.region!=''"
+                  >
+                    <ion-select
+                      (ionChange)="IONCHANGEdistrito($event)"
+                      formControlName="distrito"
+                      [interfaceOptions]="{ cssClass: 'claseselectoranchocompletoysaltodelinea' , side:'top',  alignment:'center' }"
+                      interface="popover"
+                      style="
+                        width: 100%;
+                        border-radius: 6px;
+                        color: var(--ion-color-secondary);
+                        border: 1px solid var(--ion-color-primary);
+                      "
+                      placeholder="Distrito"
+                    >
+                      <ion-select-option
+                        *ngFor="let cadadistrito of distritosfiltradas"
+                        value="{{cadadistrito.id_ubigeo}}"
+                        >{{cadadistrito.nombre_ubigeo}}</ion-select-option
+                      >
+                    </ion-select>
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <!-- <a *ngIf="es_empresa=='1'">Información de la empresal</a> -->
+              <ion-row
+                class="ion-no-padding"
+                no-padding
+                *ngIf="es_empresa=='1'"
+              >
+                <ion-col
+                  class="ion-no-padding"
+                  no-padding
+                  size-md="10"
+                  size-lg="11"
+                  size-xs="9.5"
+                >
+                  <ion-text class="ion-no-padding" no-padding
+                    ><p class="ion-no-padding" no-padding>
+                      ¿Es usted el representante Legal de la Empresa?
+                    </p>
+                  </ion-text>
+                </ion-col>
+                <ion-col
+                  class="ion-no-padding"
+                  no-padding
+                  size-md="2"
+                  size-lg="1"
+                  size-xs="2.5"
+                >
+                  <!-- <ion-toggle id="toggle_persona" #toggle_persona [checked]="politicamente_expuesta" (ionChange)="IONCHANGEpoliticamente($event)" [enableOnOffLabels]="true"></ion-toggle> -->
+                  <ion-toggle
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="es_representante"
+                    (ionChange)="IONCHANGEes_representante($event)"
+                    [enableOnOffLabels]="true"
+                  ></ion-toggle>
+                </ion-col>
+              </ion-row>
+              <section *ngIf="es_representante==false&&es_empresa=='1'">
+                <a style="color: var(--ion-color-secondary)"
+                  >Indique cuál es el tipo de representación que tiene con la
+                  empresa</a
+                >
+                <ion-select placeholder="Representación">
+                  <ion-select-option>Representación</ion-select-option>
+                  <ion-select-option>Ninguno</ion-select-option>
+                  <ion-select-option>Poder Simple</ion-select-option>
+                  <ion-select-option
+                    >Poder con Escritura pública (Notarial)</ion-select-option
+                  >
+                </ion-select>
+                <ion-row>
+                  <a style="color: var(--ion-color-secondary)"
+                    >Por favor, ingrese la información del Representante
+                    Legal</a
+                  >
+
+                  <ion-col size="6">
+                    <ion-select
+                      [(ngModel)]="representante_dato_1"
+                      interface="popover"
+                      style="
+                        width: 100%;
+                        border-radius: 6px;
+                        color: var(--ion-color-secondary);
+                        border: 1px solid var(--ion-color-primary);
+                      "
+                      [ngModelOptions]="{standalone: true}"
+                      placeholder="Tipo de documento"
+                    >
+                      <ion-select-option value="1">DNI</ion-select-option>
+                      <ion-select-option value="2"
+                        >Carnet de Extranjería</ion-select-option
+                      >
+                      <ion-select-option value="3">Pasaporte</ion-select-option>
+                      <ion-select-option value="4"
+                        >Permiso Temporal de Trabajo</ion-select-option
+                      >
+                      <ion-select-option value="5">RUC</ion-select-option>
+                    </ion-select>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-input
+                      [(ngModel)]="representante_dato_2"
+                      placeholder="Número de documento"
+                      style="
+                        border-radius: 6px;
+                        border: 1px solid var(--ion-color-primary);
+                      "
+                      [ngModelOptions]="{standalone: true}"
+                    ></ion-input>
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-input
+                      [(ngModel)]="representante_dato_3"
+                      placeholder="Apellidos y Nombres"
+                      style="
+                        border-radius: 6px;
+                        color: var(--ion-color-secondary);
+                        border: 1px solid var(--ion-color-primary);
+                      "
+                      [ngModelOptions]="{standalone: true}"
+                    ></ion-input>
+                  </ion-col>
+                </ion-row>
+              </section>
+              <a *ngIf="es_empresa=='1'"
+                >Información de los Accionistas con más del 25% del capital
+                social</a
+              >
+              <ion-row
+                class="ion-no-padding"
+                no-padding
+                *ngIf="es_empresa=='1'"
+              >
+                <ion-col
+                  class="ion-no-padding"
+                  no-padding
+                  size-md="10"
+                  size-lg="11"
+                  size-xs="9.5"
+                >
+                  <ion-text class="ion-no-padding" no-padding
+                    ><p class="ion-no-padding" no-padding>
+                      ¿Es usted accionista con más del 25% de participación del
+                      capital social?
+                    </p>
+                  </ion-text>
+                </ion-col>
+                <ion-col
+                  class="ion-no-padding"
+                  no-padding
+                  size-md="2"
+                  size-lg="1"
+                  size-xs="2.5"
+                >
+                  <!-- <ion-toggle id="toggle_persona" #toggle_persona [checked]="politicamente_expuesta" (ionChange)="IONCHANGEpoliticamente($event)" [enableOnOffLabels]="true"></ion-toggle> -->
+                  <ion-toggle
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="es_accionista_mayor_25"
+                    (ionChange)="IONCHANGEes_accionista_mayor_25($event)"
+                    [enableOnOffLabels]="true"
+                  ></ion-toggle>
+                </ion-col>
+              </ion-row>
+
+              <ion-row
+                class="ion-no-padding"
+                no-padding
+                *ngIf="es_empresa=='1'"
+              >
+                <ion-col
+                  class="ion-no-padding"
+                  no-padding
+                  size-md="10"
+                  size-lg="11"
+                  size-xs="9.5"
+                >
+                  <ion-text class="ion-no-padding" no-padding
+                    ><p class="ion-no-padding" no-padding>
+                      ¿Existen otros accionistas con más del 25% de
+                      participación del capital social?
+                    </p>
+                  </ion-text>
+                </ion-col>
+                <ion-col
+                  class="ion-no-padding"
+                  no-padding
+                  size-md="2"
+                  size-lg="1"
+                  size-xs="2.5"
+                >
+                  <!-- <ion-toggle id="toggle_persona" #toggle_persona [checked]="politicamente_expuesta" (ionChange)="IONCHANGEpoliticamente($event)" [enableOnOffLabels]="true"></ion-toggle> -->
+                  <ion-toggle
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="existen_otros_mayor_25"
+                    (ionChange)="IONCHANGEexisten_otros_mayor_25($event)"
+                    [enableOnOffLabels]="true"
+                  ></ion-toggle>
+                </ion-col>
+                <section *ngIf="otros_mayor_25&&otros_mayor_25!=undefined">
+                  <ion-row
+                    *ngFor="let cadamayor of otros_mayor_25; let i = index;"
+                  >
+                    <ion-col size="6">
+                      <ion-select
+                        [(ngModel)]="cadamayor.tipo_doc"
+                        interface="popover"
+                        style="
+                          width: 100%;
+                          border-radius: 6px;
+                          color: var(--ion-color-secondary);
+                          border: 1px solid var(--ion-color-primary);
+                        "
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Tipo de documento"
+                      >
+                        <ion-select-option value="1">DNI</ion-select-option>
+                        <ion-select-option value="2"
+                          >Carnet de Extranjería</ion-select-option
+                        >
+                        <ion-select-option value="3"
+                          >Pasaporte</ion-select-option
+                        >
+                        <ion-select-option value="4"
+                          >Permiso Temporal de Trabajo</ion-select-option
+                        >
+                        <ion-select-option value="5">RUC</ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-input
+                        [(ngModel)]="cadamayor.numero_doc"
+                        placeholder="Número de documento"
+                        style="
+                          border-radius: 6px;
+                          border: 1px solid var(--ion-color-primary);
+                        "
+                        [ngModelOptions]="{standalone: true}"
+                      ></ion-input>
+                    </ion-col>
+                    <ion-col size="12">
+                      <ion-input
+                        [(ngModel)]="cadamayor.apellido_y_nombre"
+                        placeholder="Apellidos y Nombres"
+                        style="
+                          border-radius: 6px;
+                          border: 1px solid var(--ion-color-primary);
+                        "
+                        [ngModelOptions]="{standalone: true}"
+                      ></ion-input>
+                    </ion-col>
+                  </ion-row>
+                  <ion-button
+                    (click)="quitaraccionistaenlaposicion1()"
+                    *ngIf="otros_mayor_25&&otros_mayor_25.length>1"
+                    ><ion-icon name="trash"></ion-icon
+                  ></ion-button>
+                  <ion-button
+                    [disabled]="otros_mayor_25.length>2"
+                    *ngIf="otros_mayor_25&&otros_mayor_25.length>0"
+                    (click)="agregaraccionista()"
+                    >+ Agregar otro Accionista</ion-button
+                  >
+                </section>
+              </ion-row>
+
+              <ion-row
+                class="ion-no-padding"
+                no-padding
+                *ngIf="es_empresa=='0'"
+              >
+                <ion-col
+                  class="ion-no-padding"
+                  no-padding
+                  size-md="10"
+                  size-lg="11"
+                  size-xs="9.5"
+                >
+                  <ion-text class="ion-no-padding" no-padding
+                    ><p class="ion-no-padding" no-padding>
+                      ¿Es una persona políticamente expuesta? (PEP)
+                      <span
+                        class="tooltip-toggle"
+                        data-tooltip="Por normativa, la SBS solicita los datos de las personas políticamente activas (PEP), es decir aquellas que ejercen cargos públicos en algún organismo del Estado."
+                        ><ion-icon name="help-circle-outline"></ion-icon>
+                      </span>
+                    </p>
+                  </ion-text>
+                </ion-col>
+                <ion-col
+                  class="ion-no-padding"
+                  no-padding
+                  size-md="2"
+                  size-lg="1"
+                  size-xs="2.5"
+                >
+                  <ion-toggle
+                    id="toggle_persona"
+                    #toggle_persona
+                    [checked]="politicamente_expuesta"
+                    (ionChange)="IONCHANGEpoliticamente($event)"
+                    [enableOnOffLabels]="true"
+                  ></ion-toggle>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-align-items-center">
+                <ion-col size="6">
+                  <ion-button expand="block" (click)="this.step='2'" fill="outline">Atras</ion-button>
+                </ion-col>
+
+                <ion-col size="6">
+
+                  <ion-button
+                    *ngIf="updateusuario2.valid"
+                    type="submit"
+                    expand="block"
+                    style="color: white"
+                    >Continuar</ion-button
+                  >
+                  <ion-button
+                    *ngIf="!updateusuario2.valid"
+                    (click)="abrirmodal_errores_3()"
+                    expand="block"
+                    style="color: white"
+                    >Continuar</ion-button
+                  >
+                </ion-col>
+              </ion-row>
+              <ion-modal #modalerrores
+                trigger="open-modal-2"
+                [initialBreakpoint]="1"
+                [breakpoints]="[0, 1]"
+                handleBehavior="cycle"
+              >
+                <ng-template>
+                  <ion-content class="ion-padding">
+                    <div class="ion-margin-top">
+                      <ion-text>
+                        <br />
+                        <p
+                          style="
+                            font-size: x-large;
+                            color: black;
+                            margin-top: 0px;
+                          "
+                        >
+                          Importante!
+                        </p>
+                      </ion-text>
+                    </div>
+                    <p>Considere lo siguiente:</p>
+                    <ul>
+                      <li
+                        *ngIf="updateusuario2.controls['fecha_nacimiento'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Fecha nac: </strong
+                        >Requerido, Aqui debe ingresar su fecha de nacimiento,
+                        es requerido.
+                      </li>
+                      <li
+                        *ngIf="updateusuario2.controls['genero'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Genero: </strong
+                        >Puede especificar su genero o seleccione prefiero no
+                        especificar.
+                      </li>
+                      <li
+                        *ngIf="updateusuario2.controls['direccion1'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Dirección: </strong
+                        >Ingrese su dirección o un punto de referencia.
+                      </li>
+                      <li
+                        *ngIf="updateusuario2.controls['region'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Región: </strong
+                        >Aqui debe seeccionar su región (Departamento) , Ej:
+                        Tumbes
+                      </li>
+                      <li
+                        *ngIf="updateusuario2.controls['provincia'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Provincia: </strong
+                        >Aqui debe seleccionar su provincia Ej: Lima
+                      </li>
+                      <li
+                        *ngIf="updateusuario2.controls['distrito'].status=='INVALID'"
+                      >
+                        <strong style="color: var(--ion-color-secondary)"
+                          >Distrito: </strong
+                        >Seleccione su distrito, Ej:
+                      </li>
+                    </ul>
+                    <ion-button
+                      (click)="cerrarmodal_errores()"
+                      class="boton-cancelar-modal"
+                      size="large"
+                      expand="block"
+                      style="color: white"
+                      fill="clear"
+                      >Continuar</ion-button
+                    >
+                  </ion-content>
+                </ng-template>
+              </ion-modal>
+            </form>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+<app-footerregistro></app-footerregistro>
+  
+</ion-content>

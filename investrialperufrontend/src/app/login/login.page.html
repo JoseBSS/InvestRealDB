@@ -1,0 +1,213 @@
+
+
+
+<ion-header>
+  <ion-toolbar color="secondary" style="padding: 0 25px">
+
+    <div style="display: flex; justify-content: center; align-items: center; position: relative;">
+      <div style="left: 0; top:2px; position: absolute;">
+        <img style="max-width: 120px!important;" src="assets/investrealperurecursos/images/logo_investreal.png" />
+      </div>
+
+    </div>
+    <div class="ion-text-right">
+
+      <ion-button style="font-size:small;" size="small" href="https://www.investrealperu.com/">
+        Regresar a la web
+      </ion-button>
+    </div>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background-contenidodo" padding>
+  <!-- <br> -->
+
+  <section *ngIf="this.step === 'login'">
+    <!-- <ion-buttons>
+         <ion-button href="https://investrealperu.pe">
+            <ion-icon color="secondary" style="font-size: 30px; " name="arrow-back-outline"></ion-icon>
+         </ion-button>
+      </ion-buttons> -->
+<br><br>
+    <ion-grid class="ocultar768paraarriba" style="padding: 0">
+
+      <ion-card color="light" style="padding-left:6px; padding-right:6px;">
+        <ion-card-header color="secondary" style="margin-top:0px; margin-right:-30px; margin-left:-30px; color:white">
+          <div class="ion-text-center">
+            <ion-card-title>INGRESA A TU CUENTA
+            </ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+
+      
+      <ion-row>
+        <ion-col size="12" style="padding: 0 30px">
+          <div>
+            <ion-text>
+              <p class="auth__title" style="color: var(--ion-color-secondary)">
+                Iniciar sesión
+              </p>
+  
+            </ion-text>
+
+            <br />
+
+            <ion-item class="ion-align-items-center">
+              <ion-label color="secondary" position="floating">Correo:</ion-label>
+              <ion-input  fill="outline"  (keyup.enter)="logear()" [(ngModel)]="loginuser" placeholder="Correo:"
+                style="color: var(--ion-color-primary)" fill="outline"></ion-input>
+              <ion-icon style="font-size: large" color="primary" name="person-outline" slot="start"></ion-icon>
+            </ion-item>
+
+            
+
+            <ion-item class="ion-align-items-center">
+              <ion-label color="secondary" position="floating">Contraseña:</ion-label>
+              <ion-input  fill="outline"  (keyup.enter)="logear()" [(ngModel)]="loginpassword" placeholder="Contraseña"
+                style="color: var(--ion-color-primary)" [type]="ver_password_login==true ? 'text' : 'password'" fill="outline"></ion-input>
+              <ion-icon style="font-size: large" color="primary" name="lock-closed-outline" slot="start"></ion-icon>
+            </ion-item>
+            <br>
+            <div class="ion-text-center">
+              <ion-button  expand="block" *ngIf="ver_password_login" (click)="ver_password_login=false" >
+                <ion-icon name="eye-off"></ion-icon>
+              </ion-button>
+              <ion-button  expand="block" *ngIf="!ver_password_login" (click)="ver_password_login=true" >
+                <ion-icon name="eye"></ion-icon>
+              </ion-button>
+            </div>
+
+            <ion-row class="ion-align-items-center">
+              <ion-col size-lg="5" size-md="5" size-sm="5" size-xl="5" size-xs="6">
+                <ion-item color="none" lines="none" class="ion-no-padding" no-padding>
+                  <ion-checkbox [(ngModel)]="recordar" class="ion-no-padding" no-padding style="
+                      --background: var(--ion-color-secondary);
+                      margin: 0px 0px 0px 0px !important;
+                    "></ion-checkbox>
+                  <span style="color: (--ion-color-primary); margin-left: 12px" class="auth__remind">Mantenerse
+                    conectado</span>
+                </ion-item>
+              </ion-col>
+              <ion-col size-lg="7" size-md="7" size-sm="7" size-xl="7" size-xs="6" style="text-align: right">
+                <ion-text style="color: var(--ion-color-secondary)">
+                  <p>
+                    <a class="auth__forgot" style="cursor: pointer" (click)="olvide()">Olvidé mi contraseña</a>
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <br />
+
+            <ion-row class="ion-align-items-center" style="margin-bottom: 16px">
+              <ion-col size="12">
+                <ion-button (click)="logear()" expand="block" class="button__submit" color="secondary">Iniciar sesión</ion-button>
+              </ion-col>
+            </ion-row>
+
+            <ion-text (click)="iraregistrarse()" style="cursor:pointer;">
+              <p>
+                ¿Eres Nuevo aqui?
+                <a >Crea tu cuenta →</a>
+              </p>
+            </ion-text>
+
+
+          </div>
+        </ion-col>
+
+        <ion-col size="12" style="padding: 0">
+          <!-- <img style="width:40vw;height: 80vh; margin-left:35px; border-radius: 8px;" src="assets/investrealperurecursos/imagen_investreal_peru.png"> -->
+          <!-- <app-left-layout></app-left-layout> -->
+        </ion-col>
+      </ion-row>
+      </ion-card-content>
+    </ion-card>
+    </ion-grid>
+
+    <section class="ocultar767paraabajo">
+
+
+
+      <div  id="inner"  >
+
+
+
+
+
+        <ion-card color="light" style="padding:30px;">
+          <ion-card-header color="secondary" style="margin-top:-30px; margin-right:-30px; margin-left:-30px; color:white">
+            <div class="ion-text-center">
+              <ion-card-title>INGRESA A TU CUENTA
+              </ion-card-title>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+
+          <ion-item class="ion-align-items-center">
+            <ion-label color="secondary" position="floating">Correo:</ion-label>
+            <ion-input  [(ngModel)]="loginuser" placeholder="Correo:"
+              style="color: var(--ion-color-primary)"></ion-input>
+            <ion-icon style="font-size: large" color="primary" name="person-outline" slot="start"></ion-icon>
+          </ion-item>
+          <ion-item class="ion-align-items-center">
+            <ion-label color="secondary" position="floating">Contraseña:</ion-label>
+            <ion-input  [(ngModel)]="loginpassword" placeholder="Contraseña" style="color: var(--ion-color-primary)"
+            [type]="ver_password_login==true ? 'text' : 'password'"></ion-input>
+            <ion-icon style="font-size: large" color="primary" name="lock-closed-outline" slot="start"></ion-icon>
+          </ion-item>
+
+          <br>
+          <div class="ion-text-center">
+            <ion-button  expand="block" *ngIf="ver_password_login" (click)="ver_password_login=false">
+              <ion-icon name="eye-off"></ion-icon>
+            </ion-button>
+            <ion-button  expand="block" *ngIf="!ver_password_login" (click)="ver_password_login=true">
+              <ion-icon name="eye"></ion-icon>
+            </ion-button>
+          </div>
+
+          <ion-row class="ion-align-items-center">
+            <ion-col size-lg="5" size-md="7" size-sm="7" size-xl="5" size-xs="7">
+              <ion-item color="none" lines="none" class="ion-no-padding" no-padding>
+                <ion-checkbox [(ngModel)]="recordar" style="--background: var(--ion-color-secondary)"></ion-checkbox>
+                &nbsp;&nbsp;<span style="color: (--ion-color-primary)">Recordar</span>
+              </ion-item>
+            </ion-col>
+            <ion-col size-lg="7" size-md="5" size-sm="5" size-xl="7" size-xs="5" style="text-align: right">
+              <a>
+                <ion-text style="color: var(--ion-color-secondary)">
+                  <h6>
+                    <a style="cursor: pointer" (click)="olvide()">Olvidé mi contraseña</a>
+                  </h6>
+                </ion-text>
+              </a>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-align-items-center">
+            <ion-col size="12">
+              <ion-button color="primary" (click)="logear()" expand="block" color="secondary">Iniciar sesión</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-text (click)="iraregistrarse()" style="cursor:pointer;">
+            <p>
+              ¿Eres Nuevo aqui?
+              <a >Crea tu cuenta →</a>
+            </p>
+          </ion-text>
+
+        </ion-card-content>
+        </ion-card>
+      </div>
+    </section>
+  </section>
+
+  <!-- registro de distribuidor -->
+
+  <section *ngIf="step=='recuperar'"></section>
+</ion-content>
+
+

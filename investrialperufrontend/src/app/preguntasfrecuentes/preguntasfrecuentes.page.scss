@@ -1,0 +1,18 @@
+ion-segment-button {
+    white-space: normal !important;
+    white-space: pre-line !important;
+
+    --indicator-box-shadow: transparent !important;
+    --background: rgb(240, 240, 240);
+    --color:var(--ion-color-primary);
+    --background-checked: linear-gradient(to right, rgba(226, 215, 51, 0.308), rgba(255, 136, 0, 0.192))!important;
+    --color-checked: var(--ion-color-secondary);
+    border-radius: .5rem !important;
+    // padding: 2px;
+    // margin: 0;
+  }
+
+  ion-label{
+    white-space: normal !important;
+    white-space: pre-line !important;
+  }

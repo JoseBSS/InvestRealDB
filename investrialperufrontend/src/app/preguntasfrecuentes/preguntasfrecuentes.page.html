@@ -1,5 +1,8 @@
 <ion-content>
-  <br>
+  <div class="ion-text-center">
+    <p>¿Tienes preguntas acerca de Investrial ? ¡Esperamos que esta lista de preguntas frecuentes pueda ayudarte!</p>
+  </div>
+  
   <ion-segment (ionChange)="segmentChanged($event)" [value]="ValorSegmento">
     <ion-segment-button value="1" style="margin-right: 7px;">
       <div style="padding: -15px!important;">
@@ -89,8 +92,22 @@
       <ion-item slot="header" color="light">
         <ion-label>¿Dónde encuentro el número de operación?</ion-label>
       </ion-item>
-      <div class="ion-padding" slot="content">Third Content</div>
+      <div class="ion-padding" slot="content">Puedes encontrar el número de tu transacción fácilmente dentro de tu perfil. Solo necesitas acceder a la sección “Mis Operaciones”, donde se listan todas tus transacciones realizadas. Ahí encontrarás el número correspondiente a cada operación que hayas efectuado en nuestra plataforma.</div>
     </ion-accordion>
+    <ion-accordion value="444">
+      <ion-item slot="header" color="light">
+        <ion-label>¿Por qué solo me permiten seleccionar la cuenta del destino? ¿Cómo debitarán el dinero?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Permitimos seleccionar solo la cuenta de destino para simplificar el proceso y asegurar que los fondos lleguen correctamente al destinatario deseado. Para debitar el dinero, debes autorizar la transacción desde tu cuenta bancaria vinculada a nuestra plataforma. Este proceso se realiza de manera segura y automática una vez que confirmas la transacción y eliges la cuenta de destino. Así garantizamos la seguridad y la eficiencia de cada operación.</div>
+    </ion-accordion>
+
+    <ion-accordion value="555">
+      <ion-item slot="header" color="light">
+        <ion-label>¿Hasta qué monto puedo cambiar en Investreal?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Hasta 10.000 Dolares Estadounidences $10.000 o su equivalente en Soles</div>
+    </ion-accordion>
+
   </ion-accordion-group>
 </section>
 

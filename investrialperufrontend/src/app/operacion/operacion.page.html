@@ -20,7 +20,7 @@
     <br />
     <ion-grid>
       <ion-row>
-        <ion-col size-xs="0" size-sm="5" size-md="5" size-lg="3" size-xl="4">
+        <ion-col size-xs="0" size-sm="5" size-md="5" size-lg="5.5" size-xl="5.5">
           <img src="assets/investrealperurecursos/images/pasos1.png">
         </ion-col>
 
@@ -33,16 +33,16 @@
         </div>
 
 
-        <ion-col size-xs="0" size-sm="1" size-md="2" size-lg="3" size-xl="4">
+        <ion-col size-xs="0" size-sm="1" size-md="2" size-lg="0.2" size-xl="0.5">
           &nbsp;&nbsp;
         </ion-col>
 
-        <ion-col size-xs="12" size-sm="6" size-md="5" size-lg="6" size-xl="4">
+        <ion-col size-xs="12" size-sm="6" size-md="5" size-lg="5.5" size-xl="5.5">
           <!-- de la seccion de la siguiente linea para bajo vienen los condicionales si quiere vender o comprar dolares -->
           <section *ngIf="quierecomprardolares">
 
             <ion-card  style="padding: 22px !important; border-radius: 11px !important">
-              <ion-fab-button (click)="cambiarmododeoperacion()" color="secondary"
+              <ion-fab-button size="small" (click)="cambiarmododeoperacion()" color="secondary"
                 style="z-index: 1; position: absolute; right: 15%; top: 48%">
                 <ion-icon style="
                            color: var(--ion-color-primary);
@@ -134,7 +134,7 @@
           <section *ngIf="!quierecomprardolares">
 
             <ion-card style="padding: 22px !important; border-radius: 11px !important">
-              <ion-fab-button (click)="cambiarmododeoperacion()" color="primary"
+              <ion-fab-button size="small" (click)="cambiarmododeoperacion()" color="primary"
                 style="z-index: 1; position: absolute; right: 15%; top: 48%">
                 <ion-icon style="
                            color: var(--ion-color-secondary);
@@ -238,7 +238,7 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col size-xs="0" size-sm="5.4" size-md="5.9" size-lg="3" size-xl="4">
+        <ion-col size-xs="0" size-sm="5.4" size-md="3.8" size-lg="3" size-xl="5">
           <img src="assets/investrealperurecursos/images/pasos2.png">
         </ion-col>
 
@@ -251,11 +251,11 @@
         </div>
 
 
-        <ion-col size-xs="0" size-sm="0.2" size-md="0.2" size-lg="2" size-xl="3">
+        <ion-col size-xs="0" size-sm="0.2" size-md="0.1" size-lg="2" size-xl="1">
           &nbsp;&nbsp;
         </ion-col>
 
-        <ion-col size-xs="12" size-sm="6.4" size-md="6.9" size-lg="7" size-xl="5">
+        <ion-col size-xs="12" size-sm="6.2" size-md="7" size-lg="7" size-xl="6">
           <!-- de la seccion de la siguiente linea para bajo vienen los condicionales si quiere vender o comprar dolares -->
 
 
@@ -567,15 +567,11 @@
             <section *ngIf="!agrego_algo">
               <ion-button *ngIf="data_de_deposito&&banco_que_envia" (click)="step3()" color="primary" expand="full"
                 style="color: #fff">
-                <p style="color: #fff">
                   Continuar
-                </p>
               </ion-button>
               <ion-button *ngIf="!data_de_deposito||!banco_que_envia" (click)="abrirmodalerrorpaso2()" color="primary"
                 expand="full">
-                <p style="color: #fff">
                   Continuar
-                </p>
               </ion-button>
             </section>
             <section *ngIf="agrego_algo">
@@ -620,6 +616,29 @@
     </ion-grid>
   </section>
   <section *ngIf="this.step=='3'">
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs="0" size-sm="4" size-md="3.8" size-lg="3" size-xl="5">
+          <img src="assets/investrealperurecursos/images/pasos3.png">
+        </ion-col>
+
+        <div class="ion-hide-sm-up">
+        <ion-col size-xs="12" >
+          <img src="assets/investrealperurecursos/images/pasoscelular3.png">  
+          
+
+          </ion-col>
+        </div>
+
+
+        <ion-col size-xs="0" size-sm="0" size-md="0.1" size-lg="1" size-xl="1">
+          &nbsp;&nbsp;
+        </ion-col>
+
+        <ion-col size-xs="12" size-sm="7" size-md="7" size-lg="7" size-xl="6">
+
 
     <ion-grid>
       <ion-row style="padding-bottom: 0px !important; padding-top: 0px !important">
@@ -746,8 +765,35 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+        </ion-col>
+    </ion-row>
+    </ion-grid>
   </section>
   <section *ngIf="this.step=='4'">
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs="0" size-sm="5" size-md="5" size-lg="5.5" size-xl="4.6">
+          <img src="assets/investrealperurecursos/images/pasos4.png">
+        </ion-col>
+
+        <div class="ion-hide-sm-up">
+        <ion-col size-xs="12" class="hide-sm hide-md hide-lg hide-xl">
+          <img src="assets/investrealperurecursos/images/pasoscelular4.png">  
+          
+
+          </ion-col>
+        </div>
+
+
+        <ion-col size-xs="0" size-sm="1" size-md="2" size-lg="0.2" size-xl="0.1">
+          &nbsp;&nbsp;
+        </ion-col>
+
+        <ion-col size-xs="12" size-sm="6" size-md="5" size-lg="5.5" size-xl="7">
+
+
     <ion-grid>
       <ion-row class="ion-align-items-center ion-justify-content-center"
         style="padding-bottom: 0px !important; padding-top: 0px !important">
@@ -773,6 +819,9 @@
           </ion-card>
         </ion-col>
       </ion-row>
+    </ion-grid>
+    </ion-col>
+    </ion-row>
     </ion-grid>
   </section>
   <!-- termina step 2 -->

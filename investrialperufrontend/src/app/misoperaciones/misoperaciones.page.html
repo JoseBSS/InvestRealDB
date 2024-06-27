@@ -97,14 +97,14 @@
             >
           </ion-col>
 
-          <ion-col (click)="abrir_modal_detalles(cadaoperacion)" size="2.9">
+          <ion-col (click)="abrir_modal_detalles(cadaoperacion)" size="2.7">
             <ion-text
               >{{cadaoperacion.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-5'
               }}</ion-text
             >
           </ion-col>
 
-          <ion-col (click)="abrir_modal_detalles(cadaoperacion)" size="2.9">
+          <ion-col (click)="abrir_modal_detalles(cadaoperacion)" size="2.7">
             <ion-text
               *ngIf="cadaoperacion.estado==3"
               style="font-size: x-small"
@@ -133,21 +133,28 @@
             </ion-text>
           </ion-col>
 
-          <ion-col size="1.1">
-            <ion-icon
-              (click)="abrir_modal_detalles(cadaoperacion)"
-              size="medium"
-              color="secondary"
+          <ion-col size="1.5">
+            <ion-button (click)="abrir_modal_detalles(cadaoperacion)" style="font-size: small;zoom: 0.7;
+" size="small">
+<ion-icon size="small"
+            
+            size="medium"
+            color="secondary"
               style="cursor: pointer; color: secondary"
               name="eye"
             ></ion-icon>
-            <br />
-            <ion-icon
-              size="medium"
-              color="secondary"
-              style="cursor: pointer; color: secondary"
+
+            </ion-button>
+                        
+            <ion-button (click)="alerta_confirmacion_eliminar_op()" style="font-size: small;zoom: 0.7;
+" size="small">
+<ion-icon size="small"
+            size="medium"
+            color="danger"
+            style="cursor: pointer; color: secondary"
               name="trash"
             ></ion-icon>
+            </ion-button>
 
             <ion-modal
               class="detalles_operacion_completa"
@@ -155,7 +162,7 @@
             >
               <ng-template>
                 <ion-content>
-                  <ion-toolbar>
+                  <ion-toolbar color="secondary">
                     <ion-title *ngIf="dataparaelmodal&&dataparaelmodal.id"
                       >Operación: {{this.dataparaelmodal.id}}</ion-title
                     >
@@ -222,7 +229,7 @@
                     <ion-item center class="ion-text-center">
                       <ion-card style="width: 90%">
                         <ion-card-header
-                          style="text-align: center"
+                          style="text-align: center; color:white!important;"
                           color="primary"
                         >
                           <ion-label style="white-space: normal !important">
@@ -239,7 +246,7 @@
                             </section>
                           </ion-label>
                         </ion-card-header>
-                        <ion-card-content>
+                        <ion-card-content style="font-weight: 700;">
                           <h6
                             *ngIf="dataparaelmodal.quierecomprardolares=='si'"
                           >
@@ -260,7 +267,7 @@
                             />
                           </div>
                           <ion-text
-                            >estamos validando el deposito qe ha realizado a la
+                            >estamos validando el deposito qe ha realizado a Nuestra
                             cuenta {{dataparaelmodal.banco_que_envia}}
                           </ion-text>
                           <ion-button expand="block" (click)="en_desarrollo()"

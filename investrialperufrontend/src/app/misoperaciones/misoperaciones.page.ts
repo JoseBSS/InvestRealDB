@@ -7,6 +7,7 @@ import {ElementRef, ViewChild} from '@angular/core';
 import { IonModal, LoadingController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { AgregarcuentaotarjetaPage } from '../modals/agregarcuentaotarjeta/agregarcuentaotarjeta.page';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-misoperaciones',
@@ -30,7 +31,8 @@ export class MisoperacionesPage implements OnInit {
     private currencyPipe: CurrencyPipe,
         public varios: VariosService,
     private router: Router,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    public alertController: AlertController
 
   ) { }
 
@@ -94,5 +96,37 @@ actualizaroperaciones(event){
 
 
 }
+
+async alerta_confirmacion_eliminar_op() {
+  const alert = await this.alertController.create({
+    header: 'Confirme Cancelación de operación.',
+    subHeader: 'Precione SI,CANCELAR para procesar su cancelación.',
+    message: 'Esta seguro que desea cancelar esta operación?. Considere contactar con soporte para resoluciones de problemas...',
+    buttons: [    {
+      text: 'SI,CANCELAR',
+      role: 'confirm',
+      handler: () => {
+        console.log('Alert confirmed');
+        this.alerta_en_desarrollo();
+      },
+    },],
+  });
+
+  await alert.present();
+}
+
+async alerta_en_desarrollo() {
+  const alert = await this.alertController.create({
+    header: 'Acción en desarrollo',
+    subHeader: 'Esta acción se encuenta en desarrollo',
+    message: 'Actualmente esta función esta en desarrollo!',
+    buttons: ['OK'],
+  });
+
+  await alert.present();
+}
+
+
+
 
 }

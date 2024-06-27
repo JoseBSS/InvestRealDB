@@ -165,7 +165,7 @@ IONCHANGEbanco_cuenta(event){
     this.bancaria_o_interbancaria='Número de cuenta';
     this.minimo_caracteres_numero_cuenta=13;
     this.maximo_caracteres_numero_cuenta=15;
-    this.agregarcuenta.controls['numero_cuenta'].setValidators([Validators.required, Validators.minLength(13),Validators.maxLength(15)]);
+    this.agregarcuenta.controls['numero_cuenta'].setValidators([Validators.required, Validators.minLength(13),Validators.maxLength(18)]);
     this.agregarcuenta.controls['numero_cuenta'].updateValueAndValidity();
 
     // this.agregarcuenta.removeControl
@@ -176,7 +176,7 @@ IONCHANGEbanco_cuenta(event){
     this.bancaria_o_interbancaria='Número de cuenta interbancario (CCI)';
     this.minimo_caracteres_numero_cuenta=19;
     this.maximo_caracteres_numero_cuenta=19;
-    this.agregarcuenta.controls['numero_cuenta'].setValidators([Validators.required, Validators.minLength(20),Validators.maxLength(20)]);
+    this.agregarcuenta.controls['numero_cuenta'].setValidators([Validators.required, Validators.minLength(20),Validators.maxLength(21)]);
     this.agregarcuenta.controls['numero_cuenta'].updateValueAndValidity();
   }
 }

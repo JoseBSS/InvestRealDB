@@ -4,7 +4,7 @@
   </div>
 
   <div *ngIf="loadingAcounts" style="margin-top: 10px;">
-    <div *ngFor="let i of [1, 1, 1, 1, 1, 1]" >
+    <div *ngFor="let i of [1, 1, 1, 1, 1, 1]">
       <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
         <ion-skeleton-text [animated]="true" style="width: 100%; height: 50px;padding: 10px;"></ion-skeleton-text>
         <ion-skeleton-text [animated]="true" style="width: 70%; height: 20px;padding: 10px;"></ion-skeleton-text>
@@ -20,33 +20,23 @@
 
     <!-- <ion-text style="margin-left:25px;" ><p style=" font-size:large; color: var(--ion-color-secondary)">&nbsp;&nbsp; <strong>Productos Bancarios</strong></p></ion-text> -->
 
-    <ion-text style="margin-left: 15px; border: 1px solid red; margin: 0"
-      ><p
-        class="ion-padding-bottom ion-padding-start ion-padding-end"
-        style="color: #777777; margin-bottom: 0"
-      >
+    <ion-text style="margin-left: 15px; border: 1px solid red; margin: 0">
+      <p class="ion-padding-bottom ion-padding-start ion-padding-end" style="color: #777777; margin-bottom: 0">
         &nbsp;&nbsp;Puedes agregar cuentas bancarias y tarjetas luego cuando
         mientras realizas una operación, podras seleccionar a que cuenta o
         tarjeta quieres recibir tu dinero:
-      </p></ion-text
-    >
+      </p>
+    </ion-text>
 
     <div class="accounts__actions ion-margin-bottom">
-      <ion-button (click)="paso_a_agregarcuenta()" color="secondary"
-        ><ion-icon style="color: var(--ion-color-primary)" name="add"></ion-icon
-        >Agregar Cuenta</ion-button
-      >
-      <ion-button (click)="paso_a_agregartarjeta()" color="primary"
-        ><ion-icon
-          style="color: var(--ion-color-secondary)"
-          name="add"
-        ></ion-icon
-        >Agregar tarjeta</ion-button
-      >
+      <ion-button (click)="paso_a_agregarcuenta()" color="secondary"><ion-icon style="color: var(--ion-color-primary)"
+          name="add"></ion-icon>Agregar Cuenta</ion-button>
+      <ion-button (click)="paso_a_agregartarjeta()" color="primary"><ion-icon style="color: var(--ion-color-secondary)"
+          name="add"></ion-icon>Agregar tarjeta</ion-button>
     </div>
 
     <ion-card class="ion-no-padding ocultar767paraabajo" no-padding>
-      <ion-card-header
+      <!-- <ion-card-header
         color="light"
         style="font-size: 1.7vw; text-align: center"
         class="ion-no-padding"
@@ -69,52 +59,83 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+      </ion-card-header> -->
+
+      <ion-card-header style="background-color:#ffecd7!important; font-weight: 800;">
+        <ion-row>
+          <ion-col size="3.2">
+            <ion-text>Apodo y titular:</ion-text>
+          </ion-col>
+          <ion-col size="3.2">
+            <ion-text>Banco y Moneda:</ion-text>
+          </ion-col>
+          <ion-col size="3.2">
+            <ion-text>Tipo, numero:</ion-text>
+          </ion-col>
+          <ion-col size="1.2">
+            <ion-text>:</ion-text>
+          </ion-col>
+          <ion-col size="1.2">
+            <ion-text></ion-text>
+          </ion-col>
+        </ion-row>
       </ion-card-header>
+
 
       <ion-card-content style="font-size: small">
         <br />
 
-        <ion-grid
-          *ngFor="let cadacuenta of cuentas_de_usuario"
-          class="ion-no-padding"
-          no-padding
-        >
+        <ion-grid *ngFor="let cadacuenta of cuentas_de_usuario" class="ion-no-padding" no-padding>
           <ion-row class="ion-no-padding" no-padding>
             <ion-col size="3.2" *ngIf="cadacuenta.apodo_cuenta">
               {{cadacuenta.apodo_cuenta}}<br />
-              {{cadacuenta.titular_cuenta}}
+              <a style="font-size:small">{{cadacuenta.titular_cuenta}}</a>
             </ion-col>
-            <ion-col size="3.2" *ngIf="!cadacuenta.apodo_cuenta">
-              {{cadacuenta.titular_cuenta}}
+            <ion-col size="2.6" *ngIf="!cadacuenta.apodo_cuenta">
+              <a style="font-size:small">{{cadacuenta.titular_cuenta}}</a>
             </ion-col>
-            <ion-col size="3.2"> {{cadacuenta.banco_cuenta}} </ion-col>
-            <ion-col size="3.2">
-              Cuenta Ahorro<br />
+            <ion-col size="3.4"> {{cadacuenta.banco_cuenta}}, <strong>{{cadacuenta.moneda_cuenta}}</strong></ion-col>
+            <ion-col size="1.8">
+              Cuenta <a>Ahorro</a><br />
               {{cadacuenta.numero_cuenta}}
             </ion-col>
-            <ion-col size="1.6"> {{cadacuenta.moneda_cuenta}} </ion-col>
-            <ion-col (click)="sesion_editar(cadacuenta, 'cuenta')" size="0.4">
-              <ion-icon
+            <ion-col size="1">
+              <div class="ion-text-center">
+                <ion-button (click)="sesion_editar(cadacuenta, 'cuenta')" style="font-size: small;zoom: 0.7;
+                " size="small">
+                  <ion-icon size="small" size="medium" color="secondary" style="cursor: pointer; color: secondary"
+                    name="create"></ion-icon>
+  
+                </ion-button>
+  
+                <ion-button (click)="sesion_eliminar(cadacuenta, 'cuenta')" style="font-size: small;zoom: 0.7;
+                " size="small">
+                  <ion-icon size="small" size="medium" color="danger" style="cursor: pointer; color: secondary"
+                    name="trash"></ion-icon>
+                </ion-button>
+  
+              </div>
+
+              <!-- <ion-button size="small"><ion-icon
                 style="color: var(--ion-color-primary)"
                 name="create"
-              ></ion-icon>
-            </ion-col>
-            <ion-col (click)="sesion_eliminar(cadacuenta, 'cuenta')" size="0.4">
-              <ion-icon
+              ></ion-icon></ion-button>
+            
+              <ion-button size="small"><ion-icon
                 style="color: var(--ion-color-secondary)"
                 name="trash-bin"
-              ></ion-icon>
+              ></ion-icon></ion-button> -->
             </ion-col>
+            <!-- <ion-col (click)="sesion_editar(cadacuenta, 'cuenta')" >
+            </ion-col>
+            <ion-col (click)="sesion_eliminar(cadacuenta, 'cuenta')" >
+            </ion-col> -->
           </ion-row>
 
           <ion-item-divider></ion-item-divider>
         </ion-grid>
 
-        <ion-grid
-          *ngFor="let cadatarjeta of tarjetas_de_usuario"
-          class="ion-no-padding"
-          no-padding
-        >
+        <ion-grid *ngFor="let cadatarjeta of tarjetas_de_usuario" class="ion-no-padding" no-padding>
           <ion-row class="ion-no-padding" no-padding>
             <ion-col size="3.2" *ngIf="cadatarjeta.apodo_tarjeta">
               {{cadatarjeta.apodo_tarjeta}}<br />
@@ -130,19 +151,10 @@
             </ion-col>
             <ion-col size="1.6"> {{cadatarjeta.moneda_tarjeta}} </ion-col>
             <ion-col (click)="sesion_editar(cadatarjeta, 'tarjeta')" size="0.4">
-              <ion-icon
-                style="color: var(--ion-color-primary)"
-                name="create"
-              ></ion-icon>
+              <ion-icon style="color: var(--ion-color-primary)" name="create"></ion-icon>
             </ion-col>
-            <ion-col
-              (click)="sesion_eliminar(cadatarjeta, 'tarjeta')"
-              size="0.4"
-            >
-              <ion-icon
-                style="color: var(--ion-color-secondary)"
-                name="trash-bin"
-              ></ion-icon>
+            <ion-col (click)="sesion_eliminar(cadatarjeta, 'tarjeta')" size="0.4">
+              <ion-icon style="color: var(--ion-color-secondary)" name="trash-bin"></ion-icon>
             </ion-col>
           </ion-row>
 
@@ -154,33 +166,21 @@
           ><p>Aún no tiene cuentas o tarjetas asociadas.</p></ion-text
         > -->
 
-        <div
-          *ngIf="tarjetas_de_usuario&&cuentas_de_usuario&&tarjetas_de_usuario.length<1&&cuentas_de_usuario.length<1"
-          class="accounts__nodata"
-        >
-          <svg
-            width="64"
-            height="64"
-            viewBox="0 0 64 64"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+        <div *ngIf="tarjetas_de_usuario&&cuentas_de_usuario&&tarjetas_de_usuario.length<1&&cuentas_de_usuario.length<1"
+          class="accounts__nodata">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M8.05403 63.0666H31.4492V56.9631H8.05403C7.49207 56.9631 7.03656 56.5076 7.03656 55.9456V7.12093C7.03656 6.55897 7.49207 6.10345 8.05403 6.10345H33.4836V18.3095H45.6896V31.533H51.793L51.7923 13.997L37.7961 0H8.05441C6.16572 0 4.35496 0.75068 3.01954 2.08595C1.6842 3.42129 0.933594 5.23195 0.933594 7.12082V55.9455C0.933594 57.8342 1.68427 59.645 3.01954 60.9804C4.35488 62.3157 6.16554 63.0664 8.05441 63.0664L8.05403 63.0666Z"
-              fill="#0B2240"
-            />
+              fill="#0B2240" />
             <path
               d="M40.6046 43.2316C40.6046 45.1984 39.0103 46.7921 37.0441 46.7921C35.078 46.7921 33.4844 45.1985 33.4844 43.2316C33.4844 41.2656 35.078 39.6719 37.0441 39.6719C39.0103 39.6719 40.6046 41.2655 40.6046 43.2316Z"
-              fill="#0B2240"
-            />
+              fill="#0B2240" />
             <path
               d="M63.9999 43.2316C63.9999 45.1984 62.4056 46.7921 60.4394 46.7921C58.4732 46.7921 56.8789 45.1985 56.8789 43.2316C56.8789 41.2656 58.4732 39.6719 60.4394 39.6719C62.4056 39.6719 63.9999 41.2655 63.9999 43.2316Z"
-              fill="#0B2240"
-            />
+              fill="#0B2240" />
             <path
               d="M48.7411 50.8604C46.5827 50.8604 44.5131 51.7182 42.9868 53.2444C41.4606 54.7699 40.6035 56.8396 40.6035 58.998C40.6113 60.4305 41.0008 61.8354 41.7324 63.0671H55.7491C56.4806 61.8353 56.8702 60.4304 56.878 58.998C56.878 56.8396 56.0209 54.77 54.4947 53.2444C52.9685 51.7182 50.8988 50.8604 48.7411 50.8604Z"
-              fill="#0B2240"
-            />
+              fill="#0B2240" />
           </svg>
           <p class="ion-text-center ion-margin-top">
             Por el momento no se ha encontrado cuentas bancarias registradas
@@ -194,25 +194,12 @@
     <!-- lista responsive -->
 
     <ion-card class="ion-no-padding ocultar768paraarriba" no-padding>
-      <ion-card-header
-        color="light"
-        style="font-size: 1.7vw; text-align: center"
-        class="ion-no-padding"
-        no-padding
-      >
+      <ion-card-header color="light" style="font-size: 1.7vw; text-align: center" class="ion-no-padding" no-padding>
       </ion-card-header>
 
       <ion-card-content>
-        <ion-grid
-          *ngFor="let cadacuenta of cuentas_de_usuario"
-          class="ion-no-padding"
-          no-padding
-        >
-          <ion-row
-            style="text-align: left; background-color: var(--ion-color-light)"
-            class="ion-no-padding"
-            no-padding
-          >
+        <ion-grid *ngFor="let cadacuenta of cuentas_de_usuario" class="ion-no-padding" no-padding>
+          <ion-row style="text-align: left; background-color: var(--ion-color-light)" class="ion-no-padding" no-padding>
             <ion-col size="12" *ngIf="cadacuenta.apodo_cuenta">
               <strong>Apodo y Beneficiario:</strong>
               {{cadacuenta.apodo_cuenta}}<br />
@@ -232,32 +219,18 @@
               <strong>Moneda: </strong>{{cadacuenta.moneda_cuenta}}
             </ion-col>
             <ion-col (click)="sesion_editar(cadacuenta, 'cuenta')" size="12">
-              <ion-icon
-                style="color: var(--ion-color-primary)"
-                name="create"
-              ></ion-icon>
+              <ion-icon style="color: var(--ion-color-primary)" name="create"></ion-icon>
             </ion-col>
             <ion-col (click)="sesion_eliminar(cadacuenta, 'cuenta')" size="12">
-              <ion-icon
-                style="color: var(--ion-color-primary)"
-                name="trash-bin"
-              ></ion-icon>
+              <ion-icon style="color: var(--ion-color-primary)" name="trash-bin"></ion-icon>
             </ion-col>
           </ion-row>
 
           <ion-item-divider style="background-color: white"></ion-item-divider>
         </ion-grid>
 
-        <ion-grid
-          *ngFor="let cadatarjeta of tarjetas_de_usuario"
-          class="ion-no-padding"
-          no-padding
-        >
-          <ion-row
-            style="text-align: left; background-color: var(--ion-color-light)"
-            class="ion-no-padding"
-            no-padding
-          >
+        <ion-grid *ngFor="let cadatarjeta of tarjetas_de_usuario" class="ion-no-padding" no-padding>
+          <ion-row style="text-align: left; background-color: var(--ion-color-light)" class="ion-no-padding" no-padding>
             <ion-col size="12" *ngIf="cadatarjeta.apodo_tarjeta">
               <strong>Apodo y Beneficiario:</strong>
               {{cadatarjeta.apodo_tarjeta}}<br />
@@ -275,19 +248,10 @@
             </ion-col>
 
             <ion-col (click)="sesion_editar(cadatarjeta, 'tarjeta')" size="12">
-              <ion-icon
-                style="color: var(--ion-color-primary)"
-                name="create"
-              ></ion-icon>
+              <ion-icon style="color: var(--ion-color-primary)" name="create"></ion-icon>
             </ion-col>
-            <ion-col
-              (click)="sesion_eliminar(cadatarjeta, 'tarjeta')"
-              size="12"
-            >
-              <ion-icon
-                style="color: var(--ion-color-primary)"
-                name="trash-bin"
-              ></ion-icon>
+            <ion-col (click)="sesion_eliminar(cadatarjeta, 'tarjeta')" size="12">
+              <ion-icon style="color: var(--ion-color-primary)" name="trash-bin"></ion-icon>
             </ion-col>
           </ion-row>
 
@@ -300,29 +264,19 @@
           ><p>Aún no tiene tarjetas asociadas.</p></ion-text
         > -->
         <div *ngIf="!tarjetas_de_usuario" class="accounts__nodata">
-          <svg
-            width="64"
-            height="64"
-            viewBox="0 0 64 64"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M8.05403 63.0666H31.4492V56.9631H8.05403C7.49207 56.9631 7.03656 56.5076 7.03656 55.9456V7.12093C7.03656 6.55897 7.49207 6.10345 8.05403 6.10345H33.4836V18.3095H45.6896V31.533H51.793L51.7923 13.997L37.7961 0H8.05441C6.16572 0 4.35496 0.75068 3.01954 2.08595C1.6842 3.42129 0.933594 5.23195 0.933594 7.12082V55.9455C0.933594 57.8342 1.68427 59.645 3.01954 60.9804C4.35488 62.3157 6.16554 63.0664 8.05441 63.0664L8.05403 63.0666Z"
-              fill="#0B2240"
-            />
+              fill="#0B2240" />
             <path
               d="M40.6046 43.2316C40.6046 45.1984 39.0103 46.7921 37.0441 46.7921C35.078 46.7921 33.4844 45.1985 33.4844 43.2316C33.4844 41.2656 35.078 39.6719 37.0441 39.6719C39.0103 39.6719 40.6046 41.2655 40.6046 43.2316Z"
-              fill="#0B2240"
-            />
+              fill="#0B2240" />
             <path
               d="M63.9999 43.2316C63.9999 45.1984 62.4056 46.7921 60.4394 46.7921C58.4732 46.7921 56.8789 45.1985 56.8789 43.2316C56.8789 41.2656 58.4732 39.6719 60.4394 39.6719C62.4056 39.6719 63.9999 41.2655 63.9999 43.2316Z"
-              fill="#0B2240"
-            />
+              fill="#0B2240" />
             <path
               d="M48.7411 50.8604C46.5827 50.8604 44.5131 51.7182 42.9868 53.2444C41.4606 54.7699 40.6035 56.8396 40.6035 58.998C40.6113 60.4305 41.0008 61.8354 41.7324 63.0671H55.7491C56.4806 61.8353 56.8702 60.4304 56.878 58.998C56.878 56.8396 56.0209 54.77 54.4947 53.2444C52.9685 51.7182 50.8988 50.8604 48.7411 50.8604Z"
-              fill="#0B2240"
-            />
+              fill="#0B2240" />
           </svg>
           <p class="ion-text-center ion-margin-top">
             Por el momento no se ha encontrado cuentas bancarias registradas
@@ -340,25 +294,18 @@
 
       <!-- empieza la columna global del formulario responsive -->
       <ion-col size-md="8" size-lg="6" size-xs="10" size>
-        <form
-          validate
-          [formGroup]="agregarcuenta"
-          (ngSubmit)="intentodeagregarcuenta()"
-        >
-          <ion-text style="font-size: small"><p>Banco:</p></ion-text>
-          <ion-select
-            (ionChange)="IONCHANGEbanco_cuenta($event)"
-            formControlName="banco_cuenta"
-            interface="popover"
+        <form validate [formGroup]="agregarcuenta" (ngSubmit)="intentodeagregarcuenta()">
+          <ion-text style="font-size: small">
+            <p>Banco:</p>
+          </ion-text>
+          <ion-select (ionChange)="IONCHANGEbanco_cuenta($event)" formControlName="banco_cuenta" interface="popover"
             [interfaceOptions]="{ cssClass: 'clasebancosselector', size: 'cover' , side:'bottom',  alignment:'center' }"
-            placeholder="Seleccionar banco"
-            style="
+            placeholder="Seleccionar banco" style="
               width: 100%;
               border-radius: 6px;
               color: var(--ion-color-secondary);
               border: 1px solid var(--ion-color-primary);
-            "
-          >
+            ">
             <ion-select-option value="BCP">
               Banco De Crédito BCP
             </ion-select-option>
@@ -395,54 +342,34 @@
               <ion-col size="8.5" class="ion-no-padding" no-padding>
                 <br />
 
-                <div
-                  style="
+                <div style="
                     font-size: large;
                     border-radius: 6px;
                     color: var(--ion-color-secondary);
                     border: 1px solid var(--ion-color-primary);
-                  "
-                >
-                  <input
-                    formControlName="numero_cuenta"
-                    #cuentaaa_caracteres
-                    class="sinborde sinflechitas"
-                    [readonly]="!numero_de_cuenta_habilitado_plz"
-                    style="
+                  ">
+                  <input formControlName="numero_cuenta" #cuentaaa_caracteres class="sinborde sinflechitas"
+                    [readonly]="!numero_de_cuenta_habilitado_plz" style="
                       height: 200%;
                       color: var(--ion-color-secondary);
                       font-size: large;
                       max-width: 100%;
                       min-width: 100%;
                       width: 100%;
-                    "
-                    type="tel"
-                    #rate
-                    placeholder="(Obligatorio)"
-                    (keypress)="isNumberKeyAndLength($event)"
-                    required
-                  />
+                    " type="tel" #rate placeholder="(Obligatorio)" (keypress)="isNumberKeyAndLength($event)"
+                    required />
                 </div>
               </ion-col>
               <ion-col size="3.5" class="ion-no-padding" no-padding>
                 <ion-label>Moneda</ion-label>
-                <ion-item
-                  lines="none"
-                  style="
+                <ion-item lines="none" style="
                     border-radius: 6px;
                     color: var(--ion-color-secondary);
                     border: 1px solid var(--ion-color-primary);
-                  "
-                >
-                  <ion-select
-                    formControlName="moneda_cuenta"
-                    interface="popover"
-                    placeholder="Moneda"
-                  >
+                  ">
+                  <ion-select formControlName="moneda_cuenta" interface="popover" placeholder="Moneda">
                     <ion-select-option value="Soles">Soles</ion-select-option>
-                    <ion-select-option value="Dolares"
-                      >Dolares</ion-select-option
-                    >
+                    <ion-select-option value="Dolares">Dolares</ion-select-option>
                   </ion-select>
                 </ion-item>
               </ion-col>
@@ -450,136 +377,78 @@
           </ion-grid>
 
           <br />
-          <ion-item
-            lines="none"
-            style="
+          <ion-item lines="none" style="
               border-radius: 6px;
               color: var(--ion-color-secondary);
               border: 1px solid var(--ion-color-primary);
-            "
-          >
-            <ion-label
-              style="color: var(--ion-color-secondary)"
-              position="floating"
-              >Titular</ion-label
-            >
-            <ion-input
-              formControlName="titular_cuenta"
-              type="name"
-              placeholder="Titular de la cuenta"
-            ></ion-input>
+            ">
+            <ion-label style="color: var(--ion-color-secondary)" position="floating">Titular</ion-label>
+            <ion-input formControlName="titular_cuenta" type="name" placeholder="Titular de la cuenta"></ion-input>
           </ion-item>
 
-          <ion-text style="font-size: small"
-            ><p>¿Como deseas guardar tu cuenta? (Opcional)</p></ion-text
-          >
+          <ion-text style="font-size: small">
+            <p>¿Como deseas guardar tu cuenta? (Opcional)</p>
+          </ion-text>
 
-          <ion-item
-            lines="none"
-            style="
+          <ion-item lines="none" style="
               border-radius: 6px;
               color: var(--ion-color-secondary);
               border: 1px solid var(--ion-color-primary);
-            "
-          >
-            <ion-label
-              style="color: var(--ion-color-secondary)"
-              position="floating"
-              >Apodo:</ion-label
-            >
-            <ion-input
-              formControlName="apodo_cuenta"
-              type="name"
-              placeholder="¿Deseas apodo para esta cuenta? (Opcional)"
-            ></ion-input>
+            ">
+            <ion-label style="color: var(--ion-color-secondary)" position="floating">Apodo:</ion-label>
+            <ion-input formControlName="apodo_cuenta" type="name"
+              placeholder="¿Deseas apodo para esta cuenta? (Opcional)"></ion-input>
           </ion-item>
 
           <ion-grid class="ion-no-padding" no-padding>
             <ion-row class="ion-no-padding" no-padding>
               <ion-col size="8.5" class="ion-no-padding" no-padding>
-                <ion-button (click)="iravercuentas()" color="secondary"
-                  >Cancelar</ion-button
-                >
+                <ion-button (click)="iravercuentas()" color="secondary">Cancelar</ion-button>
               </ion-col>
               <ion-col size="3.5" class="ion-no-padding" no-padding>
-                <ion-button
-                  *ngIf="agregarcuenta.valid"
-                  type="submit"
-                  color="primary"
-                  >Aceptar</ion-button
-                >
-                <ion-button
-                  *ngIf="!agregarcuenta.valid"
-                  (click)="modal_errores_agregar_cuenta()"
-                  color="primary"
-                  >Aceptar</ion-button
-                >
+                <ion-button *ngIf="agregarcuenta.valid" type="submit" color="primary">Aceptar</ion-button>
+                <ion-button *ngIf="!agregarcuenta.valid" (click)="modal_errores_agregar_cuenta()"
+                  color="primary">Aceptar</ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>
 
-          <ion-modal
-            trigger="open-modal-2"
-            [initialBreakpoint]="1"
-            [breakpoints]="[0, 1]"
-            handleBehavior="cycle"
-          >
+          <ion-modal trigger="open-modal-2" [initialBreakpoint]="1" [breakpoints]="[0, 1]" handleBehavior="cycle">
             <ng-template>
               <ion-content class="ion-padding">
                 <div class="ion-margin-top">
                   <ion-text>
                     <br />
-                    <p
-                      style="font-size: x-large; color: black; margin-top: 0px"
-                    >
+                    <p style="font-size: x-large; color: black; margin-top: 0px">
                       Importante!
                     </p>
                   </ion-text>
                 </div>
                 <p>Considere lo siguiente:</p>
                 <ul>
-                  <li
-                    *ngIf="agregarcuenta.controls['banco_cuenta'].status=='INVALID'"
-                  >
-                    <strong style="color: var(--ion-color-secondary)"
-                      >Banco: </strong
-                    >El Banco donde aperturo la cuenta bancaria que desea
+                  <li *ngIf="agregarcuenta.controls['banco_cuenta'].status=='INVALID'">
+                    <strong style="color: var(--ion-color-secondary)">Banco: </strong>El Banco donde aperturo la cuenta
+                    bancaria que desea
                     registrar, es obligatorio.
                   </li>
 
-                  <li
-                    *ngIf="agregarcuenta.controls['numero_cuenta'].status=='INVALID'"
-                  >
-                    <strong style="color: var(--ion-color-secondary)"
-                      >Número de cuenta: </strong
-                    >¡Ingrese un número de cuenta válido!.
+                  <li *ngIf="agregarcuenta.controls['numero_cuenta'].status=='INVALID'">
+                    <strong style="color: var(--ion-color-secondary)">Número de cuenta: </strong>¡Ingrese un número de
+                    cuenta válido!.
                   </li>
 
-                  <li
-                    *ngIf="agregarcuenta.controls['moneda_cuenta'].status=='INVALID'"
-                  >
-                    <strong style="color: var(--ion-color-secondary)"
-                      >Moneda: </strong
-                    >Indique la divisa de su cuenta, [$ Dolares] o [S/. Soles].
+                  <li *ngIf="agregarcuenta.controls['moneda_cuenta'].status=='INVALID'">
+                    <strong style="color: var(--ion-color-secondary)">Moneda: </strong>Indique la divisa de su cuenta,
+                    [$ Dolares] o [S/. Soles].
                   </li>
-                  <li
-                    *ngIf="agregarcuenta.controls['titular_cuenta'].status=='INVALID'"
-                  >
-                    <strong style="color: var(--ion-color-secondary)"
-                      >Titular: </strong
-                    >Verifique este nombre y compruebe que sea el mismo del
+                  <li *ngIf="agregarcuenta.controls['titular_cuenta'].status=='INVALID'">
+                    <strong style="color: var(--ion-color-secondary)">Titular: </strong>Verifique este nombre y
+                    compruebe que sea el mismo del
                     registrado en InvestrealPeru (Obligatorio).
                   </li>
                 </ul>
-                <ion-button
-                  (click)="cerrarmodal_errores()"
-                  class="boton-cancelar-modal"
-                  size="large"
-                  color="primary"
-                  expand="block"
-                  fill="clear"
-                  >Continuar</ion-button
-                >
+                <ion-button (click)="cerrarmodal_errores()" class="boton-cancelar-modal" size="large" color="primary"
+                  expand="block" fill="clear">Continuar</ion-button>
               </ion-content>
             </ng-template>
           </ion-modal>
@@ -597,25 +466,18 @@
 
       <!-- empieza la columna global del formulario responsive -->
       <ion-col size-md="8" size-lg="6" size-xs="10" size>
-        <form
-          validate
-          [formGroup]="agregartarjeta"
-          (ngSubmit)="intentodeagregartarjeta()"
-        >
-          <ion-text style="font-size: small"><p>Banco:</p></ion-text>
-          <ion-select
-            (ionChange)="IONCHANGEbanco_cuenta($event)"
-            formControlName="banco_tarjeta"
-            interface="popover"
+        <form validate [formGroup]="agregartarjeta" (ngSubmit)="intentodeagregartarjeta()">
+          <ion-text style="font-size: small">
+            <p>Banco:</p>
+          </ion-text>
+          <ion-select (ionChange)="IONCHANGEbanco_cuenta($event)" formControlName="banco_tarjeta" interface="popover"
             [interfaceOptions]="{ cssClass: 'clasebancosselector', size: 'cover' , side:'bottom',  alignment:'center' }"
-            placeholder="Seleccionar banco"
-            style="
+            placeholder="Seleccionar banco" style="
               width: 100%;
               border-radius: 6px;
               color: var(--ion-color-secondary);
               border: 1px solid var(--ion-color-primary);
-            "
-          >
+            ">
             <ion-select-option value="BCP">
               Banco De Crédito BCP
             </ion-select-option>
@@ -644,211 +506,118 @@
           <ion-text>Número de Tarjeta</ion-text>
           <ion-grid class="ion-no-padding" no-padding>
             <ion-row class="ion-no-padding" no-padding>
-              <ion-col
-                size="1.3"
-                *ngIf="tipo_tarjeta"
-                center
-                text-center
-                style="
+              <ion-col size="1.3" *ngIf="tipo_tarjeta" center text-center style="
                   display: flex !important;
                   align-content: center !important;
                   align-items: center !important;
-                "
-              >
+                ">
                 <div class="ion-text-center">
-                  <img
-                    *ngIf="tipo_tarjeta==='Visa'"
-                    style="width: 20px; height: 20px"
-                    src="assets/investrealperurecursos/tarjetas/visa-tarjeta.png"
-                  />
-                  <img
-                    *ngIf="tipo_tarjeta==='MasterCard'"
-                    style="width: 20px; height: 20px"
-                    src="assets/investrealperurecursos/tarjetas/masterCard-tarjeta.png"
-                  />
-                  <img
-                    *ngIf="tipo_tarjeta==='American Express'"
-                    style="width: 20px; height: 20px"
-                    src="assets/investrealperurecursos/tarjetas/amex-tarjeta.png"
-                  />
-                  <img
-                    *ngIf="tipo_tarjeta==='Diners Club'"
-                    style="width: 20px; height: 20px"
-                    src="assets/investrealperurecursos/tarjetas/dinersClub-tarjeta.png"
-                  />
-                  <img
-                    *ngIf="tipo_tarjeta==='Discover'"
-                    style="width: 20px; height: 20px"
-                    src="assets/investrealperurecursos/tarjetas/dicover-tarjeta.png"
-                  />
-                  <img
-                    *ngIf="tipo_tarjeta==='JCB'"
-                    style="width: 20px; height: 20px"
-                    src="assets/investrealperurecursos/tarjetas/jcb-tarjeta.png"
-                  />
+                  <img *ngIf="tipo_tarjeta==='Visa'" style="width: 20px; height: 20px"
+                    src="assets/investrealperurecursos/tarjetas/visa-tarjeta.png" />
+                  <img *ngIf="tipo_tarjeta==='MasterCard'" style="width: 20px; height: 20px"
+                    src="assets/investrealperurecursos/tarjetas/masterCard-tarjeta.png" />
+                  <img *ngIf="tipo_tarjeta==='American Express'" style="width: 20px; height: 20px"
+                    src="assets/investrealperurecursos/tarjetas/amex-tarjeta.png" />
+                  <img *ngIf="tipo_tarjeta==='Diners Club'" style="width: 20px; height: 20px"
+                    src="assets/investrealperurecursos/tarjetas/dinersClub-tarjeta.png" />
+                  <img *ngIf="tipo_tarjeta==='Discover'" style="width: 20px; height: 20px"
+                    src="assets/investrealperurecursos/tarjetas/dicover-tarjeta.png" />
+                  <img *ngIf="tipo_tarjeta==='JCB'" style="width: 20px; height: 20px"
+                    src="assets/investrealperurecursos/tarjetas/jcb-tarjeta.png" />
                 </div>
               </ion-col>
               <ion-col
                 [size]="!tipo_tarjeta||tipo_tarjeta==undefined||tipo_tarjeta==null||tipo_tarjeta=='' ? '12' : '10.7'"
-                class="ion-no-padding"
-                no-padding
-              >
-                <div
-                  style="
+                class="ion-no-padding" no-padding>
+                <div style="
                     font-size: large;
                     border-radius: 6px;
                     color: var(--ion-color-secondary);
                     border: 1px solid var(--ion-color-primary);
-                  "
-                >
-                  <input
-                    formControlName="numero_tarjeta"
-                    id="numero_tarjeta_input"
-                    #numero_tarjeta_input
-                    class="sinborde sinflechitas"
-                    style="
+                  ">
+                  <input formControlName="numero_tarjeta" id="numero_tarjeta_input" #numero_tarjeta_input
+                    class="sinborde sinflechitas" style="
                       height: 200%;
                       color: var(--ion-color-secondary);
                       font-size: large;
                       max-width: 100%;
                       min-width: 100%;
                       width: 100%;
-                    "
-                    type="tel"
-                    #rate
-                    placeholder="(Obligatorio)"
-                    (input)="calculadordetipodetarjeta($event)"
-                    (keypress)="filtrodecaracteresnumerotarjeta($event)"
-                    required
-                  />
+                    " type="tel" #rate placeholder="(Obligatorio)" (input)="calculadordetipodetarjeta($event)"
+                    (keypress)="filtrodecaracteresnumerotarjeta($event)" required />
                 </div>
               </ion-col>
             </ion-row>
           </ion-grid>
 
           <br />
-          <ion-item
-            lines="none"
-            style="
+          <ion-item lines="none" style="
               border-radius: 6px;
               color: var(--ion-color-secondary);
               border: 1px solid var(--ion-color-primary);
-            "
-          >
-            <ion-label
-              style="color: var(--ion-color-secondary)"
-              position="floating"
-              >Titular</ion-label
-            >
-            <ion-input
-              formControlName="titular_tarjeta"
-              type="name"
-              placeholder="Titular de la Tarjeta"
-            ></ion-input>
+            ">
+            <ion-label style="color: var(--ion-color-secondary)" position="floating">Titular</ion-label>
+            <ion-input formControlName="titular_tarjeta" type="name" placeholder="Titular de la Tarjeta"></ion-input>
           </ion-item>
 
-          <ion-text style="font-size: small"
-            ><p>¿Como deseas guardar tu tarjeta? (Opcional)</p></ion-text
-          >
+          <ion-text style="font-size: small">
+            <p>¿Como deseas guardar tu tarjeta? (Opcional)</p>
+          </ion-text>
 
-          <ion-item
-            lines="none"
-            style="
+          <ion-item lines="none" style="
               border-radius: 6px;
               color: var(--ion-color-secondary);
               border: 1px solid var(--ion-color-primary);
-            "
-          >
-            <ion-label
-              style="color: var(--ion-color-secondary)"
-              position="floating"
-              >Apodo:</ion-label
-            >
-            <ion-input
-              formControlName="apodo_tarjeta"
-              type="name"
-              placeholder="¿Deseas apodo para esta tarjeta? (Opcional)"
-            ></ion-input>
+            ">
+            <ion-label style="color: var(--ion-color-secondary)" position="floating">Apodo:</ion-label>
+            <ion-input formControlName="apodo_tarjeta" type="name"
+              placeholder="¿Deseas apodo para esta tarjeta? (Opcional)"></ion-input>
           </ion-item>
 
           <ion-grid class="ion-no-padding" no-padding>
             <ion-row class="ion-no-padding" no-padding>
               <ion-col size="8.5" class="ion-no-padding" no-padding>
-                <ion-button (click)="iravercuentas()" color="secondary"
-                  >Cancelar</ion-button
-                >
+                <ion-button (click)="iravercuentas()" color="secondary">Cancelar</ion-button>
               </ion-col>
               <ion-col size="3.5" class="ion-no-padding" no-padding>
-                <ion-button
-                  *ngIf="agregartarjeta.valid"
-                  type="submit"
-                  color="primary"
-                  >Aceptar</ion-button
-                >
-                <ion-button
-                  *ngIf="!agregartarjeta.valid"
-                  (click)="modal_errores_agregar_tarjeta()"
-                  color="primary"
-                  >Aceptar</ion-button
-                >
+                <ion-button *ngIf="agregartarjeta.valid" type="submit" color="primary">Aceptar</ion-button>
+                <ion-button *ngIf="!agregartarjeta.valid" (click)="modal_errores_agregar_tarjeta()"
+                  color="primary">Aceptar</ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>
 
-          <ion-modal
-            trigger="open-modal-2"
-            [initialBreakpoint]="1"
-            [breakpoints]="[0, 1]"
-            handleBehavior="cycle"
-          >
+          <ion-modal trigger="open-modal-2" [initialBreakpoint]="1" [breakpoints]="[0, 1]" handleBehavior="cycle">
             <ng-template>
               <ion-content class="ion-padding">
                 <div class="ion-margin-top">
                   <ion-text>
                     <br />
-                    <p
-                      style="font-size: x-large; color: black; margin-top: 0px"
-                    >
+                    <p style="font-size: x-large; color: black; margin-top: 0px">
                       Importante!
                     </p>
                   </ion-text>
                 </div>
                 <p>Considere lo siguiente:</p>
                 <ul>
-                  <li
-                    *ngIf="agregartarjeta.controls['banco_tarjeta'].status=='INVALID'"
-                  >
-                    <strong style="color: var(--ion-color-secondary)"
-                      >Banco: </strong
-                    >El Banco donde de origen de su tarjeta, es obligatorio.
+                  <li *ngIf="agregartarjeta.controls['banco_tarjeta'].status=='INVALID'">
+                    <strong style="color: var(--ion-color-secondary)">Banco: </strong>El Banco donde de origen de su
+                    tarjeta, es obligatorio.
                   </li>
 
-                  <li
-                    *ngIf="agregartarjeta.controls['numero_tarjeta'].status=='INVALID'"
-                  >
-                    <strong style="color: var(--ion-color-secondary)"
-                      >Número de tarjeta: </strong
-                    >¡Ingrese un número de tarjeta válido!.
+                  <li *ngIf="agregartarjeta.controls['numero_tarjeta'].status=='INVALID'">
+                    <strong style="color: var(--ion-color-secondary)">Número de tarjeta: </strong>¡Ingrese un número de
+                    tarjeta válido!.
                   </li>
 
-                  <li
-                    *ngIf="agregartarjeta.controls['titular_tarjeta'].status=='INVALID'"
-                  >
-                    <strong style="color: var(--ion-color-secondary)"
-                      >Titular: </strong
-                    >Verifique este nombre y compruebe que sea el mismo del
+                  <li *ngIf="agregartarjeta.controls['titular_tarjeta'].status=='INVALID'">
+                    <strong style="color: var(--ion-color-secondary)">Titular: </strong>Verifique este nombre y
+                    compruebe que sea el mismo del
                     registrado en InvestrealPeru (Obligatorio).
                   </li>
                 </ul>
-                <ion-button
-                  (click)="cerrarmodal_errores()"
-                  class="boton-cancelar-modal"
-                  size="large"
-                  color="primary"
-                  expand="block"
-                  fill="clear"
-                  >Continuar</ion-button
-                >
+                <ion-button (click)="cerrarmodal_errores()" class="boton-cancelar-modal" size="large" color="primary"
+                  expand="block" fill="clear">Continuar</ion-button>
               </ion-content>
             </ng-template>
           </ion-modal>
@@ -862,10 +631,7 @@
 
   <br class="ion-hide-sm-up" />
 
-  <app-account-list
-    [accounts]="cuentas_de_usuario"
-    [cards]="tarjetas_de_usuario"
+  <app-account-list [accounts]="cuentas_de_usuario" [cards]="tarjetas_de_usuario"
     (sesionEliminar)="sesion_eliminar($event.value1,$event.value2)"
-    (sesionEditar)="sesion_editar($event.value1,$event.value2)"
-  ></app-account-list>
+    (sesionEditar)="sesion_editar($event.value1,$event.value2)"></app-account-list>
 </ion-content>

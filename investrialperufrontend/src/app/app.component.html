@@ -145,6 +145,51 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+
+
+        <!-- <div class="slider contenedor_externo_carousel"> -->
+
+
+          <!-- <header>
+            <ul>
+              <li>Menu 1</li>
+              <li>Menu 2</li>
+              <li>Menu 3</li>
+              <li>Menu 4</li>
+              <li>Menu 5</li>
+            </ul>
+          </header> -->
+          <main>
+           
+            <div class="containerv2v2v2 contenedor_externo_carousel"  >
+              <img *ngFor="let menu_promocion of menu_promociones" [src]="menu_promocion.promocion1_new_url_image"  alt="Lake louise picture" class="image1">
+              <!-- <img src="https://cdn.pixabay.com/photo/2018/01/27/23/46/toronto-3112508__480.jpg" alt="">
+              <img src="https://cdn.pixabay.com/photo/2019/10/14/03/26/landscape-4547734__480.jpg" alt="">
+              <img src="https://cdn.pixabay.com/photo/2017/05/09/03/46/alberta-2297204__480.jpg" alt="">
+              <img src="https://cdn.pixabay.com/photo/2014/08/21/09/28/brown-bear-423202__480.jpg" alt=""> -->
+           
+            </div>
+          </main>
+
+
+        <!-- </div> -->
+
+
+
+        <!-- <div class="contenedor_externo_carousel">
+          <div class="categoryIcon" *ngFor="let menu_promocion of menu_promociones">
+        <div class="contain">
+        <div class="row">
+        <div class="row__inner">
+          <div class="tile">
+     <div class="tile__media">
+       <img class="tile__img" [src]="menu_promocion.promocion1_new_url_image" frameborder="0" allowfullscreen>
+     </div>
+   </div>
+</div>
+</div>
+</div></div></div> -->
+
         <!--
         <ion-slides
           [options]="slideOptsOne"

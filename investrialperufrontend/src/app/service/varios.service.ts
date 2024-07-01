@@ -38,7 +38,7 @@ export class VariosService {
   ) {
   }
   variasfunciones(data: any) {
-    var url = 'http://127.0.0.1:8000/api/variasfunciones';
+    var url = 'https://union.delivery/api/variasfunciones';
     return this.http.post(url, data,
       { headers: new HttpHeaders({ "Content-Type": 'application/json' }) });
   }
@@ -212,7 +212,7 @@ export class VariosService {
       this.router.navigate(['login']);
     }
 
-    var url = 'http://127.0.0.1:8000/api/variasfunciones';
+    var url = 'https://union.delivery/api/variasfunciones';
     return this.http.post(url, this.datainvestrealperuappupdateporid,
       { headers: new HttpHeaders({ "Content-Type": 'application/json' }) });
   }
@@ -228,7 +228,7 @@ export class VariosService {
     let formData: FormData = new FormData();
     formData.append('autor', 'investrealperu');
     formData.append('image', file);
-    var url = 'http://127.0.0.1:8000/api/subirimagenescargadasenvariasfunciones';
+    var url = 'https://union.delivery/api/subirimagenescargadasenvariasfunciones';
     return this.http.post(url, formData);
   }
 
@@ -281,7 +281,7 @@ export class VariosService {
       this.router.navigate(['login']);
     }
 
-    var url = 'http://127.0.0.1:8000/api/variasfunciones';
+    var url = 'https://union.delivery/api/variasfunciones';
     return this.http.post(url, this.datainvestrealperuappupdateporid,
       { headers: new HttpHeaders({ "Content-Type": 'application/json' }) });
   }

@@ -36,7 +36,8 @@ export class HomeadminPage implements OnInit {
   promocion1_new_url_image: any = null;
   comprainvestrealperu: any;
   ventainvestrealperu: any;
-
+  vistaverhistorialdecambio: boolean = false;
+  historial_de_cambios_por_admin: any;
   constructor(
     private modalController: ModalController,
     private ElementRef : ElementRef,
@@ -393,7 +394,8 @@ mailto(emailAddress: string, emailSubject: any, cadasolicitud ) {
 
     var datainvestrealperucambiaraumentocompra = {
       nombre_solicitud: 'investrealperucambiaraumentocompra',
-      aumento_compra:this.decimalPipe.transform(this.aumento_compra, '1.3-3')
+      aumento_compra:this.decimalPipe.transform(this.aumento_compra, '1.3-3'),
+      id_usuario:this.profileInfo.id
     }
     this.varios.variasfunciones(datainvestrealperucambiaraumentocompra).subscribe(async( res: any ) =>{
       console.log(' respuesta investrealperucambiaraumentocompra',res);
@@ -408,7 +410,8 @@ mailto(emailAddress: string, emailSubject: any, cadasolicitud ) {
 
     var datainvestrealperucambiaraumentoventa = {
       nombre_solicitud: 'investrealperucambiaraumentoventa',
-      aumento_venta:this.decimalPipe.transform(this.aumento_venta, '1.3-3')
+      aumento_venta:this.decimalPipe.transform(this.aumento_venta, '1.3-3'),
+      id_usuario:this.profileInfo.id
     }
     this.varios.variasfunciones(datainvestrealperucambiaraumentoventa).subscribe(async( res: any ) =>{
       console.log(' respuesta investrealperucambiaraumentoventa',res);
@@ -547,6 +550,22 @@ mailto(emailAddress: string, emailSubject: any, cadasolicitud ) {
     });
   }
 
+  ver_historial_de_cambios(){
+    var datainvestrealperuadminborrarpromociones1 = {
+      nombre_solicitud: 'investrealperuadminverhistorialdecambios',
+      tipo_cuenta:this.profileInfo.tipo_cuenta
 
+    }
+    this.varios.variasfunciones(datainvestrealperuadminborrarpromociones1).subscribe(async( res: any ) =>{
+      console.log(' respuesta investrealperuadminverhistorialdecambios',res);
+      this.historial_de_cambios_por_admin=res;
+      this.vistaverhistorialdecambio=true;
+    });
+  }
+
+  cambiar_vista_ver_historial_a_verdadero(){
+    this.vistaverhistorialdecambio=true;
+
+  }
 
 }

@@ -231,58 +231,127 @@
   <section *ngIf="this.step=='administrardivisas'">
     <div class="ion-text-center">
       <ion-text>
-        <h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Divisas</h4>
+        <h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Divisas CAMBIAR</h4>
       </ion-text>
-      <ion-card>
-        <div>
-          <ion-button (click)="aumentarcompra()">+0.01</ion-button> &nbsp; <ion-button
-            (click)="disminuircompra()">-0.01</ion-button>
-        </div>
-        <ion-row>
-          <ion-col size="8">
-            <ion-item lines="none">
-              <ion-label position="floating">Aumento Compra</ion-label>
-              <ion-input readonly="true" ngModel="{{aumento_compra | number:'1.3-3'}}"></ion-input> &nbsp; {{comprainvestrealperu | number:'1.3-3'}}
-            </ion-item>
-          </ion-col>
-          <ion-col size="4">
-            <ion-button (click)="actualizaraumentocompra()">
-              <ion-icon item-right name="save"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
+
+      <section *ngIf="!vistaverhistorialdecambio">
+
+        <ion-card>
+          <ion-card-header color="secondary">
+            <div class="ion-text-center">
+              <ion-button (click)="ver_historial_de_cambios()">Ver Historial de cambios</ion-button>
+            </div>
+          </ion-card-header>
+        </ion-card>
+  
+        <ion-card>
+          <div>
+            <ion-button (click)="aumentarcompra()">+0.01</ion-button> &nbsp; <ion-button
+              (click)="disminuircompra()">-0.01</ion-button>
+          </div>
+          <ion-row>
+            <ion-col size="8">
+              <ion-item lines="none">
+                <ion-label position="floating">Aumento Compra</ion-label>
+                <ion-input readonly="true" ngModel="{{aumento_compra | number:'1.3-3'}}"></ion-input> &nbsp; {{comprainvestrealperu | number:'1.3-3'}}
+              </ion-item>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button (click)="actualizaraumentocompra()">
+                <ion-icon item-right name="save"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <div class="ion-text-center">
+            <ion-text>
+              <h4><ion-icon name="save-outline"></ion-icon>:{{aumento_compra_guardado | number:'1.3-3'}}</h4>
+            </ion-text>
+          </div>
+        </ion-card>
+        <br><br><ion-item-divider></ion-item-divider><br><br>
+        <ion-card>
+          <div>
+            <ion-button (click)="aumentarventa()">+0.01</ion-button> &nbsp; <ion-button
+              (click)="disminuirventa()">-0.01</ion-button>
+          </div>
+          <ion-row>
+            <ion-col size="8">
+              <ion-item lines="none">
+                <ion-label position="floating">Aumento Venta</ion-label>
+                <ion-input readonly="true" ngModel="{{aumento_venta | number:'1.3-3'}}"></ion-input>&nbsp;{{ventainvestrealperu | number:'1.3-3'}}
+              </ion-item>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button (click)="actualizaraumentoventa()">
+                <ion-icon item-right name="save"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <div class="ion-text-center">
+            <ion-text>
+              <h4><ion-icon name="save-outline"></ion-icon>:{{aumento_venta_guardado | number:'1.3-3'}}</h4>
+            </ion-text>
+          </div>
+        </ion-card>
+      </section>
+      <section *ngIf="vistaverhistorialdecambio">
         <div class="ion-text-center">
-          <ion-text>
-            <h4><ion-icon name="save-outline"></ion-icon>:{{aumento_compra_guardado | number:'1.3-3'}}</h4>
-          </ion-text>
+          <ion-button (click)="cambiar_vista_ver_historial_a_verdadero()">ADMINISTRAR</ion-button>
+          <p></p>
+          <div class="div_tabla_historial_de_cambios">
+
+            <div class="container">
+              <h1>Historial de cambio.</h1>
+                <table class="rwd-table">
+                  <tbody>
+                    <tr>
+                      <th>aumento<br>compra</th>
+                      <th>aumento<br>venta</th>
+                      <th>compra<br>sunarp</th>
+                      <th>venta<br>sunarp</th>
+                      <th>Modif.<br>Por</th>
+                      <th>Tipo<br>Cambio</th>
+                      <th>Fecha:</th>
+                    </tr>
+                    <tr *ngFor="let cadahistoria of historial_de_cambios_por_admin">
+                      <td data-th="Aumento Compra">
+                        {{cadahistoria.aumento_compra}}
+                      </td>
+                      <td data-th="Aumento Venta">
+                        {{cadahistoria.aumento_venta}}
+                      </td>
+                      <td data-th="Sunarp Compra">
+                        {{cadahistoria.compra_sunarp}}
+                      </td>
+                      <td data-th="Sunarp Venta">
+                        {{cadahistoria.venta_sunarp}}
+                      </td>
+                      <td data-th="Modif. Por:">
+                        {{cadahistoria.modificado_por}}
+                      </td>
+                      <td data-th="Tipo Cambio">
+                        {{cadahistoria.tipo_de_modificacion}}
+                      </td>
+                      <td data-th="Fecha:">
+                        {{cadahistoria.fecha_autogenerada | date:"dd/mm/yyyy h:m":'GMT-10'}}
+
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <h3>Historial de cambios</h3>
+              </div><div class="container">
+              
+              
+              </div>
+          </div>
         </div>
-      </ion-card>
-      <br><br><ion-item-divider></ion-item-divider><br><br>
-      <ion-card>
-        <div>
-          <ion-button (click)="aumentarventa()">+0.01</ion-button> &nbsp; <ion-button
-            (click)="disminuirventa()">-0.01</ion-button>
-        </div>
-        <ion-row>
-          <ion-col size="8">
-            <ion-item lines="none">
-              <ion-label position="floating">Aumento Venta</ion-label>
-              <ion-input readonly="true" ngModel="{{aumento_venta | number:'1.3-3'}}"></ion-input>&nbsp;{{ventainvestrealperu | number:'1.3-3'}}
-            </ion-item>
-          </ion-col>
-          <ion-col size="4">
-            <ion-button (click)="actualizaraumentoventa()">
-              <ion-icon item-right name="save"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-        <div class="ion-text-center">
-          <ion-text>
-            <h4><ion-icon name="save-outline"></ion-icon>:{{aumento_venta_guardado | number:'1.3-3'}}</h4>
-          </ion-text>
-        </div>
-      </ion-card>
-    </div>
+
+      </section>
+      </div>
+  </section>
+  <section>
   </section>
 
 

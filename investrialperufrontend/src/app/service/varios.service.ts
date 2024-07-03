@@ -113,7 +113,7 @@ export class VariosService {
     // localStorage.clear();
     this.router.navigate(['login']);
   }
-  async MostrarYOcultarAlertaMono(loadingodismiss) {
+  async MostrarAlertaMonoOcultarEn8000(loadingodismiss) {
     console.log({loadingodismiss})
     this.isLoadingElMono = true;
     if (loadingodismiss && loadingodismiss == 'present') {
@@ -142,7 +142,7 @@ export class VariosService {
         500);
     }
   }
-  async MostrarYOcultarAlertaMono2segundos() {
+  async MostrarAlertaMonoOcultarEn80002segundos() {
     this.loadingmono = await this.loadingController.create({
       duration: 1600,
       message: ' ',
@@ -159,7 +159,7 @@ export class VariosService {
     });
   }
   SacarAlLogin() {
-    this.MostrarYOcultarAlertaMono2segundos();
+    this.MostrarAlertaMonoOcultarEn80002segundos();
     this.BorrarHistorialNoBackButtonWPAExploradoresBrowser();
     this.logout();
   }

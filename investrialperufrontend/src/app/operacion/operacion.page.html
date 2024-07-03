@@ -25,9 +25,9 @@
         </ion-col>
 
         <div class="ion-hide-sm-up">
-        <ion-col size-xs="12" class="hide-sm hide-md hide-lg hide-xl">
-          <img src="assets/investrealperurecursos/images/pasoscelular1.png">  
-          
+          <ion-col size-xs="12" class="hide-sm hide-md hide-lg hide-xl">
+            <img src="assets/investrealperurecursos/images/pasoscelular1.png">
+
 
           </ion-col>
         </div>
@@ -41,7 +41,7 @@
           <!-- de la seccion de la siguiente linea para bajo vienen los condicionales si quiere vender o comprar dolares -->
           <section *ngIf="quierecomprardolares">
 
-            <ion-card  style="padding: 22px !important; border-radius: 11px !important">
+            <ion-card style="padding: 22px !important; border-radius: 11px !important">
               <ion-fab-button size="small" (click)="cambiarmododeoperacion()" color="secondary"
                 style="z-index: 1; position: absolute; right: 15%; top: 48%">
                 <ion-icon style="
@@ -54,7 +54,7 @@
               <ion-row *ngIf="comprainvestrealperu&&ventainvestrealperu">
                 <ion-col size="6">
                   <div class="ion-text-center" (click)="cambiarmododeoperacion()" style="cursor:pointer">
-                    <ion-text><a style="color: secondary">Compra: &nbsp;</a><span 
+                    <ion-text><a style="color: secondary">Compra: &nbsp;</a><span
                         class="v2-badge v2-badge-venta">{{comprainvestrealperu| number : '1.3-3'}}</span></ion-text>
                   </div>
                 </ion-col>
@@ -63,7 +63,7 @@
                            border-radius: 13px;
                            ">
                   <div class="ion-text-center">
-                    <ion-text><a  style="color: white;">Venta:</a><span
+                    <ion-text><a style="color: white;">Venta:</a><span
                         class="v2-badge v2-badge-venta">{{ventainvestrealperu| number : '1.3-3'}}</span></ion-text>
                   </div>
                 </ion-col>
@@ -155,7 +155,7 @@
                 </ion-col>
                 <ion-col size="6">
                   <div class="ion-text-center" (click)="cambiarmododeoperacion()" style="cursor:pointer">
-                    <ion-text><a  style="color: primary">Venta: &nbsp;</a><span
+                    <ion-text><a style="color: primary">Venta: &nbsp;</a><span
                         class="v2-badge v2-badge-venta">{{ventainvestrealperu}}</span></ion-text>
                   </div>
                 </ion-col>
@@ -243,9 +243,9 @@
         </ion-col>
 
         <div class="ion-hide-sm-up">
-        <ion-col size-xs="12" >
-          <img src="assets/investrealperurecursos/images/pasoscelular2.png">  
-          
+          <ion-col size-xs="12">
+            <img src="assets/investrealperurecursos/images/pasoscelular2.png">
+
 
           </ion-col>
         </div>
@@ -259,360 +259,333 @@
           <!-- de la seccion de la siguiente linea para bajo vienen los condicionales si quiere vender o comprar dolares -->
 
 
-    <section *ngIf="this.varios.mostrar_selector_de_cuentas_o_actualizando_vista">
+          <section *ngIf="this.varios.mostrar_selector_de_cuentas_o_actualizando_vista">
 
-      <ion-grid>
-        <div class="ion-text-center">
-          <ion-button style="color: #fff" (click)="abrir_modal_creditos()">Usar Cupon</ion-button>
-        </div>
-        <ion-modal class="erroroperacion" #modal_creditos [initialBreakpoint]="1" [breakpoints]="[0, 1]"
-          handleBehavior="cycle">
-          <ng-template>
-            <ion-content class="ion-no-padding">
-              <div class="ion-text-right">
-                <ion-button color="secondary" (click)="cerrar_modal_creditos()">
-                  <ion-icon name="close"></ion-icon>
-                </ion-button>
+            <ion-grid>
+              <div class="ion-text-center">
+                <ion-button style="color: #fff" (click)="abrir_modal_creditos(false)">Usar Cupon</ion-button>
               </div>
-              <div *ngIf="credito_usado" class="ion-text-center">
-                <ion-text>
-                  <strong>Usando crédito:</strong><a> +{{credito_usado}}</a>
-                  <ion-button (click)="quitar_credito()">
-                    <ion-icon name="close"></ion-icon>
-                  </ion-button>
-                </ion-text>
-              </div>
-              <section *ngIf="profileInfo&&profileInfo.creditos&&profileInfo.creditos.length>0">
-                <ion-row class="ion-align-items-center ion-text-center ion-no-padding" no-padding>
-                  <ion-col size="3" class="ion-no-padding" no-padding>
-                    <ion-text><a>Por</a>:</ion-text>
-                  </ion-col>
-                  <ion-col size="3" class="ion-no-padding" no-padding>
-                    <ion-text><a>Monto</a>:</ion-text>
-                  </ion-col>
-                  <ion-col size="3" class="ion-no-padding" no-padding>
-                    <ion-text><a>Fecha</a>:</ion-text>
-                  </ion-col>
-                  <ion-col size="3" class="ion-no-padding" no-padding> </ion-col>
-                </ion-row>
-                <ion-row *ngFor="let cadacredito of this.profileInfo.creditos"
-                  class="ion-align-items-center ion-text-center ion-no-padding" no-padding>
-                  <ion-col size="3" class="ion-no-padding" no-padding>
-                    <ion-text class="fuenteraleway"
-                      *ngIf="cadacredito.id_publico!=cadacredito.id_publico_generador">{{cadacredito.id_publico_generador}}</ion-text>
-                    <ion-text class="fuenteraleway"
-                      *ngIf="cadacredito.id_publico==cadacredito.id_publico_generador">Mi</ion-text>
-                  </ion-col>
-                  <ion-col size="3" class="ion-no-padding" no-padding>
-                    {{cadacredito.monto_ganado}}
-                  </ion-col>
-                  <ion-col size="3" class="ion-no-padding" no-padding>
-                    {{cadacredito.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10' }}
-                  </ion-col>
-                  <ion-col size="3" class="ion-no-padding" no-padding>
-                    <ion-button (click)="usar_credito(cadacredito)" [disabled]="credito_usado">Usar</ion-button>
-                  </ion-col>
-                </ion-row>
-              </section>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
-        <ion-row style="padding-bottom: 0px !important; padding-top: 0px !important">
-          <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size="12">
-            <ion-card style="
+
+              <ion-row style="padding-bottom: 0px !important; padding-top: 0px !important">
+                <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size="12">
+                  <ion-card style="
                     padding-left: 20px !important;
                     padding-bottom: 0px !important;
                     padding-top: 0px !important;
                     ">
-              <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)" *ngIf="quierecomprardolares">
-                <h3>Enviaré Soles</h3>
-              </ion-text>
-              <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)" *ngIf="!quierecomprardolares">
-                <h3>Enviaré Dólares</h3>
-              </ion-text>
-              <ion-text class="fuenteraleway" *ngIf="quierecomprardolares" style="color: var(--ion-color-secondary)">
-                <h4>
-                  <p>
-                    <img src="assets/investrealperurecursos/banderas-peru-eeuu/peru.png" />
-                    PEN | {{solesaenviar}}
-                  </p>
-                </h4>
-              </ion-text>
-              <ion-text class="fuenteraleway" *ngIf="!quierecomprardolares" style="color: var(--ion-color-secondary)">
-                <h4>
-                  <p>
-                    <img style="width: 20px; height: 20px"
-                      src="assets/investrealperurecursos/banderas-peru-eeuu/eeuu.png" />
-                    USD | {{dolaresaenviar}}
-                  </p>
-                </h4>
-              </ion-text>
-              <ion-text>
-                <h5>
-                  <p>¿Desde qué banco nos enviarás el dinero?</p>
-                </h5>
-              </ion-text>
-              <ion-select id="asd2" [(ngModel)]="banco_que_envia" interface="popover"
-                [interfaceOptions]="{ cssClass: 'clasebancosselector', side:'top',  alignment:'center' }"
-                placeholder="Seleccionar banco" style="
+                    <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)"
+                      *ngIf="quierecomprardolares">
+                      <h3>Enviaré Soles</h3>
+                    </ion-text>
+                    <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)"
+                      *ngIf="!quierecomprardolares">
+                      <h3>Enviaré Dólares</h3>
+                    </ion-text>
+                    <ion-text class="fuenteraleway" *ngIf="quierecomprardolares"
+                      style="color: var(--ion-color-secondary)">
+                      <h4>
+                        <p>
+                          <img src="assets/investrealperurecursos/banderas-peru-eeuu/peru.png" />
+                          PEN | {{solesaenviar}}
+                        </p>
+                      </h4>
+                    </ion-text>
+                    <ion-text class="fuenteraleway" *ngIf="!quierecomprardolares"
+                      style="color: var(--ion-color-secondary)">
+                      <h4>
+                        <p>
+                          <img style="width: 20px; height: 20px"
+                            src="assets/investrealperurecursos/banderas-peru-eeuu/eeuu.png" />
+                          USD | {{dolaresaenviar}}
+                        </p>
+                      </h4>
+                    </ion-text>
+                    <ion-text>
+                      <h5>
+                        <p>¿Desde qué banco nos enviarás el dinero?</p>
+                      </h5>
+                    </ion-text>
+                    <ion-select id="asd2" [(ngModel)]="banco_que_envia" interface="popover"
+                      [interfaceOptions]="{ cssClass: 'clasebancosselector', side:'top',  alignment:'center' }"
+                      placeholder="Seleccionar banco" style="
                     width: 92%;
                     border-radius: 6px;
                     color: var(--ion-color-secondary);
                     border: 1px solid var(--ion-color-primary);
                     ">
-                <ion-select-option value="BCP">
-                  Banco De Crédito BCP
-                </ion-select-option>
-                <ion-select-option value="Interbank">
-                  Interbank
-                </ion-select-option>
-                <ion-select-option value="BBVA"> BBVA </ion-select-option>
-                <ion-select-option value="ScotiaBank">
-                  ScotiaBank
-                </ion-select-option>
-                <ion-select-option value="BanBif"> BanBif </ion-select-option>
-                <ion-select-option value="Pichincha">
-                  Pichincha
-                </ion-select-option>
-                <ion-select-option value="Banco de la Nación">
-                  Banco de la Nación
-                </ion-select-option>
-                <ion-select-option value="GNB"> GNB </ion-select-option>
-                <ion-select-option value="Santander">
-                  Santander
-                </ion-select-option>
-                <ion-select-option value="Mi Banco"> Mi Banco </ion-select-option>
-                <ion-select-option value="Falabella">
-                  Falabella
-                </ion-select-option>
-                <ion-select-option value="Banco Ripley">
-                  Banco Ripley
-                </ion-select-option>
-                <ion-select-option value="Banco del Comercio">
-                  Banco del Comercio
-                </ion-select-option>
-              </ion-select>
-              <ion-text class="fuenteraleway" style="
+                      <ion-select-option value="BCP">
+                        Banco De Crédito BCP
+                      </ion-select-option>
+                      <ion-select-option value="Interbank">
+                        Interbank
+                      </ion-select-option>
+                      <ion-select-option value="BBVA"> BBVA </ion-select-option>
+                      <ion-select-option value="ScotiaBank">
+                        ScotiaBank
+                      </ion-select-option>
+                      <ion-select-option value="BanBif"> BanBif </ion-select-option>
+                      <ion-select-option value="Pichincha">
+                        Pichincha
+                      </ion-select-option>
+                      <ion-select-option value="Banco de la Nación">
+                        Banco de la Nación
+                      </ion-select-option>
+                      <ion-select-option value="GNB"> GNB </ion-select-option>
+                      <ion-select-option value="Santander">
+                        Santander
+                      </ion-select-option>
+                      <ion-select-option value="Mi Banco"> Mi Banco </ion-select-option>
+                      <ion-select-option value="Falabella">
+                        Falabella
+                      </ion-select-option>
+                      <ion-select-option value="Banco Ripley">
+                        Banco Ripley
+                      </ion-select-option>
+                      <ion-select-option value="Banco del Comercio">
+                        Banco del Comercio
+                      </ion-select-option>
+                    </ion-select>
+                    <ion-text class="fuenteraleway" style="
                        padding-top: 0px;
                        padding-bottom: 0px;
                        margin-top: 0px;
                        margin-bottom: 0px;
                        ">
-                <h6>
-                  <p>
-                    La cuenta debe pertenecer a:
-                    <a *ngIf="profileInfo&&profileInfo.lastname2!=null" style="
+                      <h6>
+                        <p>
+                          La cuenta debe pertenecer a:
+                          <a *ngIf="profileInfo&&profileInfo.lastname2!=null" style="
                                 padding-top: 0px;
                                 padding-bottom: 0px;
                                 margin-top: 0px;
                                 margin-bottom: 0px;
                                 ">
-                      <h6>
-                        {{profileInfo.name}} {{profileInfo.lastname}}
-                        {{profileInfo.lastname2}}
-                      </h6>
-                    </a>
-                    <a *ngIf="profileInfo&&profileInfo.lastname2==null" style="
+                            <h6>
+                              {{profileInfo.name}} {{profileInfo.lastname}}
+                              {{profileInfo.lastname2}}
+                            </h6>
+                          </a>
+                          <a *ngIf="profileInfo&&profileInfo.lastname2==null" style="
                              padding-top: 0px;
                              padding-bottom: 0px;
                              margin-top: 0px;
                              margin-bottom: 0px;
                              ">
-                      <h6>{{profileInfo.name}} {{profileInfo.lastname}}</h6>
-                    </a>
-                  </p>
-                </h6>
-              </ion-text>
-            </ion-card>
-          </ion-col>
-          <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size="12">
-            <ion-card style="
+                            <h6>{{profileInfo.name}} {{profileInfo.lastname}}</h6>
+                          </a>
+                        </p>
+                      </h6>
+                    </ion-text>
+                  </ion-card>
+                </ion-col>
+                <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size="12">
+                  <ion-card style="
                     padding-left: 20px !important;
                     padding-bottom: 0px !important;
                     padding-top: 0px !important;
                     ">
-              <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)" *ngIf="quierecomprardolares">
-                <h3>Recibire Dólares</h3>
-              </ion-text>
-              <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)" *ngIf="!quierecomprardolares">
-                <h3>Recibire Soles</h3>
-              </ion-text>
-              <ion-text class="fuenteraleway" *ngIf="quierecomprardolares" style="color: var(--ion-color-secondary)">
-                <h4>
-                  <p>
-                    <img src="assets/investrealperurecursos/banderas-peru-eeuu/eeuu.png" />
-                    USD | {{dolaresarecibir}}
-                    <a *ngIf="credito_usado">+{{credito_usado}}</a>
-                  </p>
-                </h4>
-              </ion-text>
-              <ion-text class="fuenteraleway" *ngIf="!quierecomprardolares" style="color: var(--ion-color-secondary)">
-                <h4>
-                  <p>
-                    <img style="width: 20px; height: 20px"
-                      src="assets/investrealperurecursos/banderas-peru-eeuu/peru.png" />
-                    PEN | {{solesarecibir}}
-                    <a *ngIf="credito_usado">+{{credito_usado}}</a>
-                  </p>
-                </h4>
-              </ion-text>
-              <ion-text>
-                <h5>
-                  <p>¿A dónde te transferimos?</p>
-                </h5>
-                <h6 *ngIf="!agrego_algo">
-                  <p>Selecciona una opción:</p>
-                </h6>
-              </ion-text>
-              <section *ngIf="!agrego_algo">
-                <section *ngIf="cuentas_de_usuario||tarjetas_de_usuario" style="margin-left: 0px !important">
-                  <section *ngIf="quierecomprardolares">
-                    <ion-select (ionChange)="IONCHANGEdatos_de_deposito($event)"
-                      *ngIf="cuentas_de_usuario.length>0||tarjetas_de_usuario.length>0" interface="popover"
-                      [interfaceOptions]="{ cssClass: 'claseselectoranchocompletoysaltodelinea' , side:'top',  alignment:'center' }"
-                      placeholder="Seleccionar" style="
-                             width: 100%;
-                             border-radius: 6px;
-                             color: var(--ion-color-secondary);
-                             border: 1px solid var(--ion-color-primary);
-                             ">
-                      <ng-container *ngFor="let cadacuenta of cuentas_de_usuario;let i=index">
-                        <ion-select-option *ngIf="cadacuenta.moneda_cuenta=='Dolares'"
-                          [value]="cadacuenta">Cuenta:&nbsp;{{cuentas_de_usuario[i].numero_cuenta}}
-                          {{cuentas_de_usuario[i].banco_cuenta}}|De:{{cuentas_de_usuario[i].titular_cuenta}}
-                        </ion-select-option>
-                      </ng-container>
-                      <ion-select-option *ngFor="let cadatarjeta of tarjetas_de_usuario;let i=index"
-                        [value]="cadatarjeta">Tarjeta:&nbsp;{{cadatarjeta.numero_tarjeta}}
-                        {{cadatarjeta.banco_tarjeta}}|De:{{cadatarjeta.titular_tarjeta}}
-                      </ion-select-option>
-                    </ion-select>
-                  </section>
-                  <section *ngIf="!quierecomprardolares">
-                    <ion-select (ionChange)="IONCHANGEdatos_de_deposito($event)"
-                      *ngIf="cuentas_de_usuario.length>0||tarjetas_de_usuario.length>0" interface="popover"
-                      [interfaceOptions]="{ cssClass: 'clasecuentasselector', size: 'cover' , side:'top',  alignment:'center' }"
-                      placeholder="Seleccionar" style="
-                             width: 100%;
-                             border-radius: 6px;
-                             color: var(--ion-color-secondary);
-                             border: 1px solid var(--ion-color-primary);
-                             ">
-                      <ng-container *ngFor="let cadacuenta of cuentas_de_usuario">
-                        <ion-select-option *ngIf="cadacuenta.moneda_cuenta=='Soles'"
-                          [value]="cadacuenta">Cuenta:&nbsp;{{cadacuenta.numero_cuenta}}
-                          {{cadacuenta.banco_cuenta}}|De:{{cadacuenta.titular_cuenta}}
-                        </ion-select-option>
-                      </ng-container>
-                      <ion-select-option *ngFor="let cadatarjeta of tarjetas_de_usuario"
-                        [value]="cadatarjeta">Tarjeta:&nbsp;{{cadatarjeta.numero_tarjeta}}
-                        {{cadatarjeta.banco_tarjeta}}|De:{{cadatarjeta.titular_tarjeta}}
-                      </ion-select-option>
-                    </ion-select>
-                  </section>
-                </section>
-                <ion-row>
-                  <ion-col size="6">
-                    <ion-button color="secondary" (click)="AgregarAlgo('cuenta')" expand="full">Nueva Cuenta
-                    </ion-button>
-                  </ion-col>
-                  <ion-col size="6">
-                    <ion-button color="secondary" (click)="AgregarAlgo('tarjeta')" expand="full">Nueva Tarjeta
-                    </ion-button>
-                  </ion-col>
-                </ion-row>
-              </section>
-              <section *ngIf="agrego_algo">
-                <section *ngIf="agrego_algo=='cuenta'">
-                  <ion-text class="fuenteraleway" style="text-align: center">
-                    <h4>
-                      <strong>Cuenta del {{data_de_deposito.banco_cuenta}}</strong>
-                    </h4>
-                    <h6>De: {{data_de_deposito.titular_cuenta}}</h6>
-                    <h5>
-                      <strong>Nº: {{data_de_deposito.numero_cuenta}}</strong>
-                    </h5>
-                    <div class="ion-text-center">
-                      <ion-button class="botoncomofab" (click)="borrarDataDeDeposito()" color="secondary">
-                        <ion-icon color="primary" name="close-circle"></ion-icon>
-                      </ion-button>
-                    </div>
-                  </ion-text>
-                </section>
-                <section *ngIf="agrego_algo=='tarjeta'">
-                  <ion-text class="fuenteraleway" style="text-align: center">
-                    <h4>
-                      <strong>Tarjeta del {{data_de_deposito.banco_tarjeta}}</strong>
-                    </h4>
-                    <h6>De: {{data_de_deposito.titular_tarjeta}}</h6>
-                    <h5>
-                      <strong>Nº: {{data_de_deposito.numero_tarjeta}}</strong>
-                    </h5>
-                    <div class="ion-text-center">
-                      <ion-button class="botoncomofab" (click)="borrarDataDeDeposito()" color="secondary">
-                        <ion-icon color="primary" name="close-circle"></ion-icon>
-                      </ion-button>
-                    </div>
-                  </ion-text>
-                </section>
-              </section>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="6">
-            <ion-button (click)="step1()" fill="outline" color="primary" expand="block">Atrás</ion-button>
-          </ion-col>
-          <ion-col size="6">
-            <section *ngIf="!agrego_algo">
-              <ion-button *ngIf="data_de_deposito&&banco_que_envia" (click)="step3()" color="primary" expand="full"
-                style="color: #fff">
-                  Continuar
-              </ion-button>
-              <ion-button *ngIf="!data_de_deposito||!banco_que_envia" (click)="abrirmodalerrorpaso2()" color="primary"
-                expand="full">
-                  Continuar
-              </ion-button>
-            </section>
-            <section *ngIf="agrego_algo">
-              <ion-button style="color: #fff" (click)="step3()" color="primary" expand="full">
-                <p style="color: #fff">
-                  Continuar
-                </p>
-              </ion-button>
-            </section>
-            <ion-modal class="erroroperacion" trigger="modalpaso2" #modalpaso2 id="modalpaso2" [initialBreakpoint]="1"
-              [breakpoints]="[0, 1]" handleBehavior="cycle">
-              <ng-template>
-                <ion-content class="ion-padding">
-                  <div class="ion-margin-top">
-                    <ion-text>
-                      <br />
-                      <p style="font-size: x-large; color: black; margin-top: 0px">
-                        Importante!
-                      </p>
+                    <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)"
+                      *ngIf="quierecomprardolares">
+                      <h3>Recibire Dólares <a *ngIf="cupon_agregado_en_soles!='0'">+{{cupon_agregado_en_soles}}</a> <a
+                          *ngIf="cupon_agregado_en_dolares!='0'">+{{cupon_agregado_en_dolares}}</a>
+
+
+                      </h3>
                     </ion-text>
-                  </div>
-                  <p>Para continuar con su operación, usted debera considerar:</p>
-                  <ul>
-                    <li *ngIf="!banco_que_envia">
-                      <strong style="color: var(--ion-color-secondary)">¿Desde donde nos envia?: </strong>Porfavor
-                      seleccione desde que banco nos envia el dinero.
-                    </li>
-                    <li *ngIf="!data_de_deposito">
-                      <strong style="color: var(--ion-color-secondary)">¿donde desea recibir?: </strong>Porfavor
-                      indiquenos a que cuenta o tarjeta desea que te transfiramos.
-                    </li>
-                  </ul>
-                </ion-content>
-              </ng-template>
-            </ion-modal>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </section>
-    </ion-col>
-    </ion-row>
+                    <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)"
+                      *ngIf="!quierecomprardolares">
+                      <h3>Recibire Soles <a *ngIf="cupon_agregado_en_soles!='0'">+{{cupon_agregado_en_soles}}</a> <a
+                          *ngIf="cupon_agregado_en_dolares!='0'">+{{cupon_agregado_en_dolares}}</a>
+
+
+                      </h3>
+                    </ion-text>
+                    <ion-text class="fuenteraleway" *ngIf="quierecomprardolares"
+                      style="color: var(--ion-color-secondary)">
+                      <h4>
+                        <p>
+                          <img src="assets/investrealperurecursos/banderas-peru-eeuu/eeuu.png" />
+                          USD | {{dolaresarecibir}}
+                          <a *ngIf="credito_usado">+{{credito_usado}}</a>
+                        </p>
+                      </h4>
+                    </ion-text>
+                    <ion-text class="fuenteraleway" *ngIf="!quierecomprardolares"
+                      style="color: var(--ion-color-secondary)">
+                      <h4>
+                        <p>
+                          <img style="width: 20px; height: 20px"
+                            src="assets/investrealperurecursos/banderas-peru-eeuu/peru.png" />
+                          PEN | {{solesarecibir}}
+                          <a *ngIf="credito_usado">+{{credito_usado}}</a>
+                        </p>
+                      </h4>
+                    </ion-text>
+                    <ion-text>
+                      <h5>
+                        <p>¿A dónde te transferimos?</p>
+                      </h5>
+                      <h6 *ngIf="!agrego_algo">
+                        <p>Selecciona una opción:</p>
+                      </h6>
+                    </ion-text>
+                    <section *ngIf="!agrego_algo">
+                      <section *ngIf="cuentas_de_usuario||tarjetas_de_usuario" style="margin-left: 0px !important">
+                        <section *ngIf="quierecomprardolares">
+                          <ion-select [disabled]="cuentas_de_usuario.length<1&&tarjetas_de_usuario.length<1"
+                            (ionChange)="IONCHANGEdatos_de_deposito($event)"
+                            *ngIf="cuentas_de_usuario.length>0||tarjetas_de_usuario.length>0" interface="popover"
+                            [interfaceOptions]="{ cssClass: 'claseselectoranchocompletoysaltodelinea' , side:'top',  alignment:'center' }"
+                            placeholder="Seleccionar" style="
+                             width: 100%;
+                             border-radius: 6px;
+                             color: var(--ion-color-secondary);
+                             border: 1px solid var(--ion-color-primary);
+                             ">
+                            <ng-container *ngFor="let cadacuenta of cuentas_de_usuario;let i=index">
+                              <ion-select-option *ngIf="cadacuenta.moneda_cuenta=='Dolares'"
+                                [value]="cadacuenta">Cuenta:&nbsp;{{cuentas_de_usuario[i].numero_cuenta}}
+                                {{cuentas_de_usuario[i].banco_cuenta}}|De:{{cuentas_de_usuario[i].titular_cuenta}}
+                              </ion-select-option>
+                            </ng-container>
+                            <ng-container *ngFor="let cadatarjeta of tarjetas_de_usuario;let i=index">
+                              <ion-select-option [value]="cadatarjeta">Tarjeta:&nbsp;{{cadatarjeta.numero_tarjeta}}
+                                {{cadatarjeta.banco_tarjeta}}|De:{{cadatarjeta.titular_tarjeta}}
+                              </ion-select-option>
+                            </ng-container>
+                          </ion-select>
+                        </section>
+                        <section *ngIf="!quierecomprardolares">
+                          <ion-select [disabled]="cuentas_de_usuario.length<1&&tarjetas_de_usuario.length<1"
+                            (ionChange)="IONCHANGEdatos_de_deposito($event)"
+                            *ngIf="cuentas_de_usuario.length>0||tarjetas_de_usuario.length>0" interface="popover"
+                            [interfaceOptions]="{ cssClass: 'claseselectoranchocompletoysaltodelinea' , side:'top',  alignment:'center' }"
+                            placeholder="Seleccionar" style="
+                             width: 100%;
+                             border-radius: 6px;
+                             color: var(--ion-color-secondary);
+                             border: 1px solid var(--ion-color-primary);
+                             ">
+                            <ng-container *ngFor="let cadacuenta of cuentas_de_usuario"
+                              [style]="this.cuentas_de_usuario.length> 0 ? '': 'display:none!important'">
+                              <ion-select-option *ngIf="cuentas_de_usuario.length>0&&cadacuenta.moneda_cuenta=='Soles'"
+                                [value]="cadacuenta">Cuenta:&nbsp;{{cadacuenta.numero_cuenta}}
+                                {{cadacuenta.banco_cuenta}}|De:{{cadacuenta.titular_cuenta}}
+                              </ion-select-option>
+                            </ng-container>
+                            <ng-container *ngFor="let cadatarjeta of tarjetas_de_usuario"
+                              [style]="this.tarjetas_de_usuario.length> 0 ? '': 'display:none!important'">
+                              <ion-select-option *ngIf="tarjetas_de_usuario.length>0"
+                                [value]="cadatarjeta">Tarjeta:&nbsp;{{cadatarjeta.numero_tarjeta}}
+                                {{cadatarjeta.banco_tarjeta}}|De:{{cadatarjeta.titular_tarjeta}}
+                              </ion-select-option>
+                            </ng-container>
+
+                          </ion-select>
+                        </section>
+                      </section>
+                      <ion-row>
+                        <ion-col size="6">
+                          <ion-button color="secondary" (click)="AgregarAlgo('cuenta')" expand="full">Nueva Cuenta
+                          </ion-button>
+                        </ion-col>
+                        <ion-col size="6">
+                          <ion-button color="secondary" (click)="AgregarAlgo('tarjeta')" expand="full">Nueva Tarjeta
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </section>
+                    <section *ngIf="agrego_algo">
+                      <section *ngIf="agrego_algo=='cuenta'">
+                        <ion-text class="fuenteraleway" style="text-align: center">
+                          <h4>
+                            <strong>Cuenta del {{data_de_deposito.banco_cuenta}}</strong>
+                          </h4>
+                          <h6>De: {{data_de_deposito.titular_cuenta}}</h6>
+                          <h5>
+                            <strong>Nº: {{data_de_deposito.numero_cuenta}}</strong>
+                          </h5>
+                          <div class="ion-text-center">
+                            <ion-button class="botoncomofab" (click)="borrarDataDeDeposito()" color="secondary">
+                              <ion-icon color="primary" name="close-circle"></ion-icon>
+                            </ion-button>
+                          </div>
+                        </ion-text>
+                      </section>
+                      <section *ngIf="agrego_algo=='tarjeta'">
+                        <ion-text class="fuenteraleway" style="text-align: center">
+                          <h4>
+                            <strong>Tarjeta del {{data_de_deposito.banco_tarjeta}}</strong>
+                          </h4>
+                          <h6>De: {{data_de_deposito.titular_tarjeta}}</h6>
+                          <h5>
+                            <strong>Nº: {{data_de_deposito.numero_tarjeta}}</strong>
+                          </h5>
+                          <div class="ion-text-center">
+                            <ion-button class="botoncomofab" (click)="borrarDataDeDeposito()" color="secondary">
+                              <ion-icon color="primary" name="close-circle"></ion-icon>
+                            </ion-button>
+                          </div>
+                        </ion-text>
+                      </section>
+                    </section>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-button (click)="step1()" fill="outline" color="primary" expand="block">Atrás</ion-button>
+                </ion-col>
+                <ion-col size="6">
+                  <section *ngIf="!agrego_algo">
+                    <ion-button *ngIf="data_de_deposito&&banco_que_envia" (click)="step3()" color="primary"
+                      expand="full" style="color: #fff">
+                      Continuar
+                    </ion-button>
+                    <ion-button *ngIf="!data_de_deposito||!banco_que_envia" (click)="abrirmodalerrorpaso2()"
+                      color="primary" expand="full">
+                      Continuar
+                    </ion-button>
+                  </section>
+                  <section *ngIf="agrego_algo">
+                    <ion-button style="color: #fff" (click)="step3()" color="primary" expand="full">
+                      <p style="color: #fff">
+                        Continuar
+                      </p>
+                    </ion-button>
+                  </section>
+                  <ion-modal class="erroroperacion" trigger="modalpaso2" #modalpaso2 id="modalpaso2"
+                    [initialBreakpoint]="1" [breakpoints]="[0, 1]" handleBehavior="cycle">
+                    <ng-template>
+                      <ion-content class="ion-padding">
+                        <div class="ion-margin-top">
+                          <ion-text>
+                            <br />
+                            <p style="font-size: x-large; color: black; margin-top: 0px">
+                              Importante!
+                            </p>
+                          </ion-text>
+                        </div>
+                        <p>Para continuar con su operación, usted debera considerar:</p>
+                        <ul>
+                          <li *ngIf="!banco_que_envia">
+                            <strong style="color: var(--ion-color-secondary)">¿Desde donde nos envia?: </strong>Porfavor
+                            seleccione desde que banco nos envia el dinero.
+                          </li>
+                          <li *ngIf="!data_de_deposito">
+                            <strong style="color: var(--ion-color-secondary)">¿donde desea recibir?: </strong>Porfavor
+                            indiquenos a que cuenta o tarjeta desea que te transfiramos.
+                          </li>
+                        </ul>
+                      </ion-content>
+                    </ng-template>
+                  </ion-modal>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </section>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </section>
   <section *ngIf="this.step=='3'">
@@ -625,9 +598,9 @@
         </ion-col>
 
         <div class="ion-hide-sm-up">
-        <ion-col size-xs="12" >
-          <img src="assets/investrealperurecursos/images/pasoscelular3.png">  
-          
+          <ion-col size-xs="12">
+            <img src="assets/investrealperurecursos/images/pasoscelular3.png">
+
 
           </ion-col>
         </div>
@@ -640,133 +613,135 @@
         <ion-col size-xs="12" size-sm="7" size-md="7" size-lg="7" size-xl="6">
 
 
-    <ion-grid>
-      <ion-row style="padding-bottom: 0px !important; padding-top: 0px !important">
-        <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size-md="12" size-lg="6"
-          size-xs="12">
-          <ion-card style="
+          <ion-grid>
+            <ion-row style="padding-bottom: 0px !important; padding-top: 0px !important">
+              <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size-md="12" size-lg="6"
+                size-xs="12">
+                <ion-card style="
                  padding-left: 20px !important;
                  padding-bottom: 0px !important;
                  padding-top: 0px !important;
                  ">
-            <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)">
-              <h3>Debes Transferir:</h3>
-            </ion-text>
-            <ion-text class="fuenteraleway" *ngIf="quierecomprardolares" style="color: var(--ion-color-secondary)">
-              <h4>
-                <p>
-                  <img src="assets/investrealperurecursos/banderas-peru-eeuu/peru.png" />
-                  PEN | {{solesaenviar| number : '1.2-2'}}
-                </p>
-              </h4>
-            </ion-text>
-            <ion-text class="fuenteraleway" *ngIf="!quierecomprardolares" style="color: var(--ion-color-secondary)">
-              <h4>
-                <p>
-                  <img style="width: 20px; height: 20px"
-                    src="assets/investrealperurecursos/banderas-peru-eeuu/eeuu.png" />
-                  USD | {{dolaresaenviar| number : '1.2-2'}}
-                </p>
-              </h4>
-            </ion-text>
-            <ion-text>
-              <h6>
-                <strong>Transfiere por la web o app de tu banco a la siguiente
-                  cuenta:</strong>
-              </h6>
-            </ion-text>
-            <ion-card>
-              <ion-card-content>
-                <ion-text class="fuenteraleway" *ngIf="cuenta_bancaria_admin" style="text-align: center">
-                  <h4>
-                    <strong>Banco: {{cuenta_bancaria_admin.banco}}</strong>
-                  </h4>
-                  <h6>Moneda: {{cuenta_bancaria_admin.moneda}}</h6>
-                  <h5><strong>Tipo: {{cuenta_bancaria_admin.tipo}}</strong></h5>
-                  <h5>
-                    <strong>Número: {{cuenta_bancaria_admin.numero}}</strong>
-                  </h5>
-                  <h5>
-                    <strong>A Nombre: {{cuenta_bancaria_admin.titular}}</strong>
-                  </h5>
-                </ion-text>
-              </ion-card-content>
-            </ion-card>
-          </ion-card>
-        </ion-col>
-        <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size-md="12" size-lg="6"
-          size-xs="12">
-          <ion-card style="
+                  <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)">
+                    <h3>Debes Transferir:</h3>
+                  </ion-text>
+                  <ion-text class="fuenteraleway" *ngIf="quierecomprardolares"
+                    style="color: var(--ion-color-secondary)">
+                    <h4>
+                      <p>
+                        <img src="assets/investrealperurecursos/banderas-peru-eeuu/peru.png" />
+                        PEN | {{solesaenviar| number : '1.2-2'}}
+                      </p>
+                    </h4>
+                  </ion-text>
+                  <ion-text class="fuenteraleway" *ngIfmodal_creditos="!quierecomprardolares"
+                    style="color: var(--ion-color-secondary)">
+                    <h4>
+                      <p>
+                        <img style="width: 20px; height: 20px"
+                          src="assets/investrealperurecursos/banderas-peru-eeuu/eeuu.png" />
+                        USD | {{dolaresaenviar| number : '1.2-2'}}
+                      </p>
+                    </h4>
+                  </ion-text>
+                  <ion-text>
+                    <h6>
+                      <strong>Transfiere por la web o app de tu banco a la siguiente
+                        cuenta:</strong>
+                    </h6>
+                  </ion-text>
+                  <ion-card>
+                    <ion-card-content>
+                      <ion-text class="fuenteraleway" *ngIf="cuenta_bancaria_admin" style="text-align: center">
+                        <h4>
+                          <strong>Banco: {{cuenta_bancaria_admin.banco}}</strong>
+                        </h4>
+                        <h6>Moneda: {{cuenta_bancaria_admin.moneda}}</h6>
+                        <h5><strong>Tipo: {{cuenta_bancaria_admin.tipo}}</strong></h5>
+                        <h5>
+                          <strong>Número: {{cuenta_bancaria_admin.numero}}</strong>
+                        </h5>
+                        <h5>
+                          <strong>A Nombre: {{cuenta_bancaria_admin.titular}}</strong>
+                        </h5>
+                      </ion-text>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-card>
+              </ion-col>
+              <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size-md="12" size-lg="6"
+                size-xs="12">
+                <ion-card style="
                  padding-left: 20px !important;
                  padding-right: 20px !important;
                  padding-bottom: 0px !important;
                  padding-top: 0px !important;
                  ">
-            <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)">
-              <h3>
-                ¿Transferiste? Adjunta tu comprobante a continuación
-              </h3>
-            </ion-text>
-            <div class="content-img">
-              <label style="cursor: pointer" for="input">
-                <img style="display: block; object-fit: cover" *ngIf="!new_url_image"
-                  src="assets/investrealperurecursos/adjuntar-imagen.svg" />
-                <img style="display: block; object-fit: cover" *ngIf="new_url_image" [src]="new_url_image" />
-                <ion-icon name="folder-outline"></ion-icon>
-              </label>
-              <input (change)="takePicture($event)" accept="image/*" class="input" type="file" id="input" />
-            </div>
-            <ion-icon *ngIf="new_url_image" color="success" style="font-size: xx-large"
-              name="checkmark-circle"></ion-icon>
-            <ion-text>
-              <h6 class="textodentrodelinea">
-                &nbsp;o también puedes&nbsp;
-              </h6>
-            </ion-text>
-            <ion-text class="fuenteraleway" style="text-align: center">
-              <h5>
-                Enviar la constancia por email: contacto&#64;investrealperu.com
-              </h5>
-            </ion-text>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6">
-          <ion-button (click)="step2()" fill="outline" color="primary" expand="block">Atrás</ion-button>
-        </ion-col>
-        <ion-col size="6">
-          <ion-button *ngIf="new_url_image" (click)="enviar_operacion_con_foto()" color="primary" expand="full"
-            style="color: #fff">Continuar</ion-button>
-          <ion-button *ngIf="!new_url_image" (click)="abrirmodalerrorpaso3()" color="primary" expand="full"
-            style="color: #fff">Continuar</ion-button>
-          <ion-modal class="erroroperacion" trigger="modalpaso3" #modalpaso3 id="modalpaso3" [initialBreakpoint]="1"
-            [breakpoints]="[0, 1]" handleBehavior="cycle">
-            <ng-template>
-              <ion-content class="ion-padding">
-                <div class="ion-margin-top">
-                  <ion-text>
-                    <br />
-                    <p style="font-size: x-large; color: black; margin-top: 0px">
-                      Importante!
-                    </p>
+                  <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)">
+                    <h3>
+                      ¿Transferiste? Adjunta tu comprobante a continuación
+                    </h3>
                   </ion-text>
-                </div>
-                <p>Para finalizar con su operación, usted debe:</p>
-                <ul>
-                  <li *ngIf="!new_url_image">
-                    <strong style="color: var(--ion-color-secondary)">Adjuntar Imagen: </strong>Porfavor cnsidere
-                    adjuntar un capture o imagen de su transferencia.
-                  </li>
-                </ul>
-              </ion-content>
-            </ng-template>
-          </ion-modal>
+                  <div class="content-img">
+                    <label style="cursor: pointer" for="input">
+                      <img style="display: block; object-fit: cover" *ngIf="!new_url_image"
+                        src="assets/investrealperurecursos/adjuntar-imagen.svg" />
+                      <img style="display: block; object-fit: cover" *ngIf="new_url_image" [src]="new_url_image" />
+                      <ion-icon name="folder-outline"></ion-icon>
+                    </label>
+                    <input (change)="takePicture($event)" accept="image/*" class="input" type="file" id="input" />
+                  </div>
+                  <ion-icon *ngIf="new_url_image" color="success" style="font-size: xx-large"
+                    name="checkmark-circle"></ion-icon>
+                  <ion-text>
+                    <h6 class="textodentrodelinea">
+                      &nbsp;o también puedes&nbsp;
+                    </h6>
+                  </ion-text>
+                  <ion-text class="fuenteraleway" style="text-align: center">
+                    <h5>
+                      Enviar la constancia por email: contacto&#64;investrealperu.com
+                    </h5>
+                  </ion-text>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-button (click)="step2()" fill="outline" color="primary" expand="block">Atrás</ion-button>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button *ngIf="new_url_image" (click)="enviar_operacion_con_foto()" color="primary" expand="full"
+                  style="color: #fff">Continuar</ion-button>
+                <ion-button *ngIf="!new_url_image" (click)="abrirmodalerrorpaso3()" color="primary" expand="full"
+                  style="color: #fff">Continuar</ion-button>
+                <ion-modal class="erroroperacion" trigger="modalpaso3" #modalpaso3 id="modalpaso3"
+                  [initialBreakpoint]="1" [breakpoints]="[0, 1]" handleBehavior="cycle">
+                  <ng-template>
+                    <ion-content class="ion-padding">
+                      <div class="ion-margin-top">
+                        <ion-text>
+                          <br />
+                          <p style="font-size: x-large; color: black; margin-top: 0px">
+                            Importante!
+                          </p>
+                        </ion-text>
+                      </div>
+                      <p>Para finalizar con su operación, usted debe:</p>
+                      <ul>
+                        <li *ngIf="!new_url_image">
+                          <strong style="color: var(--ion-color-secondary)">Adjuntar Imagen: </strong>Porfavor cnsidere
+                          adjuntar un capture o imagen de su transferencia.
+                        </li>
+                      </ul>
+                    </ion-content>
+                  </ng-template>
+                </ion-modal>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-col>
       </ion-row>
-    </ion-grid>
-        </ion-col>
-    </ion-row>
     </ion-grid>
   </section>
   <section *ngIf="this.step=='4'">
@@ -779,9 +754,9 @@
         </ion-col>
 
         <div class="ion-hide-sm-up">
-        <ion-col size-xs="12" class="hide-sm hide-md hide-lg hide-xl">
-          <img src="assets/investrealperurecursos/images/pasoscelular4.png">  
-          
+          <ion-col size-xs="12" class="hide-sm hide-md hide-lg hide-xl">
+            <img src="assets/investrealperurecursos/images/pasoscelular4.png">
+
 
           </ion-col>
         </div>
@@ -794,34 +769,36 @@
         <ion-col size-xs="12" size-sm="6" size-md="5" size-lg="5.5" size-xl="7">
 
 
-    <ion-grid>
-      <ion-row class="ion-align-items-center ion-justify-content-center"
-        style="padding-bottom: 0px !important; padding-top: 0px !important">
-        <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size-md="12" size-lg="6"
-          size-xs="12">
-          <ion-card style="
+          <ion-grid>
+            <ion-row class="ion-align-items-center ion-justify-content-center"
+              style="padding-bottom: 0px !important; padding-top: 0px !important">
+              <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size-md="12" size-lg="6"
+                size-xs="12">
+                <ion-card style="
                  padding-left: 20px !important;
                  padding-right: 20px !important;
                  padding-bottom: 0px !important;
                  padding-top: 0px !important;
                  ">
-            <ion-text class="fuenteraleway" style="text-align: center; color: --(--ion-color-secondary)">
-              <h2 color="secondary">¡Solicitud enviada!</h2>
-              <h3>
-                Tu operación es la N°{{operacion_enviada_con_foto.id}} y se
-                encuentra en validación de fondos
-              </h3>
-            </ion-text>
-            <div class="ion-text-center">
-              <ion-button expand="block" (click)="iramisoperaciones()" color="primary">Ver mís operaciones</ion-button>
-              <ion-button expand="block" (click)="otraoperacion()" color="secondary">Hacer otra transacción</ion-button>
-            </div>
-          </ion-card>
+                  <ion-text class="fuenteraleway" style="text-align: center; color: --(--ion-color-secondary)">
+                    <h2 color="secondary">¡Solicitud enviada!</h2>
+                    <h3>
+                      Tu operación es la N°{{operacion_enviada_con_foto.id}} y se
+                      encuentra en validación de fondos
+                    </h3>
+                  </ion-text>
+                  <div class="ion-text-center">
+                    <ion-button expand="block" (click)="iramisoperaciones()" color="primary">Ver mís
+                      operaciones</ion-button>
+                    <ion-button expand="block" (click)="otraoperacion()" color="secondary">Hacer otra
+                      transacción</ion-button>
+                  </div>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-col>
       </ion-row>
-    </ion-grid>
-    </ion-col>
-    </ion-row>
     </ion-grid>
   </section>
   <!-- termina step 2 -->

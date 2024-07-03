@@ -221,10 +221,10 @@ iravercuentas(){
 //     nombre_solicitud: 'investrealperutraercuentasytarjetasdeusuario',
 //     id_user: this.profileInfo.id,
 //   }
-//   this.varios.MostrarYOcultarAlertaMono('present');
+//   this.varios.MostrarAlertaMonoOcultarEn8000('present');
 //   this.varios.variasfunciones(datainvestrealperutraercuentasytarjetasdeusuario).subscribe(async( res: any ) =>{
 //     console.log(' respuesta investrealperutraercuentasytarjetasdeusuario',res);
-//     this.varios.MostrarYOcultarAlertaMono('dismiss');
+//     this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
 //     this.cuentas_de_usuario=res[0];
 //     this.tarjetas_de_usuario=res[1];
 
@@ -246,10 +246,10 @@ intentodeagregarcuenta(){
       titular_cuenta: this.agregarcuenta.value.titular_cuenta,
       apodo_cuenta: this.agregarcuenta.value.apodo_cuenta,
     }
-    this.varios.MostrarYOcultarAlertaMono('present');
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
     this.varios.variasfunciones(datainvestrealperuagregarcuentaausuario).subscribe(async( res: any ) =>{
       console.log(' respuesta investrealperuagregarcuentaausuario',res);
-      this.varios.MostrarYOcultarAlertaMono('dismiss');
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
       if(res&&res.id>0){
         // this.traercuentasytarjetasdeusuario();
         this.step='vercuentas';
@@ -467,10 +467,10 @@ intentodeagregartarjeta(){
       titular_tarjeta: this.agregartarjeta.value.titular_tarjeta,
       apodo_tarjeta: this.agregartarjeta.value.apodo_tarjeta,
     }
-    this.varios.MostrarYOcultarAlertaMono('present');
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
     this.varios.variasfunciones(datainvestrealperuagregartarjetaausuario).subscribe(async( res: any ) =>{
       console.log(' respuesta investrealperuagregartarjetaausuario',res);
-      this.varios.MostrarYOcultarAlertaMono('dismiss');
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
       if(res&&res.id>0){
         // this.traercuentasytarjetasdeusuario();
         this.step='vercuentas';

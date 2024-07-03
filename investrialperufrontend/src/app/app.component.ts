@@ -254,6 +254,6 @@ export class AppComponent {
     // Ahora que sabemos a que ruta quiere ir, vamos a restringir las que requieran login pero a nivel Global.
     //para esto, agregemos el nombre de la ruta y si esta aparece en esta lista BLANCA "(no)" volvera a atras, ni se le mostrara
     //el modal el cual le indicara al usuario que debe iniciar sesion o regresar:
-    this.varios.MostrarYOcultarAlertaMono2segundos()
+    this.varios.MostrarAlertaMonoOcultarEn80002segundos()
   }
 }

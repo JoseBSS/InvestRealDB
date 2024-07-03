@@ -1,0 +1,70 @@
+
+
+<ion-content class="ion-no-padding">
+  <div class="ion-text-right" (click)="cerrar_modal_creditos()">
+    <ion-button color="secondary" (click)="cerrar_modal_creditos()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </div>
+  <section *ngIf="vista_en_modal_cupon=='ingresar_cupon'">
+    <div>
+      <ion-button (click)="volver_a_cuponnes()">Volver a cupones</ion-button>
+      <br>
+      <p>Ingresar cupon</p>
+    </div>
+
+
+    
+  </section>
+  <section *ngIf="vista_en_modal_cupon=='ver_cupones'" >
+
+    <div *ngIf="credito_usado" class="ion-text-center">
+      <ion-text>
+        <strong>Usando crédito:</strong><a> +{{credito_usado}}</a>
+        <ion-button (click)="quitar_credito()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-text>
+    </div>
+    <section class="anadir_cupon">
+      <div class="ion-text-center">
+        <ion-button (click)="abriralertadeagregarcupones()">Ingresar Código</ion-button>
+      </div>
+    </section>
+    <section *ngIf="profileInfo&&profileInfo.cupones&&profileInfo.cupones.length>0">
+      <ion-row class="ion-align-items-center ion-text-center ion-no-padding" no-padding>
+        <ion-col size="3" class="ion-no-padding" no-padding>
+          <ion-text><a>Codigo</a>:</ion-text>
+        </ion-col>
+        <ion-col size="3" class="ion-no-padding" no-padding>
+          <ion-text><a>Monto</a>:</ion-text>
+        </ion-col>
+        <ion-col size="3" class="ion-no-padding" no-padding>
+          <ion-text><a>Hasta el:</a>:</ion-text>
+        </ion-col>
+        <ion-col size="3" class="ion-no-padding" no-padding> </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let cadacredito of this.profileInfo.cupones"
+        class="ion-align-items-center ion-text-center ion-no-padding" no-padding>
+        <ion-col size="3" class="ion-no-padding" no-padding>
+          <ion-text class="fuenteraleway">{{cadacredito.codigo_de_cupon}}</ion-text>
+          <ion-text class="fuenteraleway">Mi</ion-text>
+        </ion-col>
+        <ion-col size="3" class="ion-no-padding" no-padding>
+          <a *ngIf="cadacredito.soles_a_sumar_soles!='0'">S/.{{cadacredito.soles_a_sumar_soles}}</a>
+          <a *ngIf="cadacredito.soles_a_sumar_dolares!='0'">$ {{cadacredito.soles_a_sumar_soles}}</a>
+        </ion-col>
+        <ion-col size="3" class="ion-no-padding" no-padding>
+          {{cadacredito.fecha_limite | date: 'dd/MM/yy, hh:mm':'GMT-10' }}
+        </ion-col>
+        <ion-col size="3" class="ion-no-padding" no-padding>
+          <ion-button (click)="usar_cupon(cadacredito)" [disabled]="credito_usado">Usar</ion-button>
+        </ion-col>
+      </ion-row>
+    </section>
+
+
+  </section>
+  
+
+</ion-content>

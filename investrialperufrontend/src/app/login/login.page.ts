@@ -121,9 +121,9 @@ export class LoginPage implements OnInit {
                 nombre_solicitud: 'investrealperuenviarcorreoderecuperacion',
                 correoaenviar: alertData.codigoingresadoenalerta,
               }
-              this.varios.MostrarYOcultarAlertaMono('present');
+              this.varios.MostrarAlertaMonoOcultarEn8000('present');
               this.varios.variasfunciones(datainvestrealperuappinicio).subscribe(async (res: any) => {
-              this.varios.MostrarYOcultarAlertaMono('dismiss');
+              this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
               if(res&&res!=null){
                 this.varios.presentToast('Enviado, Verifique su correo electronico');
                 this.correoenviadoalerta();
@@ -204,13 +204,13 @@ export class LoginPage implements OnInit {
       username: this.loginuser,
       password: this.loginpassword
     }
-    this.varios.MostrarYOcultarAlertaMono('present');
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
     console.log('el usuario intenta logear con esta data,', datainvestrealperuappinicio);
     this.varios.variasfunciones(datainvestrealperuappinicio).subscribe(async (res: any) => {
       console.log(' respuesta investrealperuappinicio ', res);
       if (res != 'credencialesincorrectas' && res != null && res.status == 'activo') {
         this.varios.loading2segundos("Verificacíon exitosa...");
-        this.varios.MostrarYOcultarAlertaMono('dismiss');
+        this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
         this.varios.tipo_cuenta = res.tipo_cuenta;
         localStorage.setItem('profileInfo', this.encrypt(JSON.stringify(res)));
         // this.menu.enable(true);

@@ -30,7 +30,7 @@ export class IndashPage implements OnInit {
   }
 
   cerrarsesion(){
-    this.varios.MostrarYOcultarAlertaMono2segundos();
+    this.varios.MostrarAlertaMonoOcultarEn80002segundos();
     this.varios.logout();
   }
 

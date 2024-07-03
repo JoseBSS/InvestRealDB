@@ -259,12 +259,12 @@ export class RegistrarPage implements OnInit {
         nombre_solicitud: 'investrealperuconsultarruc',
         ruc: event.target.value,
       }
-      this.varios.MostrarYOcultarAlertaMono('present')
+      this.varios.MostrarAlertaMonoOcultarEn8000('present')
       this.varios
         .variasfunciones(datainvestrealperuconsultarruc)
         .subscribe(async (res: any) => {
           console.log('respuesta de investrealperuconsultarruc', res)
-          this.varios.MostrarYOcultarAlertaMono('dismiss')
+          this.varios.MostrarAlertaMonoOcultarEn8000('dismiss')
           if (res && res.nombre) {
             this.razon_social = res.nombre
           }
@@ -292,12 +292,12 @@ export class RegistrarPage implements OnInit {
         nombre_solicitud: 'investrealperuconsultardni',
         dni: event.target.value,
       }
-      this.varios.MostrarYOcultarAlertaMono('present')
+      this.varios.MostrarAlertaMonoOcultarEn8000('present')
       this.varios
         .variasfunciones(datainvestrealperuconsultardni)
         .subscribe(async (res: any) => {
           console.log('respuesta de investrealperuconsultardni', res)
-          this.varios.MostrarYOcultarAlertaMono('dismiss')
+          this.varios.MostrarAlertaMonoOcultarEn8000('dismiss')
           if (res && res.nombre) {
             this.updateusuario1.setValue({
               name: res.nombre,
@@ -325,12 +325,12 @@ export class RegistrarPage implements OnInit {
         nombre_solicitud: 'investrealperuconsultarruc',
         ruc: event.target.value,
       }
-      this.varios.MostrarYOcultarAlertaMono('present')
+      this.varios.MostrarAlertaMonoOcultarEn8000('present')
       this.varios
         .variasfunciones(datainvestrealperuconsultarruc)
         .subscribe(async (res: any) => {
           console.log('respuesta de investrealperuconsultarruc', res)
-          this.varios.MostrarYOcultarAlertaMono('dismiss')
+          this.varios.MostrarAlertaMonoOcultarEn8000('dismiss')
           if (res && res.nombre) {
             var nombrespersona = res.nombre
             nombrespersona = nombrespersona.split(' ')
@@ -473,10 +473,10 @@ export class RegistrarPage implements OnInit {
           'el usuario intenta registrarse con esta data,',
           datainvestrealperuappcreateuser
         )
-        this.varios.MostrarYOcultarAlertaMono('present')
+        this.varios.MostrarAlertaMonoOcultarEn8000('present')
         this.varios.variasfunciones(datainvestrealperuappcreateuser).subscribe(
           async (res: any) => {
-            this.varios.MostrarYOcultarAlertaMono('dismiss')
+            this.varios.MostrarAlertaMonoOcultarEn8000('dismiss')
             console.log(' respuesta investrealperuappcreateuser ', res)
             if (res && res.id > 0) {
               localStorage.setItem(
@@ -615,13 +615,13 @@ export class RegistrarPage implements OnInit {
         'datainvestrealperuappcompletandoregistro:',
         datainvestrealperuappcompletandoregistro
       )
-      this.varios.MostrarYOcultarAlertaMono('present')
+      this.varios.MostrarAlertaMonoOcultarEn8000('present')
       this.varios
         .variasfunciones(datainvestrealperuappcompletandoregistro)
         .subscribe(async (res: any) => {
-          this.varios.MostrarYOcultarAlertaMono('dismiss')
+          this.varios.MostrarAlertaMonoOcultarEn8000('dismiss')
           if (res && res.id && res.id > 0) {
-            this.varios.MostrarYOcultarAlertaMono('dismiss')
+            this.varios.MostrarAlertaMonoOcultarEn8000('dismiss')
             this.varios.tipo_cuenta = res.tipo_cuenta
             localStorage.setItem(
               'profileInfo',

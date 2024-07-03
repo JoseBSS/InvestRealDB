@@ -95,6 +95,10 @@ const routes: Routes = [
     path: 'usereditartarjetaocuenta',
     loadChildren: () => import('./modals/usereditartarjetaocuenta/usereditartarjetaocuenta.module').then( m => m.UsereditartarjetaocuentaPageModule)
   },
+  {
+    path: 'modalcupones',
+    loadChildren: () => import('./modals/modalcupones/modalcupones.module').then( m => m.ModalcuponesPageModule)
+  },
 
 
 

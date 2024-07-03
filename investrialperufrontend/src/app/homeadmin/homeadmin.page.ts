@@ -311,12 +311,12 @@ mailto(emailAddress: string, emailSubject: any, cadasolicitud ) {
       nombre_solicitud: 'investrealperuadmintraerusuarios',
       tipo_cuenta:this.profileInfo.tipo_cuenta
     }
-    this.varios.MostrarYOcultarAlertaMono('present');
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
     this.varios.variasfunciones(datainvestrealperuadmintraerusuarios).subscribe(async( res: any ) =>{
       console.log(' respuesta investrealperuadmintraerusuarios',res);
       this.cuentasdeusuario=res;
       this.step='administrarusuarios';
-      this.varios.MostrarYOcultarAlertaMono('dismiss');
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
     });
   }
 
@@ -325,14 +325,14 @@ mailto(emailAddress: string, emailSubject: any, cadasolicitud ) {
     var datainvestrealperutraeraumentos = {
       nombre_solicitud: 'investrealperutraeraumentos',
     }
-    this.varios.MostrarYOcultarAlertaMono('present');
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
     this.varios.variasfunciones(datainvestrealperutraeraumentos).subscribe(async( res: any ) =>{
       console.log(' respuesta investrealperutraeraumentos',res);
       this.aumento_compra=res.aumento_compra;
       this.aumento_compra_guardado=res.aumento_compra;
       this.aumento_venta=res.aumento_venta;
       this.aumento_venta_guardado=res.aumento_venta;
-      this.varios.MostrarYOcultarAlertaMono('dismiss');
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
       this.step='administrardivisas';
     });
 
@@ -355,12 +355,12 @@ mailto(emailAddress: string, emailSubject: any, cadasolicitud ) {
       nombre_solicitud: 'investrealperuadmintraerusuarios',
       tipo_cuenta:this.profileInfo.tipo_cuenta
     }
-    this.varios.MostrarYOcultarAlertaMono('present');
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
     this.varios.variasfunciones(datainvestrealperuadmintraerusuarios).subscribe(async( res: any ) =>{
       console.log(' respuesta investrealperuadmintraerusuarios',res);
       this.cuentasdeusuario=res;
       this.step='vercuentasytarjetasdeusuario';
-      this.varios.MostrarYOcultarAlertaMono('dismiss');
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
     });
 
   }

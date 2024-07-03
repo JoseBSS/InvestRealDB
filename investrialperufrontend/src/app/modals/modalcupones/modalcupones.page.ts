@@ -4,7 +4,7 @@ import { VariosService } from '../../service/varios.service';
 import { Router } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { ElementRef, ViewChild } from '@angular/core';
-import { AlertController, IonModal, IonRefresher, IonRefresherContent, LoadingController } from '@ionic/angular';
+import { AlertController, IonModal, IonRefresher, IonRefresherContent, LoadingController, NavParams } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { DecimalPipe } from '@angular/common';
 import { ChangeDetectorRef } from "@angular/core";
@@ -37,12 +37,12 @@ export class ModalcuponesPage implements OnInit {
   vista_en_modal_cupon = 'ver_cupones';
   isModalOpen = false;
 
-
   secretKey = "123456&Descryption";
   profileInfo: any = null;
-  dolaresaenviar: any = 1000;
-  solesaenviar: any = 1000;
-  quierecomprardolares: boolean = true;
+  dolaresaenviar;
+  solesaenviar;
+
+  quierecomprardolares: boolean;
   step: string = '1';
   banco_que_envia: any = undefined;
   data_de_deposito: any = undefined;
@@ -53,6 +53,7 @@ export class ModalcuponesPage implements OnInit {
   new_url_image: any = null;
   credito_usado: string;
   id_credito_usado: any;
+  traidopormodalparams: any;
 
 
 
@@ -67,7 +68,9 @@ export class ModalcuponesPage implements OnInit {
     public loadingController: LoadingController,
     public Zone: NgZone,
     private alertController: AlertController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    public navParams: NavParams
+
   ) { }
 
   ngOnInit() {
@@ -76,6 +79,16 @@ export class ModalcuponesPage implements OnInit {
   ionViewWillEnter() {
 
     this.consultarusuario();
+    this.consolederecibidoporpagealmodal();
+  }
+
+
+  consolederecibidoporpagealmodal() {
+
+
+    console.log('  dolaresaenviar;', this.dolaresaenviar);
+    console.log('  solesaenviar;', this.solesaenviar);
+    console.log('  quierecomprardolares: boolean;', this.quierecomprardolares);
 
   }
 
@@ -88,8 +101,8 @@ export class ModalcuponesPage implements OnInit {
     });
   }
 
-  volver_a_cuponnes(){
-    this.vista_en_modal_cupon='ingresar_cupon';
+  volver_a_cuponnes() {
+    this.vista_en_modal_cupon = 'ingresar_cupon';
   }
 
   cerrar_modal_creditos() {
@@ -105,7 +118,7 @@ export class ModalcuponesPage implements OnInit {
 
   ingresar_codigo() {
     console.log('ingresar codigo intento');
-    this.vista_en_modal_cupon='ver_cupones';
+    this.vista_en_modal_cupon = 'ver_cupones';
 
   }
 
@@ -116,7 +129,7 @@ export class ModalcuponesPage implements OnInit {
 
 
   async abriralertadeagregarcupones() {
-    
+
     // do nothing
     // this.varios.MostrarAlertaMonoOcultarEn80002segundos();
     const alert = await this.alertController.create({
@@ -186,15 +199,15 @@ export class ModalcuponesPage implements OnInit {
       nombre_solicitud: 'investrealperuusarcupon',
       id_cupon: cadacredito.id,
       id_user: this.profileInfo.id
-    } 
+    }
 
     this.varios.variasfunciones(datainvestrealperuusarcupon).subscribe(async (res: any) => {
       console.log('res investrealperuusarcupon', res);
-      if(res=='puedeaplicar'){
+      if (res == 'puedeaplicar') {
         this.varios.presentToast('Puede Aplicar');
         this.confirm(cadacredito)
       }
-      else{
+      else {
         this.varios.presentToast('Cupon vencido o no puede aplicar');
       }
     });
@@ -204,7 +217,26 @@ export class ModalcuponesPage implements OnInit {
   }
 
   confirm(cadacredito) {
-    return this.modalCtrl.dismiss(cadacredito, 'confirm');
+
+    if (this.quierecomprardolares === true) {
+      console.log('quiere comprar dolares si');
+      if(this.solesaenviar>cadacredito.minimo_de_monto_en_soles){
+        return this.modalCtrl.dismiss(cadacredito, 'confirma_que_si');
+      }
+      else{
+        this.varios.presentToast('El monto (Soles) a enviar en esta operación es inferior al monto minimo en soles para este cupon')
+      }
+    }
+    if (this.quierecomprardolares === false) {
+      console.log('quiere comprar dolares no');
+      if(this.dolaresaenviar>cadacredito.minimo_de_monto_dolares){
+        return this.modalCtrl.dismiss(cadacredito, 'confirma_que_si');
+      }
+      else{
+        this.varios.presentToast('El monto (Dolares) a enviar en esta operación es inferior al monto minimo en dolares para este cupon')
+      }
+    }
+
   }
 
 

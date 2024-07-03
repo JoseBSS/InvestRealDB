@@ -386,16 +386,14 @@
                     ">
                     <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)"
                       *ngIf="quierecomprardolares">
-                      <h3>Recibire Dólares <a *ngIf="cupon_agregado_en_soles!='0'">+{{cupon_agregado_en_soles}}</a> <a
-                          *ngIf="cupon_agregado_en_dolares!='0'">+{{cupon_agregado_en_dolares}}</a>
+                      <h3>Recibire Dólares 
 
 
                       </h3>
                     </ion-text>
                     <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)"
                       *ngIf="!quierecomprardolares">
-                      <h3>Recibire Soles <a *ngIf="cupon_agregado_en_soles!='0'">+{{cupon_agregado_en_soles}}</a> <a
-                          *ngIf="cupon_agregado_en_dolares!='0'">+{{cupon_agregado_en_dolares}}</a>
+                      <h3>Recibire Soles 
 
 
                       </h3>
@@ -406,7 +404,17 @@
                         <p>
                           <img src="assets/investrealperurecursos/banderas-peru-eeuu/eeuu.png" />
                           USD | {{dolaresarecibir}}
-                          <a *ngIf="credito_usado">+{{credito_usado}}</a>
+                        <span *ngIf="this.cupongenerado&&this.cupongenerado.tipo_de_ganancia=='hacer_que_gane_dolares'">
+                          <a *ngIf="this.cupongenerado&&this.cupongenerado.soles_a_sumar_dolares!='0'">
+                           +$.{{this.cupongenerado.soles_a_sumar_dolares}}
+                          </a>
+
+                        </span>
+                        <span *ngIf="this.cupongenerado&&this.cupongenerado.tipo_de_ganancia=='ambos'">
+                          <a *ngIf="this.cupongenerado&&this.cupongenerado.soles_a_sumar_soles!='0'">
+                            +S/.{{this.cupongenerado.soles_a_sumar_soles}}
+                           </a>
+                        </span>
                         </p>
                       </h4>
                     </ion-text>
@@ -416,8 +424,20 @@
                         <p>
                           <img style="width: 20px; height: 20px"
                             src="assets/investrealperurecursos/banderas-peru-eeuu/peru.png" />
-                          PEN | {{solesarecibir}}
-                          <a *ngIf="credito_usado">+{{credito_usado}}</a>
+                          PEN | {{solesarecibir}} 
+                          <span *ngIf="this.cupongenerado&&this.cupongenerado.tipo_de_ganancia=='hacer_que_gane_soles'">
+                            <a *ngIf="this.cupongenerado&&this.cupongenerado.soles_a_sumar_soles!='0'">
+                             +S/.{{this.cupongenerado.soles_a_sumar_soles}}
+                            </a>
+  
+                          </span>
+                          <span *ngIf="this.cupongenerado&&this.cupongenerado.tipo_de_ganancia=='ambos'">
+                            <a *ngIf="this.cupongenerado&&this.cupongenerado.soles_a_sumar_dolares!='0'">
+                              +$/.{{this.cupongenerado.soles_a_sumar_dolares}}
+                             </a>
+                          </span>
+
+
                         </p>
                       </h4>
                     </ion-text>

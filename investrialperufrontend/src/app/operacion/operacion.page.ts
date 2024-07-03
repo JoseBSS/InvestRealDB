@@ -46,10 +46,10 @@ export class OperacionPage implements OnInit {
   almacenajetemporal2: any;
   almacenajetemporal3: any;
   almacenajetemporal4: any;
-  cupon_agregado_en_dolares: string = '0';
-  cupon_agregado_en_soles: string = '0';
+
   vista_en_modal_cupon = 'ver_cupones';
   isModalOpen = false;
+  cupongenerado: any;
 
   // @ViewChild('rate') myElement: ElementRef;
   @ViewChild('rate') set content(content: ElementRef) {
@@ -174,35 +174,6 @@ export class OperacionPage implements OnInit {
   }
 
 
-  //   AlogearDiferenteTipoCuenta(){
-  //     this.profileInfo=localStorage.getItem('profileInfo');
-  //   if(this.profileInfo){
-  //     this.profileInfo=this.decrypt(this.profileInfo);
-  //     this.profileInfo=JSON.parse(this.profileInfo);
-  //       if(this.profileInfo&&this.profileInfo.id)
-  //       console.log('profileInfo  PERO EN VISTA Alogear ',this.profileInfo);
-  //       var datainvestrealperuappupdateporid = {
-  //         nombre_solicitud:'investrealperuappupdateporid',
-  //         id:this.profileInfo.id
-  //       }
-  //       this.varios.variasfunciones(datainvestrealperuappupdateporid).subscribe(async( res: any ) =>{
-  //         console.log(' respuesta investrealperuappupdateporid PERO EN VISTA Alogear ',res);
-  //           localStorage.setItem('profileInfo', this.encrypt(JSON.stringify(res)));
-  //           if(res.tipo_cuenta<1){
-  //             this.router.navigate(['login']);
-  //           }
-  //         });
-
-
-  //     }
-  //     else{
-  //        this.router.navigate(['login']);
-  //     }
-
-
-
-
-  // }
 
   abrirerrorpaso2() {
 
@@ -247,34 +218,10 @@ export class OperacionPage implements OnInit {
 
   }
 
-  // isNumberKey(evt) {
-
-  //   // console.log('este',this.myElement);
-  //   var charCode = (evt.which) ? evt.which : evt.keyCode
-  //   if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8))
-  //     return false;
-  //   else {
-  //     var len = this.rate.nativeElement.value.length;
-  //     var index = this.rate.nativeElement.value.indexOf('.');
-  //     if (index > 0 && charCode == 46) {
-  //       return false;
-  //     }
-  //     if (index > 0) {
-  //       var CharAfterdot = (len + 1) - index;
-  //       if (CharAfterdot > 3) {
-  //         return false;
-  //       }
-  //     }
-
-  //   }
-  //   return true;
-  // }
-
   step1() {
     this.step = '1';
     this.data_de_deposito = undefined;
     this.banco_que_envia = undefined;
-    // this.campodolaresarecibir=this.dolaresarecibir;
   }
 
 
@@ -283,11 +230,7 @@ export class OperacionPage implements OnInit {
     var datainvestrealperutraertipodecambio = {
       nombre_solicitud: 'investrealperutraertipodecambio',
     }
-    // this.varios.variasfunciones(datainvestrealperutraertipodecambio).subscribe(async( res: any ) =>{
-    //   console.log(' respuesta investrealperutraertipodecambio',res);
-    //   this.comprainvestrealperu=res[0];
-    //   this.ventainvestrealperu=res[1];
-    // });
+
 
 
     this.step = '2';
@@ -542,61 +485,6 @@ export class OperacionPage implements OnInit {
   }
 
 
-  // async takePicture(event: any) {
-  //   this.ahora_selecciono_otra_foto = true;
-  //   const input = <File>event.target.files[0];
-  //   console.log('input',input);
-  //   var asdf = event.target.files[0];
-  //   var reader = new FileReader();
-  //   reader.onload = (event: any) => {
-  //     this.imageProfile = event.target.result;
-  //     this.sendPhotos(event.target.result);
-  //   }
-  //   reader.readAsDataURL(event.target.files[0]);
-  // }
-
-  // async takePicture(event: any){
-  //   console.log(event.target.files[0])
-  //   if(!['image/jpeg', 'image/png'].includes(event.target.files[0].type))
-  //   {    
-  //     this.varios.presentToast('Seleccione una imagen valida!')
-  //   }
-  //   else {
-  //     var form_data = new FormData();
-  //     form_data.append('image', event.target.files[0]);
-  //     this.sendPhotos(JSON.stringify(form_data));
-  //   }
-
-  // }
-
-  // async takePicture (event){
-
-  //   const file:File = event.target.files[0];
-  //   if (file) {
-
-  //     // this.fileName = file.name;
-
-  //     const formData = new FormData();
-
-  //     formData.append("image", file);
-
-  //     this.sendPhotos(formData);
-
-  //     // upload$.subscribe();
-  // }
-
-  // if (event.target.files.length > 0) {
-  //   var file = event.target.files[0];
-  //   var thumbFileName = <File>event.target.files[0].name;
-  //   var reader = new FileReader();  
-  //   reader.onload = (event: any) => {  
-  //         var thumbUrl = (event.target.result, file);  
-  //         this.sendPhotos(thumbUrl);
-  //   }  
-  //   reader.readAsDataURL(file);
-  //   }
-  // }
-
   async takePicture(event: any) {
     this.ahora_selecciono_otra_foto = true;
     console.log('event.target.files[0]', event.target.files[0]);
@@ -636,13 +524,7 @@ export class OperacionPage implements OnInit {
       }
 
     });
-    // this.varios.generateUrl(file).subscribe(x => {
-    //   // let imagentemporal = new Image();
-    //   // imagentemporal.urlImage = x.data.url;
-    //   this.new_url_image = x.data.url;
-    //   console.log('this.new_url_image', this.new_url_image);
-    //   actualizando.dismiss();
-    // });
+
   }
 
 
@@ -737,7 +619,13 @@ export class OperacionPage implements OnInit {
         new_url_image: this.new_url_image,
         data_de_deposito: JSON.stringify(this.data_de_deposito),
         credito_usado: this.credito_usado,
-        id_credito_usado: this.id_credito_usado
+        id_credito_usado: this.id_credito_usado,
+        cupon_aplicado: 'no'
+      }
+
+      if(this.cupongenerado&&this.cupongenerado.id){
+        datainvestrealperuenviaroperacionconfoto.cupon_aplicado=this.cupongenerado.id
+
       }
 
       this.varios.variasfunciones(datainvestrealperuenviaroperacionconfoto).subscribe(async (res: any) => {
@@ -767,15 +655,24 @@ export class OperacionPage implements OnInit {
 
     const modal = await this.modalCtrl.create({
       component: ModalcuponesPage,
-      // backdropBreakpoint: 0.1,
+      componentProps: {
+        cssClass: 'my-custom-class',
+        dolaresaenviar: this.dolaresaenviar,
+        solesaenviar: this.solesaenviar,
+        quierecomprardolares: this.quierecomprardolares
+
+      },
       initialBreakpoint: 0.5,
+      // backdropBreakpoint: 0.1,
       breakpoints: [0, 1]
     });
     modal.present();
 
     const { data, role } = await modal.onWillDismiss();
 
-    if (role === 'confirm') {
+    if (role === 'confirma_que_si') {
+      this.cupongenerado=data;
+      console.log('this.cupongenerado',this.cupongenerado);
     }
 
 

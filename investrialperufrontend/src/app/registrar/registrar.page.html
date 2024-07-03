@@ -567,7 +567,7 @@
 
                       <div slot="start" id="paises">{{this.varios.pais_seleccionado_con_bandera.code}}</div>
                       <ion-input style="                      border: 0px solid var(--ion-color-primary);
-" (ionChange)="CHANGEcelularrr2()" [ngModelOptions]="{standalone: true}" [(ngModel)]="numerosinpais"></ion-input>
+" (ionChange)="CHANGEcelularrr2()" (IonInput)="CHANGEcelularrr2()" (IonFocus)="CHANGEcelularrr2()" [ngModelOptions]="{standalone: true}" [(ngModel)]="numerosinpais"></ion-input>
 
                   <ion-modal trigger="paises" #modalfiltropaises >
                     <ng-template>

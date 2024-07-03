@@ -548,9 +548,9 @@ export class RegistrarPage implements OnInit {
 
   CHANGEcelularrr2(){
     this.updateusuario1.controls['celular'].setValue(this.varios.pais_seleccionado_con_bandera +' '+ this.numerosinpais);
-    console.log('celular',this.varios.pais_seleccionado_con_bandera +' '+ this.numerosinpais);
+    console.log('paisss y numero ',this.varios.pais_seleccionado_con_bandera.code +' '+ this.numerosinpais);
     console.log('form celular', this.updateusuario2.controls['celular']);
-    this.numerocompletooo= this.varios.pais_seleccionado_con_bandera +' '+ this.numerosinpais;
+    this.numerocompletooo= this.varios.pais_seleccionado_con_bandera.code +' '+ this.numerosinpais;
   }
 
 

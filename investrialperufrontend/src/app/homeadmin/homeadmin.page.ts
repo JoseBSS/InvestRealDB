@@ -38,6 +38,7 @@ export class HomeadminPage implements OnInit {
   ventainvestrealperu: any;
   vistaverhistorialdecambio: boolean = false;
   historial_de_cambios_por_admin: any;
+  mostrardetallescupon: boolean = false;
   constructor(
     private modalController: ModalController,
     private ElementRef : ElementRef,

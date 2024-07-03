@@ -45,9 +45,15 @@
           <span class="v2-badge v2-badge-investrealperucambio">P/Venta: S/{{cadasolicitud.ventainvestrealperu}}</span>
           <span class="v2-badge v2-badge-numero">OP Nº {{cadasolicitud.id}}</span>
           <strong>Email:</strong>{{cadasolicitud.email_user}}
+          <span (click)="mostrardetallescupon=true" *ngIf="cadasolicitud.cupon_aplicado!='no'" class="v2-badge v2-badge-usocupon">USO CUPON <sub style=""> Ver</sub></span>
           <strong>Celular:</strong>{{cadasolicitud.celular_user}}
           {{cadasolicitud.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10' }}
         </ion-text>
+        <div (click)="mostrardetallescupon=false"  *ngIf="cadasolicitud.cupon_aplicado!='no'&&mostrardetallescupon==true" style="background-color:#e4ff7a" class="ion-text-center">
+          <span class="v2-badge v2-badge-compro">{{cadasolicitud.cupon.codigo_de_cupon}}</span>
+           <span class="v2-badge v2-badge-enviar">{{cadasolicitud.cupon.soles_a_sumar_dolares}}</span> 
+           <span class="v2-badge v2-badge-numero">{{cadasolicitud.cupon.soles_a_sumar_soles}}</span>
+        </div>
         <ion-text *ngIf="cadasolicitud.quierecomprardolares=='no'">
           <span class="v2-badge v2-badge-compro">Quiere S/. {{cadasolicitud.recibe}}</span>
           <span class="v2-badge v2-badge-enviar">Depositando $. {{cadasolicitud.dolaresaenviar}}</span>

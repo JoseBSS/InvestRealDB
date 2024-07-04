@@ -733,6 +733,7 @@ export class HomeadminPage implements OnInit {
 
   }
 
+
   async abrir_modal_crear_moderador(){
     const modal = await this.modalController.create({
       component: ModalcrearmoderadorPage,
@@ -743,12 +744,53 @@ export class HomeadminPage implements OnInit {
       console.log('data', data);
       if(data.data.dismissed==true){
         console.log('se creo! recibida la señal en el panel adecuadamente');
+        this.iraadministrarmoderadores();
+
       }
     });
 
 
     return await modal.present();
   }
+
+  
+  borrar_moderador(cadamoderador) {
+
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
+    var datainvestrealperuadminactualizaradmincuenta = {
+      nombre_solicitud: 'investrealperuadminborrarmoderadores',
+      iddv1: cadamoderador.id,
+      datav2: this.profileInfo
+    }
+    this.varios.variasfunciones(datainvestrealperuadminactualizaradmincuenta).subscribe(async (res: any) => {
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+      console.log(' respuesta investrealperuadminagregarcupon', res);
+      if(res&&res>0){
+
+        this.iraadministrarmoderadores();
+        this.varios.presentToast('Borrado exitosa!');
+
+      }
+      else{
+        this.varios.presentToast('¡Sin Cambios!');
+      }
+    },
+
+      (error) => {
+        this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+
+        console.log('Errores', error)
+        this.varios.presentToast('Error al actualizar esta cuenta, verifique!');
+
+      }
+
+    );
+
+
+
+  }
+
+
 
 
 }

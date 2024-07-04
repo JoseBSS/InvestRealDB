@@ -39,6 +39,18 @@ export class HomeadminPage implements OnInit {
   vistaverhistorialdecambio: boolean = false;
   historial_de_cambios_por_admin: any;
   mostrardetallescupon: boolean = false;
+  admintraercupones: any;
+
+  paso_del_modulo_cupones: string = 'display_cupones';
+tipo_de_ganancia: string = 'hacer_que_gane_dolares';
+
+minimo_de_monto_dolares: number =0;
+minimo_de_monto_en_soles: number =0;
+soles_a_sumar_dolares: number =0;
+soles_a_sumar_soles: number =0;
+tiempo_de_validez_en_minutos: number =0;
+email_cuponero: any;
+
   constructor(
     private modalController: ModalController,
     private ElementRef : ElementRef,
@@ -366,6 +378,21 @@ mailto(emailAddress: string, emailSubject: any, cadasolicitud ) {
 
   }
 
+  iraamoduloscupones(){
+    var datainvestrealperuadmintraercupones = {
+      nombre_solicitud: 'investrealperuadmintraercupones',
+      tipo_cuenta:this.profileInfo.tipo_cuenta
+    }
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
+    this.varios.variasfunciones(datainvestrealperuadmintraercupones).subscribe(async( res: any ) =>{
+      console.log(' respuesta datainvestrealperuadmintraercupones',res);
+      this.admintraercupones=res;
+      this.step='modulo_cupones';
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+    });
+
+  }
+
 
   aumentarcompra(){
     this.aumento_compra=this.aumento_compra +++ 0.001;
@@ -568,5 +595,69 @@ mailto(emailAddress: string, emailSubject: any, cadasolicitud ) {
     this.vistaverhistorialdecambio=true;
 
   }
+
+  isNumberKeyAndLengtSolesaenviar(evt) {
+
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
+      return false;//intenta meter un NO numerico ni un punto ni un borrar
+
+    }
+    else {
+
+      if (evt.target.value > 1000000000) {
+
+        return 0; //intenta meter mas de 1000 millones
+      }
+
+      var index = evt.target.value.indexOf('.');
+      if (index > 0 && charCode == 46) {
+        return false;//intenta meter un doble punto cuando ya puso un punto
+      }
+
+      if (evt.target.value.split('.')[1] && evt.target.value.split('.')[1].length >= 3) {
+        return false; //intenta meter mas decimales que los 2 permitidos
+      }
+      var len = evt.target.value.length;
+      // if (len > 14) {
+      //   return false;//intenta meter mas de 14 caracteres en el campo
+      // }
+      return true;
+
+    }
+  }
+
+
+  crear_cupon(){
+      var datainvestrealperuadminagregarcupon = {
+        nombre_solicitud: 'investrealperuadminagregarcupon',
+        tipo_de_ganancia: this.tipo_de_ganancia,     
+        minimo_de_monto_dolares: this.minimo_de_monto_dolares,
+        minimo_de_monto_en_soles: this.minimo_de_monto_en_soles,
+        soles_a_sumar_dolares: this.soles_a_sumar_dolares,
+        soles_a_sumar_soles: this.soles_a_sumar_soles,
+        tiempo_de_validez_en_minutos: this.tiempo_de_validez_en_minutos,
+        email_cuponero: this.email_cuponero
+    }
+
+    this.varios.variasfunciones(datainvestrealperuadminagregarcupon).subscribe(async( res: any ) =>{
+      console.log(' respuesta investrealperuadminagregarcupon',res);
+      this.iraamoduloscupones();
+      this.paso_del_modulo_cupones='display_cupones';
+      this.varios.MostrarAlertaMonoOcultarEn80002segundos();
+    },
+
+    (error) => {
+      console.log('Errores', error)
+      this.varios.presentToast('Error al CREAR el cupon!');
+
+    }
+  
+  );
+
+
+  }
+
+
 
 }

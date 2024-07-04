@@ -21,7 +21,12 @@
     <br>
     <ion-button (click)="iraadministrarpromociones()" fill="outline" expand="block">Administrar Promociones</ion-button>
     <br>
-    <ion-button (click)="iraamoduloscupones()" fill="outline" expand="block">Modulo Cupones</ion-button>
+    <ion-button (click)="iraamoduloscupones()" fill="outline" expand="block" color="secondary">Modulo
+      Cupones</ion-button>
+
+    <ion-button (click)="iraanuestrascuentas()" expand="block" color="success">Cuentas Bancarias</ion-button>
+
+
     <div class="ion-text-center">
       <ion-button (click)="cerrarsesion()" color="secondary" fill="outline">Salir</ion-button>
     </div>
@@ -621,12 +626,12 @@
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-input label="Minimo Soles" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric"  placeholder="000"
-              [(ngModel)]="minimo_de_monto_en_soles"></ion-input>
+            <ion-input label="Minimo Soles" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
+              inputmode="numeric" placeholder="000" [(ngModel)]="minimo_de_monto_en_soles"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Dolares A SUMAR(GANA)" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric"  placeholder="000"
-              [(ngModel)]="soles_a_sumar_dolares"></ion-input>
+            <ion-input label="Dolares A SUMAR(GANA)" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
+              inputmode="numeric" placeholder="000" [(ngModel)]="soles_a_sumar_dolares"></ion-input>
           </ion-item>
         </ng-container>
 
@@ -637,12 +642,12 @@
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-input label="Minimo Dolares" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric"  placeholder="000"
-              [(ngModel)]="minimo_de_monto_dolares"></ion-input>
+            <ion-input label="Minimo Dolares" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
+              inputmode="numeric" placeholder="000" [(ngModel)]="minimo_de_monto_dolares"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Soles A SUMAR(GANA)" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric"  placeholder="000"
-              [(ngModel)]="soles_a_sumar_soles"></ion-input>
+            <ion-input label="Soles A SUMAR(GANA)" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
+              inputmode="numeric" placeholder="000" [(ngModel)]="soles_a_sumar_soles"></ion-input>
           </ion-item>
 
         </ng-container>
@@ -655,20 +660,20 @@
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-input label="Minimo dolares" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric" placeholder="000"
-              [(ngModel)]="minimo_de_monto_dolares"></ion-input>
+            <ion-input label="Minimo dolares" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
+              inputmode="numeric" placeholder="000" [(ngModel)]="minimo_de_monto_dolares"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Dolares A SUMAR(GANA)" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric"  placeholder="000"
-              [(ngModel)]="soles_a_sumar_dolares"></ion-input>
+            <ion-input label="Dolares A SUMAR(GANA)" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
+              inputmode="numeric" placeholder="000" [(ngModel)]="soles_a_sumar_dolares"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Minimo soles" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric"  placeholder="000"
-              [(ngModel)]="minimo_de_monto_en_soles"></ion-input>
+            <ion-input label="Minimo soles" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
+              inputmode="numeric" placeholder="000" [(ngModel)]="minimo_de_monto_en_soles"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Soles A SUMAR(GANA)" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric"  placeholder="000"
-              [(ngModel)]="soles_a_sumar_soles"></ion-input>
+            <ion-input label="Soles A SUMAR(GANA)" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
+              inputmode="numeric" placeholder="000" [(ngModel)]="soles_a_sumar_soles"></ion-input>
           </ion-item>
 
         </ng-container>
@@ -678,7 +683,8 @@
             [(ngModel)]="email_cuponero"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input label="Validez en Minutos" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric"  placeholder="Ej: Una Semana (10080)"
+          <ion-input label="Validez en Minutos" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
+            inputmode="numeric" placeholder="Ej: Una Semana (10080)"
             [(ngModel)]="	tiempo_de_validez_en_minutos"></ion-input>
         </ion-item>
 
@@ -745,5 +751,62 @@
 
   </section>
 
+  <section *ngIf="this.step=='nuestras_cuentas'">
+    <ion-fab-button (click)="stepinicio()"><ion-icon name="arrow-back"></ion-icon></ion-fab-button>
+
+
+    <ion-grid>
+      <ion-row *ngFor="let cadaadmincuenta of admin_nuestras_cuentas; let i=index">
+        <ion-col size="12">
+          <ion-card>
+            <ion-card-header color="secondary">
+              <div class="ion-text-center">
+                <span *ngIf="i==4" class="v2-badge v2-badge-usocupon">INTERBANCARIA SOLES<br></span>
+                <span *ngIf="i==5" class="v2-badge v2-badge-usocupon">INTERBANCARIA DOLARES<br></span>
+                <ion-text>Cuenta {{cadaadmincuenta.banco}} En {{cadaadmincuenta.moneda}}</ion-text>
+              </div>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-item>
+                  <ion-input [(ngModel)]="cadaadmincuenta.banco" [clearInput]="true" label="Input with clear button"
+                    labelPlacement="stacked" type="text" placeholder="Enter text to see clear button"
+                    value="Default value">
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input [(ngModel)]="cadaadmincuenta.moneda" label="Input with clear on edit"
+                    labelPlacement="stacked" type="text"
+                    placeholder="Enter text, leave the input, come back and type to clear">
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input [(ngModel)]="cadaadmincuenta.tipo" label="Password input" labelPlacement="stacked"
+                    type="text" placeholder="Enter text, leave the input, come back and type to clear">
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input [(ngModel)]="cadaadmincuenta.numero" label="Password input" labelPlacement="stacked"
+                    type="text" placeholder="Enter text, leave the input, come back and type to clear">
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input [(ngModel)]="cadaadmincuenta.titular" label="Password input" labelPlacement="stacked"
+                    type="text" placeholder="Enter text, leave the input, come back and type to clear">
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                </ion-item>
+                
+              </ion-list>
+              <div class="ion-text-center">
+                <ion-button expand="block" (click)="actualizar_admin_cuenta(cadaadmincuenta)">ACTUALIZAR ESTA CUENTA</ion-button> 
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
 
 </ion-content>

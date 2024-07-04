@@ -237,45 +237,55 @@ export class OperacionPage implements OnInit {
   }
 
   step3() {
-    this.step = '3';
+
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
+    var datainvestrealperutraeradmincuentas = {
+      nombre_solicitud: 'investrealperutraeradmincuentas',
+    }
+    this.varios.variasfunciones(datainvestrealperutraeradmincuentas).subscribe(async (res: any) => {
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+      console.log(' respuesta investrealperutraeradmincuentas', res);
+
     if (this.banco_que_envia == 'BCP') {
       if (this.quierecomprardolares == true) {
         this.cuenta_bancaria_admin = {
-          banco: 'BCP',
-          moneda: 'Soles',
-          tipo: 'Negocios',
-          numero: '193-76737123-4-56',
-          titular: 'Investrial Peru SAC',
+          banco: res[0].banco,
+          moneda: res[0].moneda,
+          tipo: res[0].tipo,
+          numero: res[0].numero,
+          titular: res[0].titular,
         }
 
       }
       if (this.quierecomprardolares == false) {
         this.cuenta_bancaria_admin = {
-          banco: 'BCP',
-          moneda: 'Dolares',
-          tipo: 'Negocios',
-          numero: '193-76737123-4-56',
-          titular: 'Investrial Peru SAC',
+          banco: res[1].banco,
+          moneda: res[1].moneda,
+          tipo: res[1].tipo,
+          numero: res[1].numero,
+          titular: res[1].titular,
         }
       }
     }
     else if (this.banco_que_envia == 'Interbank') {
       if (this.quierecomprardolares == true) {
         this.cuenta_bancaria_admin = {
-          banco: 'Interbank',
-          moneda: 'Soles',
-          tipo: 'Negocios',
-          numero: '2003004123456',
-          titular: 'Investrial Peru SAC',
+          banco: res[2].banco,
+          moneda: res[2].moneda,
+          tipo: res[2].tipo,
+          numero: res[2].numero,
+          titular: res[2].titular,
+          
         }
       }
       if (this.quierecomprardolares == false) {
         this.cuenta_bancaria_admin = {
-          banco: 'Interbank',
-          moneda: 'Dolares',
-          tipo: 'Negocios',
-          numero: '2003004123456',
-          titular: 'Investrial Peru SAC',
+          banco: res[3].banco,
+          moneda: res[3].moneda,
+          tipo: res[3].tipo,
+          numero: res[3].numero,
+          titular: res[3].titular,
+          
         }
       }
     }
@@ -283,25 +293,31 @@ export class OperacionPage implements OnInit {
 
       if (this.quierecomprardolares == true) {
         this.cuenta_bancaria_admin = {
-          banco: 'Interbank',
-          moneda: 'Soles',
-          tipo: 'Negocios-Interbancaria',
-          numero: '00320000300475123456',
-          titular: 'Investrial Peru SAC',
+          banco: res[4].banco,
+          moneda: res[4].moneda,
+          tipo: res[4].tipo,
+          numero: res[4].numero,
+          titular: res[4].titular,
         }
       }
       if (this.quierecomprardolares == false) {
         this.cuenta_bancaria_admin = {
-          banco: 'Interbank',
-          moneda: 'Dolares',
-          tipo: 'Negocios-Interbancaria',
-          numero: 'CCI 003-200-003004758123-45',
-          titular: 'Investrial Peru SAC',
+          banco: res[5].banco,
+          moneda: res[5].moneda,
+          tipo: res[5].tipo,
+          numero: res[5].numero,
+          titular: res[5].titular,
         }
       }
 
 
     }
+
+
+
+      this.step = '3';
+    });
+
   }
 
   CHANGEDolaresarecibir(event) {

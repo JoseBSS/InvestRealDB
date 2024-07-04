@@ -226,6 +226,11 @@ export class LoginPage implements OnInit {
           this.router.navigate(['homeadmin']);
         }
 
+        if (res.tipo_cuenta == '888') {
+          this.router.navigate(['homemoderador']);
+        }
+
+
       }
       else {
         this.varios.quitarloading();

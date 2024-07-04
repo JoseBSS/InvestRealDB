@@ -99,6 +99,14 @@ const routes: Routes = [
     path: 'modalcupones',
     loadChildren: () => import('./modals/modalcupones/modalcupones.module').then( m => m.ModalcuponesPageModule)
   },
+  {
+    path: 'modalcrearmoderador',
+    loadChildren: () => import('./modals/modalcrearmoderador/modalcrearmoderador.module').then( m => m.ModalcrearmoderadorPageModule)
+  },
+  {
+    path: 'homemoderador',
+    loadChildren: () => import('./homemoderador/homemoderador.module').then( m => m.HomemoderadorPageModule)
+  },
 
 
 

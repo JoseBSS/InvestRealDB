@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-fab-button (click)="dismiss()"><ion-icon name="arrow-back"></ion-icon></ion-fab-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar color="secondary">
+      <ion-title size="large">Crear moderador</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-input [(ngModel)]="email_moderador" [clearInput]="true" label="EMAIL"
+        labelPlacement="stacked" type="text" placeholder="EMAIL DEL MODERADOR"
+        value="Default value">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="clave_moderador" label="CLAVE"
+        labelPlacement="stacked" type="text"
+        placeholder="CLAVE">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="clave_moderador_repetir" label="CLAVE DE NUEVO" labelPlacement="stacked"
+        type="text" placeholder="PARA ESTAR SEGURO PORFAVOR REPITE">
+      </ion-input>
+    </ion-item>
+
+    <div clas="ion-text-center">
+      <ion-button [disabled]="
+       !email_moderador||
+!clave_moderador||
+!clave_moderador_repetir
+      " 
+      
+      expand="block" (click)="crear_moderador()">CREAR MODERADOR</ion-button> 
+
+    </div>
+    
+  </ion-list>
+
+
+</ion-content>

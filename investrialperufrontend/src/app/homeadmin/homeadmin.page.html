@@ -25,6 +25,8 @@
       Cupones</ion-button>
 
     <ion-button (click)="iraanuestrascuentas()" expand="block" color="success">Cuentas Bancarias</ion-button>
+      <br>
+    <ion-button (click)="iraadministrarmoderadores()"  fill="outline" expand="block" color="success">Crear Cuenta Moderador</ion-button>
 
 
     <div class="ion-text-center">
@@ -769,7 +771,7 @@
             <ion-card-content>
               <ion-list>
                 <ion-item>
-                  <ion-input [(ngModel)]="cadaadmincuenta.banco" [clearInput]="true" label="Input with clear button"
+                  <ion-input [(ngModel)]="cadaadmincuenta.banco" [clearInput]="true" label="BANCO"
                     labelPlacement="stacked" type="text" placeholder="Enter text to see clear button"
                     value="Default value">
                   </ion-input>
@@ -777,22 +779,22 @@
                 <ion-item>
                   <ion-input [(ngModel)]="cadaadmincuenta.moneda" label="Input with clear on edit"
                     labelPlacement="stacked" type="text"
-                    placeholder="Enter text, leave the input, come back and type to clear">
+                    placeholder="ingrese">
                   </ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input [(ngModel)]="cadaadmincuenta.tipo" label="Password input" labelPlacement="stacked"
-                    type="text" placeholder="Enter text, leave the input, come back and type to clear">
+                  <ion-input [(ngModel)]="cadaadmincuenta.tipo" label="TIPO" labelPlacement="stacked"
+                    type="text" placeholder="ingrese..">
                   </ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input [(ngModel)]="cadaadmincuenta.numero" label="Password input" labelPlacement="stacked"
-                    type="text" placeholder="Enter text, leave the input, come back and type to clear">
+                  <ion-input [(ngModel)]="cadaadmincuenta.numero" label="NUMERO" labelPlacement="stacked"
+                    type="text" placeholder="ingrese...">
                   </ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input [(ngModel)]="cadaadmincuenta.titular" label="Password input" labelPlacement="stacked"
-                    type="text" placeholder="Enter text, leave the input, come back and type to clear">
+                  <ion-input [(ngModel)]="cadaadmincuenta.titular" label="TITULAR" labelPlacement="stacked"
+                    type="text" placeholder="ingrese">
                   </ion-input>
                 </ion-item>
                 <ion-item>
@@ -807,6 +809,75 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+  </section>
+  
+
+  <section *ngIf="this.step=='administrar_moderadores'">
+    <ion-fab-button (click)="stepinicio()"><ion-icon name="arrow-back"></ion-icon></ion-fab-button>
+    <div class="ion-text-center">
+      <ion-button expand="block" (click)="abrir_modal_crear_moderador()">CREAR MODERADOR</ion-button> 
+    </div>
+
+    <ion-list>
+      <ion-card *ngFor="let cadamoderador of admin_nuestros_moderadores; let i=index">
+
+        <ion-card-header color="secondary" >
+
+          <ion-item>
+            <ion-input
+            [(ngModel)]="cadamoderador.email"
+              label="correo"
+              labelPlacement="stacked"
+              [clearInput]="true"
+              placeholder="Enter text to see clear button"
+            >
+            </ion-input>
+          </ion-item>
+        
+        
+          <ion-item>
+            <ion-input
+            [(ngModel)]="cadamoderador.password"
+              label="clave"
+              labelPlacement="stacked"
+              type="password"
+              placeholder="Clave Secreta"
+            >
+            </ion-input>
+          </ion-item>
+
+
+
+        </ion-card-header>
+
+
+        <ion-card-content>
+          <div class="ion-text-center" style="margin-left:15%;margin-right:15%;">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-button expand="block" (click)="endesarrollo()">Actualizar</ion-button> 
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button expand="block" (click)="abrir_modal_crear_moderador()"><ion-icon name="trash"></ion-icon></ion-button> 
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+
+          </div>
+
+
+  
+        
+      </ion-card-content>
+      </ion-card>
+
+ 
+    </ion-list>
+
+
+    
   </section>
 
 </ion-content>

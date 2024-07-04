@@ -8,6 +8,7 @@ import { AlertController, IonModal, LoadingController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { AgregarcuentaotarjetaPage } from '../modals/agregarcuentaotarjeta/agregarcuentaotarjeta.page';
 import { VisualizadorimagenesPage } from '../modals/visualizadorimagenes/visualizadorimagenes.page';
+import { ModalcrearmoderadorPage } from '../modals/modalcrearmoderador/modalcrearmoderador.page';
 
 @Component({
   selector: 'app-homeadmin',
@@ -51,6 +52,7 @@ export class HomeadminPage implements OnInit {
   tiempo_de_validez_en_minutos: number = 0;
   email_cuponero: any;
   admin_nuestras_cuentas: any;
+  admin_nuestros_moderadores: any;
 
   constructor(
     private modalController: ModalController,
@@ -396,6 +398,26 @@ export class HomeadminPage implements OnInit {
   }
 
 
+
+  iraadministrarmoderadores() {
+
+    var datainvestrealperuadmintraermoderadores = {
+      nombre_solicitud: 'investrealperuadmintraermoderadores',
+      datav2: this.profileInfo
+    }
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
+    this.varios.variasfunciones(datainvestrealperuadmintraermoderadores).subscribe(async (res: any) => {
+      console.log(' respuesta investrealperuadmintraermoderadores', res);
+      this.admin_nuestros_moderadores = res;
+      this.step = 'administrar_moderadores';
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+    });
+
+  }
+
+
+
+
   iraamoduloscupones() {
     var datainvestrealperuadmintraercupones = {
       nombre_solicitud: 'investrealperuadmintraercupones',
@@ -690,7 +712,6 @@ export class HomeadminPage implements OnInit {
       console.log(' respuesta investrealperuadminagregarcupon', res);
       if(res&&res>0){
         this.varios.presentToast('Actualización exitosa!');
-        this.varios.presentToast('¡Sin Cambios!');
 
       }
       else{
@@ -710,6 +731,23 @@ export class HomeadminPage implements OnInit {
 
 
 
+  }
+
+  async abrir_modal_crear_moderador(){
+    const modal = await this.modalController.create({
+      component: ModalcrearmoderadorPage,
+      initialBreakpoint: 1.2,
+      breakpoints: [1, 1.5, 1]
+    });
+    modal.onDidDismiss().then((data) => {
+      console.log('data', data);
+      if(data.data.dismissed==true){
+        console.log('se creo! recibida la señal en el panel adecuadamente');
+      }
+    });
+
+
+    return await modal.present();
   }
 
 

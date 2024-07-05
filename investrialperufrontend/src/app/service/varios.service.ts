@@ -286,6 +286,67 @@ export class VariosService {
       { headers: new HttpHeaders({ "Content-Type": 'application/json' }) });
   }
 
+  ConsultarUsuarioADMIN888() {
+    this.profileInfo = localStorage.getItem('profileInfo');
+    if (this.profileInfo) {
+      // se Cumplio: ProfileInfo existe en el cache
+      this.profileInfo = this.decrypt(this.profileInfo);
+      if(this.profileInfo!=undefined&&this.profileInfo!=null&&this.profileInfo!=''){
+              // se Cumplio: ProfileInfo es diferente a (Vacio, null o indefinido)
+        this.profileInfo = JSON.parse(this.profileInfo);
+        if (this.profileInfo && this.profileInfo.id && this.profileInfo.id>1&& this.profileInfo.id<1000000) {
+          // se Cumplio: ProfileInfo.id existe y es un rango adecuado)
+          this.datainvestrealperuappupdateporid = {
+            nombre_solicitud: 'investrealperuappupdateporid',
+            id: this.profileInfo.id
+          }
+          this.variasfunciones(this.datainvestrealperuappupdateporid).subscribe(async (res: any) => {
+            console.log(' respuesta investrealperuappupdateporid In Service ', res);
+            if(!res&&!res.id&&res.id<1&&res.status!='activo'){
+              // se Cumplio o NO: que no hay respuesta, el id no vino o estatus no es activo
+
+              this.router.navigate(['login']);
+            }
+            else{
+                // se Cumplio: el usuario existe y tiene cuenta activa
+                localStorage.setItem('profileInfo', this.encrypt(JSON.stringify(res)));
+                if (res.tipo_cuenta < 887) {
+                  this.router.navigate(['login']);
+                }
+                else {
+              // se Cumplio: Es Mayor a 887
+                  if(res.tipo_cuenta > 998){
+                    this.router.navigate(['login']);
+
+                  }
+
+                }
+            }
+          });
+        }
+        else {
+          this.router.navigate(['login']);
+        }
+
+
+      }
+      else{
+        this.router.navigate(['login']);
+      }
+
+    }
+    else {
+      this.router.navigate(['login']);
+    }
+
+    var url = 'https://union.delivery/api/variasfunciones';
+    return this.http.post(url, this.datainvestrealperuappupdateporid,
+      { headers: new HttpHeaders({ "Content-Type": 'application/json' }) });
+  }
+
+
+
+
   async presentToastAdminNotificacion(message) {
     const toast = await this.toastController.create({
       message: message,

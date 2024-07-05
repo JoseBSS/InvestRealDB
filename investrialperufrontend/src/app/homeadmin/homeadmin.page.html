@@ -1,9 +1,10 @@
 <ion-header>
   <ion-toolbar style="text-align:center;">
     <ion-title>Panel Admin</ion-title>
+    <ion-button (click)="cerrarsesion()" *ngIf="profileInfo&&profileInfo.tipo_cuenta<998">Salir</ion-button>
   </ion-toolbar>
 </ion-header>
-<ion-content (click)="clickenelcontent()">
+<ion-content (click)="clickenelcontent()" *ngIf="profileInfo&&profileInfo.tipo_cuenta>998">
 
 
 

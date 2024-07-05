@@ -1,13 +1,229 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>homemoderador</ion-title>
+    <div class="ion-text-center">
+      <ion-title>Panel de Control</ion-title>
+    </div>
+    <ion-button (click)="cerrarsesion()" *ngIf="profileInfo&&profileInfo.tipo_cuenta<887">Salir</ion-button>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">homemoderador</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" *ngIf="profileInfo&&profileInfo.tipo_cuenta>887&&profileInfo.tipo_cuenta<998">
+
+
+
+  <section *ngIf="this.step=='inicio'">
+
+    <br>
+
+    <ion-button (click)="irasolicitudes()" expand="block">Ver solicitudes</ion-button>
+
+    <br>
+
+    <ion-button (click)="iraadministrardivisas()" expand="block">Administrar Divisas</ion-button>
+
+
+
+    <div class="ion-text-center">
+      <ion-button (click)="cerrarsesion()" color="secondary" fill="outline">Salir</ion-button>
+    </div>
+  </section>
+
+
+  <section *ngIf="this.step=='versolicitudes'">
+    <div class="ion-text-center">
+      <ion-text>
+        <h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Solicitudes</h4>
+      </ion-text>
+      <span class="fondomagenta">Atentida</span> &nbsp;&nbsp; <span style="color:white"
+        class="fondomarron">Cancelada</span>
+    </div>
+    <ion-card *ngFor="let cadasolicitud of solicitudesdeusuario">
+      <ion-card-header color="secondary">
+
+        <a style="text-align:center; color:red;" *ngIf="cadasolicitud.credito_usado">Aplico:
+          {{cadasolicitud.credito_usado}} De Credito</a>
+        <br>
+        <ion-text *ngIf="cadasolicitud.quierecomprardolares=='si'">
+          <span class="v2-badge v2-badge-compro">Compro ${{cadasolicitud.recibe}}</span>
+          <span class="v2-badge v2-badge-enviar">Depositando S/. {{cadasolicitud.solesaenviar}}</span>
+          <span class="v2-badge v2-badge-deposito">A nuestro {{cadasolicitud.banco_que_envia}}</span>
+          <span class="v2-badge v2-badge-investrealperucambio">P/Venta: S/{{cadasolicitud.ventainvestrealperu}}</span>
+          <span class="v2-badge v2-badge-numero">OP Nº {{cadasolicitud.id}}</span>
+          <strong>Email:</strong>{{cadasolicitud.email_user}}
+          <span (click)="mostrardetallescupon=true" *ngIf="cadasolicitud.cupon_aplicado!='no'"
+            class="v2-badge v2-badge-usocupon">USO CUPON <sub style=""> Ver</sub></span>
+          <strong>Celular:</strong>{{cadasolicitud.celular_user}}
+          {{cadasolicitud.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10' }}
+        </ion-text>
+        <div (click)="mostrardetallescupon=false" *ngIf="cadasolicitud.cupon_aplicado!='no'&&mostrardetallescupon==true"
+          style="background-color:#e4ff7a" class="ion-text-center">
+          <span class="v2-badge v2-badge-compro">{{cadasolicitud.cupon.codigo_de_cupon}}</span>
+          <span class="v2-badge v2-badge-enviar">{{cadasolicitud.cupon.soles_a_sumar_dolares}}</span>
+          <span class="v2-badge v2-badge-numero">{{cadasolicitud.cupon.soles_a_sumar_soles}}</span>
+        </div>
+        <ion-text *ngIf="cadasolicitud.quierecomprardolares=='no'">
+          <span class="v2-badge v2-badge-compro">Quiere S/. {{cadasolicitud.recibe}}</span>
+          <span class="v2-badge v2-badge-enviar">Depositando $. {{cadasolicitud.dolaresaenviar}}</span>
+          <span class="v2-badge v2-badge-deposito">A nuestro {{cadasolicitud.banco_que_envia}}</span>
+          <span class="v2-badge v2-badge-investrealperucambio">P/Compra: S/{{cadasolicitud.comprainvestrealperu}}</span>
+          <span class="v2-badge v2-badge-numero">OP Nº {{cadasolicitud.id}}</span>
+          <strong>Email:</strong>{{cadasolicitud.email_user}}
+          <strong>Celular:</strong>{{cadasolicitud.celular_user}}
+          {{cadasolicitud.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10' }}
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content [class.fondomagenta]="cadasolicitud.estado==4" [class.fondomarron]="cadasolicitud.estado==25">
+        <ion-button (click)="VerImagen(cadasolicitud.new_url_image)" size="small" color="secondary"><ion-icon
+            color="primary" style="color:var(--ion-color-primary)" name="images"></ion-icon></ion-button>
+        <ion-button [disabled]="cadasolicitud.estado==25" (click)="cancelarla(cadasolicitud)" size="small"
+          color="danger">Cancelar</ion-button>
+        <ion-button [disabled]="cadasolicitud.estado==4" (click)="atender(cadasolicitud)"
+          size="small">Atendida</ion-button>
+        <ion-button [href]="mailto(cadasolicitud.email_user, 'Solicitud-Completada', cadasolicitud )" size="small"
+          color="warning">Avisar Email</ion-button>
+        <ion-button (click)="avisarwhatsappp(cadasolicitud)" size="small">Avisar WA</ion-button>
+        <ion-button (click)="vercuenta(cadasolicitud)"><ion-icon name="wallet"></ion-icon></ion-button>
+      </ion-card-content>
+    </ion-card>
+    <audio style="position:obsolute; width:0.01%; height:0.01%;" #audiox controls>
+      <source src="https://css-tricks.com/examples/SoundOnHover/audio/beep.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+  </section>
+
+
+  <section *ngIf="this.step=='administrardivisas'">
+    <div class="ion-text-center">
+      <ion-text>
+        <h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Divisas CAMBIAR</h4>
+      </ion-text>
+
+      <section *ngIf="!vistaverhistorialdecambio">
+
+        <ion-card>
+          <ion-card-header color="secondary">
+            <div class="ion-text-center">
+              <ion-button (click)="ver_historial_de_cambios()">Ver Historial de cambios</ion-button>
+            </div>
+          </ion-card-header>
+        </ion-card>
+
+        <ion-card>
+          <div>
+            <ion-button (click)="aumentarcompra()">+0.01</ion-button> &nbsp; <ion-button
+              (click)="disminuircompra()">-0.01</ion-button>
+          </div>
+          <ion-row>
+            <ion-col size="8">
+              <ion-item lines="none">
+                <ion-label position="floating">Aumento Compra</ion-label>
+                <ion-input readonly="true" ngModel="{{aumento_compra | number:'1.3-3'}}"></ion-input> &nbsp;
+                {{comprainvestrealperu | number:'1.3-3'}}
+              </ion-item>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button (click)="actualizaraumentocompra()">
+                <ion-icon item-right name="save"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <div class="ion-text-center">
+            <ion-text>
+              <h4><ion-icon name="save-outline"></ion-icon>:{{aumento_compra_guardado | number:'1.3-3'}}</h4>
+            </ion-text>
+          </div>
+        </ion-card>
+        <br><br><ion-item-divider></ion-item-divider><br><br>
+        <ion-card>
+          <div>
+            <ion-button (click)="aumentarventa()">+0.01</ion-button> &nbsp; <ion-button
+              (click)="disminuirventa()">-0.01</ion-button>
+          </div>
+          <ion-row>
+            <ion-col size="8">
+              <ion-item lines="none">
+                <ion-label position="floating">Aumento Venta</ion-label>
+                <ion-input readonly="true"
+                  ngModel="{{aumento_venta | number:'1.3-3'}}"></ion-input>&nbsp;{{ventainvestrealperu |
+                number:'1.3-3'}}
+              </ion-item>
+            </ion-col>
+            <ion-col size="4">
+              <ion-button (click)="actualizaraumentoventa()">
+                <ion-icon item-right name="save"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <div class="ion-text-center">
+            <ion-text>
+              <h4><ion-icon name="save-outline"></ion-icon>:{{aumento_venta_guardado | number:'1.3-3'}}</h4>
+            </ion-text>
+          </div>
+        </ion-card>
+      </section>
+      <section *ngIf="vistaverhistorialdecambio">
+        <div class="ion-text-center">
+          <ion-button (click)="cambiar_vista_ver_historial_a_verdadero()">ADMINISTRAR</ion-button>
+          <p></p>
+          <div class="div_tabla_historial_de_cambios">
+
+            <div class="container">
+              <h1>Historial de cambio.</h1>
+              <table class="rwd-table">
+                <tbody>
+                  <tr>
+                    <th>aumento<br>compra</th>
+                    <th>aumento<br>venta</th>
+                    <th>compra<br>sunarp</th>
+                    <th>venta<br>sunarp</th>
+                    <th>Modif.<br>Por</th>
+                    <th>Tipo<br>Cambio</th>
+                    <th>Fecha:</th>
+                  </tr>
+                  <tr *ngFor="let cadahistoria of historial_de_cambios_por_admin">
+                    <td data-th="Aumento Compra">
+                      {{cadahistoria.aumento_compra}}
+                    </td>
+                    <td data-th="Aumento Venta">
+                      {{cadahistoria.aumento_venta}}
+                    </td>
+                    <td data-th="Sunarp Compra">
+                      {{cadahistoria.compra_sunarp}}
+                    </td>
+                    <td data-th="Sunarp Venta">
+                      {{cadahistoria.venta_sunarp}}
+                    </td>
+                    <td data-th="Modif. Por:">
+                      {{cadahistoria.modificado_por}}
+                    </td>
+                    <td data-th="Tipo Cambio">
+                      {{cadahistoria.tipo_de_modificacion}}
+                    </td>
+                    <td data-th="Fecha:">
+                      {{cadahistoria.fecha_autogenerada | date:"dd/mm/yyyy h:m":'GMT-10'}}
+
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+              <h3>Historial de cambios</h3>
+            </div>
+            <div class="container">
+
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </section>
+
+
+
+
+
 </ion-content>

@@ -174,8 +174,14 @@ export class AppComponent {
 
   cerrarsesionmenusuperior() {
     this.menuderechosuperior = false
-    this.varios.logout()
+    this.varios.logout();
   }
+
+  cerrarsesion_menusidebar(){
+    this.varios.logout();
+
+  }
+
 
   iramisbeneficios() {
     this.router.navigate(['/indash/misbeneficios'])

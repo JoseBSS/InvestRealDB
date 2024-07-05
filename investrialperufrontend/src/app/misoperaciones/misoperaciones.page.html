@@ -4,7 +4,7 @@
   </div>
 
   <div *ngIf="loadingOperations">
-    <div *ngFor="let i of [1, 1, 1, 1, 1, 1]" >
+    <div *ngFor="let i of [1, 1, 1, 1, 1, 1]">
       <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
         <ion-skeleton-text [animated]="true" style="width: 100%; height: 50px;padding: 10px;"></ion-skeleton-text>
         <ion-skeleton-text [animated]="true" style="width: 70%; height: 20px;padding: 10px;"></ion-skeleton-text>
@@ -16,11 +16,7 @@
   </div>
 
   <section *ngIf="this.step=='veroperaciones' && !loadingOperations">
-    <div
-      (click)="recargaricono()"
-      class="ion-text-center"
-      style="width: 20px; margin: auto; margin-bottom: 16px"
-    >
+    <div (click)="recargaricono()" class="ion-text-center" style="width: 20px; margin: auto; margin-bottom: 16px">
       <ion-icon style="transform: rotate(90deg)" name="reload"></ion-icon>
     </div>
 
@@ -46,87 +42,51 @@
           </ion-row>
         </ion-card-header>
 
-        <ion-row
-          style="cursor: pointer"
-          [class]="{fondoblanco:par,fondogris:impar}"
-          *ngFor="let cadaoperacion of operaciones;let impar = odd;let par = even;"
-        >
-          <ion-col
-            (click)="abrir_modal_detalles(cadaoperacion)"
-            size="1.8"
-            class="ion-text-center"
-          >
+        <ion-row style="cursor: pointer" [class]="{fondoblanco:par,fondogris:impar}"
+          *ngFor="let cadaoperacion of operaciones;let impar = odd;let par = even;">
+          <ion-col (click)="abrir_modal_detalles(cadaoperacion)" size="1.8" class="ion-text-center">
             <ion-text style="font-size: small">
               &nbsp;&nbsp; {{cadaoperacion.id}}
             </ion-text>
           </ion-col>
 
           <ion-col (click)="abrir_modal_detalles(cadaoperacion)" size="3.3">
-            <ion-text *ngIf="cadaoperacion.quierecomprardolares=='si'"
-              ><ion-icon
-                color="secondary"
-                style="size: x-small"
-                name="person"
-              ></ion-icon
-              ><a style="font-size: x-small">S/</a
-              >{{cadaoperacion.solesaenviar}}</ion-text
-            ><br />
-            <ion-text *ngIf="cadaoperacion.quierecomprardolares=='si'"
-              ><img
-                style="width: 15px; height: 15px"
-                src="assets/investrealperurecursos/icon/favicon.png"
-              /><a style="font-size: x-small">$</a>{{cadaoperacion.recibe |
-              number : '1.2-2'}}</ion-text
-            >
+            <ion-text *ngIf="cadaoperacion.quierecomprardolares=='si'"><ion-icon color="secondary" style="size: x-small"
+                name="person"></ion-icon><a
+                style="font-size: x-small">S/</a>{{cadaoperacion.solesaenviar}}</ion-text><br />
+            <ion-text *ngIf="cadaoperacion.quierecomprardolares=='si'"><img style="width: 15px; height: 15px"
+                src="assets/investrealperurecursos/icon/favicon.png" /><a
+                style="font-size: x-small">$</a>{{cadaoperacion.recibe |
+              number : '1.2-2'}}</ion-text>
 
-            <ion-text *ngIf="cadaoperacion.quierecomprardolares=='no'"
-              ><ion-icon
-                color="secondary"
-                style="size: x-small"
-                name="person"
-              ></ion-icon
-              ><a style="font-size: x-small">$</a
-              >{{cadaoperacion.dolaresaenviar}}</ion-text
-            ><br />
-            <ion-text *ngIf="cadaoperacion.quierecomprardolares=='no'"
-              ><img
-                style="width: 15px; height: 15px"
-                src="assets/investrealperurecursos/icon/favicon.png"
-              /><a style="font-size: x-small">S/.</a>{{cadaoperacion.recibe |
-              number : '1.2-2'}}</ion-text
-            >
+            <ion-text *ngIf="cadaoperacion.quierecomprardolares=='no'"><ion-icon color="secondary" style="size: x-small"
+                name="person"></ion-icon><a
+                style="font-size: x-small">$</a>{{cadaoperacion.dolaresaenviar}}</ion-text><br />
+            <ion-text *ngIf="cadaoperacion.quierecomprardolares=='no'"><img style="width: 15px; height: 15px"
+                src="assets/investrealperurecursos/icon/favicon.png" /><a
+                style="font-size: x-small">S/.</a>{{cadaoperacion.recibe |
+              number : '1.2-2'}}</ion-text>
           </ion-col>
 
           <ion-col (click)="abrir_modal_detalles(cadaoperacion)" size="2.7">
-            <ion-text
-              >{{cadaoperacion.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10'
-              }}</ion-text
-            >
+            <ion-text>{{cadaoperacion.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10'
+              }}</ion-text>
           </ion-col>
 
           <ion-col (click)="abrir_modal_detalles(cadaoperacion)" size="2.7">
-            <ion-text
-              *ngIf="cadaoperacion.estado==3"
-              style="font-size: x-small"
-            >
+            <ion-text *ngIf="cadaoperacion.estado==3" style="font-size: x-small">
               <span class="v2-badge v2-badge-validando">
                 <a style="vertical-align: inherit; color: orange">
                   Validando
                 </a>
               </span>
             </ion-text>
-            <ion-text
-              *ngIf="cadaoperacion.estado==4"
-              style="font-size: x-small"
-            >
+            <ion-text *ngIf="cadaoperacion.estado==4" style="font-size: x-small">
               <span class="v2-badge v2-badge-atendida">
                 <a style="vertical-align: inherit; color: green"> Atendida </a>
               </span>
             </ion-text>
-            <ion-text
-              *ngIf="cadaoperacion.estado==25"
-              style="font-size: x-small"
-            >
+            <ion-text *ngIf="cadaoperacion.estado==25" style="font-size: x-small">
               <span class="v2-badge v2-badge-cancelada">
                 <a style="vertical-align: inherit; color: white"> Cancelada </a>
               </span>
@@ -136,43 +96,26 @@
           <ion-col size="1.5">
             <ion-button (click)="abrir_modal_detalles(cadaoperacion)" style="font-size: small;zoom: 0.7;
 " size="small">
-<ion-icon size="small"
-            
-            size="medium"
-            color="secondary"
-              style="cursor: pointer; color: secondary"
-              name="eye"
-            ></ion-icon>
+              <ion-icon size="small" size="medium" color="secondary" style="cursor: pointer; color: secondary"
+                name="eye"></ion-icon>
 
             </ion-button>
-                        
+
             <ion-button (click)="alerta_confirmacion_eliminar_op()" style="font-size: small;zoom: 0.7;
 " size="small">
-<ion-icon size="small"
-            size="medium"
-            color="danger"
-            style="cursor: pointer; color: secondary"
-              name="trash"
-            ></ion-icon>
+              <ion-icon size="small" size="medium" color="danger" style="cursor: pointer; color: secondary"
+                name="trash"></ion-icon>
             </ion-button>
 
-            <ion-modal
-              class="detalles_operacion_completa"
-              #modal_detalles_completos
-            >
+            <ion-modal class="detalles_operacion_completa" #modal_detalles_completos>
               <ng-template>
                 <ion-content>
                   <ion-toolbar color="secondary">
-                    <ion-title *ngIf="dataparaelmodal&&dataparaelmodal.id"
-                      >Operación: {{this.dataparaelmodal.id}}</ion-title
-                    >
+                    <ion-title *ngIf="dataparaelmodal&&dataparaelmodal.id">Operación:
+                      {{this.dataparaelmodal.id}}</ion-title>
                     <!-- <ion-title>Modal</ion-title> -->
                     <ion-buttons slot="end">
-                      <ion-button
-                        color="light"
-                        (click)="cerrar_modal_detalles()"
-                        >Cerrar</ion-button
-                      >
+                      <ion-button color="light" (click)="cerrar_modal_detalles()">Cerrar</ion-button>
                     </ion-buttons>
                   </ion-toolbar>
 
@@ -185,6 +128,7 @@
                         <h2 *ngIf="dataparaelmodal.quierecomprardolares=='si'">
                           Recibes: $ {{dataparaelmodal.recibe | number : '1.2-2'
                           }}
+                          <a *ngIf="dataparaelmodal.monto_bienvenida_soles>0">+{{dataparaelmodal.monto_bienvenida_soles}}</a>
                         </h2>
 
                         <h2 *ngIf="dataparaelmodal.quierecomprardolares=='no'">
@@ -193,6 +137,7 @@
                         <h2 *ngIf="dataparaelmodal.quierecomprardolares=='no'">
                           Recibes: S/. {{dataparaelmodal.recibe | number :
                           '1.2-2'}}
+                          <a *ngIf="dataparaelmodal.monto_bienvenida_dolares>0">+{{dataparaelmodal.monto_bienvenida_dolares}}</a>
                         </h2>
                       </ion-label>
                     </ion-item>
@@ -228,10 +173,7 @@
 
                     <ion-item center class="ion-text-center">
                       <ion-card style="width: 90%">
-                        <ion-card-header
-                          style="text-align: center; color:white!important;"
-                          color="primary"
-                        >
+                        <ion-card-header style="text-align: center; color:white!important;" color="primary">
                           <ion-label style="white-space: normal !important">
                             <section *ngIf="dataparaelmodal.op_tipo=='tarjeta'">
                               Tarjeta: 1{{dataparaelmodal.numero_tarjeta}}<br />
@@ -247,32 +189,22 @@
                           </ion-label>
                         </ion-card-header>
                         <ion-card-content style="font-weight: 700;">
-                          <h6
-                            *ngIf="dataparaelmodal.quierecomprardolares=='si'"
-                          >
+                          <h6 *ngIf="dataparaelmodal.quierecomprardolares=='si'">
                             Tipo de operación: Usted envia Soles y esta
                             recibiendo Dolares
                           </h6>
-                          <h6
-                            *ngIf="dataparaelmodal.quierecomprardolares=='no'"
-                          >
+                          <h6 *ngIf="dataparaelmodal.quierecomprardolares=='no'">
                             Tipo de operación: Usted envia Dolares y esta
                             recibiendo Soles
                           </h6>
 
                           <div class="ion-text-center">
-                            <img
-                              style="width: 50%; height: 50%"
-                              [src]="dataparaelmodal.new_url_image"
-                            />
+                            <img style="width: 50%; height: 50%" [src]="dataparaelmodal.new_url_image" />
                           </div>
-                          <ion-text
-                            >estamos validando el deposito qe ha realizado a Nuestra
+                          <ion-text>estamos validando el deposito qe ha realizado a Nuestra
                             cuenta {{dataparaelmodal.banco_que_envia}}
                           </ion-text>
-                          <ion-button expand="block" (click)="en_desarrollo()"
-                            >Eliminar Operación</ion-button
-                          >
+                          <ion-button expand="block" (click)="en_desarrollo()">Eliminar Operación</ion-button>
                         </ion-card-content>
                       </ion-card>
                     </ion-item>
@@ -283,18 +215,16 @@
           </ion-col>
         </ion-row>
 
-        <ion-text *ngIf="operaciones&&operaciones.length<1"
-          ><p>
+        <ion-text *ngIf="operaciones&&operaciones.length<1">
+          <p>
             Aún No ha realizado operaciones
             <a routerLink="/indash/operacion">Iniciar Operación</a>.
-          </p></ion-text
-        >
+          </p>
+        </ion-text>
       </ion-card>
     </ion-grid>
 
-    <app-operation-list
-      [operations]="operaciones"
-      (openModalDetailsEvent)="abrir_modal_detalles($event)"
-    ></app-operation-list>
+    <app-operation-list [operations]="operaciones"
+      (openModalDetailsEvent)="abrir_modal_detalles($event)"></app-operation-list>
   </section>
 </ion-content>

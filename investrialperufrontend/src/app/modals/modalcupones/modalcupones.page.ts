@@ -54,6 +54,8 @@ export class ModalcuponesPage implements OnInit {
   credito_usado: string;
   id_credito_usado: any;
   traidopormodalparams: any;
+mostrar_cupon_bienvenida: boolean = false;
+  configuracionglobal: any;
 
 
 
@@ -80,6 +82,34 @@ export class ModalcuponesPage implements OnInit {
 
     this.consultarusuario();
     this.consolederecibidoporpagealmodal();
+    this.traerconfiguracionglobal();
+  }
+
+
+  traerconfiguracionglobal(){
+
+    var datainvestrealperutraerglobalconfig = {
+      nombre_solicitud: 'investrealperutraerglobalconfig',
+    }
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
+    this.varios.variasfunciones(datainvestrealperutraerglobalconfig).subscribe(async (res: any) => {
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+      this.configuracionglobal=res;
+      if(this.configuracionglobal&&this.configuracionglobal[0].valor_config=='si'){
+        this.mostrar_cupon_bienvenida=true;
+      }
+    
+
+    },
+      (error) => {
+        this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+        console.log('Errores en la configuracion global', error)
+
+      }
+    );
+
+
+
   }
 
 
@@ -171,6 +201,7 @@ export class ModalcuponesPage implements OnInit {
                 alert.dismiss();
               }
               else if (!res || res == null) {
+                
                 this.varios.presentToast('Cupon no valido!');
 
               }
@@ -178,6 +209,7 @@ export class ModalcuponesPage implements OnInit {
             },
               (error) => {
                 console.log('Errores', error)
+                this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
                 this.varios.presentToast('Error al agregar el cupon!');
 
               }
@@ -215,6 +247,29 @@ export class ModalcuponesPage implements OnInit {
 
 
   }
+
+
+  usar_cupon_bienvenida(){
+
+    var cadacredito = {
+      uso_bienvenida: 'si',
+      soles_a_sumar_dolares:   this.configuracionglobal[1].valor_config,
+      soles_a_sumar_soles: this.configuracionglobal[2].valor_config,
+      tipo_de_ganancia: 'ambos'
+
+    }
+
+
+    if (this.quierecomprardolares === true) {
+      return this.modalCtrl.dismiss(cadacredito, 'confirma_que_si');
+
+    }
+    if (this.quierecomprardolares === false) {
+    }
+    return this.modalCtrl.dismiss(cadacredito, 'confirma_que_si');
+
+}
+
 
   confirm(cadacredito) {
 

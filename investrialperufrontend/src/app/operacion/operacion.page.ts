@@ -636,12 +636,23 @@ export class OperacionPage implements OnInit {
         data_de_deposito: JSON.stringify(this.data_de_deposito),
         credito_usado: this.credito_usado,
         id_credito_usado: this.id_credito_usado,
-        cupon_aplicado: 'no'
+        cupon_aplicado: 'no',
+        uso_bienvenida: 'no',
+        monto_bienvenida_soles: '0',
+        monto_bienvenida_dolares: '0',
+
       }
 
       if(this.cupongenerado&&this.cupongenerado.id){
         datainvestrealperuenviaroperacionconfoto.cupon_aplicado=this.cupongenerado.id
 
+      }
+
+      if(this.cupongenerado&&this.cupongenerado.uso_bienvenida&&this.cupongenerado.uso_bienvenida=='si'){
+        datainvestrealperuenviaroperacionconfoto.uso_bienvenida=this.cupongenerado.uso_bienvenida;
+
+        datainvestrealperuenviaroperacionconfoto.monto_bienvenida_soles=this.cupongenerado.soles_a_sumar_soles;
+        datainvestrealperuenviaroperacionconfoto.monto_bienvenida_dolares=this.cupongenerado.soles_a_sumar_dolares;
       }
 
       this.varios.variasfunciones(datainvestrealperuenviaroperacionconfoto).subscribe(async (res: any) => {

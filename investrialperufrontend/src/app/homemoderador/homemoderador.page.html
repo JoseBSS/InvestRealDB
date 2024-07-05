@@ -35,8 +35,9 @@
       <ion-text>
         <h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Solicitudes</h4>
       </ion-text>
-      <span class="fondomagenta">Atentida</span> &nbsp;&nbsp; <span style="color:white"
-        class="fondomarron">Cancelada</span>
+      <span class="fondomagenta">Atentida</span> &nbsp;&nbsp;
+      <span style="color:white" class="fondomarron">Cancelada</span> &nbsp;&nbsp;
+      <span class="v2-badge v2-badge-bienvenida">B. Bienvenida</span>
     </div>
     <ion-card *ngFor="let cadasolicitud of solicitudesdeusuario">
       <ion-card-header color="secondary">
@@ -50,6 +51,10 @@
           <span class="v2-badge v2-badge-deposito">A nuestro {{cadasolicitud.banco_que_envia}}</span>
           <span class="v2-badge v2-badge-investrealperucambio">P/Venta: S/{{cadasolicitud.ventainvestrealperu}}</span>
           <span class="v2-badge v2-badge-numero">OP Nº {{cadasolicitud.id}}</span>
+          <span class="v2-badge v2-badge-bienvenida"
+            *ngIf="cadasolicitud.quierecomprardolares=='si'&&cadasolicitud.monto_bienvenida_soles>0">+$
+            {{cadasolicitud.monto_bienvenida_soles}}</span>
+
           <strong>Email:</strong>{{cadasolicitud.email_user}}
           <span (click)="mostrardetallescupon=true" *ngIf="cadasolicitud.cupon_aplicado!='no'"
             class="v2-badge v2-badge-usocupon">USO CUPON <sub style=""> Ver</sub></span>
@@ -68,10 +73,22 @@
           <span class="v2-badge v2-badge-deposito">A nuestro {{cadasolicitud.banco_que_envia}}</span>
           <span class="v2-badge v2-badge-investrealperucambio">P/Compra: S/{{cadasolicitud.comprainvestrealperu}}</span>
           <span class="v2-badge v2-badge-numero">OP Nº {{cadasolicitud.id}}</span>
+          <span class="v2-badge v2-badge-bienvenida"
+            *ngIf="cadasolicitud.quierecomprardolares=='no'&&cadasolicitud.monto_bienvenida_dolares>0">+S/.
+            {{cadasolicitud.monto_bienvenida_dolares}}</span>
           <strong>Email:</strong>{{cadasolicitud.email_user}}
+
+
+          <span (click)="mostrardetallescupon=true" *ngIf="cadasolicitud.cupon_aplicado!='no'"
+            class="v2-badge v2-badge-usocupon">USO CUPON <sub style=""> Ver</sub></span>
+
+
           <strong>Celular:</strong>{{cadasolicitud.celular_user}}
           {{cadasolicitud.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10' }}
         </ion-text>
+
+
+
       </ion-card-header>
       <ion-card-content [class.fondomagenta]="cadasolicitud.estado==4" [class.fondomarron]="cadasolicitud.estado==25">
         <ion-button (click)="VerImagen(cadasolicitud.new_url_image)" size="small" color="secondary"><ion-icon

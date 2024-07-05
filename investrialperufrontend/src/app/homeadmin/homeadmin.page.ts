@@ -53,7 +53,7 @@ export class HomeadminPage implements OnInit {
   email_cuponero: any;
   admin_nuestras_cuentas: any;
   admin_nuestros_moderadores: any;
-
+  configuracionglobal: any;
   constructor(
     private modalController: ModalController,
     private ElementRef: ElementRef,
@@ -330,6 +330,20 @@ export class HomeadminPage implements OnInit {
       console.log(' respuesta investrealperuadmintraerusuarios', res);
       this.cuentasdeusuario = res;
       this.step = 'administrarusuarios';
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+    });
+  }
+
+  iraconfiguracionglobal() {
+
+    var datainvestrealperutraerglobalconfig = {
+      nombre_solicitud: 'investrealperutraerglobalconfig',
+    }
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
+    this.varios.variasfunciones(datainvestrealperutraerglobalconfig).subscribe(async (res: any) => {
+      console.log(' respuesta investrealperutraerglobalconfig', res);
+      this.configuracionglobal = res;
+      this.step = 'configuracionglobal';
       this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
     });
   }
@@ -791,6 +805,39 @@ export class HomeadminPage implements OnInit {
   }
 
 
+  actualizar_admin_config(cadaconfig) {
+
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
+    var datainvestrealperuactualizarconfig = {
+      nombre_solicitud: 'investrealperuactualizarconfig',
+      datav11: cadaconfig,
+      datav2: this.profileInfo
+    }
+    this.varios.variasfunciones(datainvestrealperuactualizarconfig).subscribe(async (res: any) => {
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+      console.log(' respuesta investrealperuactualizarconfig', res);
+      if(res&&res>0){
+        this.varios.presentToast('Actualización exitosa!');
+        this.iraconfiguracionglobal();
+      }
+      else{
+        this.varios.presentToast('¡Sin Cambios!');
+      }
+    },
+
+      (error) => {
+        this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+
+        console.log('Errores', error)
+        this.varios.presentToast('Error al actualizar esta config, verifique!');
+
+      }
+
+    );
+
+
+
+  }
 
 
 }

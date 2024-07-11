@@ -105,12 +105,12 @@ ion-menu.md ion-item.selected ion-icon {
 .contenedor_externo_carousel{
 
 
-  /* Hover effect */
+  /* Hover efecto */
 ul li:hover{
   background:#34515e;
 }
 
-/* animations */
+/* animations or animaciones */
 
 @keyframes mouvement {
   0%{
@@ -130,31 +130,6 @@ ul li:hover{
   //   opacity:0;
   // }
 }
-
-// @for $i from 3 through 20 {
-//   // img:first-child:nth-last-child( #{$i} ),
-//   img:first-child:nth-child( #{$i} ) {
-//     // width: calc(100% / #{$i} - 1px);
-//       animation-delay:#{$i} +1000s;
-
-//   }
-// }
-
-
-// :nth-child(n) img{
-//       // width: calc(100% / n - 10px);
-//   animation-delay:4s;
-
-//   // tambien funciona asi:
-//     // background: url("/assets/dollarplusrecursos/iconos-selector-bancos/bcp.png");
-//     // background-size: 20px;
-//     // background-repeat: no-repeat;
-//     // padding: 6px 0px 6px 0px;
-//     //   white-space: normal !important;
-//     //   white-space: pre-line !important;
-//     //   border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
-
-// }
 
 
 img:nth-child(2){
@@ -225,12 +200,5 @@ img {
   animation:mouvement 20s infinite;
 }
     
-
-
-
-
-  
-
-
 }
-// empieza el css del slider del home pure css netflix video carousel
+// termina el css del slider del home pure css netflix video carousel

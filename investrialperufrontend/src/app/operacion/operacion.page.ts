@@ -4,7 +4,7 @@ import { VariosService } from '../service/varios.service';
 import { Router } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { ElementRef, ViewChild } from '@angular/core';
-import { AlertController, IonModal, IonRefresher, IonRefresherContent, LoadingController } from '@ionic/angular';
+import { AlertController, IonModal, IonRadio, IonRadioGroup, IonRefresher, IonRefresherContent, LoadingController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { AgregarcuentaotarjetaPage } from '../modals/agregarcuentaotarjeta/agregarcuentaotarjeta.page';
 import { DecimalPipe } from '@angular/common';
@@ -12,6 +12,7 @@ import { ChangeDetectorRef } from "@angular/core";
 
 import { NgZone } from '@angular/core';
 import { ModalcuponesPage } from '../modals/modalcupones/modalcupones.page';
+import { ModaldeclarofondosPage } from '../modals/modaldeclarofondos/modaldeclarofondos.page';
 
 @Component({
   selector: 'app-operacion',
@@ -24,7 +25,7 @@ export class OperacionPage implements OnInit {
   // @ViewChild('contenedor1') contenedor1: IonRefresher;
   // @ViewChild('contenedor2') contenedor2: IonRefresherContent;
 
-
+  @ViewChild('radrio_group_declaracion_fondos') radrio_group_declaracion_fondos: IonRadioGroup;
   @ViewChild('modalpaso2') modalpaso2: IonModal;
   @ViewChild('modalpaso3') modalpaso3: IonModal;
   @ViewChild('campodolaresarecibir') campodolaresarecibir!: ElementRef;
@@ -76,6 +77,9 @@ export class OperacionPage implements OnInit {
   new_url_image: any = null;
   credito_usado: string;
   id_credito_usado: any;
+  declaro_todos_los_campos_de_los_fondos: boolean = false;
+  progessbar_declaracion_fondos : boolean = false;
+
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -717,7 +721,34 @@ export class OperacionPage implements OnInit {
   }
 
 
+  async abrir_modal_declaraciones() {
 
+
+    const modal = await this.modalCtrl.create({
+      component: ModaldeclarofondosPage,
+      componentProps: {
+        cssClass: 'my-custom-class',
+        dolaresaenviar: this.dolaresaenviar,
+        solesaenviar: this.solesaenviar,
+        quierecomprardolares: this.quierecomprardolares
+
+      },
+      initialBreakpoint: 0.6,
+      // backdropBreakpoint: 0.1,
+      breakpoints: [0, 1]
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirma_que_si') {
+      this.cupongenerado=data;
+      console.log('this.cupongenerado',this.cupongenerado);
+    }
+
+
+
+  }
 
 
 
@@ -729,6 +760,47 @@ export class OperacionPage implements OnInit {
   }
   volver_a_cuponnes(){
     this.vista_en_modal_cupon='ingresar_cupon';
+  }
+
+
+  ChangeEmpresa(){
+    this.progessbar_declaracion_fondos=true;
+    this.radrio_group_declaracion_fondos.value=false;
+    this.declaro_todos_los_campos_de_los_fondos=false;
+      setTimeout(() => {
+    this.abrir_modal_declaraciones();
+    // Any calls to load data go here
+  }, 1000);
+    
+
+  // setTimeout(() => {
+  //   this.declaro_todos_los_campos_de_los_fondos=true;
+  //   this.radrio_group_declaracion_fondos.value=true;
+  //   // Any calls to load data go here
+  // }, 4000);
+
+
+
+  }
+
+  selectorempresa0(){
+    this.progessbar_declaracion_fondos=true;
+    this.radrio_group_declaracion_fondos.value=false;
+    this.declaro_todos_los_campos_de_los_fondos=false;
+      setTimeout(() => {
+    this.abrir_modal_declaraciones();
+    // Any calls to load data go here
+  }, 1000);
+    
+
+  // setTimeout(() => {
+  //   this.declaro_todos_los_campos_de_los_fondos=true;
+  //   this.radrio_group_declaracion_fondos.value=true;
+  //   // Any calls to load data go here
+  // }, 4000);
+
+
+
   }
 
 

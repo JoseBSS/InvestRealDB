@@ -107,6 +107,10 @@ const routes: Routes = [
     path: 'homemoderador',
     loadChildren: () => import('./homemoderador/homemoderador.module').then( m => m.HomemoderadorPageModule)
   },
+  {
+    path: 'modaldeclarofondos',
+    loadChildren: () => import('./modals/modaldeclarofondos/modaldeclarofondos.module').then( m => m.ModaldeclarofondosPageModule)
+  },
 
 
 

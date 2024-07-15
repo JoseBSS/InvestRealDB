@@ -733,17 +733,30 @@ export class OperacionPage implements OnInit {
         quierecomprardolares: this.quierecomprardolares
 
       },
-      initialBreakpoint: 0.6,
+      initialBreakpoint: 0.7,
       // backdropBreakpoint: 0.1,
       breakpoints: [0, 1]
     });
     modal.present();
 
     const { data, role } = await modal.onWillDismiss();
+    this.progessbar_declaracion_fondos=false;
+    
+    console.log('data',data);
+    if (data&&data.origen_de_fondos&&data.declaro_ocupacion&&data.declaro_pep) {
+      if(data.origen_de_fondos==='Seleccionar'||data.declaro_ocupacion==='Seleccionar'||data.declaro_pep==='Seleccionar'){
+        console.log('Declarro mal',data);
+        // no pasa nada para que quede historial de declaracion anterior
+        this.declaro_todos_los_campos_de_los_fondos=false;
+        this.radrio_group_declaracion_fondos.value=false;
+      }
+      else{
+        console.log('Declarro bien',data);
+    this.declaro_todos_los_campos_de_los_fondos=true;
+    this.radrio_group_declaracion_fondos.value=true;
+      }
 
-    if (role === 'confirma_que_si') {
-      this.cupongenerado=data;
-      console.log('this.cupongenerado',this.cupongenerado);
+      // this.cupongenerado=data;
     }
 
 
@@ -783,7 +796,7 @@ export class OperacionPage implements OnInit {
 
   }
 
-  selectorempresa0(){
+  rowdeclaracion(){
     this.progessbar_declaracion_fondos=true;
     this.radrio_group_declaracion_fondos.value=false;
     this.declaro_todos_los_campos_de_los_fondos=false;

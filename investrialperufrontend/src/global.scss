@@ -73,6 +73,37 @@ ion-item {
   }
 
 
+  .claseselectordeclaraciones {
+    --width: 100%!important;
+    --max-width: 100%!important;
+    --min-width: 90%!important;
+    max-height: 300px!important;
+    ion-item:nth-child(n) .sc-ion-select-popover-md {
+
+        border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
+
+      // tambien funciona asi:
+      // background: url("assets/investrealperurecursos/iconos-selector-bancos/bcp.png");
+      // background: url('assets/investrealperurecursos/iconos-selector-bancos/bcp.png');
+      background-size: 20px;
+      background-repeat: no-repeat;
+      padding: 0px 0px 17px  26px;
+    }
+
+    ion-item:nth-child(n) .sc-ion-select-popover-ios {
+
+      border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
+
+    // tambien funciona asi:
+    // background: url("assets/investrealperurecursos/iconos-selector-bancos/bcp.png");
+    // background: url('assets/investrealperurecursos/iconos-selector-bancos/bcp.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding: 0px 0px 17px  26px;
+  }
+
+
+  }
 
   .clasebancosselector {
     --width: 100%!important;

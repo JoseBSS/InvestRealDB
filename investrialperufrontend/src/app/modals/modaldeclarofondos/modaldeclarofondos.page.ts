@@ -10,6 +10,8 @@ import { VariosService } from 'src/app/service/varios.service';
 export class ModaldeclarofondosPage implements OnInit {
 
   origen_de_fondos:string = 'Seleccionar';
+  declaro_ocupacion:string = 'Seleccionar';
+  declaro_pep:string = 'No He Sido';
 
   constructor(
 
@@ -29,7 +31,9 @@ export class ModaldeclarofondosPage implements OnInit {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
     this.modalController.dismiss({
-      'dismissed': false
+      'origen_de_fondos': this.origen_de_fondos,
+      'declaro_ocupacion':this.declaro_ocupacion,
+      'declaro_pep': this.declaro_pep
     });
   }
 

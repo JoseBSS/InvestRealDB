@@ -556,19 +556,19 @@
                   </ion-card>
                 </ion-col>
               </ion-row>
-              <ion-row>
-                <ion-col size="12">
+              <ion-row (click)="rowdeclaracion()">
+                <ion-col size="12" >
                   <ion-progress-bar *ngIf="progessbar_declaracion_fondos" type="indeterminate" color="primary"></ion-progress-bar>
 
                   <ion-radio-group  #radrio_group_declaracion_fondos
                   class="ion-margin-top ion-margin-bottom"
                   [ngModelOptions]="{standalone: true}"
                   [ngModel]="declaro_todos_los_campos_de_los_fondos"
-                  (ionChange)="ChangeEmpresa()"
+                  
                 >
                   <ion-row style="display: flex; justify-content: space-between">
                     <ion-col
-                      (click)="selectorempresa0()"
+                      
                       size="12"
                       style="padding-top: 3px; padding-bottom: 3px; text-align: center;
                         border-radius: 6px;
@@ -594,11 +594,11 @@
                 </ion-col>
                 <ion-col size="6">
                   <section *ngIf="!agrego_algo">
-                    <ion-button *ngIf="data_de_deposito&&banco_que_envia" (click)="step3()" color="primary"
+                    <ion-button *ngIf="data_de_deposito&&banco_que_envia&&declaro_todos_los_campos_de_los_fondos" (click)="step3()" color="primary"
                       expand="full" style="color: #fff">
                       Continuar
                     </ion-button>
-                    <ion-button *ngIf="!data_de_deposito||!banco_que_envia" (click)="abrirmodalerrorpaso2()"
+                    <ion-button *ngIf="!data_de_deposito||!banco_que_envia||!declaro_todos_los_campos_de_los_fondos" (click)="abrirmodalerrorpaso2()"
                       color="primary" expand="full">
                       Continuar
                     </ion-button>
@@ -632,6 +632,12 @@
                             <strong style="color: var(--ion-color-secondary)">¿donde desea recibir?: </strong>Porfavor
                             indiquenos a que cuenta o tarjeta desea que te transfiramos.
                           </li>
+                          <li *ngIf="!declaro_todos_los_campos_de_los_fondos">
+                            <strong style="color: var(--ion-color-secondary)">Declare los fondos: </strong>Para continuar
+                           debe declarar los fondos para esta operación.
+                          </li>
+
+
                         </ul>
                       </ion-content>
                     </ng-template>

@@ -1,0 +1,223 @@
+<ion-content style="background-color: #fe884030;">
+
+  <div style="padding: 40px 40px 0 40px" class="ion-hide-sm-up">
+    <p class="main__title ion-text-center" style="margin: 0">
+      Iniciar Operación
+    </p>
+  </div>
+  <section *ngIf="this.step=='1'">
+    <!-- texto cabecera -->
+    <ion-text class="ion-text-center">
+      <p>
+        Cambia fácil, rápido y seguro
+
+
+      </p>
+      
+    </ion-text>
+    <!-- texto cabecera -->
+    <br />
+    <ion-grid>
+      <ion-row>
+
+
+        <ion-col size="12">
+          <!-- de la seccion de la siguiente linea para bajo vienen los condicionales si quiere vender o comprar dolares -->
+          <section *ngIf="quierecomprardolares">
+
+            <ion-card  style="padding: 22px !important; border-radius: 11px !important">
+              <ion-fab-button size="small" (click)="cambiarmododeoperacion()" color="primary"
+                style="z-index: 1; position: absolute; right: 15%; top: 48%">
+                <ion-icon style="
+                           color: white;
+                           transform: rotate(45deg);
+                           font-size: xx-large;
+                           " name="sync"></ion-icon>
+              </ion-fab-button>
+              <!-- <ion-card-header><strong>Cambia ahora</strong></ion-card-header> -->
+              <ion-row *ngIf="comprainvestrealperu&&ventainvestrealperu">
+                <ion-col size="6">
+                  <div class="ion-text-center" (click)="cambiarmododeoperacion()" style="cursor:pointer">
+                    <ion-text><a style="color: black">Compra: &nbsp;</a><span
+                        class="v2-badge v2-badge-venta">{{comprainvestrealperu| number : '1.3-3'}}</span></ion-text>
+                  </div>
+                </ion-col>
+                <ion-col size="6" style="
+                           background-color: var(--ion-color-secondary);
+                           border-radius: 13px;
+                           ">
+                  <div class="ion-text-center">
+                    <ion-text><a style="color: white;">Venta:</a><span
+                        class="v2-badge v2-badge-venta">{{ventainvestrealperu| number : '1.3-3'}}</span></ion-text>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-card-content>
+                <div style="
+                           border-radius: 6px;
+                           color: var(--ion-color-secondary);
+                           border: 1px solid var(--ion-color-secondary);
+                           padding: 5px;
+                           height: 80px !important;
+                           ">
+                  <ion-text>
+                    <h2 style="font-size: large; color: white">
+                      Envías:
+                    </h2>
+                  </ion-text>
+                  <span class="input-soles left">
+                    <input [disabled]="!comprainvestrealperu" (input)="CHANGESolesaenviar($event)" inputmode="numeric"
+                      class="sinborde sinflechitas" style="
+                           color: var(--ion-color-secondary);
+                           font-size: large;
+                           max-width: 100%;
+                           min-width: 100%;
+                           width: 100%;
+                           " type="text" #camposolesaenviar placeholder="Soles a enviar"
+                      (keypress)="isNumberKeyAndLengtSolesaenviar($event)" required />
+                  </span>
+                </div>
+                <br />
+                <div style="
+                           border-radius: 6px;
+                           height: 80px !important;
+                           color: var(--ion-color-secondary);
+                           border: 1px solid var(--ion-color-secondary);
+                           padding: 5px;
+                           height: 80px !important;
+                           ">
+                  <ion-text>
+                    <h2 style="font-size: large; color: white">
+                      Tu Recibes:
+                    </h2>
+                  </ion-text>
+                  <span class="input-dolar left">
+                    <input [disabled]="!comprainvestrealperu" (input)="CHANGEDolaresarecibir($event)"
+                      inputmode="numeric" class="sinborde sinflechitas" style="
+                              color: var(--ion-color-secondary);
+                              font-size: large;
+                              max-width: 100%;
+                              min-width: 100%;
+                              width: 100%;
+                              " type="text" #campodolaresarecibir placeholder="Dólares a recibir"
+                      (keypress)="isNumberKeyAndLengthDolaresarecibir($event)" required />
+                    <!-- <ion-text class="fuenteraleway" style="color:var(--ion-color-secondary); font-size:large; max-width: 100%;min-width: 100%;width: 100%;"> &nbsp;  &nbsp;  &nbsp; {{solesaenviar/ventainvestrealperu| number : '1.2-2'}}</ion-text> -->
+                  </span>
+                </div>
+              </ion-card-content>
+            </ion-card>
+            <div class="ion-text-center">
+              <!-- <ion-button (click)="step2()" class="botonredondo" color="primary">
+                <span style="color: white !important;">
+                  Iniciar Operación
+                </span>
+              </ion-button> -->
+            </div>
+
+          </section>
+          <section *ngIf="!quierecomprardolares">
+
+            <ion-card style="padding: 22px !important; border-radius: 11px !important">
+              <ion-fab-button size="small" (click)="cambiarmododeoperacion()" color="primary"
+                style="z-index: 1; position: absolute; right: 15%; top: 48%">
+                <ion-icon style="
+                           color: var(--ion-color-secondary);
+                           transform: rotate(60deg);
+                           font-size: xx-large;
+                           " name="sync"></ion-icon>
+              </ion-fab-button>
+              <!-- <ion-card-header><strong>Cambia ahora</strong></ion-card-header> -->
+              <ion-row *ngIf="comprainvestrealperu&&ventainvestrealperu">
+                <ion-col size="6" style="
+                           background-color: var(--ion-color-secondary);
+                           border-radius: 13px;
+                           ">
+                  <div class="ion-text-center">
+                    <ion-text><a style="color: white;">Compra:</a><span
+                        class="v2-badge v2-badge-venta">{{comprainvestrealperu}}</span></ion-text>
+                  </div>
+                </ion-col>
+                <ion-col size="6">
+                  <div class="ion-text-center" (click)="cambiarmododeoperacion()" style="cursor:pointer">
+                    <ion-text><a style="color: black">Venta: &nbsp;</a><span
+                        class="v2-badge v2-badge-venta">{{ventainvestrealperu}}</span></ion-text>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-card-content>
+                <div style="
+                           border-radius: 6px;
+                           color: var(--ion-color-secondary);
+                           border: 1px solid var(--ion-color-secondary);
+                           padding: 5px;
+                           height: 80px !important;
+                           ">
+                  <ion-text>
+                    <h2 style="font-size: large; color: white">
+                      Envías:
+                    </h2>
+                  </ion-text>
+                  <span class="input-dolar left">
+                    <input (input)="CHANGEDolaresaenviar($event)" inputmode="numeric" class="sinborde sinflechitas"
+                      style="
+                           color: var(--ion-color-secondary);
+                           font-size: large;
+                           max-width: 100%;
+                           min-width: 100%;
+                           width: 100%;
+                           " type="text" #campodolaresaenviar (keypress)="isNumberKeyAndLengtDolaresaenviar($event)"
+                      placeholder="Dólares a enviar" required />
+                  </span>
+                </div>
+                <br />
+                <div style="
+                           border-radius: 6px;
+                           height: 65px !important;
+                           color: var(--ion-color-secondary);
+                           border: 1px solid var(--ion-color-secondary);
+                           padding: 5px;
+                           height: 80px !important;
+                           ">
+                  <ion-text>
+                    <h2 style="font-size: large; color: white">
+                      Tu Recibes:
+                    </h2>
+                  </ion-text>
+                  <span class="input-soles left">
+                    <!-- <ion-text class="fuenteraleway" style="color:var(--ion-color-secondary); font-size:large; max-width: 100%;min-width: 100%;width: 100%;"> &nbsp;  &nbsp;  &nbsp; {{dolaresaenviar*comprainvestrealperu | number : '1.2-2'}}</ion-text> -->
+                    <input (input)="CHANGESolesarecibir($event)" inputmode="numeric" class="sinborde sinflechitas"
+                      style="
+                              color: var(--ion-color-secondary);
+                              font-size: large;
+                              max-width: 100%;
+                              min-width: 100%;
+                              width: 100%;
+                              " type="text" #camposolesarecibir (keypress)="isNumberKeyAndLengtSolesarecibir($event)"
+                      placeholder="Soles a recibir" required />
+                  </span>
+                </div>
+              </ion-card-content>
+            </ion-card>
+            <div class="ion-text-center">
+              <!-- <ion-button (click)="step2()" class="botonredondo" color="secondary">
+                <span style="color: white !important;">
+                  Iniciar Operación
+                </span>
+              </ion-button> -->
+            </div>
+
+
+          </section>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+
+  </section>
+  <!-- sierre de step 1 -->
+  <!-- inicia step2  -->
+
+  <!-- termina step 2 -->
+</ion-content>

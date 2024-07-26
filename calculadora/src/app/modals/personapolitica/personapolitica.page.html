@@ -1,0 +1,51 @@
+<ion-content>
+  <ion-fab-button
+    style="position: absolute; right: 1%; top: 1%; z-index: 9999"
+    (click)="dismiss()"
+    color="danger"
+    ><ion-icon name="close"> </ion-icon
+  ></ion-fab-button>
+
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    "
+  >
+    <ion-list style="padding: 20px; margin: auto">
+      <ion-item
+        ><ion-text
+          ><h6>
+            ¿Es usted una persona políticamente expuesta, o es familiar de una
+            persona políticamente expuesta (PEP)?
+          </h6></ion-text
+        ></ion-item
+      >
+
+      <ion-item>
+        <ion-label position="floating">Nombre completo de la persona</ion-label>
+        <ion-input [(ngModel)]="nombre_politico"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Institución pública</ion-label>
+        <ion-input [(ngModel)]="institucion_politica"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Cargo público</ion-label>
+        <ion-input [(ngModel)]="cargo_politico"></ion-input>
+      </ion-item>
+
+      <ion-button
+        class="ion-margin-top"
+        (click)="dismissyactualiza()"
+        expand="block"
+        >Continuar</ion-button
+      >
+    </ion-list>
+  </div>
+</ion-content>

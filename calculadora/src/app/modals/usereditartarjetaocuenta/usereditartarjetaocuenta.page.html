@@ -1,0 +1,285 @@
+
+
+
+<ion-content>
+
+  <ion-fab-button style="position:absolute;right:1%;top:1%;z-index:9999;" (click)="dismiss()" color="danger"><ion-icon name="close"></ion-icon></ion-fab-button>
+
+
+
+<section *ngIf="que_creara&&que_creara=='cuenta'">
+
+    <ion-row>
+      <ion-col size-md="2" size-lg="3" size-xs="1" size>
+  
+      </ion-col>
+  
+      <!-- empieza la columna global del formulario responsive -->
+      <ion-col size-md="8" size-lg="6" size-xs="10" size>
+        <form validate [formGroup]="agregarcuenta" (ngSubmit)="intentodeeditarcuenta()">
+        <ion-text style="font-size:small;"><p>Banco:</p></ion-text>
+        <ion-select (ionChange)="IONCHANGEbanco_cuenta($event)" formControlName="banco_cuenta" interface="popover" [interfaceOptions]="{ cssClass: 'clasebancosselector', size: 'cover' , side:'bottom',  alignment:'center' }" placeholder="Seleccionar banco" style="width:100%; border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
+          <ion-select-option value="BCP"> Banco De  Crédito BCP </ion-select-option>
+          <ion-select-option value="Interbank"> Interbank </ion-select-option>
+          <ion-select-option value="BBVA"> BBVA </ion-select-option>
+          <ion-select-option value="ScotiaBank"> ScotiaBank </ion-select-option>
+          <ion-select-option value="BanBif"> BanBif </ion-select-option>
+          <ion-select-option value="Pichincha"> Pichincha </ion-select-option>
+          <ion-select-option value="Banco de la Nación"> Banco de la Nación </ion-select-option>
+          <ion-select-option value="GNB"> GNB </ion-select-option>
+          <ion-select-option value="Santander"> Santander </ion-select-option>
+          <ion-select-option value="Mi Banco"> Mi Banco </ion-select-option>
+          <ion-select-option value="Falabella"> Falabella </ion-select-option>
+          <ion-select-option value="Banco Ripley"> Banco Ripley </ion-select-option>
+          <ion-select-option value="Banco del Comercio"> Banco del Comercio </ion-select-option>
+  
+         </ion-select>
+  
+         <ion-grid class="ion-no-padding" no-padding>
+          <ion-row>
+            <ion-col>
+              <ion-label >{{bancaria_o_interbancaria}}:</ion-label>
+            </ion-col>
+          </ion-row>
+  
+          <ion-row class="ion-no-padding" no-padding>
+            <ion-col size="8.5" class="ion-no-padding" no-padding>
+  
+              <br>
+  
+              <div style="font-size:large; border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
+                <input  formControlName="numero_cuenta"  #cuentaaa_caracteres class="sinborde sinflechitas" [readonly]="!numero_de_cuenta_habilitado_plz" style="height:200%; color:var(--ion-color-secondary); font-size:large; max-width: 100%;min-width: 100%;width: 100%;" type="tel" #rate placeholder="(Obligatorio)" (keypress)="isNumberKeyAndLength($event)" required />
+              </div>
+  
+  
+            </ion-col>
+            <ion-col size="3.5" class="ion-no-padding" no-padding>
+              <ion-label >Moneda</ion-label>    
+                <ion-item lines="none" style="border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
+                  <ion-select formControlName="moneda_cuenta" interface="popover" placeholder="Moneda">
+                    <ion-select-option value="Soles">Soles</ion-select-option>
+                    <ion-select-option value="Dolares">Dolares</ion-select-option>
+  
+                  </ion-select>
+                </ion-item>
+            </ion-col>
+          </ion-row>
+         </ion-grid>
+  
+         <br>
+         <ion-item lines="none" style="border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
+          <ion-label  style="color:var(--ion-color-secondary);" position="floating">Titular</ion-label>    
+          <ion-input formControlName="titular_cuenta" type="name"
+          placeholder="Titular de la cuenta"></ion-input>
+        </ion-item>
+  
+        <ion-text style="font-size:small;"><p>¿Como deseas guardar tu cuenta? (Opcional)</p></ion-text>
+  
+        <ion-item lines="none" style="border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
+          <ion-label  style="color:var(--ion-color-secondary);" position="floating">Apodo:</ion-label>    
+          <ion-input formControlName="apodo_cuenta" type="name"
+          placeholder="¿Deseas apodo para esta cuenta? (Opcional)"></ion-input>
+        </ion-item>
+  
+        <ion-grid class="ion-no-padding" no-padding>
+          <ion-row class="ion-no-padding" no-padding>
+            <ion-col size="8.5" class="ion-no-padding" no-padding>
+              <ion-button (click)="dismiss()" color="secondary">Cancelar</ion-button>
+            </ion-col>
+            <ion-col size="3.5" class="ion-no-padding" no-padding>
+  
+  
+              <ion-button *ngIf="agregarcuenta.valid" type="submit" color="primary">Aceptar</ion-button>
+              <ion-button *ngIf="!agregarcuenta.valid" (click)="modal_errores_agregar_cuenta()" color="primary">Aceptar</ion-button>
+  
+            </ion-col>
+          </ion-row>
+         </ion-grid>
+  
+  
+         <ion-modal trigger="open-modal-2" [initialBreakpoint]="1" [breakpoints]="[0, 1]" handleBehavior="cycle">
+          <ng-template>
+            <ion-content class="ion-padding">
+              <div class="ion-margin-top">
+                <ion-text>
+                  <br>
+                  <p style="font-size:x-large; color:black; margin-top:0px;">Importante!</p>
+                </ion-text>
+              </div>
+              <p>Considere lo siguiente:</p>
+              <ul>
+                  <li *ngIf="agregarcuenta.controls['banco_cuenta'].status=='INVALID'"><strong
+                  style="color: var(--ion-color-secondary)">Banco: </strong>El Banco donde aperturo la cuenta bancaria que desea registrar, es obligatorio.</li>
+                  
+                  <li *ngIf="agregarcuenta.controls['numero_cuenta'].status=='INVALID'"><strong
+                  style="color: var(--ion-color-secondary)">Número de cuenta: </strong>¡Ingrese un número de cuenta válido!.</li>
+  
+                  <li *ngIf="agregarcuenta.controls['moneda_cuenta'].status=='INVALID'"><strong
+  
+                    style="color: var(--ion-color-secondary)">Moneda: </strong>Indique la divisa de su cuenta, [$ Dolares] o [S/. Soles].</li>
+                  <li *ngIf="agregarcuenta.controls['titular_cuenta'].status=='INVALID'"><strong
+                  style="color: var(--ion-color-secondary)">Titular: </strong>Verifique este nombre y compruebe que sea el mismo del registrado en InvestrealPeru (Obligatorio).</li>
+              
+                </ul>
+              <ion-button (click)="cerrarmodal_errores()" class="boton-cancelar-modal" size="large"
+                color="primary" expand="block" fill="clear">Continuar</ion-button>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+  
+         </form>
+      </ion-col>
+      <!-- termina la columna global del formulario responsive -->
+      
+      <ion-col size-md="2" size-lg="3" size-xs="1" size>
+        
+      </ion-col>
+    </ion-row>
+  
+  
+  
+
+
+</section>
+
+
+
+
+<section *ngIf="que_creara&&que_creara=='tarjeta'">
+  
+
+  <ion-row>
+    <ion-col size-md="2" size-lg="3" size-xs="1" size>
+
+    </ion-col>
+
+    <!-- empieza la columna global del formulario responsive -->
+    <ion-col size-md="8" size-lg="6" size-xs="10" size>
+      <form validate [formGroup]="agregartarjeta" (ngSubmit)="intentodeeditartarjeta()">
+      <ion-text style="font-size:small;"><p>Banco:</p></ion-text>
+      <ion-select (ionChange)="IONCHANGEbanco_cuenta($event)" formControlName="banco_tarjeta" interface="popover" [interfaceOptions]="{ cssClass: 'clasebancosselector', size: 'cover' , side:'bottom',  alignment:'center' }" placeholder="Seleccionar banco" style="width:100%; border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
+        <ion-select-option value="BCP"> Banco De  Crédito BCP </ion-select-option>
+        <ion-select-option value="Interbank"> Interbank </ion-select-option>
+        <ion-select-option value="BBVA"> BBVA </ion-select-option>
+        <ion-select-option value="ScotiaBank"> ScotiaBank </ion-select-option>
+        <ion-select-option value="BanBif"> BanBif </ion-select-option>
+        <ion-select-option value="Pichincha"> Pichincha </ion-select-option>
+        <ion-select-option value="Banco de la Nación"> Banco de la Nación </ion-select-option>
+        <ion-select-option value="GNB"> GNB </ion-select-option>
+        <ion-select-option value="Santander"> Santander </ion-select-option>
+        <ion-select-option value="Mi Banco"> Mi Banco </ion-select-option>
+        <ion-select-option value="Falabella"> Falabella </ion-select-option>
+        <ion-select-option value="Banco Ripley"> Banco Ripley </ion-select-option>
+        <ion-select-option value="Banco del Comercio"> Banco del Comercio </ion-select-option>
+
+       </ion-select>
+       <ion-text>Número de Tarjeta</ion-text>
+       <ion-grid class="ion-no-padding" no-padding>
+        <ion-row class="ion-no-padding" no-padding>
+          <ion-col size="1.3" *ngIf="tipo_tarjeta" center text-center style="     display: flex!important;
+          align-content: center!important;
+          align-items: center!important;">
+          <div class="ion-text-center">
+            <img *ngIf="tipo_tarjeta==='Visa'" style="width:20px;height:20px;" src="assets/investrealperurecursos/tarjetas/visa-tarjeta.png">
+            <img *ngIf="tipo_tarjeta==='MasterCard'" style="width:20px;height:20px;" src="assets/investrealperurecursos/tarjetas/masterCard-tarjeta.png">
+            <img *ngIf="tipo_tarjeta==='American Express'" style="width:20px;height:20px;" src="assets/investrealperurecursos/tarjetas/amex-tarjeta.png">
+            <img *ngIf="tipo_tarjeta==='Diners Club'" style="width:20px;height:20px;" src="assets/investrealperurecursos/tarjetas/dinersClub-tarjeta.png">
+            <img *ngIf="tipo_tarjeta==='Discover'" style="width:20px;height:20px;" src="assets/investrealperurecursos/tarjetas/dicover-tarjeta.png">
+            <img *ngIf="tipo_tarjeta==='JCB'" style="width:20px;height:20px;" src="assets/investrealperurecursos/tarjetas/jcb-tarjeta.png">
+
+          </div>
+
+          </ion-col>
+          <ion-col [size]="!tipo_tarjeta||tipo_tarjeta==undefined||tipo_tarjeta==null||tipo_tarjeta=='' ? '12' : '10.7'" class="ion-no-padding" no-padding>
+
+            <div style="font-size:large; border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
+              <input  formControlName="numero_tarjeta" id="numero_tarjeta_input" #numero_tarjeta_input class="sinborde sinflechitas" style="height:200%; color:var(--ion-color-secondary); font-size:large; max-width: 100%;min-width: 100%;width: 100%;" type="tel" #rate placeholder="(Obligatorio)" (input)="calculadordetipodetarjeta($event)" (keypress)="filtrodecaracteresnumerotarjeta($event)" required />
+            </div>
+
+
+          </ion-col>
+
+        </ion-row>
+       </ion-grid>
+
+       <br>
+       <ion-item lines="none" style="border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
+        <ion-label  style="color:var(--ion-color-secondary);" position="floating">Titular</ion-label>    
+        <ion-input formControlName="titular_tarjeta" type="name"
+        placeholder="Titular de la Tarjeta"></ion-input>
+      </ion-item>
+
+      <ion-text style="font-size:small;"><p>¿Como deseas guardar tu tarjeta? (Opcional)</p></ion-text>
+
+      <ion-item lines="none" style="border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
+        <ion-label  style="color:var(--ion-color-secondary);" position="floating">Apodo:</ion-label>    
+        <ion-input formControlName="apodo_tarjeta" type="name"
+        placeholder="¿Deseas apodo para esta tarjeta? (Opcional)"></ion-input>
+      </ion-item>
+
+      <ion-grid class="ion-no-padding" no-padding>
+        <ion-row class="ion-no-padding" no-padding>
+          <ion-col size="8.5" class="ion-no-padding" no-padding>
+            <ion-button (click)="dismiss()" color="secondary">Cancelar</ion-button>
+          </ion-col>
+          <ion-col size="3.5" class="ion-no-padding" no-padding>
+
+
+            <ion-button *ngIf="agregartarjeta.valid" type="submit" color="primary">Aceptar</ion-button>
+            <ion-button *ngIf="!agregartarjeta.valid" (click)="modal_errores_agregar_tarjeta()" color="primary">Aceptar</ion-button>
+
+          </ion-col>
+        </ion-row>
+       </ion-grid>
+
+
+       <ion-modal trigger="open-modal-2" [initialBreakpoint]="1" [breakpoints]="[0, 1]" handleBehavior="cycle">
+        <ng-template>
+          <ion-content class="ion-padding">
+            <div class="ion-margin-top">
+              <ion-text>
+                <br>
+                <p style="font-size:x-large; color:black; margin-top:0px;">Importante!</p>
+              </ion-text>
+            </div>
+            <p>Considere lo siguiente:</p>
+            <ul>
+                <li *ngIf="agregartarjeta.controls['banco_tarjeta'].status=='INVALID'"><strong
+                style="color: var(--ion-color-secondary)">Banco: </strong>El Banco donde de origen de su tarjeta, es obligatorio.</li>
+                
+                <li *ngIf="agregartarjeta.controls['numero_tarjeta'].status=='INVALID'"><strong
+                style="color: var(--ion-color-secondary)">Número de tarjeta: </strong>¡Ingrese un número de tarjeta válido!.</li>
+
+
+                <li *ngIf="agregartarjeta.controls['titular_tarjeta'].status=='INVALID'"><strong
+                style="color: var(--ion-color-secondary)">Titular: </strong>Verifique este nombre y compruebe que sea el mismo del registrado en InvestrealPeru (Obligatorio).</li>
+            
+              </ul>
+            <ion-button (click)="cerrarmodal_errores()" class="boton-cancelar-modal" size="large"
+              color="primary" expand="block" fill="clear">Continuar</ion-button>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+       </form>
+    </ion-col>
+    <!-- termina la columna global del formulario responsive -->
+    
+    <ion-col size-md="2" size-lg="3" size-xs="1" size>
+      
+    </ion-col>
+  </ion-row>
+
+
+
+
+
+
+
+
+</section>
+
+
+
+  
+</ion-content>

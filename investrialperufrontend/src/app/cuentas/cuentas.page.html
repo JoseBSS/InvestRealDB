@@ -3,6 +3,14 @@
     <span class="main__title"> Mis Cuentas </span>
   </div>
 
+  <div class="accounts__actions ion-margin-bottom">
+    <ion-button (click)="paso_a_agregarcuenta()" color="secondary"><ion-icon style="color: var(--ion-color-primary)"
+        name="add"></ion-icon>Agregar Cuenta</ion-button>
+    <ion-button (click)="paso_a_agregartarjeta()" color="primary"><ion-icon style="color: var(--ion-color-secondary)"
+        name="add"></ion-icon>Agregar tarjeta</ion-button>
+  </div>
+
+
   <div *ngIf="loadingAcounts" style="margin-top: 10px;">
     <div *ngFor="let i of [1, 1, 1, 1, 1, 1]">
       <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
@@ -28,12 +36,7 @@
       </p>
     </ion-text>
 
-    <div class="accounts__actions ion-margin-bottom">
-      <ion-button (click)="paso_a_agregarcuenta()" color="secondary"><ion-icon style="color: var(--ion-color-primary)"
-          name="add"></ion-icon>Agregar Cuenta</ion-button>
-      <ion-button (click)="paso_a_agregartarjeta()" color="primary"><ion-icon style="color: var(--ion-color-secondary)"
-          name="add"></ion-icon>Agregar tarjeta</ion-button>
-    </div>
+
 
     <ion-card class="ion-no-padding ocultar767paraabajo" no-padding>
       <!-- <ion-card-header
@@ -382,9 +385,19 @@
               color: var(--ion-color-secondary);
               border: 1px solid var(--ion-color-primary);
             ">
+            <ion-label style="color: var(--ion-color-secondary)" position="floating">Número de cuenta interbancario (CCI)</ion-label>
+            <ion-input formControlName="numero_de_cuenta_interbancario" type="name" placeholder="Numero de CCI"></ion-input>
+          </ion-item>
+
+          <ion-item lines="none" style="
+              border-radius: 6px;
+              color: var(--ion-color-secondary);
+              border: 1px solid var(--ion-color-primary);
+            ">
             <ion-label style="color: var(--ion-color-secondary)" position="floating">Titular</ion-label>
             <ion-input formControlName="titular_cuenta" type="name" placeholder="Titular de la cuenta"></ion-input>
           </ion-item>
+
 
           <ion-text style="font-size: small">
             <p>¿Como deseas guardar tu cuenta? (Opcional)</p>
@@ -435,6 +448,10 @@
                   <li *ngIf="agregarcuenta.controls['numero_cuenta'].status=='INVALID'">
                     <strong style="color: var(--ion-color-secondary)">Número de cuenta: </strong>¡Ingrese un número de
                     cuenta válido!.
+                  </li>
+                  <li *ngIf="agregarcuenta.controls['numero_de_cuenta_interbancario'].status=='INVALID'">
+                    <strong style="color: var(--ion-color-secondary)">Número de CCI: </strong>¡Ingrese un número de
+                    cuenta interbancaria válida!.
                   </li>
 
                   <li *ngIf="agregarcuenta.controls['moneda_cuenta'].status=='INVALID'">

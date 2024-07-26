@@ -70,6 +70,7 @@ export class CuentasPage implements OnInit {
     this.agregarcuenta = this.formBuilder.group({
       banco_cuenta: ['', [Validators.required ]],
       numero_cuenta: ['', [Validators.required, Validators.minLength(this.minimo_caracteres_numero_cuenta),Validators.maxLength(this.maximo_caracteres_numero_cuenta)]],
+      numero_de_cuenta_interbancario: ['', [Validators.required, Validators.minLength(13),Validators.maxLength(21)]],
       moneda_cuenta: ['', [Validators.required ]],
       titular_cuenta: ['', [Validators.required, Validators.minLength(4),Validators.maxLength(50)]],
       apodo_cuenta: ['', []],
@@ -125,7 +126,7 @@ IONCHANGEbanco_cuenta(event){
     this.bancaria_o_interbancaria='Número de cuenta';
     this.minimo_caracteres_numero_cuenta=13;
     this.maximo_caracteres_numero_cuenta=15;
-    this.agregarcuenta.controls['numero_cuenta'].setValidators([Validators.required, Validators.minLength(13),Validators.maxLength(15)]);
+    this.agregarcuenta.controls['numero_cuenta'].setValidators([Validators.required, Validators.minLength(12),Validators.maxLength(16)]);
     this.agregarcuenta.controls['numero_cuenta'].updateValueAndValidity();
 
     // this.agregarcuenta.removeControl
@@ -136,7 +137,7 @@ IONCHANGEbanco_cuenta(event){
     this.bancaria_o_interbancaria='Número de cuenta interbancario (CCI)';
     this.minimo_caracteres_numero_cuenta=19;
     this.maximo_caracteres_numero_cuenta=19;
-    this.agregarcuenta.controls['numero_cuenta'].setValidators([Validators.required, Validators.minLength(20),Validators.maxLength(20)]);
+    this.agregarcuenta.controls['numero_cuenta'].setValidators([Validators.required, Validators.minLength(12),Validators.maxLength(17)]);
     this.agregarcuenta.controls['numero_cuenta'].updateValueAndValidity();
   }
 }
@@ -202,9 +203,11 @@ intentodeagregarcuenta(){
       id_user: this.profileInfo.id,
       banco_cuenta: this.agregarcuenta.value.banco_cuenta,
       numero_cuenta: this.agregarcuenta.value.numero_cuenta.toString(),
+      numero_de_cuenta_interbancario: this.agregarcuenta.value.numero_de_cuenta_interbancario.toString(),
       moneda_cuenta: this.agregarcuenta.value.moneda_cuenta,
       titular_cuenta: this.agregarcuenta.value.titular_cuenta,
       apodo_cuenta: this.agregarcuenta.value.apodo_cuenta,
+
     }
     this.varios.MostrarAlertaMonoOcultarEn8000('present');
     this.varios.variasfunciones(datainvestrealperuagregarcuentaausuario).subscribe(async( res: any ) =>{

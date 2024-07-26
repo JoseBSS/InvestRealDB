@@ -1,0 +1,162 @@
+<ion-content>
+
+  <ion-fab-button (click)="dismiss()" size="small"><ion-icon name="arrow-back"></ion-icon></ion-fab-button>
+
+
+
+  <ion-card class="ion-no-padding" no-padding>
+    <ion-card-header color="secondary" class="ion-no-padding" no-padding>
+      <div class="ion-text-center">
+        <h5>Declaración de origenes de fondos.</h5>
+      </div>
+    </ion-card-header>
+    <ion-card-content class="ion-no-padding" no-padding>
+
+      <ion-card class="ion-no-padding" no-padding>
+
+        <div class="ion-text-center">
+          <h5>Cual es el origen de los fondos para esta operacion:</h5>
+        </div>
+
+        <ion-card-content>
+          <ion-select [(ngModel)]="origen_de_fondos" id="asd2" interface="popover"
+            [interfaceOptions]="{ cssClass: 'claseselectordeclaraciones', side:'bottom',  alignment:'center' }"
+            placeholder="Seleccionar" style="
+        width: 100%;
+        border-radius: 6px;
+        color: var(--ion-color-secondary);
+        border: 1px solid var(--ion-color-primary);
+        ">
+            <ion-select-option value="Ahorros">
+              Ahorros
+            </ion-select-option>
+            <ion-select-option value="Alquiler de Bienes Inmuebles">
+              Alquiler de Bienes Inmuebles
+            </ion-select-option>
+            <ion-select-option value="Alquiler de Bienes Muebles">
+               Alquiler de Bienes Muebles 
+              </ion-select-option>
+            <ion-select-option value="Donacion/Sorteo">
+              Donacion/Sorteo
+            </ion-select-option>
+            <ion-select-option value="Ingresos Por Regalia">
+               Ingresos Por Regalia 
+              </ion-select-option>
+            <ion-select-option value="Ingresos Por Trabajo Dependiente">
+              Ingresos Por Trabajo Dependiente
+            </ion-select-option>
+            <ion-select-option value="Ingresos Por Trabajo Independiente">
+              Ingresos Por Trabajo Independiente
+            </ion-select-option>
+            <ion-select-option value="Otros">
+               Otros
+              </ion-select-option>
+            <ion-select-option value="Prestamos">
+              Prestamos
+            </ion-select-option>
+            <ion-select-option value="Venta de Bien Mueble">
+               Venta de Bien Mueble
+              </ion-select-option>
+            <ion-select-option value="Venta de Bien inmueble">
+                Venta de Bien inmueble
+            </ion-select-option>
+          </ion-select>
+        </ion-card-content>
+
+        <div class="ion-text-center">
+          <h5>Cual es tu ocupación:</h5>
+        </div>
+
+        <ion-select [(ngModel)]="declaro_ocupacion" id="asd2" interface="popover"
+        [interfaceOptions]="{ cssClass: 'claseselectordeclaraciones', side:'bottom',  alignment:'center' }"
+        placeholder="Seleccionar" style="
+    width: 100%;
+    border-radius: 6px;
+    color: var(--ion-color-secondary);
+    border: 1px solid var(--ion-color-primary);
+    ">
+        <ion-select-option value="Ama de casa">
+          Ama de casa
+        </ion-select-option>
+        <ion-select-option value="Desempleado (A)">
+          Desempleado (A)
+        </ion-select-option>
+        <ion-select-option value="Empleado">
+           Empleado
+          </ion-select-option>
+        <ion-select-option value="Empleador (A)">
+          Empleador (A)
+        </ion-select-option>
+        <ion-select-option value="Estudiante">
+           Estudiante
+          </ion-select-option>
+        <ion-select-option value="Jubilado (A)">
+          Jubilado (A)
+        </ion-select-option>
+        <ion-select-option value="Miembro Fuerzas Armadas/ Clero">
+          Miembro Fuerzas Armadas/ Clero
+        </ion-select-option>
+        <ion-select-option value="Obrero (A)">
+           Obrero (A)
+          </ion-select-option>
+        <ion-select-option value="Trabajador (A) Independiente">
+          Trabajador (A) Independiente
+        </ion-select-option>
+        <ion-select-option value="Trabajador (A) del Hogar">
+          Trabajador (A) del Hogar
+          </ion-select-option>
+
+      </ion-select>
+
+        <div class="ion-text-center">
+          <h5>Persona expuesta politicamente (PEP):</h5>
+        </div>
+
+        
+        <ion-select [(ngModel)]="declaro_pep" id="asd2" interface="popover"
+        [interfaceOptions]="{ cssClass: 'claseselectordeclaraciones', side:'bottom',  alignment:'center' }"
+        placeholder="Seleccionar" style="
+    width: 100%;
+    border-radius: 6px;
+    color: var(--ion-color-secondary);
+    border: 1px solid var(--ion-color-primary);
+    ">
+        <ion-select-option value="No He Sido">
+          No He Sido
+        </ion-select-option>
+        <ion-select-option value="No Soy">
+          No Soy
+        </ion-select-option>
+        <ion-select-option value="Si he sido">
+           Si he sido
+          </ion-select-option>
+        <ion-select-option value="Si soy">
+          Si soy
+        </ion-select-option>
+
+      </ion-select>
+      
+
+
+
+      </ion-card>
+
+
+<div class="ion-text-center">
+  <ion-button (click)="dismiss()">Aceptar</ion-button>
+  </div>
+
+
+
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+
+
+
+</ion-content>

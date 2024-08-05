@@ -42,9 +42,9 @@
             class="v2-badge v2-badge-cuponbienvenidanombre">Bienvenida<br></span></ion-text>
         </ion-col>
         <ion-col size="3" class="ion-no-padding" no-padding>
-          <ion-text><a>Monto</a>:</ion-text>
+          <ion-text><a>TASA</a>:</ion-text>
             <br>
-          <a>S/. {{this.configuracionglobal[2].valor_config}} & ${{this.configuracionglobal[1].valor_config}}</a>
+          <a>{{this.configuracionglobal[1].valor_config}}</a>
         </ion-col>
         <ion-col size="3" class="ion-no-padding" no-padding>
           <ion-text><a>Hasta el:</a>:</ion-text>
@@ -74,8 +74,8 @@
           <ion-text *ngIf="mostrar_cupon_bienvenida==false"><a>Monto</a>:</ion-text>
             <br *ngIf="mostrar_cupon_bienvenida==false">
 
-          <a *ngIf="cadacredito.soles_a_sumar_soles!='0'">S/.{{cadacredito.soles_a_sumar_soles | number:'1.3-3'}}</a>
-          <a *ngIf="cadacredito.soles_a_sumar_dolares!='0'">$ {{cadacredito.soles_a_sumar_dolares | number:'1.3-3'}}</a>
+          <!-- <a *ngIf="cadacredito.soles_a_sumar_soles!='0'">S/.{{cadacredito.soles_a_sumar_soles | number:'1.3-3'}}</a> -->
+          <a *ngIf="cadacredito.soles_a_sumar_dolares!='0'">{{cadacredito.soles_a_sumar_dolares | number:'1.3-3'}}</a>
         </ion-col>
         <ion-col size="3" class="ion-no-padding" no-padding>
 

@@ -120,6 +120,12 @@
                   </ion-toolbar>
 
                   <ion-list>
+
+                    <div class="ion-text-center" *ngIf="dataparaelmodal.cupongeneradodetalles&&dataparaelmodal.cupongeneradodetalles!=null&&dataparaelmodal.cupongeneradodetalles!='no'">
+                      <span class="v2-badge v2-badge-cuponaplicadopor">Cupon Aplicado por: {{dataparaelmodal.cupongeneradodetalles.soles_a_sumar_dolares}}</span>
+                    </div>
+
+
                     <ion-item>
                       <ion-label style="white-space: normal !important">
                         <h2 *ngIf="dataparaelmodal.quierecomprardolares=='si'">

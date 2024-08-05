@@ -134,13 +134,21 @@ export class OperacionPage implements OnInit {
 
       var temporal1 = (((this.ventainvestrealperu) * 1000) / (2)).toFixed(3).replace(/\.(\d\d)\d?$/, '.$1');
       var temporal2 = (this.solesaenviar / this.ventainvestrealperu).toFixed(3).replace(/\.(\d\d)\d?$/, '.$1');
-      var temporal3 = (this.solesaenviar / this.ventainvestrealperu).toFixed(3).replace(/\.(\d\d)\d?$/, '.$1');
+      // var temporal3 = (this.solesaenviar / this.ventainvestrealperu).toFixed(3).replace(/\.(\d\d)\d?$/, '.$1');
       var temporal4 = (this.solesaenviar).toFixed(3).replace(/\.(\d\d)\d?$/, '.$1');
       var temporal5 = (this.dolaresaenviar * this.comprainvestrealperu).toFixed(3).replace(/\.(\d\d)\d?$/, '.$1');
+
       this.solesaenviar = temporal1;
+      this.camposolesaenviar.nativeElement.value = temporal1;
+
+      
+      this.dolaresarecibir = temporal2;
       this.campodolaresarecibir.nativeElement.value = temporal2;
-      this.dolaresarecibir = temporal3;
+
+      this.solesaenviar = temporal4;
       this.camposolesaenviar.nativeElement.value = temporal4;
+
+      this.camposolesarecibir.nativeElement.value = temporal5;
       this.solesarecibir = temporal5;
 
     });
@@ -223,9 +231,10 @@ export class OperacionPage implements OnInit {
   }
 
   step1() {
-    this.step = '1';
+    this.cupongenerado=undefined;
     this.data_de_deposito = undefined;
     this.banco_que_envia = undefined;
+    this.step = '1';
   }
 
 
@@ -644,6 +653,7 @@ export class OperacionPage implements OnInit {
         uso_bienvenida: 'no',
         monto_bienvenida_soles: '0',
         monto_bienvenida_dolares: '0',
+        cupongenerado: this.cupongenerado
 
       }
 
@@ -698,11 +708,13 @@ export class OperacionPage implements OnInit {
       breakpoints: [0, 1]
     });
     modal.present();
-
+    this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'confirma_que_si') {
       this.cupongenerado=data;
+      this.cupongenerado.nueva_tasa_quierecomprardolares=parseFloat(this.ventainvestrealperu)-parseFloat(this.cupongenerado.soles_a_sumar_dolares);
+      this.cupongenerado.nueva_tasa_noquierecomprardolares=parseFloat(this.comprainvestrealperu)+parseFloat(this.cupongenerado.soles_a_sumar_dolares);
       console.log('this.cupongenerado',this.cupongenerado);
     }
 

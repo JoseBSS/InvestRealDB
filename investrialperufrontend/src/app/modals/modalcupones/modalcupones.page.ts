@@ -254,7 +254,7 @@ mostrar_cupon_bienvenida: boolean = false;
     var cadacredito = {
       uso_bienvenida: 'si',
       soles_a_sumar_dolares:   this.configuracionglobal[1].valor_config,
-      soles_a_sumar_soles: this.configuracionglobal[2].valor_config,
+      soles_a_sumar_soles: this.configuracionglobal[1].valor_config,
       tipo_de_ganancia: 'ambos'
 
     }

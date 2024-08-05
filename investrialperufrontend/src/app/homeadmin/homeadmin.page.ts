@@ -43,7 +43,7 @@ export class HomeadminPage implements OnInit {
   admintraercupones: any;
 
   paso_del_modulo_cupones: string = 'display_cupones';
-  tipo_de_ganancia: string = 'hacer_que_gane_dolares';
+  tipo_de_ganancia: string = 'ambos';
 
   minimo_de_monto_dolares: number = 0;
   minimo_de_monto_en_soles: number = 0;
@@ -682,6 +682,59 @@ export class HomeadminPage implements OnInit {
   }
 
 
+  async copiar(texto) {
+    if (navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(texto);
+      } catch (err) {}
+    }
+    this.varios.presentToast('Codigo de cupon copiado!')
+  
+  }
+
+
+
+  actualizar_cupon_usado(cadacupon){
+
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
+    var datainvestrealperuactualizarccupon = {
+      nombre_solicitud: 'investrealperuactualizarccupon',
+      datav2: this.profileInfo,
+      datav11: cadacupon,
+
+
+    }
+    this.varios.variasfunciones(datainvestrealperuactualizarccupon).subscribe(async (res: any) => {
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+      console.log(' respuesta investrealperuactualizarccupon', res);
+      if(res&&res>0){
+        // this.admintraercupones=res;
+
+        
+
+
+        this.varios.presentToast('actualizacion exitosa!');
+      }
+      else{
+        this.varios.presentToast('¡ERROR!');
+      }
+    },
+
+      (error) => {
+        // this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
+        this.varios.presentToast('¡ERROR!');
+        console.log('Errores', error);
+        this.varios.presentToast('Error al actualizar, verifique!');
+
+      }
+
+    );
+
+
+
+
+  }
+
   crear_cupon() {
     var datainvestrealperuadminagregarcupon = {
       nombre_solicitud: 'investrealperuadminagregarcupon',
@@ -689,16 +742,35 @@ export class HomeadminPage implements OnInit {
       minimo_de_monto_dolares: this.minimo_de_monto_dolares,
       minimo_de_monto_en_soles: this.minimo_de_monto_en_soles,
       soles_a_sumar_dolares: this.soles_a_sumar_dolares,
-      soles_a_sumar_soles: this.soles_a_sumar_soles,
+      soles_a_sumar_soles: this.soles_a_sumar_dolares,
       tiempo_de_validez_en_minutos: this.tiempo_de_validez_en_minutos,
       email_cuponero: this.email_cuponero
     }
-
+    this.varios.MostrarAlertaMonoOcultarEn8000('present');
     this.varios.variasfunciones(datainvestrealperuadminagregarcupon).subscribe(async (res: any) => {
+      this.varios.MostrarAlertaMonoOcultarEn8000('dismiss');
       console.log(' respuesta investrealperuadminagregarcupon', res);
       this.iraamoduloscupones();
       this.paso_del_modulo_cupones = 'display_cupones';
-      this.varios.MostrarAlertaMonoOcultarEn80002segundos();
+      // this.varios.MostrarAlertaMonoOcultarEn80002segundos();
+
+      const alert = await this.alertController.create({
+        header: 'Cupon creado exitosamente Copialo y compartelo!',
+        inputs: [
+
+          {
+            type: 'textarea',
+            placeholder: 'Codigo Generado',
+            name: 'codigoingresadoenalerta',
+            value:res.codigo_de_cupon
+          },
+
+        ],
+        buttons: ['OK'],
+      });
+      await alert.present();
+
+
     },
 
       (error) => {
@@ -837,6 +909,16 @@ export class HomeadminPage implements OnInit {
 
 
 
+  }
+
+  mostrarocultardetallescuponfuncion(){
+    if(!this.mostrardetallescupon){
+      this.mostrardetallescupon=true;
+    }
+    else{
+      this.mostrardetallescupon=false;
+
+    }
   }
 
 

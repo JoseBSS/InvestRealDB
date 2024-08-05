@@ -1,635 +1,658 @@
 <ion-header>
-  <ion-toolbar style="text-align:center;">
-    <ion-title>Panel Admin</ion-title>
-    <ion-button (click)="cerrarsesion()" *ngIf="profileInfo&&profileInfo.tipo_cuenta<998">Salir</ion-button>
-  </ion-toolbar>
+	<ion-toolbar style="text-align:center;">
+		<ion-title>Panel Admin</ion-title>
+		<ion-button (click)="cerrarsesion()" *ngIf="profileInfo&&profileInfo.tipo_cuenta<998">Salir</ion-button>
+	</ion-toolbar>
 </ion-header>
 <ion-content (click)="clickenelcontent()" *ngIf="profileInfo&&profileInfo.tipo_cuenta>998">
 
 
 
-  <section *ngIf="this.step=='inicio'">
-    <br>
+	<section *ngIf="this.step=='inicio'">
+		<br>
 
-    <ion-button (click)="irasolicitudes()" expand="block">Ver solicitudes</ion-button>
-    <br>
-    <ion-button (click)="iraadministrarusuarios()" fill="outline" expand="block">Administrar Usuarios</ion-button>
-    <br>
-    <ion-button (click)="iraadministrardivisas()" expand="block">Administrar Divisas</ion-button>
-    <br>
-    <ion-button (click)="iravercuentasytarjetasdeusuario()" color="secondary" expand="block">Ver Cuentas/Tarjetas
-      Usuarios</ion-button>
+		<ion-button (click)="irasolicitudes()" expand="block">Ver solicitudes</ion-button>
+		<br>
+		<ion-button (click)="iraadministrarusuarios()" fill="outline" expand="block">Administrar Usuarios</ion-button>
+		<br>
+		<ion-button (click)="iraadministrardivisas()" expand="block">Administrar Divisas</ion-button>
+		<br>
+		<ion-button (click)="iravercuentasytarjetasdeusuario()" color="secondary" expand="block">Ver Cuentas/Tarjetas Usuarios
+		</ion-button>
 
-    <ion-button (click)="iraadministrarpromociones()" fill="outline" expand="block">Administrar Promociones</ion-button>
-    <br>
-    <ion-button (click)="iraamoduloscupones()" fill="outline" expand="block" color="secondary">Modulo
-      Cupones</ion-button>
-    <br>
-    <ion-button (click)="iraanuestrascuentas()" expand="block" color="success">Cuentas Bancarias</ion-button>
+		<ion-button (click)="iraadministrarpromociones()" fill="outline" expand="block">Administrar Promociones</ion-button>
+		<br>
+		<ion-button (click)="iraamoduloscupones()" fill="outline" expand="block" color="secondary">Modulo Cupones
+		</ion-button>
+		<br>
+		<ion-button (click)="iraanuestrascuentas()" expand="block" color="success">Cuentas Bancarias</ion-button>
 
-    <ion-button (click)="iraadministrarmoderadores()" fill="outline" expand="block" color="success">Crear Cuenta
-      Moderador</ion-button>
-    <br>
-    <ion-button (click)="iraconfiguracionglobal()" color="secondary" expand="block">Config. Global</ion-button>
-    <br>
-    <div class="ion-text-center">
-      <ion-button (click)="cerrarsesion()" color="secondary" fill="outline">Salir</ion-button>
-    </div>
-  </section>
-  <section *ngIf="this.step=='versolicitudes'">
-    <div class="ion-text-center">
-      <ion-text>
-        <h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Solicitudes</h4>
-      </ion-text>
-      <span class="fondomagenta">Atentida</span> &nbsp;&nbsp;
-      <span style="color:white" class="fondomarron">Cancelada</span> &nbsp;&nbsp;
-      <span class="v2-badge v2-badge-bienvenida">B. Bienvenida</span>
-    </div>
-    <ion-card *ngFor="let cadasolicitud of solicitudesdeusuario">
-      <ion-card-header color="secondary">
+		<ion-button (click)="iraadministrarmoderadores()" fill="outline" expand="block" color="success">Crear Cuenta Moderador
+		</ion-button>
+		<br>
+		<ion-button (click)="iraconfiguracionglobal()" color="secondary" expand="block">Config. Global</ion-button>
+		<br>
+		<div class="ion-text-center">
+			<ion-button (click)="cerrarsesion()" color="secondary" fill="outline">Salir</ion-button>
+		</div>
+	</section>
+	<section *ngIf="this.step=='versolicitudes'">
+		<div class="ion-text-center">
+			<ion-text>
+				<h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Solicitudes</h4>
+			</ion-text>
+			<span class="fondomagenta">Atentida</span> &nbsp;&nbsp;
+			<span style="color:white" class="fondomarron">Cancelada</span> &nbsp;&nbsp;
+			<span class="v2-badge v2-badge-bienvenida">B. Bienvenida</span>
+		</div>
+		<ion-card *ngFor="let cadasolicitud of solicitudesdeusuario">
+			<ion-card-header color="secondary">
 
-        <a style="text-align:center; color:red;" *ngIf="cadasolicitud.credito_usado">Aplico:
+				<a style="text-align:center; color:red;" *ngIf="cadasolicitud.credito_usado">Aplico:
           {{cadasolicitud.credito_usado}} De Credito</a>
-        <br>
-        <ion-text *ngIf="cadasolicitud.quierecomprardolares=='si'">
-          <span class="v2-badge v2-badge-compro">Compro ${{cadasolicitud.recibe}}</span>
-          <span class="v2-badge v2-badge-enviar">Depositando S/. {{cadasolicitud.solesaenviar}}</span>
-          <span class="v2-badge v2-badge-deposito">A nuestro {{cadasolicitud.banco_que_envia}}</span>
-          <span class="v2-badge v2-badge-investrealperucambio">P/Venta: S/{{cadasolicitud.ventainvestrealperu}}</span>
-          <span class="v2-badge v2-badge-numero">OP Nº {{cadasolicitud.id}}</span>
-          <span class="v2-badge v2-badge-bienvenida"
-            *ngIf="cadasolicitud.quierecomprardolares=='si'&&cadasolicitud.monto_bienvenida_soles>0">+$
+				<br>
+				<ion-text *ngIf="cadasolicitud.quierecomprardolares=='si'">
+					<span class="v2-badge v2-badge-compro">Compro ${{cadasolicitud.recibe}}</span>
+					<span class="v2-badge v2-badge-enviar">Depositando S/. {{cadasolicitud.solesaenviar}}</span>
+					<span class="v2-badge v2-badge-deposito">A nuestro {{cadasolicitud.banco_que_envia}}</span>
+					<span class="v2-badge v2-badge-investrealperucambio">P/Venta: S/{{cadasolicitud.ventainvestrealperu}}</span>
+					<span class="v2-badge v2-badge-numero">OP Nº {{cadasolicitud.id}}</span>
+					<span class="v2-badge v2-badge-bienvenida" *ngIf="cadasolicitud.quierecomprardolares=='si'&&cadasolicitud.monto_bienvenida_soles>0">+$
             {{cadasolicitud.monto_bienvenida_soles}}</span>
 
-          <strong>Email:</strong>{{cadasolicitud.email_user}}
-          <span (click)="mostrardetallescupon=true" *ngIf="cadasolicitud.cupon_aplicado!='no'"
-            class="v2-badge v2-badge-usocupon">USO CUPON <sub style=""> Ver</sub></span>
-          <strong>Celular:</strong>{{cadasolicitud.celular_user}}
-          {{cadasolicitud.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10' }}
-        </ion-text>
-        <div (click)="mostrardetallescupon=false" *ngIf="cadasolicitud.cupon_aplicado!='no'&&mostrardetallescupon==true"
-          style="background-color:#e4ff7a" class="ion-text-center">
-          <span class="v2-badge v2-badge-compro">{{cadasolicitud.cupon.codigo_de_cupon}}</span>
-          <span class="v2-badge v2-badge-enviar">{{cadasolicitud.cupon.soles_a_sumar_dolares}}</span>
-          <span class="v2-badge v2-badge-numero">{{cadasolicitud.cupon.soles_a_sumar_soles}}</span>
-        </div>
-        <ion-text *ngIf="cadasolicitud.quierecomprardolares=='no'">
-          <span class="v2-badge v2-badge-compro">Quiere S/. {{cadasolicitud.recibe}}</span>
-          <span class="v2-badge v2-badge-enviar">Depositando $. {{cadasolicitud.dolaresaenviar}}</span>
-          <span class="v2-badge v2-badge-deposito">A nuestro {{cadasolicitud.banco_que_envia}}</span>
-          <span class="v2-badge v2-badge-investrealperucambio">P/Compra: S/{{cadasolicitud.comprainvestrealperu}}</span>
-          <span class="v2-badge v2-badge-numero">OP Nº {{cadasolicitud.id}}</span>
-          <span class="v2-badge v2-badge-bienvenida"
-            *ngIf="cadasolicitud.quierecomprardolares=='no'&&cadasolicitud.monto_bienvenida_dolares>0">+S/.
+					<strong>Email:</strong>{{cadasolicitud.email_user}}
+					<span (click)="mostrarocultardetallescuponfuncion()" *ngIf="cadasolicitud.cupon_aplicado!='no'" class="v2-badge v2-badge-usocupon">USO CUPON <sub style=""> Ver</sub></span>
+					<strong>Celular:</strong>{{cadasolicitud.celular_user}} {{cadasolicitud.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10' }}
+				</ion-text>
+				<div (click)="mostrardetallescupon=false" *ngIf="cadasolicitud.cupon_aplicado!='no'&&mostrardetallescupon==true" style="background-color:#e4ff7a" class="ion-text-center">
+					<span class="v2-badge v2-badge-compro">{{cadasolicitud.cupon.codigo_de_cupon}}</span>
+					<span class="v2-badge v2-badge-enviar">{{cadasolicitud.cupon.soles_a_sumar_dolares}}</span>
+					<span class="v2-badge v2-badge-numero">{{cadasolicitud.cupon.soles_a_sumar_soles}}</span>
+          <a>El usuario a aplicado un cupon que modifica la tasa de cambio, porfavor valdide que el supuesto aplique
+            es adecuado "Verdadero para este cliente"
+            y realice el deposito en base a esta nueva tasa de cambio preferencial
+          </a>
+				</div>
+				<ion-text *ngIf="cadasolicitud.quierecomprardolares=='no'">
+					<span class="v2-badge v2-badge-compro">Quiere S/. {{cadasolicitud.recibe}}</span>
+					<span class="v2-badge v2-badge-enviar">Depositando $. {{cadasolicitud.dolaresaenviar}}</span>
+					<span class="v2-badge v2-badge-deposito">A nuestro {{cadasolicitud.banco_que_envia}}</span>
+					<span class="v2-badge v2-badge-investrealperucambio">P/Compra: S/{{cadasolicitud.comprainvestrealperu}}</span>
+					<span class="v2-badge v2-badge-numero">OP Nº {{cadasolicitud.id}}</span>
+					<span class="v2-badge v2-badge-bienvenida" *ngIf="cadasolicitud.quierecomprardolares=='no'&&cadasolicitud.monto_bienvenida_dolares>0">+S/.
             {{cadasolicitud.monto_bienvenida_dolares}}</span>
-          <strong>Email:</strong>{{cadasolicitud.email_user}}
+					<strong>Email:</strong>{{cadasolicitud.email_user}}
 
 
-          <span (click)="mostrardetallescupon=true" *ngIf="cadasolicitud.cupon_aplicado!='no'"
-            class="v2-badge v2-badge-usocupon">USO CUPON <sub style=""> Ver</sub></span>
+					<span (click)="mostrarocultardetallescuponfuncion()" *ngIf="cadasolicitud.cupon_aplicado!='no'" class="v2-badge v2-badge-usocupon">USO CUPON <sub style=""> Ver</sub></span>
 
 
-          <strong>Celular:</strong>{{cadasolicitud.celular_user}}
-          {{cadasolicitud.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10' }}
-        </ion-text>
+					<strong>Celular:</strong>{{cadasolicitud.celular_user}} {{cadasolicitud.fecha_creacion | date: 'dd/MM/yy, hh:mm':'GMT-10' }}
+				</ion-text>
 
 
 
-      </ion-card-header>
-      <ion-card-content [class.fondomagenta]="cadasolicitud.estado==4" [class.fondomarron]="cadasolicitud.estado==25">
-        <ion-button (click)="VerImagen(cadasolicitud.new_url_image)" size="small" color="secondary"><ion-icon
-            color="primary" style="color:var(--ion-color-primary)" name="images"></ion-icon></ion-button>
-        <ion-button [disabled]="cadasolicitud.estado==25" (click)="cancelarla(cadasolicitud)" size="small"
-          color="danger">Cancelar</ion-button>
-        <ion-button [disabled]="cadasolicitud.estado==4" (click)="atender(cadasolicitud)"
-          size="small">Atendida</ion-button>
-        <ion-button [href]="mailto(cadasolicitud.email_user, 'Solicitud-Completada', cadasolicitud )" size="small"
-          color="warning">Avisar Email</ion-button>
-        <ion-button (click)="avisarwhatsappp(cadasolicitud)" size="small">Avisar WA</ion-button>
-        <ion-button (click)="vercuenta(cadasolicitud)"><ion-icon name="wallet"></ion-icon></ion-button>
-      </ion-card-content>
-    </ion-card>
-    <audio style="position:obsolute; width:0.01%; height:0.01%;" #audiox controls>
+			</ion-card-header>
+			<ion-card-content [class.fondomagenta]="cadasolicitud.estado==4" [class.fondomarron]="cadasolicitud.estado==25">
+				<ion-button (click)="VerImagen(cadasolicitud.new_url_image)" size="small" color="secondary">
+					<ion-icon color="primary" style="color:var(--ion-color-primary)" name="images"></ion-icon>
+				</ion-button>
+				<ion-button [disabled]="cadasolicitud.estado==25" (click)="cancelarla(cadasolicitud)" size="small" color="danger">Cancelar</ion-button>
+				<ion-button [disabled]="cadasolicitud.estado==4" (click)="atender(cadasolicitud)" size="small">Atendida</ion-button>
+				<ion-button [href]="mailto(cadasolicitud.email_user, 'Solicitud-Completada', cadasolicitud )" size="small" color="warning">Avisar Email</ion-button>
+				<ion-button (click)="avisarwhatsappp(cadasolicitud)" size="small">Avisar WA</ion-button>
+				<ion-button (click)="vercuenta(cadasolicitud)">
+					<ion-icon name="wallet"></ion-icon>
+				</ion-button>
+			</ion-card-content>
+		</ion-card>
+		<audio style="position:obsolute; width:0.01%; height:0.01%;" #audiox controls>
       <source src="https://css-tricks.com/examples/SoundOnHover/audio/beep.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
 
-  </section>
+	</section>
 
 
 
 
 
-  <section *ngIf="this.step=='administrarusuarios'">
-    <div class="ion-text-center">
-      <ion-text>
-        <h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Usuarios</h4>
-      </ion-text>
-    </div>
-    <ion-text><ion-button (click)="disminuirpaginausuario()" size="small"><ion-icon
-          name="arrow-back-outline"></ion-icon></ion-button>{{paguinaactualusuario +1}} | {{paguinaactualusuario
-      +10}}<ion-button (click)="aumentarpaginausuario()" size="small"><ion-icon
-          name="arrow-forward-outline"></ion-icon></ion-button></ion-text>
-    <section *ngFor="let cadausuario of cuentasdeusuario; let i = index">
-      <ion-card *ngIf="i>=paguinaactualusuario  && i<= paguinaactualusuario +9" style=" white-space:normal!important;">
-        <ion-card-header *ngIf="!cadausuario.lastname2" color="secondary">{{cadausuario.name}} {{cadausuario.lastname}}
-          <ion-button *ngIf="cadausuario.status=='inactivo'" (click)="activarusuario(cadausuario)" color="success"
-            size="medium">Activar</ion-button>
-          <ion-button *ngIf="cadausuario.status=='activo'" (click)="desactivarusuario(cadausuario)" color="danger"
-            size="medium">Desactivar</ion-button>
-        </ion-card-header>
-        <ion-card-header *ngIf="cadausuario.lastname2" color="secondary">{{cadausuario.name}} {{cadausuario.lastname}}
-          {{cadausuario.lastname2}}
-          <ion-button *ngIf="cadausuario.status=='inactivo'" (click)="activarusuario(cadausuario)" color="success"
-            size="medium">Activar</ion-button>
-          <ion-button *ngIf="cadausuario.status=='activo'" (click)="desactivarusuario(cadausuario)" color="danger"
-            size="medium">Desactivar</ion-button>
-        </ion-card-header>
-        <ion-card-content style="margin:0px!important;" no-padding class="ion-no-padding">
-          <ion-row>
-            <ion-col size-md="10" size-lg="11" size-xs="9.5">
-              <ion-list style="margin:0px!important;" no-padding class="ion-no-padding">
-                <ion-item style="margin:0px!important;" no-padding class="ion-no-padding">
-                  <ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
-                    <h6 style="margin:0pximportant;" no-padding class="ion-no-padding">{{cadausuario.celular}}</h6>
-                  </ion-text>
-                </ion-item>
-                <ion-item style="margin:0px!important;" no-padding class="ion-no-padding">
-                  <ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
-                    <h6 no-padding class="ion-no-padding">{{cadausuario.email}}</h6>
-                  </ion-text>
-                </ion-item>
-                <ion-item *ngIf="cadausuario.es_empresa!=0" style="margin:0px!important;" no-padding
-                  class="ion-no-padding">
-                  <ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
-                    <h6 no-padding class="ion-no-padding">Es Empresa</h6>
-                  </ion-text>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-            <ion-col size-md="2" size-lg="1" size-xs="2.5">
-              <ion-fab-button (click)="abrir_modal_detalles_usuario(cadausuario)"><ion-icon
-                  name="eye"></ion-icon></ion-fab-button>
-              <ion-modal class="detalles_operacion_completa" #modal_detalles_completos_usuario>
-                <ng-template>
-                  <ion-content>
-                    <ion-toolbar>
-                      <ion-title *ngIf="dataparaelmodal_usuario&&dataparaelmodal_usuario.id_publico">Identificador:
-                        {{this.dataparaelmodal_usuario.id_publico}}</ion-title>
-                      <!-- <ion-title>Modal</ion-title> -->
-                      <ion-buttons slot="end">
-                        <ion-button color="light" (click)="cerrar_modal_detalles_usuario()">Cerrar</ion-button>
-                      </ion-buttons>
-                    </ion-toolbar>
-                    <ion-list>
-                      <ion-item>
-                        <ion-text>email: {{dataparaelmodal_usuario.email}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>Clave: {{dataparaelmodal_usuario.password}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text
-                          *ngIf="dataparaelmodal_usuario.referidor">Referidor:{{dataparaelmodal_usuario.referidor}}</ion-text>
-                        <ion-text *ngIf="!dataparaelmodal_usuario.referidor">Referidor: No Tiene</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>Creado El: Creado el:{{dataparaelmodal_usuario.create_date | date: 'dd/MM/yy,
-                          hh:mm':'GMT-10' }}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>Nombre: {{dataparaelmodal_usuario.name}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>1er Ap: {{dataparaelmodal_usuario.lastname}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text *ngIf="dataparaelmodal_usuario.lastname2">2DO Ape:
-                          {{dataparaelmodal_usuario.lastname2}}</ion-text>
-                        <ion-text *ngIf="!dataparaelmodal_usuario.lastname2">2DO Ape: No tiene</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>celular: {{dataparaelmodal_usuario.celular}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text *ngIf="dataparaelmodal_usuario.tipo_documento==1">tipo_documento: DNI</ion-text>
-                        <ion-text *ngIf="dataparaelmodal_usuario.tipo_documento==2">tipo_documento: Carnet de
-                          extranjería</ion-text>
-                        <ion-text *ngIf="dataparaelmodal_usuario.tipo_documento==3">tipo_documento: Pasaporte</ion-text>
-                        <ion-text *ngIf="dataparaelmodal_usuario.tipo_documento==4">tipo_documento: P.T.P</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>numero_documento: Doc:{{dataparaelmodal_usuario.numero_documento}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>id_publico: {{dataparaelmodal_usuario.id_publico}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>Dirr:
-                          {{dataparaelmodal_usuario.region}}{{dataparaelmodal_usuario.provincia}}{{dataparaelmodal_usuario.distrito}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text *ngIf="dataparaelmodal_usuario.es_empresa=='0'">Es empresa: NO</ion-text>
-                        <ion-text *ngIf="dataparaelmodal_usuario.es_empresa=='1'">Es empresa: SI</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>fecha_nacimiento: {{dataparaelmodal_usuario.fecha_nacimiento}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>genero: {{dataparaelmodal_usuario.genero}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>politicamente_expuesta: {{dataparaelmodal_usuario.politicamente_expuesta}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>nombre_politico: {{dataparaelmodal_usuario.nombre_politico}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>institucion_politica: {{dataparaelmodal_usuario.institucion_politica}}</ion-text>
-                      </ion-item>
-                      <ion-item>
-                        <ion-text>cargo_politico: {{dataparaelmodal_usuario.cargo_politico}}</ion-text>
-                      </ion-item>
-                    </ion-list>
-                  </ion-content>
-                </ng-template>
-              </ion-modal>
-            </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
-    </section>
-  </section>
+	<section *ngIf="this.step=='administrarusuarios'">
+		<div class="ion-text-center">
+			<ion-text>
+				<h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Usuarios</h4>
+			</ion-text>
+		</div>
+		<ion-text>
+			<ion-button (click)="disminuirpaginausuario()" size="small">
+				<ion-icon name="arrow-back-outline"></ion-icon>
+			</ion-button>{{paguinaactualusuario +1}} | {{paguinaactualusuario +10}}
+			<ion-button (click)="aumentarpaginausuario()" size="small">
+				<ion-icon name="arrow-forward-outline"></ion-icon>
+			</ion-button>
+		</ion-text>
+		<section *ngFor="let cadausuario of cuentasdeusuario; let i = index">
+			<ion-card *ngIf="i>=paguinaactualusuario  && i<= paguinaactualusuario +9" style=" white-space:normal!important;">
+				<ion-card-header *ngIf="!cadausuario.lastname2" color="secondary">{{cadausuario.name}} {{cadausuario.lastname}}
+					<ion-button *ngIf="cadausuario.status=='inactivo'" (click)="activarusuario(cadausuario)" color="success" size="medium">Activar</ion-button>
+					<ion-button *ngIf="cadausuario.status=='activo'" (click)="desactivarusuario(cadausuario)" color="danger" size="medium">Desactivar</ion-button>
+				</ion-card-header>
+				<ion-card-header *ngIf="cadausuario.lastname2" color="secondary">{{cadausuario.name}} {{cadausuario.lastname}} {{cadausuario.lastname2}}
+					<ion-button *ngIf="cadausuario.status=='inactivo'" (click)="activarusuario(cadausuario)" color="success" size="medium">Activar</ion-button>
+					<ion-button *ngIf="cadausuario.status=='activo'" (click)="desactivarusuario(cadausuario)" color="danger" size="medium">Desactivar</ion-button>
+				</ion-card-header>
+				<ion-card-content style="margin:0px!important;" no-padding class="ion-no-padding">
+					<ion-row>
+						<ion-col size-md="10" size-lg="11" size-xs="9.5">
+							<ion-list style="margin:0px!important;" no-padding class="ion-no-padding">
+								<ion-item style="margin:0px!important;" no-padding class="ion-no-padding">
+									<ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
+										<h6 style="margin:0pximportant;" no-padding class="ion-no-padding">{{cadausuario.celular}}</h6>
+									</ion-text>
+								</ion-item>
+								<ion-item style="margin:0px!important;" no-padding class="ion-no-padding">
+									<ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
+										<h6 no-padding class="ion-no-padding">{{cadausuario.email}}</h6>
+									</ion-text>
+								</ion-item>
+								<ion-item *ngIf="cadausuario.es_empresa!=0" style="margin:0px!important;" no-padding class="ion-no-padding">
+									<ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
+										<h6 no-padding class="ion-no-padding">Es Empresa</h6>
+									</ion-text>
+								</ion-item>
+							</ion-list>
+						</ion-col>
+						<ion-col size-md="2" size-lg="1" size-xs="2.5">
+							<ion-fab-button (click)="abrir_modal_detalles_usuario(cadausuario)">
+								<ion-icon name="eye"></ion-icon>
+							</ion-fab-button>
+							<ion-modal class="detalles_operacion_completa" #modal_detalles_completos_usuario>
+								<ng-template>
+									<ion-content>
+										<ion-toolbar>
+											<ion-title *ngIf="dataparaelmodal_usuario&&dataparaelmodal_usuario.id_publico">Identificador: {{this.dataparaelmodal_usuario.id_publico}}
+											</ion-title>
+											<!-- <ion-title>Modal</ion-title> -->
+											<ion-buttons slot="end">
+												<ion-button color="light" (click)="cerrar_modal_detalles_usuario()">Cerrar</ion-button>
+											</ion-buttons>
+										</ion-toolbar>
+										<ion-list>
+											<ion-item>
+												<ion-text>email: {{dataparaelmodal_usuario.email}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>Clave: {{dataparaelmodal_usuario.password}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text *ngIf="dataparaelmodal_usuario.referidor">Referidor:{{dataparaelmodal_usuario.referidor}}</ion-text>
+												<ion-text *ngIf="!dataparaelmodal_usuario.referidor">Referidor: No Tiene</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>Creado El: Creado el:{{dataparaelmodal_usuario.create_date | date: 'dd/MM/yy, hh:mm':'GMT-10' }}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>Nombre: {{dataparaelmodal_usuario.name}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>1er Ap: {{dataparaelmodal_usuario.lastname}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text *ngIf="dataparaelmodal_usuario.lastname2">2DO Ape: {{dataparaelmodal_usuario.lastname2}}
+												</ion-text>
+												<ion-text *ngIf="!dataparaelmodal_usuario.lastname2">2DO Ape: No tiene</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>celular: {{dataparaelmodal_usuario.celular}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text *ngIf="dataparaelmodal_usuario.tipo_documento==1">tipo_documento: DNI</ion-text>
+												<ion-text *ngIf="dataparaelmodal_usuario.tipo_documento==2">tipo_documento: Carnet de extranjería
+												</ion-text>
+												<ion-text *ngIf="dataparaelmodal_usuario.tipo_documento==3">tipo_documento: Pasaporte</ion-text>
+												<ion-text *ngIf="dataparaelmodal_usuario.tipo_documento==4">tipo_documento: P.T.P</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>numero_documento: Doc:{{dataparaelmodal_usuario.numero_documento}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>id_publico: {{dataparaelmodal_usuario.id_publico}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>Dirr: {{dataparaelmodal_usuario.region}}{{dataparaelmodal_usuario.provincia}}{{dataparaelmodal_usuario.distrito}}
+												</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text *ngIf="dataparaelmodal_usuario.es_empresa=='0'">Es empresa: NO</ion-text>
+												<ion-text *ngIf="dataparaelmodal_usuario.es_empresa=='1'">Es empresa: SI</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>fecha_nacimiento: {{dataparaelmodal_usuario.fecha_nacimiento}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>genero: {{dataparaelmodal_usuario.genero}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>politicamente_expuesta: {{dataparaelmodal_usuario.politicamente_expuesta}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>nombre_politico: {{dataparaelmodal_usuario.nombre_politico}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>institucion_politica: {{dataparaelmodal_usuario.institucion_politica}}</ion-text>
+											</ion-item>
+											<ion-item>
+												<ion-text>cargo_politico: {{dataparaelmodal_usuario.cargo_politico}}</ion-text>
+											</ion-item>
+										</ion-list>
+									</ion-content>
+								</ng-template>
+							</ion-modal>
+						</ion-col>
+					</ion-row>
+				</ion-card-content>
+			</ion-card>
+		</section>
+	</section>
 
 
 
 
 
-  <section *ngIf="this.step=='administrardivisas'">
-    <div class="ion-text-center">
-      <ion-text>
-        <h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Divisas CAMBIAR</h4>
-      </ion-text>
+	<section *ngIf="this.step=='administrardivisas'">
+		<div class="ion-text-center">
+			<ion-text>
+				<h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Administrar Divisas CAMBIAR</h4>
+			</ion-text>
 
-      <section *ngIf="!vistaverhistorialdecambio">
+			<section *ngIf="!vistaverhistorialdecambio">
 
-        <ion-card>
-          <ion-card-header color="secondary">
-            <div class="ion-text-center">
-              <ion-button (click)="ver_historial_de_cambios()">Ver Historial de cambios</ion-button>
-            </div>
-          </ion-card-header>
-        </ion-card>
+				<ion-card>
+					<ion-card-header color="secondary">
+						<div class="ion-text-center">
+							<ion-button (click)="ver_historial_de_cambios()">Ver Historial de cambios</ion-button>
+						</div>
+					</ion-card-header>
+				</ion-card>
 
-        <ion-card>
-          <div>
-            <ion-button (click)="aumentarcompra()">+0.01</ion-button> &nbsp; <ion-button
-              (click)="disminuircompra()">-0.01</ion-button>
-          </div>
-          <ion-row>
-            <ion-col size="8">
-              <ion-item lines="none">
-                <ion-label position="floating">Aumento Compra</ion-label>
-                <ion-input readonly="true" ngModel="{{aumento_compra | number:'1.3-3'}}"></ion-input> &nbsp;
-                {{comprainvestrealperu | number:'1.3-3'}}
-              </ion-item>
-            </ion-col>
-            <ion-col size="4">
-              <ion-button (click)="actualizaraumentocompra()">
-                <ion-icon item-right name="save"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-          <div class="ion-text-center">
-            <ion-text>
-              <h4><ion-icon name="save-outline"></ion-icon>:{{aumento_compra_guardado | number:'1.3-3'}}</h4>
-            </ion-text>
-          </div>
-        </ion-card>
-        <br><br><ion-item-divider></ion-item-divider><br><br>
-        <ion-card>
-          <div>
-            <ion-button (click)="aumentarventa()">+0.01</ion-button> &nbsp; <ion-button
-              (click)="disminuirventa()">-0.01</ion-button>
-          </div>
-          <ion-row>
-            <ion-col size="8">
-              <ion-item lines="none">
-                <ion-label position="floating">Aumento Venta</ion-label>
-                <ion-input readonly="true"
-                  ngModel="{{aumento_venta | number:'1.3-3'}}"></ion-input>&nbsp;{{ventainvestrealperu |
-                number:'1.3-3'}}
-              </ion-item>
-            </ion-col>
-            <ion-col size="4">
-              <ion-button (click)="actualizaraumentoventa()">
-                <ion-icon item-right name="save"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-          <div class="ion-text-center">
-            <ion-text>
-              <h4><ion-icon name="save-outline"></ion-icon>:{{aumento_venta_guardado | number:'1.3-3'}}</h4>
-            </ion-text>
-          </div>
-        </ion-card>
-      </section>
-      <section *ngIf="vistaverhistorialdecambio">
-        <div class="ion-text-center">
-          <ion-button (click)="cambiar_vista_ver_historial_a_verdadero()">ADMINISTRAR</ion-button>
-          <p></p>
-          <div class="div_tabla_historial_de_cambios">
+				<ion-card>
+					<div>
+						<ion-button (click)="aumentarcompra()">+0.01</ion-button> &nbsp;
+						<ion-button (click)="disminuircompra()">-0.01</ion-button>
+					</div>
+					<ion-row>
+						<ion-col size="8">
+							<ion-item lines="none">
+								<ion-label position="floating">Aumento Compra</ion-label>
+								<ion-input readonly="true" ngModel="{{aumento_compra | number:'1.3-3'}}"></ion-input> &nbsp; {{comprainvestrealperu | number:'1.3-3'}}
+							</ion-item>
+						</ion-col>
+						<ion-col size="4">
+							<ion-button (click)="actualizaraumentocompra()">
+								<ion-icon item-right name="save"></ion-icon>
+							</ion-button>
+						</ion-col>
+					</ion-row>
+					<div class="ion-text-center">
+						<ion-text>
+							<h4><ion-icon name="save-outline"></ion-icon>:{{aumento_compra_guardado | number:'1.3-3'}}</h4>
+						</ion-text>
+					</div>
+				</ion-card>
+				<br><br>
+				<ion-item-divider></ion-item-divider><br><br>
+				<ion-card>
+					<div>
+						<ion-button (click)="aumentarventa()">+0.01</ion-button> &nbsp;
+						<ion-button (click)="disminuirventa()">-0.01</ion-button>
+					</div>
+					<ion-row>
+						<ion-col size="8">
+							<ion-item lines="none">
+								<ion-label position="floating">Aumento Venta</ion-label>
+								<ion-input readonly="true" ngModel="{{aumento_venta | number:'1.3-3'}}"></ion-input>&nbsp;{{ventainvestrealperu | number:'1.3-3'}}
+							</ion-item>
+						</ion-col>
+						<ion-col size="4">
+							<ion-button (click)="actualizaraumentoventa()">
+								<ion-icon item-right name="save"></ion-icon>
+							</ion-button>
+						</ion-col>
+					</ion-row>
+					<div class="ion-text-center">
+						<ion-text>
+							<h4><ion-icon name="save-outline"></ion-icon>:{{aumento_venta_guardado | number:'1.3-3'}}</h4>
+						</ion-text>
+					</div>
+				</ion-card>
+			</section>
+			<section *ngIf="vistaverhistorialdecambio">
+				<div class="ion-text-center">
+					<ion-button (click)="cambiar_vista_ver_historial_a_verdadero()">ADMINISTRAR</ion-button>
+					<p></p>
+					<div class="div_tabla_historial_de_cambios">
 
-            <div class="container">
-              <h1>Historial de cambio.</h1>
-              <table class="rwd-table">
-                <tbody>
-                  <tr>
-                    <th>aumento<br>compra</th>
-                    <th>aumento<br>venta</th>
-                    <th>compra<br>sunarp</th>
-                    <th>venta<br>sunarp</th>
-                    <th>Modif.<br>Por</th>
-                    <th>Tipo<br>Cambio</th>
-                    <th>Fecha:</th>
-                  </tr>
-                  <tr *ngFor="let cadahistoria of historial_de_cambios_por_admin">
-                    <td data-th="Aumento Compra">
-                      {{cadahistoria.aumento_compra}}
-                    </td>
-                    <td data-th="Aumento Venta">
-                      {{cadahistoria.aumento_venta}}
-                    </td>
-                    <td data-th="Sunarp Compra">
-                      {{cadahistoria.compra_sunarp}}
-                    </td>
-                    <td data-th="Sunarp Venta">
-                      {{cadahistoria.venta_sunarp}}
-                    </td>
-                    <td data-th="Modif. Por:">
-                      {{cadahistoria.modificado_por}}
-                    </td>
-                    <td data-th="Tipo Cambio">
-                      {{cadahistoria.tipo_de_modificacion}}
-                    </td>
-                    <td data-th="Fecha:">
-                      {{cadahistoria.fecha_autogenerada | date:"dd/mm/yyyy h:m":'GMT-10'}}
+						<div class="container">
+							<h1>Historial de cambio.</h1>
+							<table class="rwd-table">
+								<tbody>
+									<tr>
+										<th>aumento<br>compra</th>
+										<th>aumento<br>venta</th>
+										<th>compra<br>sunarp</th>
+										<th>venta<br>sunarp</th>
+										<th>Modif.<br>Por</th>
+										<th>Tipo<br>Cambio</th>
+										<th>Fecha:</th>
+									</tr>
+									<tr *ngFor="let cadahistoria of historial_de_cambios_por_admin">
+										<td data-th="Aumento Compra">
+											{{cadahistoria.aumento_compra}}
+										</td>
+										<td data-th="Aumento Venta">
+											{{cadahistoria.aumento_venta}}
+										</td>
+										<td data-th="Sunarp Compra">
+											{{cadahistoria.compra_sunarp}}
+										</td>
+										<td data-th="Sunarp Venta">
+											{{cadahistoria.venta_sunarp}}
+										</td>
+										<td data-th="Modif. Por:">
+											{{cadahistoria.modificado_por}}
+										</td>
+										<td data-th="Tipo Cambio">
+											{{cadahistoria.tipo_de_modificacion}}
+										</td>
+										<td data-th="Fecha:">
+											{{cadahistoria.fecha_autogenerada | date:"dd/mm/yyyy h:m":'GMT-10'}}
 
-                    </td>
-                  </tr>
+										</td>
+									</tr>
 
-                </tbody>
-              </table>
-              <h3>Historial de cambios</h3>
-            </div>
-            <div class="container">
+								</tbody>
+							</table>
+							<h3>Historial de cambios</h3>
+						</div>
+						<div class="container">
 
 
-            </div>
-          </div>
-        </div>
+						</div>
+					</div>
+				</div>
 
-      </section>
-    </div>
-  </section>
-  <section>
-  </section>
+			</section>
+		</div>
+	</section>
+	<section>
+	</section>
 
 
-  <section *ngIf="this.step=='vercuentasytarjetasdeusuario'">
-    <div class="ion-text-center">
-      <ion-text>
-        <h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Ver cuentas y tarjetas de usuarios
+	<section *ngIf="this.step=='vercuentasytarjetasdeusuario'">
+		<div class="ion-text-center">
+			<ion-text>
+				<h4><ion-button (click)="stepinicio()" size="small">volver</ion-button>&nbsp;Ver cuentas y tarjetas de usuarios
         </h4>
-      </ion-text>
-    </div>
-    <ion-text><ion-button (click)="disminuirpaginausuario()" size="small"><ion-icon
-          name="arrow-back-outline"></ion-icon></ion-button>{{paguinaactualusuario +1}} | {{paguinaactualusuario
-      +10}}<ion-button (click)="aumentarpaginausuario()" size="small"><ion-icon
-          name="arrow-forward-outline"></ion-icon></ion-button></ion-text>
-    <section *ngFor="let cadausuario of cuentasdeusuario; let i = index">
-      <ion-card *ngIf="i>=paguinaactualusuario  && i<= paguinaactualusuario +9" style=" white-space:normal!important;">
-        <ion-card-header *ngIf="!cadausuario.lastname2" color="secondary">{{cadausuario.name}} {{cadausuario.lastname}}
-          <!-- <ion-button *ngIf="cadausuario.status=='inactivo'" (click)="activarusuario(cadausuario)" color="success"
+			</ion-text>
+		</div>
+		<ion-text>
+			<ion-button (click)="disminuirpaginausuario()" size="small">
+				<ion-icon name="arrow-back-outline"></ion-icon>
+			</ion-button>{{paguinaactualusuario +1}} | {{paguinaactualusuario +10}}
+			<ion-button (click)="aumentarpaginausuario()" size="small">
+				<ion-icon name="arrow-forward-outline"></ion-icon>
+			</ion-button>
+		</ion-text>
+		<section *ngFor="let cadausuario of cuentasdeusuario; let i = index">
+			<ion-card *ngIf="i>=paguinaactualusuario  && i<= paguinaactualusuario +9" style=" white-space:normal!important;">
+				<ion-card-header *ngIf="!cadausuario.lastname2" color="secondary">{{cadausuario.name}} {{cadausuario.lastname}}
+					<!-- <ion-button *ngIf="cadausuario.status=='inactivo'" (click)="activarusuario(cadausuario)" color="success"
             size="medium">Activar</ion-button>
           <ion-button *ngIf="cadausuario.status=='activo'" (click)="desactivarusuario(cadausuario)" color="danger"
             size="medium">Desactivar</ion-button> -->
-        </ion-card-header>
-        <ion-card-header *ngIf="cadausuario.lastname2" color="secondary">{{cadausuario.name}} {{cadausuario.lastname}}
-          {{cadausuario.lastname2}}
-          <!-- <ion-button *ngIf="cadausuario.status=='inactivo'" (click)="activarusuario(cadausuario)" color="success"
+				</ion-card-header>
+				<ion-card-header *ngIf="cadausuario.lastname2" color="secondary">{{cadausuario.name}} {{cadausuario.lastname}} {{cadausuario.lastname2}}
+					<!-- <ion-button *ngIf="cadausuario.status=='inactivo'" (click)="activarusuario(cadausuario)" color="success"
             size="medium">Activar</ion-button>
           <ion-button *ngIf="cadausuario.status=='activo'" (click)="desactivarusuario(cadausuario)" color="danger"
             size="medium">Desactivar</ion-button> -->
-        </ion-card-header>
-        <ion-card-content style="margin:0px!important;" no-padding class="ion-no-padding">
-          <ion-row>
-            <ion-col size-md="10" size-lg="11" size-xs="9.5">
-              <ion-list style="margin:0px!important;" no-padding class="ion-no-padding">
-                <ion-item style="margin:0px!important;" no-padding class="ion-no-padding">
-                  <ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
-                    <h6 style="margin:0pximportant;" no-padding class="ion-no-padding">{{cadausuario.celular}}</h6>
-                  </ion-text>
-                </ion-item>
-                <ion-item style="margin:0px!important;" no-padding class="ion-no-padding">
-                  <ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
-                    <h6 no-padding class="ion-no-padding">{{cadausuario.email}}</h6>
-                  </ion-text>
-                </ion-item>
-                <ion-item *ngIf="cadausuario.es_empresa!=0" style="margin:0px!important;" no-padding
-                  class="ion-no-padding">
-                  <ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
-                    <h6 no-padding class="ion-no-padding">Es Empresa</h6>
-                  </ion-text>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-            <ion-col size-md="2" size-lg="1" size-xs="2.5">
-              <ion-fab-button (click)="abrir_modal_detalles_cuentas_y_tarjetas(cadausuario)"><ion-icon
-                  name="eye"></ion-icon></ion-fab-button>
-              <ion-modal class="detalles_cuentas_y_tarjetas_usuario" #detalles_cuentas_y_tarjetas_usuario>
-                <ng-template>
-                  <ion-content *ngIf="dataparaelmodal_cuentas_y_tarjetas">
-                    <ion-toolbar>
-                      <ion-title>Cuentas y tarjetas</ion-title>
-                      <!-- <ion-title>Modal</ion-title> -->
-                      <ion-fab-button color="light"
-                        (click)="cerrar_modal_detalles_cuentas_y_tarjetas()">X</ion-fab-button>
-                    </ion-toolbar>
-                    <section *ngIf="dataparaelmodal_cuentas_y_tarjetas[0]">
-                      <ion-text>
-                        <h1>Cuentas</h1>
-                      </ion-text>
-                      <section *ngIf="dataparaelmodal_cuentas_y_tarjetas[0].length<1">
-                        <ion-text>
-                          <h3>No Tiene</h3>
-                        </ion-text>
-                      </section>
-                      <ion-grid *ngFor="let cadacuenta of dataparaelmodal_cuentas_y_tarjetas[0]" class="ion-no-padding"
-                        no-padding>
-                        <ion-row style="text-align:left; background-color: var(--ion-color-light);"
-                          class="ion-no-padding" no-padding>
+				</ion-card-header>
+				<ion-card-content style="margin:0px!important;" no-padding class="ion-no-padding">
+					<ion-row>
+						<ion-col size-md="10" size-lg="11" size-xs="9.5">
+							<ion-list style="margin:0px!important;" no-padding class="ion-no-padding">
+								<ion-item style="margin:0px!important;" no-padding class="ion-no-padding">
+									<ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
+										<h6 style="margin:0pximportant;" no-padding class="ion-no-padding">{{cadausuario.celular}}</h6>
+									</ion-text>
+								</ion-item>
+								<ion-item style="margin:0px!important;" no-padding class="ion-no-padding">
+									<ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
+										<h6 no-padding class="ion-no-padding">{{cadausuario.email}}</h6>
+									</ion-text>
+								</ion-item>
+								<ion-item *ngIf="cadausuario.es_empresa!=0" style="margin:0px!important;" no-padding class="ion-no-padding">
+									<ion-text style="margin:0px!important;" no-padding class="ion-no-padding">
+										<h6 no-padding class="ion-no-padding">Es Empresa</h6>
+									</ion-text>
+								</ion-item>
+							</ion-list>
+						</ion-col>
+						<ion-col size-md="2" size-lg="1" size-xs="2.5">
+							<ion-fab-button (click)="abrir_modal_detalles_cuentas_y_tarjetas(cadausuario)">
+								<ion-icon name="eye"></ion-icon>
+							</ion-fab-button>
+							<ion-modal class="detalles_cuentas_y_tarjetas_usuario" #detalles_cuentas_y_tarjetas_usuario>
+								<ng-template>
+									<ion-content *ngIf="dataparaelmodal_cuentas_y_tarjetas">
+										<ion-toolbar>
+											<ion-title>Cuentas y tarjetas</ion-title>
+											<!-- <ion-title>Modal</ion-title> -->
+											<ion-fab-button color="light" (click)="cerrar_modal_detalles_cuentas_y_tarjetas()">X</ion-fab-button>
+										</ion-toolbar>
+										<section *ngIf="dataparaelmodal_cuentas_y_tarjetas[0]">
+											<ion-text>
+												<h1>Cuentas</h1>
+											</ion-text>
+											<section *ngIf="dataparaelmodal_cuentas_y_tarjetas[0].length<1">
+												<ion-text>
+													<h3>No Tiene</h3>
+												</ion-text>
+											</section>
+											<ion-grid *ngFor="let cadacuenta of dataparaelmodal_cuentas_y_tarjetas[0]" class="ion-no-padding" no-padding>
+												<ion-row style="text-align:left; background-color: var(--ion-color-light);" class="ion-no-padding" no-padding>
 
-                          <ion-col size="12" *ngIf="cadacuenta.apodo_cuenta">
-                            <strong>Apodo y Beneficiario:</strong> {{cadacuenta.apodo_cuenta}}<br>
-                            {{cadacuenta.titular_cuenta}}
-                          </ion-col>
-                          <ion-col size="12" *ngIf="!cadacuenta.apodo_cuenta">
-                            <strong>Beneficiario:</strong> {{cadacuenta.titular_cuenta}}
-                          </ion-col>
-                          <ion-col size="12">
-                            <strong>Banco:</strong> {{cadacuenta.banco_cuenta}}
-                          </ion-col>
-                          <ion-col size="12">
-                            <strong>Tipo y numero: </strong>Cuenta Ahorro: {{cadacuenta.numero_cuenta}}
-                          </ion-col>
-                          <ion-col size="12">
-                            <strong>Moneda: </strong>{{cadacuenta.moneda_cuenta}}
-                          </ion-col>
-                          <ion-col size="12">
-                            <ion-icon style="color: var(--ion-color-primary);" name="create"></ion-icon>
-                          </ion-col>
-                          <ion-col size="12">
-                            <ion-icon style="color: var(--ion-color-primary);" name="trash-bin"></ion-icon>
-                          </ion-col>
+													<ion-col size="12" *ngIf="cadacuenta.apodo_cuenta">
+														<strong>Apodo y Beneficiario:</strong> {{cadacuenta.apodo_cuenta}}<br> {{cadacuenta.titular_cuenta}}
+													</ion-col>
+													<ion-col size="12" *ngIf="!cadacuenta.apodo_cuenta">
+														<strong>Beneficiario:</strong> {{cadacuenta.titular_cuenta}}
+													</ion-col>
+													<ion-col size="12">
+														<strong>Banco:</strong> {{cadacuenta.banco_cuenta}}
+													</ion-col>
+													<ion-col size="12">
+														<strong>Tipo y numero: </strong>Cuenta Ahorro: {{cadacuenta.numero_cuenta}}
+													</ion-col>
+													<ion-col size="12">
+														<strong>Moneda: </strong>{{cadacuenta.moneda_cuenta}}
+													</ion-col>
+													<ion-col size="12">
+														<ion-icon style="color: var(--ion-color-primary);" name="create"></ion-icon>
+													</ion-col>
+													<ion-col size="12">
+														<ion-icon style="color: var(--ion-color-primary);" name="trash-bin"></ion-icon>
+													</ion-col>
 
-                        </ion-row>
+												</ion-row>
 
-                        <ion-item-divider style="background-color:white;"></ion-item-divider>
+												<ion-item-divider style="background-color:white;"></ion-item-divider>
 
-                      </ion-grid>
+											</ion-grid>
 
-                    </section>
-                    <section *ngIf="dataparaelmodal_cuentas_y_tarjetas[1]">
-                      <ion-text>
-                        <h1>Tarjetas:</h1>
-                      </ion-text>
-                      <section *ngIf="dataparaelmodal_cuentas_y_tarjetas[1].length<1">
-                        <ion-text>
-                          <h3>No Tiene</h3>
-                        </ion-text>
-                      </section>
-                      <ion-grid *ngFor="let cadatarjeta of dataparaelmodal_cuentas_y_tarjetas[1]" class="ion-no-padding"
-                        no-padding>
-                        <ion-row style="text-align:left; background-color: var(--ion-color-light);"
-                          class="ion-no-padding" no-padding>
+										</section>
+										<section *ngIf="dataparaelmodal_cuentas_y_tarjetas[1]">
+											<ion-text>
+												<h1>Tarjetas:</h1>
+											</ion-text>
+											<section *ngIf="dataparaelmodal_cuentas_y_tarjetas[1].length<1">
+												<ion-text>
+													<h3>No Tiene</h3>
+												</ion-text>
+											</section>
+											<ion-grid *ngFor="let cadatarjeta of dataparaelmodal_cuentas_y_tarjetas[1]" class="ion-no-padding" no-padding>
+												<ion-row style="text-align:left; background-color: var(--ion-color-light);" class="ion-no-padding" no-padding>
 
-                          <ion-col size="12" *ngIf="cadatarjeta.apodo_tarjeta">
-                            <strong>Apodo y Beneficiario:</strong> {{cadatarjeta.apodo_tarjeta}}<br>
-                            {{cadatarjeta.titular_tarjeta}}
-                          </ion-col>
-                          <ion-col size="12" *ngIf="!cadatarjeta.apodo_tarjeta">
-                            <strong>Beneficiario:</strong> {{cadatarjeta.titular_tarjeta}}
-                          </ion-col>
-                          <ion-col size="12">
-                            <strong>Banco:</strong> {{cadatarjeta.banco_tarjeta}}
-                          </ion-col>
-                          <ion-col size="12">
-                            <strong>Tipo y numero: </strong>tarjeta: {{cadatarjeta.numero_tarjeta}}
-                          </ion-col>
+													<ion-col size="12" *ngIf="cadatarjeta.apodo_tarjeta">
+														<strong>Apodo y Beneficiario:</strong> {{cadatarjeta.apodo_tarjeta}}<br> {{cadatarjeta.titular_tarjeta}}
+													</ion-col>
+													<ion-col size="12" *ngIf="!cadatarjeta.apodo_tarjeta">
+														<strong>Beneficiario:</strong> {{cadatarjeta.titular_tarjeta}}
+													</ion-col>
+													<ion-col size="12">
+														<strong>Banco:</strong> {{cadatarjeta.banco_tarjeta}}
+													</ion-col>
+													<ion-col size="12">
+														<strong>Tipo y numero: </strong>tarjeta: {{cadatarjeta.numero_tarjeta}}
+													</ion-col>
 
-                          <ion-col size="12">
-                            <ion-icon style="color: var(--ion-color-primary);" name="create"></ion-icon>
-                          </ion-col>
-                          <ion-col size="12">
-                            <ion-icon style="color: var(--ion-color-primary);" name="trash-bin"></ion-icon>
-                          </ion-col>
+													<ion-col size="12">
+														<ion-icon style="color: var(--ion-color-primary);" name="create"></ion-icon>
+													</ion-col>
+													<ion-col size="12">
+														<ion-icon style="color: var(--ion-color-primary);" name="trash-bin"></ion-icon>
+													</ion-col>
 
-                        </ion-row>
+												</ion-row>
 
-                        <ion-item-divider style="background-color:white;"></ion-item-divider>
+												<ion-item-divider style="background-color:white;"></ion-item-divider>
 
-                      </ion-grid>
+											</ion-grid>
 
-                    </section>
+										</section>
 
-                  </ion-content>
-                </ng-template>
-              </ion-modal>
-            </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
-    </section>
-  </section>
+									</ion-content>
+								</ng-template>
+							</ion-modal>
+						</ion-col>
+					</ion-row>
+				</ion-card-content>
+			</ion-card>
+		</section>
+	</section>
 
-  <section *ngIf="this.step=='administrarpromociones'">
-    <ion-grid>
-      <ion-fab-button (click)="stepinicio()"><ion-icon name="arrow-back"></ion-icon></ion-fab-button>
-      <ion-text style="text-align:center;">
-        <h6>Añadir Nueva:</h6>
-      </ion-text>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="5">
-          <div class="content-img">
-            <label style="cursor:pointer;" for="input">
+	<section *ngIf="this.step=='administrarpromociones'">
+		<ion-grid>
+			<ion-fab-button (click)="stepinicio()">
+				<ion-icon name="arrow-back"></ion-icon>
+			</ion-fab-button>
+			<ion-text style="text-align:center;">
+				<h6>Añadir Nueva:</h6>
+			</ion-text>
+			<ion-row class="ion-justify-content-center">
+				<ion-col size="5">
+					<div class="content-img">
+						<label style="cursor:pointer;" for="input">
               <img style="display: block; object-fit: cover;" src="assets/investrealperurecursos/adjuntar-imagen.svg" />
               <!-- <img style="display: block; object-fit: cover;" *ngIf="promocion1_new_url_image" [src]="promocion1_new_url_image"/> -->
               <ion-icon name="add-circle"></ion-icon>
             </label>
-            <input (change)=takePicture($event) class="input" type="file" id="input">
-          </div>
-        </ion-col>
-      </ion-row>
+						<input (change)=takePicture($event) class="input" type="file" id="input">
+					</div>
+				</ion-col>
+			</ion-row>
 
-      <ion-text style="text-align:center;">
-        <h6>Añadidas:</h6>
-      </ion-text>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="7">
-          <ion-list *ngFor="let cadapromocion of menu_promociones">
-            <ion-card>
-              <ion-card-header color="light">
-                <div class="ion-text-center">
-                  <ion-button (click)="borrarpromocion1(cadapromocion)" color="danger"><ion-icon
-                      name="trash"></ion-icon>Borrar</ion-button>
-                </div>
-              </ion-card-header>
+			<ion-text style="text-align:center;">
+				<h6>Añadidas:</h6>
+			</ion-text>
+			<ion-row class="ion-justify-content-center">
+				<ion-col size="7">
+					<ion-list *ngFor="let cadapromocion of menu_promociones">
+						<ion-card>
+							<ion-card-header color="light">
+								<div class="ion-text-center">
+									<ion-button (click)="borrarpromocion1(cadapromocion)" color="danger">
+										<ion-icon name="trash"></ion-icon>Borrar</ion-button>
+								</div>
+							</ion-card-header>
 
-              <ion-card-content class="ion-no-padding" no-padding>
-                <img style="width:100%; height:100%;" [src]="cadapromocion.promocion1_new_url_image">
-              </ion-card-content>
-            </ion-card>
-          </ion-list>
+							<ion-card-content class="ion-no-padding" no-padding>
+								<img style="width:100%; height:100%;" [src]="cadapromocion.promocion1_new_url_image">
+							</ion-card-content>
+						</ion-card>
+					</ion-list>
 
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-
-
-  </section>
-
-  <section *ngIf="this.step=='modulo_cupones'">
-    <section *ngIf="paso_del_modulo_cupones=='display_cupones'">
-      <div class="ion-text-center">
-        <ion-fab-button (click)="stepinicio()"><ion-icon name="arrow-back"></ion-icon></ion-fab-button>
-        <h3>Administrar Cupones</h3>
-        <ion-button (click)="paso_del_modulo_cupones='add_cupon'">Añadir cupon</ion-button>
-        <ion-list>
-          <ion-item *ngFor="let cadacupon of admintraercupones">
-            <ion-toggle (click)="endesarrollo()" justify="start">{{cadacupon.codigo_de_cupon}}
-              <a
-                *ngIf="cadacupon.detallesdeusuario&&cadacupon.detallesdeusuario.email">{{cadacupon.detallesdeusuario.email}}</a>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
 
 
 
-            </ion-toggle>
-          </ion-item>
+	</section>
 
-        </ion-list>
+	<section *ngIf="this.step=='modulo_cupones'">
+		<section *ngIf="paso_del_modulo_cupones=='display_cupones'">
+			<div class="ion-text-center">
+				<ion-fab-button (click)="stepinicio()">
+					<ion-icon name="arrow-back"></ion-icon>
+				</ion-fab-button>
+				<h3>Administrar Cupones</h3>
+				<ion-button (click)="paso_del_modulo_cupones='add_cupon'">Añadir cupon</ion-button>
+
+				<ion-grid>
+					<ion-row>
+						<ion-col size="2.5">Codigo</ion-col>
+						<ion-col size="7">Usuario</ion-col>
+						<ion-col size="2.5">Usado</ion-col>
+
+					</ion-row>
+				</ion-grid>
+
+				<ion-list>
+					<ion-item *ngFor="let cadacupon of admintraercupones">
+						<ion-grid>
+							<ion-row>
+								<ion-col size="2.5">
+									{{cadacupon.codigo_de_cupon}}
+									<ion-button (click)="copiar(cadacupon.codigo_de_cupon)">
+										<ion-icon name="clipboard"></ion-icon>
+									</ion-button>
+
+								</ion-col>
+
+								<ion-col size="7">
+									<a>{{cadacupon.detallesdeusuario.email}}</a>
+								</ion-col>
+
+								<ion-col size="2.5">
+									<ion-toggle (click)="actualizar_cupon_usado(cadacupon)" [checked]="cadacupon.usuario_lo_uso=='si'" justify="start">
+										<a *ngIf="cadacupon.detallesdeusuario&&cadacupon.detallesdeusuario.email"></a>
 
 
-      </div>
-    </section>
+
+									</ion-toggle>
+
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+
+					</ion-item>
+
+				</ion-list>
 
 
-    <section *ngIf="paso_del_modulo_cupones=='add_cupon'">
-      <div class="ion-text-center">
-        <ion-fab-button (click)="stepinicio()"><ion-icon name="arrow-back"></ion-icon></ion-fab-button>
-        <ion-button (click)="paso_del_modulo_cupones='display_cupones'">Volver a cupones</ion-button>
+			</div>
+		</section>
 
-        <ion-segment value="default" [(ngModel)]="tipo_de_ganancia">
+
+		<section *ngIf="paso_del_modulo_cupones=='add_cupon'">
+			<div class="ion-text-center">
+				<ion-fab-button (click)="stepinicio()">
+					<ion-icon name="arrow-back"></ion-icon>
+				</ion-fab-button>
+				<ion-button (click)="paso_del_modulo_cupones='display_cupones'">Volver a cupones</ion-button>
+
+				<!-- <ion-segment value="default" [(ngModel)]="tipo_de_ganancia">
           <ion-segment-button value="hacer_que_gane_dolares">
             <ion-label>gana dolares</ion-label>
           </ion-segment-button>
@@ -639,9 +662,9 @@
           <ion-segment-button value="ambos">
             <ion-label>de ambos</ion-label>
           </ion-segment-button>
-        </ion-segment>
+        </ion-segment> -->
 
-        <ng-container *ngIf="tipo_de_ganancia=='hacer_que_gane_dolares'">
+				<!-- <ng-container *ngIf="tipo_de_ganancia=='hacer_que_gane_dolares'">
           <ion-item>
             <ion-select justify="space-between" label="tipo_de_ganancia" disabled="true"
               [placeholder]="tipo_de_ganancia" [(ngModel)]="tipo_de_ganancia">{{tipo_de_ganancia}}
@@ -672,59 +695,57 @@
               inputmode="numeric" placeholder="000" [(ngModel)]="soles_a_sumar_soles"></ion-input>
           </ion-item>
 
-        </ng-container>
+        </ng-container> -->
 
-        <ng-container *ngIf="tipo_de_ganancia=='ambos'">
-          <ion-item>
+				<ng-container *ngIf="tipo_de_ganancia=='ambos'">
+					<!-- <ion-item>
             <ion-select justify="space-between" label="tipo_de_ganancia" disabled="true"
               [placeholder]="tipo_de_ganancia" [(ngModel)]="tipo_de_ganancia"
-              [(ngModel)]="minimo_de_monto_dolares">{{tipo_de_ganancia}}
+              [(ngModel)]="tipo_de_ganancia">{{tipo_de_ganancia}}
             </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-input label="Minimo dolares" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
-              inputmode="numeric" placeholder="000" [(ngModel)]="minimo_de_monto_dolares"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input label="Dolares A SUMAR(GANA)" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
-              inputmode="numeric" placeholder="000" [(ngModel)]="soles_a_sumar_dolares"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input label="Minimo soles" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
-              inputmode="numeric" placeholder="000" [(ngModel)]="minimo_de_monto_en_soles"></ion-input>
-          </ion-item>
-          <ion-item>
+          </ion-item> -->
+					<ion-item>
+						<ion-input label="Minimo dolares" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric" placeholder="000" [(ngModel)]="minimo_de_monto_dolares"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-input label="Minimo soles" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric" placeholder="000" [(ngModel)]="minimo_de_monto_en_soles"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-input label="Diferencial TASA" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric" placeholder="Ejemplo 0.003" [(ngModel)]="soles_a_sumar_dolares"></ion-input>
+					</ion-item>
+					<!-- <ion-item>
             <ion-input label="Soles A SUMAR(GANA)" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
               inputmode="numeric" placeholder="000" [(ngModel)]="soles_a_sumar_soles"></ion-input>
-          </ion-item>
+          </ion-item> -->
 
-        </ng-container>
-        <!-- general -->
-        <ion-item>
-          <ion-input label="Email Usuario" type="email" placeholder="email@ejemplo.com"
-            [(ngModel)]="email_cuponero"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="Validez en Minutos" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)"
-            inputmode="numeric" placeholder="Ej: Una Semana (10080)"
-            [(ngModel)]="	tiempo_de_validez_en_minutos"></ion-input>
-        </ion-item>
+				</ng-container>
+				<!-- general -->
+				<ion-item>
+					<ion-input label="Email Usuario" type="email" placeholder="email@ejemplo.com" [(ngModel)]="email_cuponero"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input label="Validez en Minutos" type="text" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" inputmode="numeric" placeholder="Ej: Una Semana (10080)" [(ngModel)]="	tiempo_de_validez_en_minutos"></ion-input>
+				</ion-item>
 
 
-        <!-- botones -->
-        <ng-container *ngIf="tipo_de_ganancia=='hacer_que_gane_dolares'">
+				<!-- botones -->
+				<!-- <ng-container *ngIf="tipo_de_ganancia=='hacer_que_gane_dolares'">
           <div class="ion-text-center">
-            <ion-button (click)="crear_cupon()" [disabled]="
-              !email_cuponero||
-              email_cuponero.length<3||
-              !tiempo_de_validez_en_minutos||
-              tiempo_de_validez_en_minutos<1||
+            <ion-button (click)="crear_cupon()" 
+                [disabled]="
+                  !email_cuponero||
+                  email_cuponero.length<3||
+                  !tiempo_de_validez_en_minutos||
+                  tiempo_de_validez_en_minutos<1||
 
-              !minimo_de_monto_en_soles||
-              minimo_de_monto_en_soles<0.000001||
-              !soles_a_sumar_dolares||
-              soles_a_sumar_dolares<0.000001
-            ">Agregar Cupon</ion-button>
+                  !minimo_de_monto_en_soles||
+                  minimo_de_monto_en_soles<0.000001||
+                  !soles_a_sumar_dolares||
+                  soles_a_sumar_dolares<0.000001
+                "
+                
+                >Agregar Cupon
+            </ion-button>
           </div>
         </ng-container>
         <ng-container *ngIf="tipo_de_ganancia=='hacer_que_gane_soles'">
@@ -741,10 +762,10 @@
               soles_a_sumar_soles<0.000001
             ">Agregar Cupon</ion-button>
           </div>
-        </ng-container>
-        <ng-container *ngIf="tipo_de_ganancia=='ambos'">
-          <div class="ion-text-center">
-            <ion-button (click)="crear_cupon()" [disabled]="
+        </ng-container> -->
+				<ng-container *ngIf="tipo_de_ganancia=='ambos'">
+					<div class="ion-text-center">
+						<!-- <ion-button (click)="crear_cupon()" [disabled]="
               !email_cuponero||
               email_cuponero.length<3||
               !tiempo_de_validez_en_minutos||
@@ -763,193 +784,207 @@
 
 
               
+            ">Agregar Cupon</ion-button> -->
+
+
+						<ion-button (click)="crear_cupon()" [disabled]="
+              !email_cuponero||
+              email_cuponero.length<3||
+              !tiempo_de_validez_en_minutos||
+              tiempo_de_validez_en_minutos<1||
+
+
+              !minimo_de_monto_en_soles||
+              minimo_de_monto_en_soles<0.00001||
+              !soles_a_sumar_dolares||
+              soles_a_sumar_dolares<0.00001||
+
+              !minimo_de_monto_dolares||
+              minimo_de_monto_dolares<0.00001
+
+              
             ">Agregar Cupon</ion-button>
-          </div>
-        </ng-container>
+
+					</div>
+				</ng-container>
 
 
-      </div>
-    </section>
+			</div>
+		</section>
 
-  </section>
+	</section>
 
-  <section *ngIf="this.step=='nuestras_cuentas'">
-    <ion-fab-button (click)="stepinicio()"><ion-icon name="arrow-back"></ion-icon></ion-fab-button>
-
-
-    <ion-grid>
-      <ion-row *ngFor="let cadaadmincuenta of admin_nuestras_cuentas; let i=index">
-        <ion-col size="12">
-          <ion-card>
-            <ion-card-header color="secondary">
-              <div class="ion-text-center">
-                <span *ngIf="i==4" class="v2-badge v2-badge-usocupon">INTERBANCARIA SOLES<br></span>
-                <span *ngIf="i==5" class="v2-badge v2-badge-usocupon">INTERBANCARIA DOLARES<br></span>
-                <ion-text>Cuenta {{cadaadmincuenta.banco}} En {{cadaadmincuenta.moneda}}</ion-text>
-              </div>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-list>
-                <ion-item>
-                  <ion-input [(ngModel)]="cadaadmincuenta.banco" [clearInput]="true" label="BANCO"
-                    labelPlacement="stacked" type="text" placeholder="Ingrese banco" value="Default value">
-                  </ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input [(ngModel)]="cadaadmincuenta.moneda" label="Input with clear on edit"
-                    labelPlacement="stacked" type="text" placeholder="ingrese">
-                  </ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input [(ngModel)]="cadaadmincuenta.tipo" label="TIPO" labelPlacement="stacked" type="text"
-                    placeholder="ingrese..">
-                  </ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input [(ngModel)]="cadaadmincuenta.numero" label="NUMERO" labelPlacement="stacked" type="text"
-                    placeholder="ingrese...">
-                  </ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input [(ngModel)]="cadaadmincuenta.titular" label="TITULAR" labelPlacement="stacked" type="text"
-                    placeholder="ingrese">
-                  </ion-input>
-                </ion-item>
-                <ion-item>
-                </ion-item>
-
-              </ion-list>
-              <div class="ion-text-center">
-                <ion-button expand="block" (click)="actualizar_admin_cuenta(cadaadmincuenta)">ACTUALIZAR ESTA
-                  CUENTA</ion-button>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </section>
+	<section *ngIf="this.step=='nuestras_cuentas'">
+		<ion-fab-button (click)="stepinicio()">
+			<ion-icon name="arrow-back"></ion-icon>
+		</ion-fab-button>
 
 
-  <section *ngIf="this.step=='administrar_moderadores'">
-    <ion-fab-button (click)="stepinicio()"><ion-icon name="arrow-back"></ion-icon></ion-fab-button>
-    <div class="ion-text-center">
-      <ion-button expand="block" (click)="abrir_modal_crear_moderador()">CREAR MODERADOR</ion-button>
-    </div>
+		<ion-grid>
+			<ion-row *ngFor="let cadaadmincuenta of admin_nuestras_cuentas; let i=index">
+				<ion-col size="12">
+					<ion-card>
+						<ion-card-header color="secondary">
+							<div class="ion-text-center">
+								<span *ngIf="i==4" class="v2-badge v2-badge-usocupon">INTERBANCARIA SOLES<br></span>
+								<span *ngIf="i==5" class="v2-badge v2-badge-usocupon">INTERBANCARIA DOLARES<br></span>
+								<ion-text>Cuenta {{cadaadmincuenta.banco}} En {{cadaadmincuenta.moneda}}</ion-text>
+							</div>
+						</ion-card-header>
+						<ion-card-content>
+							<ion-list>
+								<ion-item>
+									<ion-input [(ngModel)]="cadaadmincuenta.banco" [clearInput]="true" label="BANCO" labelPlacement="stacked" type="text" placeholder="Ingrese banco" value="Default value">
+									</ion-input>
+								</ion-item>
+								<ion-item>
+									<ion-input [(ngModel)]="cadaadmincuenta.moneda" label="Input with clear on edit" labelPlacement="stacked" type="text" placeholder="ingrese">
+									</ion-input>
+								</ion-item>
+								<ion-item>
+									<ion-input [(ngModel)]="cadaadmincuenta.tipo" label="TIPO" labelPlacement="stacked" type="text" placeholder="ingrese..">
+									</ion-input>
+								</ion-item>
+								<ion-item>
+									<ion-input [(ngModel)]="cadaadmincuenta.numero" label="NUMERO" labelPlacement="stacked" type="text" placeholder="ingrese...">
+									</ion-input>
+								</ion-item>
+								<ion-item>
+									<ion-input [(ngModel)]="cadaadmincuenta.titular" label="TITULAR" labelPlacement="stacked" type="text" placeholder="ingrese">
+									</ion-input>
+								</ion-item>
+								<ion-item>
+								</ion-item>
 
-    <ion-list>
-      <ion-card *ngFor="let cadamoderador of admin_nuestros_moderadores; let i=index">
-
-        <ion-card-header color="secondary">
-
-          <ion-item>
-            <ion-input [(ngModel)]="cadamoderador.email" label="correo" labelPlacement="stacked" [clearInput]="true"
-              placeholder="Enter text to see clear button">
-            </ion-input>
-          </ion-item>
-
-
-          <ion-item>
-            <ion-input [(ngModel)]="cadamoderador.password" label="clave" labelPlacement="stacked" type="password"
-              placeholder="Clave Secreta">
-            </ion-input>
-          </ion-item>
+							</ion-list>
+							<div class="ion-text-center">
+								<ion-button expand="block" (click)="actualizar_admin_cuenta(cadaadmincuenta)">ACTUALIZAR ESTA CUENTA
+								</ion-button>
+							</div>
+						</ion-card-content>
+					</ion-card>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</section>
 
 
+	<section *ngIf="this.step=='administrar_moderadores'">
+		<ion-fab-button (click)="stepinicio()">
+			<ion-icon name="arrow-back"></ion-icon>
+		</ion-fab-button>
+		<div class="ion-text-center">
+			<ion-button expand="block" (click)="abrir_modal_crear_moderador()">CREAR MODERADOR</ion-button>
+		</div>
 
-        </ion-card-header>
+		<ion-list>
+			<ion-card *ngFor="let cadamoderador of admin_nuestros_moderadores; let i=index">
+
+				<ion-card-header color="secondary">
+
+					<ion-item>
+						<ion-input [(ngModel)]="cadamoderador.email" label="correo" labelPlacement="stacked" [clearInput]="true" placeholder="Enter text to see clear button">
+						</ion-input>
+					</ion-item>
 
 
-        <ion-card-content>
-          <div class="ion-text-center" style="margin-left:15%;margin-right:15%;">
-            <ion-grid>
-              <ion-row>
-                <ion-col size="6">
-                  <ion-button expand="block" (click)="endesarrollo()">Actualizar</ion-button>
-                </ion-col>
-                <ion-col size="6">
-                  <ion-button expand="block" (click)="borrar_moderador(cadamoderador)"><ion-icon
-                      name="trash"></ion-icon></ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-
-
-          </div>
+					<ion-item>
+						<ion-input [(ngModel)]="cadamoderador.password" label="clave" labelPlacement="stacked" type="password" placeholder="Clave Secreta">
+						</ion-input>
+					</ion-item>
 
 
 
-
-        </ion-card-content>
-      </ion-card>
+				</ion-card-header>
 
 
-    </ion-list>
+				<ion-card-content>
+					<div class="ion-text-center" style="margin-left:15%;margin-right:15%;">
+						<ion-grid>
+							<ion-row>
+								<ion-col size="6">
+									<ion-button expand="block" (click)="endesarrollo()">Actualizar</ion-button>
+								</ion-col>
+								<ion-col size="6">
+									<ion-button expand="block" (click)="borrar_moderador(cadamoderador)">
+										<ion-icon name="trash"></ion-icon>
+									</ion-button>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+
+
+					</div>
 
 
 
-  </section>
 
-  <section *ngIf="this.step=='configuracionglobal'">
-    <ion-text>
-      <span class="v2-badge v2-badge-usocupon">wellcome_cupon_status(Cupon de bienvenida si o no)</span>
-      <span class="v2-badge v2-badge-bienvenida">wellcome_cupon_monto_dolar(use numeros)</span>
-      <span class="v2-badge v2-badge-investrealperucambio">wellcome_cupon_monto_soles(use numeros)</span>
-    </ion-text>
-    <ion-fab-button (click)="stepinicio()"><ion-icon name="arrow-back"></ion-icon></ion-fab-button>
-
-    <ion-grid>
-      <ion-row *ngFor="let cadaconfig of configuracionglobal; let i=index">
-        <ion-col size="12">
-          <ion-card>
-            <ion-card-header color="secondary">
-              <div class="ion-text-center">
-                <ion-text>{{cadaconfig.nombre_config}}</ion-text>
-              </div>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-list>
-                <ion-item *ngIf="cadaconfig.nombre_config=='wellcome_cupon_monto_dolar'">
-
-                  <ion-input 
-                    [(ngModel)]="cadaconfig.valor_config" [clearInput]="true"
-                    (keypress)="isNumberKeyAndLengtSolesaenviar($event)" label="Valor Config" labelPlacement="stacked"
-                    type="text" placeholder="valor" value="Default value">
-                  </ion-input>
+				</ion-card-content>
+			</ion-card>
 
 
-                </ion-item>
-
-                <ion-item *ngIf="cadaconfig.nombre_config=='wellcome_cupon_monto_soles'">
-
-                  <ion-input 
-                    [(ngModel)]="cadaconfig.valor_config" [clearInput]="true"
-                    (keypress)="isNumberKeyAndLengtSolesaenviar($event)" label="Valor Config" labelPlacement="stacked"
-                    type="text" placeholder="valor" value="Default value">
-                  </ion-input>
-                </ion-item>
-
-                <ion-item *ngIf="cadaconfig.nombre_config=='wellcome_cupon_status'">
-                  <ion-radio-group value="custom-checked" [(ngModel)]="cadaconfig.valor_config" >
-                    <ion-radio value="si" aria-label="si">si</ion-radio>
-                    <ion-radio value="no" aria-label="no">no</ion-radio>
-                  </ion-radio-group>
-                </ion-item>
+		</ion-list>
 
 
-              </ion-list>
-              <div class="ion-text-center">
-                <ion-button expand="block" (click)="actualizar_admin_config(cadaconfig)">ACTUALIZAR ESTA
-                  CONFIG</ion-button>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+
+	</section>
+
+	<section *ngIf="this.step=='configuracionglobal'">
+		<ion-text>
+			<span class="v2-badge v2-badge-usocupon">wellcome_cupon_status(Cupon de bienvenida si o no)</span>
+			<span class="v2-badge v2-badge-bienvenida">wellcome_cupon_monto_dolar(TASA DE CAMBIO)</span>
+			<!-- <span class="v2-badge v2-badge-investrealperucambio">wellcome_cupon_monto_soles(use numeros)</span> -->
+		</ion-text>
+		<ion-fab-button (click)="stepinicio()">
+			<ion-icon name="arrow-back"></ion-icon>
+		</ion-fab-button>
+
+		<ion-grid>
+			<ion-row *ngFor="let cadaconfig of configuracionglobal; let i=index">
+				<ion-col size="12">
+					<ion-card>
+						<ion-card-header color="secondary">
+							<div class="ion-text-center">
+								<ion-text>{{cadaconfig.nombre_config}}</ion-text>
+							</div>
+						</ion-card-header>
+						<ion-card-content>
+							<ion-list>
+								<ion-item *ngIf="cadaconfig.nombre_config=='wellcome_cupon_monto_dolar'">
+
+									<ion-input [(ngModel)]="cadaconfig.valor_config" [clearInput]="true" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" label="Valor Config" labelPlacement="stacked" type="text" placeholder="valor" value="Default value">
+									</ion-input>
 
 
-  </section>
+								</ion-item>
+
+								<ion-item *ngIf="cadaconfig.nombre_config=='wellcome_tasa'">
+
+									<ion-input [(ngModel)]="cadaconfig.valor_config" [clearInput]="true" (keypress)="isNumberKeyAndLengtSolesaenviar($event)" label="Valor Config" labelPlacement="stacked" type="text" placeholder="valor" value="Default value">
+									</ion-input>
+								</ion-item>
+
+								<ion-item *ngIf="cadaconfig.nombre_config=='wellcome_cupon_status'">
+									<ion-radio-group value="custom-checked" [(ngModel)]="cadaconfig.valor_config">
+										<ion-radio value="si" aria-label="si">si</ion-radio>
+										<ion-radio value="no" aria-label="no">no</ion-radio>
+									</ion-radio-group>
+								</ion-item>
+
+
+							</ion-list>
+							<div class="ion-text-center">
+								<ion-button expand="block" (click)="actualizar_admin_config(cadaconfig)">ACTUALIZAR ESTA CONFIG
+								</ion-button>
+							</div>
+						</ion-card-content>
+					</ion-card>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
+
+	</section>
 
 
 </ion-content>

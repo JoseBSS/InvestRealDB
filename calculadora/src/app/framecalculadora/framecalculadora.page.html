@@ -1,4 +1,4 @@
-<ion-content style="background-color: #fe884030;">
+<ion-content>
 
   <div style="padding: 40px 40px 0 40px" class="ion-hide-sm-up">
     <p class="main__title ion-text-center" style="margin: 0">
@@ -25,7 +25,7 @@
           <!-- de la seccion de la siguiente linea para bajo vienen los condicionales si quiere vender o comprar dolares -->
           <section *ngIf="quierecomprardolares">
 
-            <ion-card  style="padding: 22px !important; border-radius: 11px !important">
+            <ion-card  style="padding: 22px !important; border-radius: 11px !important;background-color: white;">
               <ion-fab-button size="small" (click)="cambiarmododeoperacion()" color="primary"
                 style="z-index: 1; position: absolute; right: 15%; top: 48%">
                 <ion-icon style="
@@ -34,7 +34,6 @@
                            font-size: xx-large;
                            " name="sync"></ion-icon>
               </ion-fab-button>
-              <!-- <ion-card-header><strong>Cambia ahora</strong></ion-card-header> -->
               <ion-row *ngIf="comprainvestrealperu&&ventainvestrealperu">
                 <ion-col size="6">
                   <div class="ion-text-center" (click)="cambiarmododeoperacion()" style="cursor:pointer">
@@ -117,7 +116,7 @@
           </section>
           <section *ngIf="!quierecomprardolares">
 
-            <ion-card style="padding: 22px !important; border-radius: 11px !important">
+            <ion-card style="padding: 22px !important; border-radius: 11px !important; background-color: white;">
               <ion-fab-button size="small" (click)="cambiarmododeoperacion()" color="primary"
                 style="z-index: 1; position: absolute; right: 15%; top: 48%">
                 <ion-icon style="
@@ -126,7 +125,6 @@
                            font-size: xx-large;
                            " name="sync"></ion-icon>
               </ion-fab-button>
-              <!-- <ion-card-header><strong>Cambia ahora</strong></ion-card-header> -->
               <ion-row *ngIf="comprainvestrealperu&&ventainvestrealperu">
                 <ion-col size="6" style="
                            background-color: var(--ion-color-secondary);

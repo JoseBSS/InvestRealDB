@@ -422,27 +422,119 @@ h6.textodentrodelinea:after {
   }
 }
 
-.textoconrellenoanimado {
-  @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-  span {
-    color: white;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 900;
-  }
-  .top {
-    background-image: url('/assets/investrealperurecursos/textorellenoanimado.png');
-    background-size: auto 200%;
-    animation: flow 8s linear infinite;
-  }
-  @keyframes flow {
-    from {
-      background-position: center 0;
-    }
-    to {
-      background-position: center 200%;
-    }
-  }
 
 
+//empieza clase shimmer texto animado
+
+
+.shimmer{
+  font-family: Oswald;
+   animation: colorshimmer 4s linear infinite;
+  -webkit-animation: Colorshimmer 4s ease-in-out infinite;
+  text-shadow: 0.2em 0.2em #F0F0F0;
+  font-weight:bolder
 }
+
+@keyframes Colorshimmer{
+  0%{
+    color:#A0D468;
+  }
+  
+  20%{
+    color:#4FC1E9;
+  }
+  
+  40%{
+    color:#FFCE54;
+  }
+  
+  60%{
+    color:#FC6E51;
+  }
+  
+  80%{
+    color:#ED5565;
+  }
+  
+  100%{
+    color:#AC92EC;
+  }
+}
+
+@-moz-keyframes Colorshimmer{
+  0%{
+    color:#A0D468;
+  }
+  
+  20%{
+    color:#4FC1E9;
+  }
+  
+  40%{
+    color:#FFCE54;
+  }
+  
+  60%{
+    color:#FC6E51;
+  }
+  
+  80%{
+    color:#ED5565;
+  }
+  
+  100%{
+    color:#AC92EC;
+  }
+}
+
+@-webkit-keyframes Colorshimmer{
+  0%{
+    color:#A0D468;
+  }
+  
+  20%{
+    color:#4FC1E9;
+  }
+  
+  40%{
+    color:#FFCE54;
+  }
+  
+  60%{
+    color:#FC6E51;
+  }
+  
+  80%{
+    color:#ED5565;
+  }
+  
+  100%{
+    color:#AC92EC;
+  }
+}
+
+
+
+
+//termina clase shimmer texto animado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

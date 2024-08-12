@@ -30,23 +30,30 @@
 
 
 
-@font-face {
-  font-family: 'LaFuente';
-  font-style: 'bold';
-  src: url('./assets/investrealperurecursos/fuente/FontsFree-Net-SFProText-Bold.ttf');//mine
-}
+// @font-face {
+//   font-family:'Montserrat'!important;
+//   font-style: 'bold';
+//   // src: url('./assets/investrealperurecursos/fuente/FontsFree-Net-SFProText-Bold.ttf');//mine
+// }
 
-@font-face {
-  font-family: 'NexaFuente';
-  font-style: 'regular';
-  src: url('./assets/investrealperurecursos/fuente/Nexa-Regular.otf');//mine
-}
+// @font-face {
+//   font-family:'Montserrat'!important;
+//   font-style: 'regular';
+//   // src: url('./assets/investrealperurecursos/fuente/Nexa-Regular.otf');//mine
+// }
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 
 :root {
-
-  --ion-font-family: 'Rubik';
+  font-family: 'Montserrat'!important;
+  --ion-font-family: 'Montserrat'!important;
   // font-weight: 900;
   /** primary **/
+  }
+
+  body, span, button, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat'!important;
   }
 
 ion-item {
@@ -131,7 +138,21 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
+
     ion-item:nth-child(3) .sc-ion-select-popover-md {
+
+      border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
+  
+    background: url('assets/investrealperurecursos/iconos-selector-bancos/caja-huancayo.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding: 0px 0px 17px  26px;
+  }
+
+
+
+
+    ion-item:nth-child(4) .sc-ion-select-popover-md {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -141,7 +162,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(4) .sc-ion-select-popover-md {
+    ion-item:nth-child(5) .sc-ion-select-popover-md {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -151,7 +172,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(5) .sc-ion-select-popover-md {
+    ion-item:nth-child(6) .sc-ion-select-popover-md {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -161,7 +182,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(6) .sc-ion-select-popover-md {
+    ion-item:nth-child(7) .sc-ion-select-popover-md {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -171,7 +192,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(7) .sc-ion-select-popover-md {
+    ion-item:nth-child(8) .sc-ion-select-popover-md {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -181,7 +202,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(8) .sc-ion-select-popover-md {
+    ion-item:nth-child(9) .sc-ion-select-popover-md {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -191,7 +212,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(9) .sc-ion-select-popover-md {
+    ion-item:nth-child(10) .sc-ion-select-popover-md {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -201,7 +222,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(10) .sc-ion-select-popover-md {
+    ion-item:nth-child(11) .sc-ion-select-popover-md {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -211,7 +232,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(11) .sc-ion-select-popover-md {
+    ion-item:nth-child(12) .sc-ion-select-popover-md {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -221,7 +242,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(12) .sc-ion-select-popover-md {
+    ion-item:nth-child(13) .sc-ion-select-popover-md {
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
       background: url('assets/investrealperurecursos/iconos-selector-bancos/banco-ripley.png');
@@ -230,7 +251,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(13) .sc-ion-select-popover-md {
+    ion-item:nth-child(14) .sc-ion-select-popover-md {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -240,7 +261,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(14) .sc-ion-select-popover-md {
+    ion-item:nth-child(15) .sc-ion-select-popover-md {
 
       border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -249,6 +270,10 @@ ion-item {
     background-repeat: no-repeat;
     padding: 0px 0px 17px  26px;
   }
+
+
+
+
 
 
 
@@ -272,7 +297,20 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
+
     ion-item:nth-child(3) .sc-ion-select-popover-ios {
+
+      border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
+  
+    background: url('assets/investrealperurecursos/iconos-selector-bancos/caja-huancayo.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding: 0px 0px 17px  26px;
+      
+  }
+
+
+    ion-item:nth-child(4) .sc-ion-select-popover-ios {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -282,20 +320,10 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(4) .sc-ion-select-popover-ios {
+    ion-item:nth-child(5) .sc-ion-select-popover-ios {
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
       background: url('assets/investrealperurecursos/iconos-selector-bancos/scotiabank.png');
-      background-size: 20px;
-      background-repeat: no-repeat;
-      padding: 0px 0px 17px  26px;
-    }
-
-    ion-item:nth-child(5) .sc-ion-select-popover-ios {
-
-        border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
-
-      background: url('assets/investrealperurecursos/iconos-selector-bancos/banbif.png');
       background-size: 20px;
       background-repeat: no-repeat;
       padding: 0px 0px 17px  26px;
@@ -305,7 +333,7 @@ ion-item {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
-      background: url('assets/investrealperurecursos/iconos-selector-bancos/pichincha.png');
+      background: url('assets/investrealperurecursos/iconos-selector-bancos/banbif.png');
       background-size: 20px;
       background-repeat: no-repeat;
       padding: 0px 0px 17px  26px;
@@ -315,7 +343,7 @@ ion-item {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
-      background: url('assets/investrealperurecursos/iconos-selector-bancos/banco-de-la-nacion.png');
+      background: url('assets/investrealperurecursos/iconos-selector-bancos/pichincha.png');
       background-size: 20px;
       background-repeat: no-repeat;
       padding: 0px 0px 17px  26px;
@@ -325,13 +353,23 @@ ion-item {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
-      background: url('assets/investrealperurecursos/iconos-selector-bancos/gnb.png');
+      background: url('assets/investrealperurecursos/iconos-selector-bancos/banco-de-la-nacion.png');
       background-size: 20px;
       background-repeat: no-repeat;
       padding: 0px 0px 17px  26px;
     }
 
     ion-item:nth-child(9) .sc-ion-select-popover-ios {
+
+        border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
+
+      background: url('assets/investrealperurecursos/iconos-selector-bancos/gnb.png');
+      background-size: 20px;
+      background-repeat: no-repeat;
+      padding: 0px 0px 17px  26px;
+    }
+
+    ion-item:nth-child(10) .sc-ion-select-popover-ios {
  
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -341,7 +379,7 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(10) .sc-ion-select-popover-ios {
+    ion-item:nth-child(11) .sc-ion-select-popover-ios {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -351,20 +389,10 @@ ion-item {
       padding: 0px 0px 17px  26px;
     }
 
-    ion-item:nth-child(11) .sc-ion-select-popover-ios {
+    ion-item:nth-child(12) .sc-ion-select-popover-ios {
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
       background: url('assets/investrealperurecursos/iconos-selector-bancos/falabella.png');
-      background-size: 20px;
-      background-repeat: no-repeat;
-      padding: 0px 0px 17px  26px;
-    }
-
-    ion-item:nth-child(12) .sc-ion-select-popover-ios {
-
-        border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
-
-      background: url('assets/investrealperurecursos/iconos-selector-bancos/banco-ripley.png');
       background-size: 20px;
       background-repeat: no-repeat;
       padding: 0px 0px 17px  26px;
@@ -374,13 +402,23 @@ ion-item {
 
         border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
-      background: url('assets/investrealperurecursos/iconos-selector-bancos/banco-del-comercio.png');
+      background: url('assets/investrealperurecursos/iconos-selector-bancos/banco-ripley.png');
       background-size: 20px;
       background-repeat: no-repeat;
       padding: 0px 0px 17px  26px;
     }
 
     ion-item:nth-child(14) .sc-ion-select-popover-ios {
+
+        border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
+
+      background: url('assets/investrealperurecursos/iconos-selector-bancos/banco-del-comercio.png');
+      background-size: 20px;
+      background-repeat: no-repeat;
+      padding: 0px 0px 17px  26px;
+    }
+
+    ion-item:nth-child(15) .sc-ion-select-popover-ios {
 
       border-radius:4px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);
 
@@ -390,6 +428,9 @@ ion-item {
     padding: 0px 0px 17px  26px;
       
   }
+
+
+
 
   }
 

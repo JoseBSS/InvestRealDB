@@ -134,7 +134,7 @@ IONCHANGEbanco_cuenta(event){
 
   }
   else{
-    this.bancaria_o_interbancaria='Número de cuenta interbancario (CCI)';
+    this.bancaria_o_interbancaria='Número de cuenta';
     this.minimo_caracteres_numero_cuenta=19;
     this.maximo_caracteres_numero_cuenta=19;
     this.agregarcuenta.controls['numero_cuenta'].setValidators([Validators.required, Validators.minLength(12),Validators.maxLength(17)]);

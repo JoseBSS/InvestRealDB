@@ -108,15 +108,15 @@
                 " size="small">
                   <ion-icon size="small" size="medium" color="secondary" style="cursor: pointer; color: secondary"
                     name="create"></ion-icon>
-  
+
                 </ion-button>
-  
+
                 <ion-button (click)="sesion_eliminar(cadacuenta, 'cuenta')" style="font-size: small;zoom: 0.7;
                 " size="small">
                   <ion-icon size="small" size="medium" color="danger" style="cursor: pointer; color: secondary"
                     name="trash"></ion-icon>
                 </ion-button>
-  
+
               </div>
 
               <!-- <ion-button size="small"><ion-icon
@@ -139,26 +139,57 @@
         </ion-grid>
 
         <ion-grid *ngFor="let cadatarjeta of tarjetas_de_usuario" class="ion-no-padding" no-padding>
+
           <ion-row class="ion-no-padding" no-padding>
-            <ion-col size="3.2" *ngIf="cadatarjeta.apodo_tarjeta">
+            <ion-col size="3.2"  *ngIf="cadatarjeta.apodo_tarjeta">
               {{cadatarjeta.apodo_tarjeta}}<br />
               {{cadatarjeta.titular_tarjeta}}
+
             </ion-col>
-            <ion-col size="3.2" *ngIf="!cadatarjeta.apodo_tarjeta">
-              {{cadatarjeta.titular_tarjeta}}
+            <ion-col size="2.6"  *ngIf="!cadatarjeta.apodo_tarjeta">
+                            {{cadatarjeta.titular_tarjeta}}
+
             </ion-col>
-            <ion-col size="3.2"> {{cadatarjeta.banco_tarjeta}} </ion-col>
-            <ion-col size="3.2">
+            <ion-col size="3.4"> 
+{{cadatarjeta.banco_tarjeta}}
+
+</ion-col>
+            <ion-col size="1.8">
+
               tarjeta<br />
               {{cadatarjeta.numero_tarjeta}}
             </ion-col>
-            <ion-col size="1.6"> {{cadatarjeta.moneda_tarjeta}} </ion-col>
-            <ion-col (click)="sesion_editar(cadatarjeta, 'tarjeta')" size="0.4">
-              <ion-icon style="color: var(--ion-color-primary)" name="create"></ion-icon>
+            <ion-col size="1">
+              <div class="ion-text-center">
+                <ion-button (click)="sesion_editar(cadatarjeta, 'tarjeta')" style="font-size: small;zoom: 0.7;
+                " size="small">
+                  <ion-icon size="small" size="medium" color="secondary" style="cursor: pointer; color: secondary"
+                    name="create"></ion-icon>
+
+                </ion-button>
+
+                <ion-button (click)="sesion_eliminar(cadatarjeta, 'tarjeta')" style="font-size: small;zoom: 0.7;
+                " size="small">
+                  <ion-icon size="small" size="medium" color="danger" style="cursor: pointer; color: secondary"
+                    name="trash"></ion-icon>
+                </ion-button>
+
+              </div>
+
+              <!-- <ion-button size="small"><ion-icon
+                style="color: var(--ion-color-primary)"
+                name="create"
+              ></ion-icon></ion-button>
+            
+              <ion-button size="small"><ion-icon
+                style="color: var(--ion-color-secondary)"
+                name="trash-bin"
+              ></ion-icon></ion-button> -->
             </ion-col>
-            <ion-col (click)="sesion_eliminar(cadatarjeta, 'tarjeta')" size="0.4">
-              <ion-icon style="color: var(--ion-color-secondary)" name="trash-bin"></ion-icon>
+            <!-- <ion-col (click)="sesion_editar(cadatarjeta, 'tarjeta')" >
             </ion-col>
+            <ion-col (click)="sesion_eliminar(cadatarjeta, 'tarjeta')" >
+            </ion-col> -->
           </ion-row>
 
           <ion-item-divider></ion-item-divider>
@@ -313,6 +344,8 @@
               Banco De Crédito BCP
             </ion-select-option>
             <ion-select-option value="Interbank"> Interbank </ion-select-option>
+            <ion-select-option value="Caja Huancayo"> Caja Huancayo </ion-select-option>
+
             <ion-select-option value="BBVA"> BBVA </ion-select-option>
             <ion-select-option value="ScotiaBank">
               ScotiaBank
@@ -332,6 +365,12 @@
             <ion-select-option value="Banco del Comercio">
               Banco del Comercio
             </ion-select-option>
+
+            <ion-select-option value="diners">
+              Diners
+            </ion-select-option>
+
+
           </ion-select>
 
           <ion-grid class="ion-no-padding" no-padding>
@@ -385,8 +424,10 @@
               color: var(--ion-color-secondary);
               border: 1px solid var(--ion-color-primary);
             ">
-            <ion-label style="color: var(--ion-color-secondary)" position="floating">Número de cuenta interbancario (CCI)</ion-label>
-            <ion-input formControlName="numero_de_cuenta_interbancario" type="name" placeholder="Numero de CCI"></ion-input>
+            <ion-label style="color: var(--ion-color-secondary)" position="floating">Número de cuenta interbancario
+              (CCI)</ion-label>
+            <ion-input formControlName="numero_de_cuenta_interbancario" type="name"
+              placeholder="Numero de CCI"></ion-input>
           </ion-item>
 
           <ion-item lines="none" style="
@@ -499,6 +540,8 @@
               Banco De Crédito BCP
             </ion-select-option>
             <ion-select-option value="Interbank"> Interbank </ion-select-option>
+            <ion-select-option value="Caja Huancayo"> Caja Huancayo </ion-select-option>
+
             <ion-select-option value="BBVA"> BBVA </ion-select-option>
             <ion-select-option value="ScotiaBank">
               ScotiaBank

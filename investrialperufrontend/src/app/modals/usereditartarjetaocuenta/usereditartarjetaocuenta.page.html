@@ -21,6 +21,8 @@
         <ion-select (ionChange)="IONCHANGEbanco_cuenta($event)" formControlName="banco_cuenta" interface="popover" [interfaceOptions]="{ cssClass: 'clasebancosselector', size: 'cover' , side:'bottom',  alignment:'center' }" placeholder="Seleccionar banco" style="width:100%; border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
           <ion-select-option value="BCP"> Banco De  Crédito BCP </ion-select-option>
           <ion-select-option value="Interbank"> Interbank </ion-select-option>
+          <ion-select-option value="Caja Huancayo"> Caja huancayo </ion-select-option>
+
           <ion-select-option value="BBVA"> BBVA </ion-select-option>
           <ion-select-option value="ScotiaBank"> ScotiaBank </ion-select-option>
           <ion-select-option value="BanBif"> BanBif </ion-select-option>
@@ -32,7 +34,8 @@
           <ion-select-option value="Falabella"> Falabella </ion-select-option>
           <ion-select-option value="Banco Ripley"> Banco Ripley </ion-select-option>
           <ion-select-option value="Banco del Comercio"> Banco del Comercio </ion-select-option>
-  
+          <ion-select-option value="Diners"> Diners </ion-select-option>
+
          </ion-select>
   
          <ion-grid class="ion-no-padding" no-padding>
@@ -160,6 +163,8 @@
       <ion-select (ionChange)="IONCHANGEbanco_cuenta($event)" formControlName="banco_tarjeta" interface="popover" [interfaceOptions]="{ cssClass: 'clasebancosselector', size: 'cover' , side:'bottom',  alignment:'center' }" placeholder="Seleccionar banco" style="width:100%; border-radius:6px; color:var(--ion-color-secondary); border: 1px solid var(--ion-color-primary);">
         <ion-select-option value="BCP"> Banco De  Crédito BCP </ion-select-option>
         <ion-select-option value="Interbank"> Interbank </ion-select-option>
+        <ion-select-option value="Caja Huancayo"> Caja Huancayo </ion-select-option>
+
         <ion-select-option value="BBVA"> BBVA </ion-select-option>
         <ion-select-option value="ScotiaBank"> ScotiaBank </ion-select-option>
         <ion-select-option value="BanBif"> BanBif </ion-select-option>
@@ -171,6 +176,7 @@
         <ion-select-option value="Falabella"> Falabella </ion-select-option>
         <ion-select-option value="Banco Ripley"> Banco Ripley </ion-select-option>
         <ion-select-option value="Banco del Comercio"> Banco del Comercio </ion-select-option>
+        <ion-select-option value="Diners"> Diners </ion-select-option>
 
        </ion-select>
        <ion-text>Número de Tarjeta</ion-text>

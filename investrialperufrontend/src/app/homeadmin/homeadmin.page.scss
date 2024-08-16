@@ -6,6 +6,19 @@
     white-space: nowrap;
   }
 
+  ion-segment-button {
+    --indicator-box-shadow: transparent !important;
+    --background: #828282;
+    --color:#89c53f;
+    --background-checked: linear-gradient(to right, #7cae3f, #a8ee53)!important;
+    --color-checked: #828282;
+    border-radius: .5rem !important;
+    padding: 2px;
+    margin: 0;
+  }
+
+
+
 
   .v2-badge-usocupon {
     color: black;

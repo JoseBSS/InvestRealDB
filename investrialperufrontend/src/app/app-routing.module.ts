@@ -111,6 +111,10 @@ const routes: Routes = [
     path: 'modaldeclarofondos',
     loadChildren: () => import('./modals/modaldeclarofondos/modaldeclarofondos.module').then( m => m.ModaldeclarofondosPageModule)
   },
+  {
+    path: 'modalmostraropciones',
+    loadChildren: () => import('./modals/modalmostraropciones/modalmostraropciones.module').then( m => m.ModalmostraropcionesPageModule)
+  },
 
 
 

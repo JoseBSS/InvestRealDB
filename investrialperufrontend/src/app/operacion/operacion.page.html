@@ -1,9 +1,18 @@
 <ion-content>
+  <ng-container *ngIf="this.termino_la_operacion==false">
+    <div style="position:absolute; z-index:4; top:-1px;right:9px;">
+      <p class="v2-badge v2-badge-tasaconcupon" style="font-size:smaller;" *ngIf="this.step=='2'||this.step=='3'||this.step=='4'">
+        {{ timeRemaining$ | async | date:'mm:ss' }}
+      </p>
+    </div>
+  </ng-container>
+
+
   <ion-refresher id="asd" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content style="position: sticky !important;;" #contenedor1>
     </ion-refresher-content>
   </ion-refresher>
-  <div style="padding: 40px 40px 0 40px" class="ion-hide-sm-up">
+  <div *ngIf="this.step=='1'" style="padding: 40px 40px 0 40px" class="ion-hide-sm-up">
     <p class="main__title ion-text-center" style="margin: 0">
       Iniciar Operación
     </p>
@@ -123,13 +132,10 @@
               </ion-card-content>
             </ion-card>
             <div class="ion-text-center">
-              <ion-button 
-              [disabled]="
+              <ion-button [disabled]="
               !campodolaresarecibir.value ||
               !camposolesaenviar.value
-              "
-              
-              (click)="step2()" class="botonredondo" color="primary">
+              " (click)="step2()" class="botonredondo" color="primary">
                 <span style="color: white !important;">
                   Iniciar Operación
                 </span>
@@ -221,12 +227,10 @@
               </ion-card-content>
             </ion-card>
             <div class="ion-text-center">
-              <ion-button
-                [disabled]="
+              <ion-button [disabled]="
                 !campodolaresaenviar.value||
                 !camposolesarecibir.value
-                "
-              (click)="step2()" class="botonredondo" color="primary">
+                " (click)="step2()" class="botonredondo" color="primary">
                 <span style="color: white !important;">
                   Iniciar Operación
                 </span>
@@ -276,7 +280,8 @@
 
 
               <ion-row style="padding-bottom: 0px !important; padding-top: 0px !important" class="ion-no-padding">
-                <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" class="ion-no-padding" size="12">
+                <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" class="ion-no-padding"
+                  size="12">
                   <ion-card style="
                     padding-left: 20px !important;
                     padding-bottom: 0px !important;
@@ -401,45 +406,60 @@
 
 
                 <ion-col style="padding-bottom: 0px !important; padding-top: 0px !important" size="12">
-                  
+
                   <ng-container *ngIf="cupongenerado">
 
                     <ng-container *ngIf="quierecomprardolares">
-                    <ion-card class="ion-no-padding" no-padding>
-                      <ion-card-header color="medium" class="ion-no-padding" no-padding>
-                        <ion-text class="ion-no-padding" no-padding>
-                          <div class="ion-text-center ion-no-padding" no-padding>
-                            <span class="v2-badge v2-badge-tasasincupon">{{ventainvestrealperu}}</span> {{cupongenerado.soles_a_sumar_dolares}} &#10146; <span class="v2-badge v2-badge-tasaconcupon"> {{this.cupongenerado.nueva_tasa_quierecomprardolares | number:'1.3-3'}}</span><span><ion-button size="small" (click)="this.cupongenerado=undefined" ><ion-icon name="close-circle"></ion-icon></ion-button></span>
-                          </div>
-                        </ion-text>
-                      </ion-card-header>
-                    </ion-card>
-                    
-                  </ng-container>
-                  <ng-container *ngIf="!quierecomprardolares">
-                    <ion-card class="ion-no-padding" no-padding>
-                      <ion-card-header color="medium" class="ion-no-padding" no-padding>
-                        <ion-text class="ion-no-padding" no-padding>
-                          <div class="ion-text-center ion-no-padding" no-padding>
-                            <span class="v2-badge v2-badge-tasasincupon">{{comprainvestrealperu}}</span> {{cupongenerado.soles_a_sumar_dolares}} &#10146; <span class="v2-badge v2-badge-tasaconcupon">{{this.cupongenerado.nueva_tasa_noquierecomprardolares | number:'1.3-3'}}</span><span><ion-button size="small" (click)="this.cupongenerado=undefined" ><ion-icon name="close-circle"></ion-icon></ion-button></span>
-                          </div>
-                        </ion-text>
-                      </ion-card-header>
-                    </ion-card>
-                    
-                  </ng-container>
-                </ng-container>
-                
-                <ng-container *ngIf="!cupongenerado">
-                  <div class="ocultar767paraabajo ion-text-center ion-no-padding" style="margin-top: -10px; margin-left:10px; margin-bottom:-8px;" no-padding>
-                    <ion-button size="small" style="color: #fff" (click)="abrir_modal_creditos(false)">Usar Cupon</ion-button>
-                  </div>
-                  <div class="ocultar768paraarriba ion-text-center ion-no-padding" style="margin-top: -10px; margin-left:10px; margin-bottom:-8px;" no-padding>
-                    <ion-button size="small" style="color: #fff" (click)="abrir_modal_creditos(false)">Usar Cupon</ion-button>
-                  </div>
-                </ng-container>
+                      <ion-card class="ion-no-padding" no-padding>
+                        <ion-card-header color="medium" class="ion-no-padding" no-padding>
+                          <ion-text class="ion-no-padding" no-padding>
+                            <div class="ion-text-center ion-no-padding" no-padding>
+                              <span class="v2-badge v2-badge-tasasincupon">{{ventainvestrealperu}}</span>
+                              {{cupongenerado.soles_a_sumar_dolares}} &#10146; <span
+                                class="v2-badge v2-badge-tasaconcupon">
+                                {{this.cupongenerado.nueva_tasa_quierecomprardolares |
+                                number:'1.3-3'}}</span><span><ion-button size="small"
+                                  (click)="this.cupongenerado=undefined"><ion-icon
+                                    name="close-circle"></ion-icon></ion-button></span>
+                            </div>
+                          </ion-text>
+                        </ion-card-header>
+                      </ion-card>
 
-                  
+                    </ng-container>
+                    <ng-container *ngIf="!quierecomprardolares">
+                      <ion-card class="ion-no-padding" no-padding>
+                        <ion-card-header color="medium" class="ion-no-padding" no-padding>
+                          <ion-text class="ion-no-padding" no-padding>
+                            <div class="ion-text-center ion-no-padding" no-padding>
+                              <span class="v2-badge v2-badge-tasasincupon">{{comprainvestrealperu}}</span>
+                              {{cupongenerado.soles_a_sumar_dolares}} &#10146; <span
+                                class="v2-badge v2-badge-tasaconcupon">{{this.cupongenerado.nueva_tasa_noquierecomprardolares
+                                | number:'1.3-3'}}</span><span><ion-button size="small"
+                                  (click)="this.cupongenerado=undefined"><ion-icon
+                                    name="close-circle"></ion-icon></ion-button></span>
+                            </div>
+                          </ion-text>
+                        </ion-card-header>
+                      </ion-card>
+
+                    </ng-container>
+                  </ng-container>
+
+                  <ng-container *ngIf="!cupongenerado">
+                    <div class="ocultar767paraabajo ion-text-center ion-no-padding"
+                      style="margin-top: -10px; margin-left:10px; margin-bottom:-8px;" no-padding>
+                      <ion-button size="small" style="color: #fff" (click)="abrir_modal_creditos(false)">Usar
+                        Cupon</ion-button>
+                    </div>
+                    <div class="ocultar768paraarriba ion-text-center ion-no-padding"
+                      style="margin-top: -10px; margin-left:10px; margin-bottom:-8px;" no-padding>
+                      <ion-button size="small" style="color: #fff" (click)="abrir_modal_creditos(false)">Usar
+                        Cupon</ion-button>
+                    </div>
+                  </ng-container>
+
+
                   <ion-card style="
                     padding-left: 20px !important;
                     padding-bottom: 0px !important;
@@ -447,14 +467,14 @@
                     ">
                     <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)"
                       *ngIf="quierecomprardolares">
-                      <h3>Recibire Dólares 
+                      <h3>Recibire Dólares
 
 
                       </h3>
                     </ion-text>
                     <ion-text class="fuenteraleway" style="color: var(--ion-color-secondary)"
                       *ngIf="!quierecomprardolares">
-                      <h3>Recibire Soles 
+                      <h3>Recibire Soles
 
 
                       </h3>
@@ -465,7 +485,7 @@
                         <p>
                           <img src="assets/investrealperurecursos/banderas-peru-eeuu/eeuu.png" />
                           USD | <span [class]="!cupongenerado ? '': 'original-price'">{{dolaresarecibir}}</span>
-                        <!-- <span *ngIf="this.cupongenerado&&this.cupongenerado.tipo_de_ganancia=='hacer_que_gane_dolares'">
+                          <!-- <span *ngIf="this.cupongenerado&&this.cupongenerado.tipo_de_ganancia=='hacer_que_gane_dolares'">
                           <a *ngIf="this.cupongenerado&&this.cupongenerado.soles_a_sumar_dolares!='0'">
                            +$.{{this.cupongenerado.soles_a_sumar_dolares}}
                           </a>
@@ -476,11 +496,12 @@
                             +S/.{{this.cupongenerado.soles_a_sumar_soles}}
                            </a>
                         </span> -->
-                        &nbsp;
-                        <a *ngIf="cupongenerado" class="textoconrellenoanimado">
-                          &#10146;
-                          <span class="shimmer">{{solesaenviar/cupongenerado.nueva_tasa_quierecomprardolares | number:'1.2-2'}}</span>
-                        </a>
+                          &nbsp;
+                          <a *ngIf="cupongenerado" class="textoconrellenoanimado">
+                            &#10146;
+                            <span class="shimmer">{{solesaenviar/cupongenerado.nueva_tasa_quierecomprardolares |
+                              number:'1.2-2'}}</span>
+                          </a>
 
                         </p>
                       </h4>
@@ -506,7 +527,8 @@
                           &nbsp;
                           <a *ngIf="cupongenerado" class="textoconrellenoanimado">
                             &#10146;
-                            <span class="shimmer">{{dolaresaenviar*cupongenerado.nueva_tasa_noquierecomprardolares | number:'1.2-2'}}</span>
+                            <span class="shimmer">{{dolaresaenviar*cupongenerado.nueva_tasa_noquierecomprardolares |
+                              number:'1.2-2'}}</span>
                           </a>
 
                         </p>
@@ -523,7 +545,7 @@
                     <section *ngIf="!agrego_algo">
                       <section *ngIf="cuentas_de_usuario||tarjetas_de_usuario" style="margin-left: 0px !important">
                         <section *ngIf="quierecomprardolares">
-                          <ion-select [disabled]="cuentas_de_usuario.length<1&&tarjetas_de_usuario.length<1"
+                          <ion-select [disabled]="activale_selector_dato_deposito==false"
                             (ionChange)="IONCHANGEdatos_de_deposito($event)"
                             *ngIf="cuentas_de_usuario.length>0||tarjetas_de_usuario.length>0" interface="popover"
                             [interfaceOptions]="{ cssClass: 'claseselectoranchocompletoysaltodelinea' , side:'top',  alignment:'center' }"
@@ -547,7 +569,7 @@
                           </ion-select>
                         </section>
                         <section *ngIf="!quierecomprardolares">
-                          <ion-select [disabled]="cuentas_de_usuario.length<1&&tarjetas_de_usuario.length<1"
+                          <ion-select [disabled]="activale_selector_dato_deposito==false"
                             (ionChange)="IONCHANGEdatos_de_deposito($event)"
                             *ngIf="cuentas_de_usuario.length>0||tarjetas_de_usuario.length>0" interface="popover"
                             [interfaceOptions]="{ cssClass: 'claseselectoranchocompletoysaltodelinea' , side:'top',  alignment:'center' }"
@@ -624,31 +646,25 @@
                 </ion-col>
               </ion-row>
               <ion-row (click)="rowdeclaracion()">
-                <ion-col size="12" >
-                  <ion-progress-bar *ngIf="progessbar_declaracion_fondos" type="indeterminate" color="primary"></ion-progress-bar>
+                <ion-col size="12">
+                  <ion-progress-bar *ngIf="progessbar_declaracion_fondos" type="indeterminate"
+                    color="primary"></ion-progress-bar>
 
-                  <ion-radio-group  #radrio_group_declaracion_fondos
-                  class="ion-margin-top ion-margin-bottom"
-                  [ngModelOptions]="{standalone: true}"
-                  [ngModel]="declaro_todos_los_campos_de_los_fondos"
-                  
-                >
-                  <ion-row style="display: flex; justify-content: space-between">
-                    <ion-col
-                      
-                      size="12"
-                      style="padding-top: 3px; padding-bottom: 3px; text-align: center;
+                  <ion-radio-group #radrio_group_declaracion_fondos class="ion-margin-top ion-margin-bottom"
+                    [ngModelOptions]="{standalone: true}" [ngModel]="declaro_todos_los_campos_de_los_fondos">
+                    <ion-row style="display: flex; justify-content: space-between">
+                      <ion-col size="12" style="padding-top: 3px; padding-bottom: 3px; text-align: center;
                         border-radius: 6px;
                         color: var(--ion-color-secondary);
                         border: 1px solid var(--ion-color-primary);
-                      "
-                    >
-                      <ion-radio [value]="true"></ion-radio> Decláro el origen de los fondos
-                    </ion-col>
+                      ">
+                        <ion-radio [value]="true"></ion-radio> Decláro el origen de los fondos
+                      </ion-col>
 
-                  </ion-row>
-                </ion-radio-group>
-                <ion-progress-bar *ngIf="progessbar_declaracion_fondos" type="indeterminate" color="primary"></ion-progress-bar>
+                    </ion-row>
+                  </ion-radio-group>
+                  <ion-progress-bar *ngIf="progessbar_declaracion_fondos" type="indeterminate"
+                    color="primary"></ion-progress-bar>
 
                 </ion-col>
               </ion-row>
@@ -661,12 +677,12 @@
                 </ion-col>
                 <ion-col size="6">
                   <section *ngIf="!agrego_algo">
-                    <ion-button *ngIf="data_de_deposito&&banco_que_envia&&declaro_todos_los_campos_de_los_fondos" (click)="step3()" color="primary"
-                      expand="full" style="color: #fff">
+                    <ion-button *ngIf="data_de_deposito&&banco_que_envia&&declaro_todos_los_campos_de_los_fondos"
+                      (click)="step3()" color="primary" expand="full" style="color: #fff">
                       Continuar
                     </ion-button>
-                    <ion-button *ngIf="!data_de_deposito||!banco_que_envia||!declaro_todos_los_campos_de_los_fondos" (click)="abrirmodalerrorpaso2()"
-                      color="primary" expand="full">
+                    <ion-button *ngIf="!data_de_deposito||!banco_que_envia||!declaro_todos_los_campos_de_los_fondos"
+                      (click)="abrirmodalerrorpaso2()" color="primary" expand="full">
                       Continuar
                     </ion-button>
                   </section>
@@ -700,8 +716,9 @@
                             indiquenos a que cuenta o tarjeta desea que te transfiramos.
                           </li>
                           <li *ngIf="!declaro_todos_los_campos_de_los_fondos">
-                            <strong style="color: var(--ion-color-secondary)">Declare los fondos: </strong>Para continuar
-                           debe declarar los fondos para esta operación.
+                            <strong style="color: var(--ion-color-secondary)">Declare los fondos: </strong>Para
+                            continuar
+                            debe declarar los fondos para esta operación.
                           </li>
 
 

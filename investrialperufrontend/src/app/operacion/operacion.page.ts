@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import { VariosService } from '../service/varios.service';
 import { Router } from '@angular/router';
@@ -9,10 +9,12 @@ import { ModalController } from '@ionic/angular';
 import { AgregarcuentaotarjetaPage } from '../modals/agregarcuentaotarjeta/agregarcuentaotarjeta.page';
 import { DecimalPipe } from '@angular/common';
 import { ChangeDetectorRef } from "@angular/core";
+import { map, timer, takeWhile } from 'rxjs';
 
 import { NgZone } from '@angular/core';
 import { ModalcuponesPage } from '../modals/modalcupones/modalcupones.page';
 import { ModaldeclarofondosPage } from '../modals/modaldeclarofondos/modaldeclarofondos.page';
+import { ModalmostraropcionesPage } from '../modals/modalmostraropciones/modalmostraropciones.page';
 
 @Component({
   selector: 'app-operacion',
@@ -51,7 +53,7 @@ export class OperacionPage implements OnInit {
   vista_en_modal_cupon = 'ver_cupones';
   isModalOpen = false;
   cupongenerado: any;
-
+  activale_selector_dato_deposito: boolean = false;
   // @ViewChild('rate') myElement: ElementRef;
   @ViewChild('rate') set content(content: ElementRef) {
     if (!this.quierecomprardolares) { // initially setter gets called with undefined
@@ -61,6 +63,14 @@ export class OperacionPage implements OnInit {
       this.rate = content;
     }
   }
+
+  @Input() seconds = 600;
+
+  timeRemaining$ = timer(0, 1000).pipe(
+    map(n => (this.seconds - n) * 1000),
+    takeWhile(n => n >= 0),
+  );
+
 
   secretKey = "123456&Descryption";
   profileInfo: any = null;
@@ -79,7 +89,7 @@ export class OperacionPage implements OnInit {
   id_credito_usado: any;
   declaro_todos_los_campos_de_los_fondos: boolean = false;
   progessbar_declaracion_fondos : boolean = false;
-
+  termino_la_operacion: boolean = false;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -103,7 +113,8 @@ export class OperacionPage implements OnInit {
   ionViewWillEnter() {
 
     this.consultarusuario();
-
+    this.termino_la_operacion=false;
+    this.abrir_modal_mostrar_opciones();
   }
 
   consultarusuario() {
@@ -180,6 +191,53 @@ export class OperacionPage implements OnInit {
       var d = document.getElementById('asd');
 
 
+      if(this.quierecomprardolares==true){
+        if(this.cuentas_de_usuario&&this.cuentas_de_usuario.length>0){
+        for (let i = 0; i < this.cuentas_de_usuario.length; ++i) {
+            if(this.cuentas_de_usuario[i].moneda_cuenta=='Dolares'){
+              this.activale_selector_dato_deposito=true;
+
+            }
+
+  
+          }
+        }
+        else{
+          this.activale_selector_dato_deposito=false;
+
+        }
+        if(this.tarjetas_de_usuario.length>0){
+          this.activale_selector_dato_deposito=true;
+        }
+
+
+        console.log('this.activale_selector_dato_deposito',this.activale_selector_dato_deposito);
+      }
+      else{
+  
+        for (let i = 0; i < this.cuentas_de_usuario.length; ++i) {
+          if(this.cuentas_de_usuario.length>0){
+            if(this.cuentas_de_usuario[i].moneda_cuenta=='Soles'){
+              this.activale_selector_dato_deposito=true;
+
+            }
+
+  
+          }
+          else{
+            this.activale_selector_dato_deposito=false;
+  
+          }
+        }
+        if(this.tarjetas_de_usuario>0){
+          this.activale_selector_dato_deposito=true;
+        }
+
+
+        console.log('this.activale_selector_dato_deposito',this.activale_selector_dato_deposito);
+      }
+
+
       this.varios.mostrar_selector_de_cuentas_o_actualizando_vista = true;
       this.changeDetectorRef.detectChanges();
     });
@@ -235,11 +293,15 @@ export class OperacionPage implements OnInit {
     this.data_de_deposito = undefined;
     this.banco_que_envia = undefined;
     this.step = '1';
+    this.activale_selector_dato_deposito=false;
+
   }
 
 
 
   step2() {
+    this.traercuentasytarjetasdeusuario();
+
     var datainvestrealperutraertipodecambio = {
       nombre_solicitud: 'investrealperutraertipodecambio',
     }
@@ -247,6 +309,16 @@ export class OperacionPage implements OnInit {
 
 
     this.step = '2';
+    setTimeout(() => {
+
+      if(this.termino_la_operacion!=true){
+        window.location.reload();
+      }
+
+      // 600000 son 600 segundos
+    }, 600000);
+
+
   }
 
   step3() {
@@ -569,6 +641,9 @@ export class OperacionPage implements OnInit {
   }
 
   async nuevacuenta() {
+
+    this.activale_selector_dato_deposito=false;
+
     const modal = await this.modalController.create({
       component: AgregarcuentaotarjetaPage,
       cssClass: 'agregaralgo',
@@ -591,6 +666,9 @@ export class OperacionPage implements OnInit {
   }
 
   async nuevatarjeta() {
+
+    this.activale_selector_dato_deposito=false;
+
     const modal = await this.modalController.create({
       component: AgregarcuentaotarjetaPage,
       cssClass: 'agregaralgo',
@@ -673,6 +751,8 @@ export class OperacionPage implements OnInit {
         console.log(' respuesta investrealperuenviaroperacionconfoto', res);
         this.operacion_enviada_con_foto = res;
         this.step = '4';
+        this.termino_la_operacion=true;
+
       });
     }
     else {
@@ -816,17 +896,63 @@ export class OperacionPage implements OnInit {
     this.abrir_modal_declaraciones();
     // Any calls to load data go here
   }, 1000);
-    
-
   // setTimeout(() => {
   //   this.declaro_todos_los_campos_de_los_fondos=true;
   //   this.radrio_group_declaracion_fondos.value=true;
   //   // Any calls to load data go here
   // }, 4000);
+  }
+
+  async abrir_modal_mostrar_opciones() {
+    var temporal_unir_opciones;
+
+    Object.keys(this.cuentas_de_usuario).forEach(function(key,index) {
+      // key: the name of the object key
+      // index: the ordinal position of the key within the object 
+      console.log(key);
+      console.log(index);
+
+  });
+
+    const modal = await this.modalCtrl.create({
+      component: ModalmostraropcionesPage,
+      componentProps: {
+        cssClass: 'my-custom-class',
+        dolaresaenviar: this.dolaresaenviar,
+        solesaenviar: this.solesaenviar,
+        quierecomprardolares: this.quierecomprardolares
+
+      },
+      initialBreakpoint: 0.7,
+      // backdropBreakpoint: 0.1,
+      breakpoints: [0, 1]
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    this.progessbar_declaracion_fondos=false;
+    
+    console.log('data',data);
+    if (data&&data.origen_de_fondos&&data.declaro_ocupacion&&data.declaro_pep) {
+      if(data.origen_de_fondos==='Seleccionar'||data.declaro_ocupacion==='Seleccionar'||data.declaro_pep==='Seleccionar'){
+        console.log('Declarro mal',data);
+        // no pasa nada para que quede historial de declaracion anterior
+        this.declaro_todos_los_campos_de_los_fondos=false;
+        this.radrio_group_declaracion_fondos.value=false;
+      }
+      else{
+        console.log('Declarro bien',data);
+    this.declaro_todos_los_campos_de_los_fondos=true;
+    this.radrio_group_declaracion_fondos.value=true;
+      }
+
+      // this.cupongenerado=data;
+    }
 
 
 
   }
+
 
 
 

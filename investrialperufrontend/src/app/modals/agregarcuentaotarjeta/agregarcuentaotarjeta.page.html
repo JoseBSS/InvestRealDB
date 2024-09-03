@@ -125,6 +125,11 @@
                   <li *ngIf="agregarcuenta.controls['numero_cuenta'].status=='INVALID'"><strong
                   style="color: var(--ion-color-secondary)">Número de cuenta: </strong>¡Ingrese un número de cuenta válido!.</li>
   
+
+                  <li *ngIf="agregarcuenta.controls['numero_de_cuenta_interbancario'].status=='INVALID'"><strong
+                    style="color: var(--ion-color-secondary)">Número Interbancario: </strong>¡Ingrese un número de cuenta interbancario válido!.</li>
+    
+
                   <li *ngIf="agregarcuenta.controls['moneda_cuenta'].status=='INVALID'"><strong
   
                     style="color: var(--ion-color-secondary)">Moneda: </strong>Indique la divisa de su cuenta, [$ Dolares] o [S/. Soles].</li>

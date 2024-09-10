@@ -555,6 +555,14 @@
                              color: var(--ion-color-secondary);
                              border: 1px solid var(--ion-color-primary);
                              ">
+
+                            <ng-container >
+                              <ion-select-option 
+                                [value]="undefined">&nbsp; <ion-icon name="close-circle"></ion-icon>Seleccionar <ion-icon name="exit-outline"></ion-icon>
+                              </ion-select-option>
+                            </ng-container>
+
+
                             <ng-container *ngFor="let cadacuenta of cuentas_de_usuario;let i=index">
                               <ion-select-option *ngIf="cadacuenta.moneda_cuenta=='Dolares'"
                                 [value]="cadacuenta">Cuenta:&nbsp;{{cuentas_de_usuario[i].numero_cuenta}}
@@ -579,6 +587,13 @@
                              color: var(--ion-color-secondary);
                              border: 1px solid var(--ion-color-primary);
                              ">
+
+                            <ng-container >
+                              <ion-select-option 
+                                [value]="undefined">&nbsp; <ion-icon name="close-circle"></ion-icon>Seleccionar <ion-icon name="exit-outline"></ion-icon>
+                              </ion-select-option>
+                            </ng-container>
+
                             <ng-container *ngFor="let cadacuenta of cuentas_de_usuario"
                               [style]="this.cuentas_de_usuario.length> 0 ? '': 'display:none!important'">
                               <ion-select-option *ngIf="cuentas_de_usuario.length>0&&cadacuenta.moneda_cuenta=='Soles'"

@@ -114,7 +114,7 @@ export class OperacionPage implements OnInit {
 
     this.consultarusuario();
     this.termino_la_operacion=false;
-    this.abrir_modal_mostrar_opciones();
+    // this.abrir_modal_mostrar_opciones();
   }
 
   consultarusuario() {
@@ -294,12 +294,14 @@ export class OperacionPage implements OnInit {
     this.banco_que_envia = undefined;
     this.step = '1';
     this.activale_selector_dato_deposito=false;
-
+    this.termino_la_operacion=true;
   }
 
 
 
   step2() {
+    this.termino_la_operacion=false;
+
     this.traercuentasytarjetasdeusuario();
 
     var datainvestrealperutraertipodecambio = {
@@ -322,6 +324,10 @@ export class OperacionPage implements OnInit {
   }
 
   step3() {
+
+    var temporal_que_tipo_de_contenido_tiene_la_variable=typeof this.data_de_deposito;
+    if(this.data_de_deposito&&temporal_que_tipo_de_contenido_tiene_la_variable==='object'){
+      console.log('jejejedatos de deposito',typeof this.data_de_deposito);
 
     this.varios.MostrarAlertaMonoOcultarEn8000('present');
     var datainvestrealperutraeradmincuentas = {
@@ -402,6 +408,13 @@ export class OperacionPage implements OnInit {
 
       this.step = '3';
     });
+
+  }
+  else{
+    this.varios.presentToast('Porfavor Seleccione donde desea recibir los fondos.')
+  }
+
+
 
   }
 
@@ -903,58 +916,61 @@ export class OperacionPage implements OnInit {
   // }, 4000);
   }
 
-  async abrir_modal_mostrar_opciones() {
-    var temporal_unir_opciones;
+  // async abrir_modal_mostrar_opciones() {
+  //   var temporal_unir_opciones;
 
-    Object.keys(this.cuentas_de_usuario).forEach(function(key,index) {
-      // key: the name of the object key
-      // index: the ordinal position of the key within the object 
-      console.log(key);
-      console.log(index);
+  //   Object.keys(this.cuentas_de_usuario).forEach(function(key,index) {
+  //     // key: the name of the object key
+  //     // index: the ordinal position of the key within the object 
+  //     console.log(key);
+  //     console.log(index);
 
-  });
+  // });
 
-    const modal = await this.modalCtrl.create({
-      component: ModalmostraropcionesPage,
-      componentProps: {
-        cssClass: 'my-custom-class',
-        dolaresaenviar: this.dolaresaenviar,
-        solesaenviar: this.solesaenviar,
-        quierecomprardolares: this.quierecomprardolares
+  //   const modal = await this.modalCtrl.create({
+  //     component: ModalmostraropcionesPage,
+  //     componentProps: {
+  //       cssClass: 'my-custom-class',
+  //       dolaresaenviar: this.dolaresaenviar,
+  //       solesaenviar: this.solesaenviar,
+  //       quierecomprardolares: this.quierecomprardolares
 
-      },
-      initialBreakpoint: 0.7,
-      // backdropBreakpoint: 0.1,
-      breakpoints: [0, 1]
-    });
-    modal.present();
+  //     },
+  //     initialBreakpoint: 0.7,
+  //     // backdropBreakpoint: 0.1,
+  //     breakpoints: [0, 1]
+  //   });
+  //   modal.present();
 
-    const { data, role } = await modal.onWillDismiss();
-    this.progessbar_declaracion_fondos=false;
+  //   const { data, role } = await modal.onWillDismiss();
+  //   this.progessbar_declaracion_fondos=false;
     
-    console.log('data',data);
-    if (data&&data.origen_de_fondos&&data.declaro_ocupacion&&data.declaro_pep) {
-      if(data.origen_de_fondos==='Seleccionar'||data.declaro_ocupacion==='Seleccionar'||data.declaro_pep==='Seleccionar'){
-        console.log('Declarro mal',data);
-        // no pasa nada para que quede historial de declaracion anterior
-        this.declaro_todos_los_campos_de_los_fondos=false;
-        this.radrio_group_declaracion_fondos.value=false;
-      }
-      else{
-        console.log('Declarro bien',data);
-    this.declaro_todos_los_campos_de_los_fondos=true;
-    this.radrio_group_declaracion_fondos.value=true;
-      }
+  //   console.log('data',data);
+  //   if (data&&data.origen_de_fondos&&data.declaro_ocupacion&&data.declaro_pep) {
+  //     if(data.origen_de_fondos==='Seleccionar'||data.declaro_ocupacion==='Seleccionar'||data.declaro_pep==='Seleccionar'){
+  //       console.log('Declarro mal',data);
+  //       // no pasa nada para que quede historial de declaracion anterior
+  //       this.declaro_todos_los_campos_de_los_fondos=false;
+  //       this.radrio_group_declaracion_fondos.value=false;
+  //     }
+  //     else{
+  //       console.log('Declarro bien',data);
+  //   this.declaro_todos_los_campos_de_los_fondos=true;
+  //   this.radrio_group_declaracion_fondos.value=true;
+  //     }
 
-      // this.cupongenerado=data;
-    }
+  //     // this.cupongenerado=data;
+  //   }
 
 
+
+  // }
+
+
+  ionViewWillLeave(){
+    this.termino_la_operacion=true;
 
   }
-
-
-
 
 }
 
